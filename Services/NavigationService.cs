@@ -1,5 +1,6 @@
 ﻿using App3.Contracts.Services;
 using App3.Contracts.Views;
+using App3.Helpers;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 

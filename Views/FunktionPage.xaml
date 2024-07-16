@@ -15,8 +15,7 @@
         </Grid.RowDefinitions>
         <TextBlock
             Style="{StaticResource PageTitleStyle}"
-            Margin="{StaticResource MediumLeftMargin}"
-            Text="{x:Static properties:Resources.FunktionPageTitle}" />
+            Margin="{StaticResource MediumLeftMargin}"></TextBlock>
         <Grid
             Grid.Row="1"
             Margin="{StaticResource MediumLeftRightMargin}"
@@ -34,7 +33,7 @@
                     VerticalAlignment="Top"
                     Width="115"
                     Click="ButMoniScann_Click"/>
-            <Button Content="Initialisierung " HorizontalAlignment="Left" Height="160" Margin="666,27,0,0" VerticalAlignment="Top" Width="65" 
+            <Button Content="Initialisierung " HorizontalAlignment="Left" Height="160" Margin="541,22,0,0" VerticalAlignment="Top" Width="65" 
                     Click="IniziStart_Click"/>
             <!--
             The Mahapps Gray10 color represents where you should place your content.

@@ -1,4 +1,6 @@
-﻿namespace System.Windows.Controls;
+﻿using System.Windows.Controls;
+
+namespace App3.Helpers;
 
 public static class FrameExtensions
 {

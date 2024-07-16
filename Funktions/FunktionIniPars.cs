@@ -1,5 +1,6 @@
 ﻿using IniParser;
 using IniParser.Model;
+using System;
 using System.IO;
 using System.Reflection;
 using System.Windows;
@@ -13,31 +14,67 @@ namespace App3.Funktions
 
         public FunktionIniPars()
         {
-            // Initialisierung des INI-Datei-Parsers und Lesen der Daten
-            string appBasePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            settingsPathFile = Path.Combine(appBasePath, "Funktions", "sepain.txt");
+            try
+            {
+                // Initialisierung des INI-Datei-Parsers und Lesen der Daten
+                string appBasePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+                settingsPathFile = Path.Combine(appBasePath, "Funktions", "sepain.txt");
 
-            // Lese den aktuellen Pfad zur INI-Datei aus der settingsPath.txt
-            DataIniSpeicherPfad = File.ReadAllText(settingsPathFile).Trim();
-            MessageBox.Show(DataIniSpeicherPfad);
+                // Überprüfen, ob die Datei existiert
+                if (!File.Exists(settingsPathFile))
+                {
+                    MessageBox.Show("Die Datei sepain.txt wurde nicht gefunden.");
+                    return;
+                }
+
+                // Lese den aktuellen Pfad zur INI-Datei aus der settingsPath.txt
+                DataIniSpeicherPfad = File.ReadAllText(settingsPathFile).Trim();
+                MessageBox.Show(DataIniSpeicherPfad);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ein Fehler ist aufgetreten: {ex.Message}");
+            }
         }
 
         public IniData ReadIniFile()
         {
-            var parser = new FileIniDataParser();
-            return parser.ReadFile(DataIniSpeicherPfad);
+            try
+            {
+                var parser = new FileIniDataParser();
+                return parser.ReadFile(DataIniSpeicherPfad);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Fehler beim Lesen der INI-Datei: {ex.Message}");
+                return null; // Oder eine leere IniData-Instanz zurückgeben, je nach Anwendungslogik
+            }
         }
 
         public void WriteIniFile(IniData data)
         {
-            var parser = new FileIniDataParser();
-            parser.WriteFile(DataIniSpeicherPfad, data);
+            try
+            {
+                var parser = new FileIniDataParser();
+                parser.WriteFile(DataIniSpeicherPfad, data);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Fehler beim Schreiben in die INI-Datei: {ex.Message}");
+            }
         }
 
         public void UpdateIniFilePath(string newPath)
         {
-            DataIniSpeicherPfad = newPath;
-            File.WriteAllText(settingsPathFile, newPath);
+            try
+            {
+                DataIniSpeicherPfad = newPath;
+                File.WriteAllText(settingsPathFile, newPath);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Fehler beim Aktualisieren des INI-Dateipfads: {ex.Message}");
+            }
         }
     }
 }

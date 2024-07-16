@@ -2,6 +2,11 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
+using System.Windows.Forms;
+using System.Windows.Markup;
+using App3.Services;
+
+
 
 namespace App3.Views;
 
@@ -12,6 +17,11 @@ public partial class FunktionPage : Page, INotifyPropertyChanged
         InitializeComponent();
         DataContext = this;
     }
+
+ //  private void InitializeComponent()
+ //  {
+ //      throw new NotImplementedException();
+ //  }
 
     public event PropertyChangedEventHandler PropertyChanged;
 
@@ -28,9 +38,12 @@ public partial class FunktionPage : Page, INotifyPropertyChanged
 
     private void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
+ 
+
     private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
     {
         Funktion1.Execute(); // Rufen Sie die Execute-Methode von Funktion1 auf
+        ISPSaveState.IsReady = true;
     }
 
     private void ButMoniScann_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -41,9 +54,8 @@ public partial class FunktionPage : Page, INotifyPropertyChanged
 
     private void IniziStart_Click(object sender, System.Windows.RoutedEventArgs e)
     {
-
-        FunktionIniReset funktionIniReset = new FunktionIniReset();
-        funktionIniReset.Initialisierungs(); // Rufen Sie die ResetIni-Methode von FunktionIniReset auf
-
+        FunktionIniReset iniReset = new FunktionIniReset("sepain.txt");
+        
+        MessageBox.Show(iniReset.ToString());
     }
 }

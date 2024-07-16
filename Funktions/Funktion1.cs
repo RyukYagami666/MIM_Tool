@@ -5,6 +5,7 @@ using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Media.Imaging;
+using System;
 
 namespace App3.Funktions
 {
@@ -12,16 +13,19 @@ namespace App3.Funktions
     {
         public static List<FileIconInfo> LastExecutedFiles { get; private set; }
 
-
+        public static string GetDesktopPath()
+        {
+            return Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+        }
         public static List<FileIconInfo> Execute()
             {
-                // Ihr bestehender Code, um die Liste 'files' zu füllen...
+            // Ihr bestehender Code, um die Liste 'files' zu füllen...
 
-              
+            string directoryPath = GetDesktopPath();
+
 
             MessageBox.Show("Funktion1 wird ausgeführt."); // MessageBox hinzugefügt
 
-            string directoryPath = "C:\\Users\\Ryuk\\Desktop\\";
             string[] filePaths = Directory.GetFiles(directoryPath, "*");
 
             List<FileIconInfo> files = new List<FileIconInfo>();
