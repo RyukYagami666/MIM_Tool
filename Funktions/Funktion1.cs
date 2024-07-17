@@ -6,6 +6,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using System;
+using Microsoft.VisualBasic;
 
 namespace App3.Funktions
 {
@@ -18,40 +19,38 @@ namespace App3.Funktions
             return Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
         }
         public static List<FileIconInfo> Execute()
-            {
-            // Ihr bestehender Code, um die Liste 'files' zu füllen...
-
-            string directoryPath = GetDesktopPath();
-
-
+        {
+           // string directoryPath = GetDesktopPath();
             MessageBox.Show("Funktion1 wird ausgeführt."); // MessageBox hinzugefügt
-
-            string[] filePaths = Directory.GetFiles(directoryPath, "*");
+            string deskOkDataTrim = Properties.Settings.Default.DeskOkDataTrim;
+            string[] deskOkData = deskOkDataTrim.Split(';');
+            List<string> deskOkNames = deskOkData.ToList();
 
             List<FileIconInfo> files = new List<FileIconInfo>();
-            foreach (var filePath in filePaths)
+            foreach (var filePath in deskOkNames)
             {
-                Icon icon = System.Drawing.Icon.ExtractAssociatedIcon(filePath);
-                BitmapImage bitmapImage = ConvertIconToImageSource(icon);
-                files.Add(new FileIconInfo
+               
+                if (File.Exists(filePath)) // Überprüfen, ob die Datei existiert
                 {
-                    Path = filePath,
-                    Icon = bitmapImage
-                });
+                    Icon icon = System.Drawing.Icon.ExtractAssociatedIcon(filePath);
+                    BitmapImage bitmapImage = ConvertIconToImageSource(icon);
+                    files.Add(new FileIconInfo
+                    {
+                        Path = filePath,
+                        Icon = bitmapImage
+                    });
+                }
             }
+            //files = SortFilesBasedOnDeskOkData(files);
             StringBuilder sb = new StringBuilder();
             foreach (var file in files)
             {
                 sb.AppendLine(file.Path);
             }
-
             MessageBox.Show(sb.ToString(), "Dateipfade", MessageBoxButton.OK, MessageBoxImage.Information);
-
-            //IconListView.ItemsSource = files; // 'files' ist Ihre Liste von Elementen
             LastExecutedFiles = files; // Speichern der Liste in der statischen Eigenschaft
             return files;
         }
-
 
 
 

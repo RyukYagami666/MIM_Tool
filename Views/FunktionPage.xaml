@@ -65,6 +65,13 @@
                     VerticalAlignment="Top" 
                     Width="125"
                     Click="btnDOReadData_Click"/>
+            <Button x:Name="btnDOBearbeiten"
+                    Content="Daten Bearbeiten" 
+                    HorizontalAlignment="Left" 
+                    Height="55" Margin="206,307,0,0" 
+                    VerticalAlignment="Top" 
+                    Width="185"
+                    Click="btnDOBearbeiten_Click"/>
             <!--
             The Mahapps Gray10 color represents where you should place your content.
             Place your content here.

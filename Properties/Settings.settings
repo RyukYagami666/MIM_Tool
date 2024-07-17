@@ -68,7 +68,7 @@
     <Setting Name="DeskOkData" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="a8" Type="System.String" Scope="User">
+    <Setting Name="DeskOkDataTrim" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="a9" Type="System.String" Scope="User">

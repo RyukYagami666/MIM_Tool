@@ -290,12 +290,12 @@ namespace App3.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string a8 {
+        public string DeskOkDataTrim {
             get {
-                return ((string)(this["a8"]));
+                return ((string)(this["DeskOkDataTrim"]));
             }
             set {
-                this["a8"] = value;
+                this["DeskOkDataTrim"] = value;
             }
         }
         

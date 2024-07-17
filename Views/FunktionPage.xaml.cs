@@ -105,4 +105,10 @@ public partial class FunktionPage : Page, INotifyPropertyChanged
         var doReadData = new FunktionDesktopOK();
         doReadData.DataRead(Properties.Settings.Default.eDeskOkLastSave);
     }
+
+    private void btnDOBearbeiten_Click(object sender, RoutedEventArgs e)
+    {
+        var doConvert = new FunktionVergleich();
+        doConvert.AbwandelnDerData();
+    }
 }
