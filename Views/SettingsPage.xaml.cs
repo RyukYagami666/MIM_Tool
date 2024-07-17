@@ -42,6 +42,9 @@ public partial class SettingsPage : Page, INotifyPropertyChanged, INavigationAwa
         _applicationInfoService = applicationInfoService;
         InitializeComponent();
         DataContext = this;
+        var defaultPath = new FunktionDefaultPath();
+        defaultPath.DefaultPath();
+        btnSettingPath.Content = Properties.Settings.Default.pfadDeskOK;
     }
 
     public void OnNavigatedTo(object parameter)
@@ -99,13 +102,7 @@ public partial class SettingsPage : Page, INotifyPropertyChanged, INavigationAwa
 
    
 
-    
-    private void settingPathText_TextChanged(object sender, TextChangedEventArgs e)
-    {
-
-    }
-
-    public void buttSettingPath_Click_1(object sender, RoutedEventArgs e)
+    public void btnSettingPath_Click(object sender, RoutedEventArgs e)
     {
 
         // Erstellen einer Instanz von FunktionSavePath
@@ -116,10 +113,18 @@ public partial class SettingsPage : Page, INotifyPropertyChanged, INavigationAwa
         if (!string.IsNullOrEmpty(newPath))
         {
             // Erstellen einer Instanz von FunktionIniPars und Aktualisieren des Pfades
-            FunktionIniPars iniPars = new FunktionIniPars();
-            iniPars.UpdateIniFilePath(newPath);
+            Properties.Settings.Default.pfadDeskOK = newPath;
+            Properties.Settings.Default.Save();
         }
-        settingPathText.Text = newPath;
+        btnSettingPath.Content = newPath;
+
+    }
+
+    private void btnReset_Click(object sender, RoutedEventArgs e)
+    {
+        FunktionDefaultPath resetPath = new FunktionDefaultPath();
+        resetPath.ResetPath();
+        btnSettingPath.Content = Properties.Settings.Default.pfadDeskOK;
 
     }
 }

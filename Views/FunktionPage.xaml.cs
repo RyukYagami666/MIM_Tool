@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Markup;
 using App3.Services;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 
 
@@ -54,8 +55,10 @@ public partial class FunktionPage : Page, INotifyPropertyChanged
 
     private void IniziStart_Click(object sender, System.Windows.RoutedEventArgs e)
     {
-        FunktionIniReset iniReset = new FunktionIniReset("sepain.txt");
-        
-        MessageBox.Show(iniReset.ToString());
+       var defaultPath = new FunktionDefaultPath();
+        defaultPath.DefaultPath();
+
+        var openPath = new FunktionDefaultPath();
+        openPath.OpenConfig();
     }
 }

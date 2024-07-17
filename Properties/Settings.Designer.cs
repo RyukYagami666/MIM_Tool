@@ -25,7 +25,7 @@ namespace App3.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\%username%\\Documents\\DSM_Files")]
         public string pfadDeskOK {
             get {
                 return ((string)(this["pfadDeskOK"]));
@@ -128,6 +128,18 @@ namespace App3.Properties {
             }
             set {
                 this["DeskIconPfadM4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string eUsername {
+            get {
+                return ((string)(this["eUsername"]));
+            }
+            set {
+                this["eUsername"] = value;
             }
         }
     }

@@ -32,58 +32,108 @@
                     Margin="{StaticResource SmallTopMargin}"
                     Style="{StaticResource SubtitleTextStyle}"
                     Text="{x:Static properties:Resources.SettingsPagePersonalizationTitle}" />
+                
                 <StackPanel Margin="{StaticResource SmallTopBottomMargin}">
                     <TextBlock
                         Style="{StaticResource BodyTextStyle}"
                         Text="{x:Static properties:Resources.SettingsPageChooseThemeText}" />
-                    <StackPanel Margin="{StaticResource XSmallTopMargin}">
+                    <Grid Margin="0,10,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
                         <RadioButton
                             GroupName="AppTheme"
+                            Grid.Column="3"
                             Content="{x:Static properties:Resources.SettingsPageRadioButtonLightTheme}"
                             FontSize="{StaticResource MediumFontSize}"
                             Checked="OnLightChecked"
-                            IsChecked="{Binding Theme, ConverterParameter=Light, Converter={StaticResource EnumToBooleanConverter}}" />
+                            IsChecked="{Binding Theme, ConverterParameter=Light, Converter={StaticResource EnumToBooleanConverter}}" Margin="0,8,20,0" />
                         <RadioButton
                             GroupName="AppTheme"
+                            Grid.Column="1"
                             Content="{x:Static properties:Resources.SettingsPageRadioButtonDarkTheme}"
-                            Margin="{StaticResource XSmallTopMargin}"
                             FontSize="{StaticResource MediumFontSize}"
                             Checked="OnDarkChecked"
-                            IsChecked="{Binding Theme, ConverterParameter=Dark, Converter={StaticResource EnumToBooleanConverter}}" />
+                            IsChecked="{Binding Theme, ConverterParameter=Dark, Converter={StaticResource EnumToBooleanConverter}}" Margin="0,8,20,0"/>
                         <RadioButton
                             GroupName="AppTheme"
+                            Grid.Column="0"
                             Content="{x:Static properties:Resources.SettingsPageRadioButtonWindowsDefaultTheme}"
-                            Margin="{StaticResource XSmallTopMargin}"
                             FontSize="{StaticResource MediumFontSize}"
                             Checked="OnDefaultChecked"
-                            IsChecked="{Binding Theme, ConverterParameter=Default, Converter={StaticResource EnumToBooleanConverter}}" />
-                    </StackPanel>
+                            IsChecked="{Binding Theme, ConverterParameter=Default, Converter={StaticResource EnumToBooleanConverter}}" Margin="0,8,20,0"/>
+                    </Grid>
                 </StackPanel>
+                
+                <StackPanel Margin="{StaticResource SmallTopBottomMargin}">
+                    <StackPanel Margin="{StaticResource XSmallTopMargin}">
+                        <TextBlock
+                            Margin="{StaticResource XSmallTopMargin}"
+                            Style="{StaticResource BodyTextStyle}"
+                            Text="Pfad für DesktopOK:" />
+                        <Grid Margin="0,10,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="btnSettingPath" Height="19" Padding="3" Margin="0,0,0,0" Grid.Column="0" Width="auto" Click="btnSettingPath_Click" HorizontalContentAlignment="Left" >
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="Button">
+                                                    <Border
+                                                        Background="{DynamicResource MahApps.Brushes.Gray10}"
+                                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                                        CornerRadius="1">
+                                                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                        </Grid>
+                    </StackPanel>
+                    
+                    <Grid Margin="0,10,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        
+                        <TextBlock
+                            Style="{StaticResource BodyTextStyle}"
+                            Text="Gespeicherte Einstellungen zurücksetzen:" 
+                            VerticalAlignment="center"
+                            Grid.Column="0"/>
 
-                <TextBlock
-                    Margin="{StaticResource SmallTopMargin}"
-                    Style="{StaticResource SubtitleTextStyle}"
-                    Text="{x:Static properties:Resources.SettingsPageAboutTitle}" />
-                <TextBlock
-                    Text="{Binding VersionDescription, Mode=OneWay}"
-                    Margin="{StaticResource XSmallTopMargin}"
-                    Style="{StaticResource BodyTextStyle}" />
-                <TextBlock
-                    Margin="{StaticResource XSmallTopMargin}"
-                    Style="{StaticResource BodyTextStyle}"
-                    Text="{x:Static properties:Resources.SettingsPageAboutText}" />
-
-                <TextBlock
-                    Margin="{StaticResource SmallTopMargin}"
-                    AutomationProperties.Name="{Binding Text, ElementName=settingPathText}"><Hyperlink
-                        Click="OnPrivacyStatementClick"
-                        AutomationProperties.Name="{Binding Text, ElementName=settingPathText}"><InlineUIContainer>
-                        <TextBox
-                            x:Name="settingPathText"
-                            Text="{x:Static properties:Resources.SettingsPagePrivacyStatementText}" Width="574" Background="#FF7C72F1" TextChanged="settingPathText_TextChanged" />
-                        </InlineUIContainer></Hyperlink></TextBlock>
+                        <Button x:Name="btnReset" Content="Reset" MinHeight="20" Width="100" Padding="3" Grid.Column="1" 
+                                Click="btnReset_Click" HorizontalAlignment="Left" VerticalAlignment="center" Margin="0,0,100,0"/>
+                    </Grid>
+                </StackPanel>
+                
+                <StackPanel Margin="{StaticResource XSmallTopMargin}">
+                
+                    <TextBlock
+                        Margin="{StaticResource SmallTopMargin}"
+                        Style="{StaticResource SubtitleTextStyle}"
+                        Text="{x:Static properties:Resources.SettingsPageAboutTitle}" />
+                    <TextBlock
+                        Text="{Binding VersionDescription, Mode=OneWay}"
+                        Margin="{StaticResource XSmallTopMargin}"
+                        Style="{StaticResource BodyTextStyle}" />
+                    <TextBlock
+                        Margin="{StaticResource XSmallTopMargin}"
+                        Style="{StaticResource BodyTextStyle}"
+                        Text="{x:Static properties:Resources.SettingsPageAboutText}" />
+                </StackPanel>
             </StackPanel>
-            <Button x:Name="buttSettingPath" Content="Button" HorizontalAlignment="Left" Height="25" Margin="20,260,0,0" Grid.Row="1" VerticalAlignment="Top" Width="575" Opacity="0.01" Click="buttSettingPath_Click_1"/>
 
         </Grid>
     </ScrollViewer>

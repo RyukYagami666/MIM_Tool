@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="pfadDeskOK" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">C:\Users\%username%\Documents\DSM_Files</Value>
     </Setting>
     <Setting Name="InfoMonitor1" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
@@ -27,6 +27,9 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="DeskIconPfadM4" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="eUsername" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
   </Settings>

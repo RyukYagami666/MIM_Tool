@@ -1,0 +1,26 @@
+﻿	//Lesesn Von einstellungen
+string meineEinstellungWert = Properties.Settings.Default.MeineEinstellung;
+
+	//Schreiben von einstellungen
+Properties.Settings.Default.MeineEinstellung = "Neuer Wert";
+
+	//Speichern der Einstellungen
+Properties.Settings.Default.Save();
+
+	//Array zu String
+	//infoMonitor zu Einstellung im einnen string
+	//esSeMonitor[] Array der zusammen gefügt werden soll mit ;
+	//Properties.Settings.Default.InfoMonitor1 Schreiben in die Einstellung
+string infoMonitor = string.Join(";", esSeMonitor[]);
+Properties.Settings.Default.InfoMonitor1 = infoMonitor;
+
+	// Lesen der Einstellung als zusammengesetzter String
+string configInfoMonitor1 = Properties.Settings.Default.InfoMonitor1;
+	// Konvertieren des Strings zurück in ein Array, getrennt durch Semikolons
+string[] esSeMonitor = configInfoMonitor1.Split(';');
+
+	//Löschen von Einstellungen
+	// Zurücksetzen auf den explizit definierten Standardwert
+Properties.Settings.Default.MeineEinstellung = Properties.Settings.Default.Properties["MeineEinstellung"].DefaultValue.ToString();
+	// Zurücksetzen aller Einstellungen auf Standardwerte
+Properties.Settings.Default.Reset();

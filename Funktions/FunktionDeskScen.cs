@@ -35,8 +35,10 @@ namespace App3.Funktions
 
                 if (i <= 3 || i >= 0)
                 {
-                    esSeMonitor[i] = new string[] {"Richtiger Name", "", "Monitor Nummer",monitNum, "Primär/Sekundär",  (monitPrimary ? "Primär" : "Sekundär") , "Position - X", Convert.ToString(monitBounds.X), "Position - Y", Convert.ToString(monitBounds.Y), "Größe - Width",
-                    Convert.ToString(monitBounds.Width), "Größe - Height", Convert.ToString(monitBounds.Height), "Arbeitsbereich - Width", Convert.ToString(workingArea.Width), "Arbeitsbereich - Height",  Convert.ToString(workingArea.Height) };
+                    esSeMonitor[i] = new string[] {"Richtiger Name", "", "Monitor Nummer",monitNum, "Primär/Sekundär",  (monitPrimary ? "Primär" : "Sekundär") ,
+                        "Position - X", Convert.ToString(monitBounds.X), "Position - Y", Convert.ToString(monitBounds.Y), 
+                        "Größe - Width", Convert.ToString(monitBounds.Width), "Größe - Height", Convert.ToString(monitBounds.Height), 
+                        "Arbeitsbereich - Width", Convert.ToString(workingArea.Width), "Arbeitsbereich - Height",  Convert.ToString(workingArea.Height) };
                     i++;
                 }
                 else
