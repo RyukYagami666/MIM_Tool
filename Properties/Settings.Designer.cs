@@ -145,13 +145,169 @@ namespace App3.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("v1.0")]
-        public string eDeskOKVers {
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string eDeskOkVers {
             get {
-                return ((string)(this["eDeskOKVers"]));
+                return ((string)(this["eDeskOkVers"]));
             }
             set {
-                this["eDeskOKVers"] = value;
+                this["eDeskOkVers"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool eDeskOkDownloadReady {
+            get {
+                return ((bool)(this["eDeskOkDownloadReady"]));
+            }
+            set {
+                this["eDeskOkDownloadReady"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool eDeskOkDownloadDone {
+            get {
+                return ((bool)(this["eDeskOkDownloadDone"]));
+            }
+            set {
+                this["eDeskOkDownloadDone"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string eDeskOkDownloadDate {
+            get {
+                return ((string)(this["eDeskOkDownloadDate"]));
+            }
+            set {
+                this["eDeskOkDownloadDate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool eDeskOkSavePosReady {
+            get {
+                return ((bool)(this["eDeskOkSavePosReady"]));
+            }
+            set {
+                this["eDeskOkSavePosReady"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool eDeskOkSavePosDone {
+            get {
+                return ((bool)(this["eDeskOkSavePosDone"]));
+            }
+            set {
+                this["eDeskOkSavePosDone"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string eDeskOkSavePosDate {
+            get {
+                return ((string)(this["eDeskOkSavePosDate"]));
+            }
+            set {
+                this["eDeskOkSavePosDate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool eDeskOkDataReedReady {
+            get {
+                return ((bool)(this["eDeskOkDataReedReady"]));
+            }
+            set {
+                this["eDeskOkDataReedReady"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool eDeskOkDataReedDone {
+            get {
+                return ((bool)(this["eDeskOkDataReedDone"]));
+            }
+            set {
+                this["eDeskOkDataReedDone"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string eDeskOkDataReedDate {
+            get {
+                return ((string)(this["eDeskOkDataReedDate"]));
+            }
+            set {
+                this["eDeskOkDataReedDate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string eDeskOkLastSave {
+            get {
+                return ((string)(this["eDeskOkLastSave"]));
+            }
+            set {
+                this["eDeskOkLastSave"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string DeskOkData {
+            get {
+                return ((string)(this["DeskOkData"]));
+            }
+            set {
+                this["DeskOkData"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string a8 {
+            get {
+                return ((string)(this["a8"]));
+            }
+            set {
+                this["a8"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string a9 {
+            get {
+                return ((string)(this["a9"]));
+            }
+            set {
+                this["a9"] = value;
             }
         }
     }

@@ -83,7 +83,7 @@ namespace App3.Funktions
         {
             // Benutzer fragen, ob die Daten gespeichert werden sollen
             var result = MessageBox.Show("Möchten Sie die Einstellungens Datei Öffnen?", "Öffnen", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            var filePath = @"C:\Users\Ryuk\AppData\Local\App3\App3_Url_1gihmeoyxgyrw5xqwgmdh0mo3pzhcqpe\1.0.0.0\"; // user.config"; // Pfad zur user.config Datei
+            var filePath = @"C:\Users\Ryuk\AppData\Local\App3\App3_Url_1gihmeoyxgyrw5xqwgmdh0mo3pzhcqpe\1.0.0.0\user.config"; // user.config"; // Pfad zur user.config Datei
 
             // Überprüfen der Benutzerantwort
             if (result == DialogResult.Yes)
@@ -91,7 +91,7 @@ namespace App3.Funktions
                 try
                 {
                     // Überprüfen, ob die Datei existiert
-                    if (System.IO.Directory.Exists(filePath))
+                    if (System.IO.File.Exists(filePath))
                     {
                         // Öffnet die Datei mit dem Standardprogramm des Systems
                         System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(filePath) { UseShellExecute = true });

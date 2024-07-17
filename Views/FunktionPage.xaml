@@ -49,6 +49,22 @@
                     VerticalAlignment="Top" 
                     Width="135"
                     Click="btnDeskOkDownload_Click" />
+            <Button x:Name="btnDOSavePos"
+                    Content="Save Icon Pos" 
+                    HorizontalAlignment="Left" 
+                    Height="76" 
+                    Margin="291,201,0,0" 
+                    VerticalAlignment="Top" 
+                    Width="100"
+                    Click="btnDOSavePos_Click"/>
+            <Button x:Name="btnDOReadData"
+                    Content="Datei Lesen" 
+                    HorizontalAlignment="Left" 
+                    Height="80" 
+                    Margin="481,252,0,0" 
+                    VerticalAlignment="Top" 
+                    Width="125"
+                    Click="btnDOReadData_Click"/>
             <!--
             The Mahapps Gray10 color represents where you should place your content.
             Place your content here.

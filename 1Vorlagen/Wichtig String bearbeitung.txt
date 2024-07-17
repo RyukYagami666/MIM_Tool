@@ -1,0 +1,2 @@
+﻿Convert.ToString(andere Variablen)
+ zuBearbeitenderString.Replace($"{SuchString}", "ErsetzString");
