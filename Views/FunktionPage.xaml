@@ -20,21 +20,35 @@
             Grid.Row="1"
             Margin="{StaticResource MediumLeftRightMargin}"
             Background="{DynamicResource MahApps.Brushes.Gray10}">
-            <Button Content="Test"
+            <Button x:Name="btnGetIconList"
+                    Content="Get Icon List"
                     HorizontalAlignment="Left"
                     Height="95" Margin="41,32,0,0"
                     VerticalAlignment="Top"
                     Width="180"
-                    Click="Button_Click"/>
-            <Button Content="Monitor Scan"
+                    Click="btnGetIconList_Click"/>
+            <Button x:Name="btnMoniScann"
+                    Content="Monitor Scan"
                     HorizontalAlignment="Left"
                     Height="75"
                     Margin="276,42,0,0"
                     VerticalAlignment="Top"
                     Width="115"
-                    Click="ButMoniScann_Click"/>
-            <Button Content="Initialisierung " HorizontalAlignment="Left" Height="160" Margin="541,22,0,0" VerticalAlignment="Top" Width="65" 
-                    Click="IniziStart_Click"/>
+                    Click="btnMoniScann_Click"/>
+            <Button x:Name="btnIniziStart"
+                    Content="Initialisierung " 
+                    HorizontalAlignment="Left" 
+                    Height="160" Margin="541,22,0,0" 
+                    VerticalAlignment="Top" 
+                    Width="65" 
+                    Click="btnIniziStart_Click"/>
+            <Button x:Name="btnDeskOkDownload"
+                    Content="DesktopOK Download" 
+                    HorizontalAlignment="Left" 
+                    Height="100" Margin="86,177,0,0" 
+                    VerticalAlignment="Top" 
+                    Width="135"
+                    Click="btnDeskOkDownload_Click" />
             <!--
             The Mahapps Gray10 color represents where you should place your content.
             Place your content here.

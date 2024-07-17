@@ -1,1 +1,8 @@
-﻿1. Terminal öffnen
+﻿1. Terminal öffnen mit (strg + ö)o.(Ansicht->Terminal)									Command Line
+2. Änderungen Stagen mit																git add .
+3. Änderungen committen mit			"Nachricht"->ändern									git commit -m "Nachricht"
+4. Tag erstellen mit				"v0.0.3"/"Nachricht"->ändern						git tag -a v0.0.3 -m "Nachricht"
+5. Änderungen pushen mit			"master"->Namen des Branches						git push origin master
+6. Tag pushen mit					"v0.0.3"->muss = wie oben							git push origin v0.0.3
+
+7. Terminal schließen

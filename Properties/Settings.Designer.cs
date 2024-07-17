@@ -142,5 +142,17 @@ namespace App3.Properties {
                 this["eUsername"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("v1.0")]
+        public string eDeskOKVers {
+            get {
+                return ((string)(this["eDeskOKVers"]));
+            }
+            set {
+                this["eDeskOKVers"] = value;
+            }
+        }
     }
 }

@@ -3,6 +3,7 @@ using System.Net.NetworkInformation;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
+using App3.Funktions;
 using App3.Services;
 
 namespace App3.Views;
@@ -15,6 +16,8 @@ public partial class IconSavePage : Page, INotifyPropertyChanged
         DataContext = this;
         IconListView.ItemsSource = App3.Funktions.Funktion1.LastExecutedFiles;
         this.Loaded += IconSavePage_Loaded;
+        var dodStatus = new FunktionDesktopOK();
+        dodStatus.DODKontrolle();
 
     }
 

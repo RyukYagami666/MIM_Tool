@@ -22,6 +22,9 @@ namespace App3.Funktions
                 string resolvedPath = pathWithVariable.Replace("%username%", username);
                 string resolvedDocPath = resolvedPath.Replace("Documents\\DSM_Files", "Documents");
 
+                Properties.Settings.Default.eUsername = username;
+                Properties.Settings.Default.Save();
+
                 // Verwenden des aufgelösten Pfades
                 // Zum Beispiel: Überprüfen, ob die Datei existiert
                 if (System.IO.Directory.Exists(resolvedPath))

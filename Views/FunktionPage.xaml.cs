@@ -6,6 +6,9 @@ using System.Windows.Forms;
 using System.Windows.Markup;
 using App3.Services;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using System.Windows;
+using System.Windows.Media;
+using System.Net;
 
 
 
@@ -17,6 +20,9 @@ public partial class FunktionPage : Page, INotifyPropertyChanged
     {
         InitializeComponent();
         DataContext = this;
+        this.Loaded += FunktionPage_Loaded;
+        var dodStatus = new FunktionDesktopOK();
+        dodStatus.DODKontrolle();
     }
 
  //  private void InitializeComponent()
@@ -39,26 +45,48 @@ public partial class FunktionPage : Page, INotifyPropertyChanged
 
     private void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
- 
+    private void FunktionPage_Loaded(object sender, RoutedEventArgs e)
+    {
+        var transparentGreen = new SolidColorBrush(Color.FromArgb(20, 0, 255, 0)); // 50% Transparenz grünen
+        var transparentRed = new SolidColorBrush(Color.FromArgb(20, 255, 0, 0)); // 50% Transparenz roten
 
-    private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        btnDeskOkDownload.Background = DesktopOkState.IsReady ? transparentGreen : transparentRed;
+    }
+
+    private void btnGetIconList_Click(object sender, System.Windows.RoutedEventArgs e)
     {
         Funktion1.Execute(); // Rufen Sie die Execute-Methode von Funktion1 auf
         ISPSaveState.IsReady = true;
+
+        var dodStatus = new FunktionDesktopOK();
+        dodStatus.DODKontrolle();
     }
 
-    private void ButMoniScann_Click(object sender, System.Windows.RoutedEventArgs e)
+    private void btnMoniScann_Click(object sender, System.Windows.RoutedEventArgs e)
     {
         var deskScen = new FunktionDeskScen();
         deskScen.AuslesenMonitoreUndPositionen();
+
+        var dodStatus = new FunktionDesktopOK();
+        dodStatus.DODKontrolle();
     }
 
-    private void IniziStart_Click(object sender, System.Windows.RoutedEventArgs e)
+    private void btnIniziStart_Click(object sender, System.Windows.RoutedEventArgs e)
     {
-       var defaultPath = new FunktionDefaultPath();
+        var defaultPath = new FunktionDefaultPath();
         defaultPath.DefaultPath();
 
         var openPath = new FunktionDefaultPath();
         openPath.OpenConfig();
+
+        var dodStatus = new FunktionDesktopOK();
+        dodStatus.DODKontrolle();
+    }
+
+    private void btnDeskOkDownload_Click(object sender, System.Windows.RoutedEventArgs e)
+    {
+       
+        var dodStart = new FunktionDesktopOK();
+        dodStart.DODStart();
     }
 }

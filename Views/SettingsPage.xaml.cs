@@ -44,6 +44,8 @@ public partial class SettingsPage : Page, INotifyPropertyChanged, INavigationAwa
         DataContext = this;
         var defaultPath = new FunktionDefaultPath();
         defaultPath.DefaultPath();
+        var dodStatus = new FunktionDesktopOK();
+        dodStatus.DODKontrolle();
         btnSettingPath.Content = Properties.Settings.Default.pfadDeskOK;
     }
 

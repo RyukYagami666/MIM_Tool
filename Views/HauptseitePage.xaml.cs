@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using App3.Funktions;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 
@@ -10,6 +11,8 @@ public partial class HauptseitePage : Page, INotifyPropertyChanged
     {
         InitializeComponent();
         DataContext = this;
+        var dodStatus = new FunktionDesktopOK();
+        dodStatus.DODKontrolle();
     }
 
     public event PropertyChangedEventHandler PropertyChanged;
