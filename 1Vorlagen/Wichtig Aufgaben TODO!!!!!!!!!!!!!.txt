@@ -1,0 +1,20 @@
+﻿MessageBoxen/CopMSGBoxen entfernen
+Sinnvolles Design überlegen
+Debugg LogFile
+müll entfernen
+Sprache gradeziehen
+interne AufgabenListe
+StartLauf für alle wichtigen Daten
+FensterRunde Ecken
+Version Von DeskOK auslesen
+
+
+IconListView mulltiselect
+Icons Verschieben
+Display Aktivirung On/Off
+BackUp System
+
+zu einer .exe packen
+
+Externes icon zum steuern von hauptaufgaben
+(Icons verschieben->Display On/Off->Layout wiederherstellen)

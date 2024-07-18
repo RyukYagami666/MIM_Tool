@@ -11,7 +11,7 @@ Properties.Settings.Default.Save();
 	//infoMonitor zu Einstellung im einnen string
 	//esSeMonitor[] Array der zusammen gefügt werden soll mit ;
 	//Properties.Settings.Default.InfoMonitor1 Schreiben in die Einstellung
-string infoMonitor = string.Join(";", esSeMonitor[]);
+string infoMonitor = string.Join(";", esSeMonitor);
 Properties.Settings.Default.InfoMonitor1 = infoMonitor;
 
 	// Lesen der Einstellung als zusammengesetzter String

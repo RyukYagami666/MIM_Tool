@@ -14,7 +14,7 @@ namespace App3.Funktions
 {
     internal class FunktionDesktopOK
     {
-        string pathFolder = Properties.Settings.Default.pfadDeskOK;
+        string pathFolder = Properties.Settings.Default.pfadDeskOK; 
         string pathFile = $"{Properties.Settings.Default.pfadDeskOK}\\DesktopOK.zip";
         string pathExe = $"{Properties.Settings.Default.pfadDeskOK}\\DesktopOK.exe";
         string pathBackUP = $"{Properties.Settings.Default.pfadDeskOK}\\BackUps";
@@ -166,7 +166,7 @@ namespace App3.Funktions
 
                 try
                 {
-                    if (Properties.Settings.Default.eDeskOkLastSave != null)
+                    if (!string.IsNullOrEmpty(Properties.Settings.Default.eDeskOkLastSave))
                     {
                         string fileToMove = pathLastData.Replace($"{pathFolder}", "");
                         System.IO.Directory.CreateDirectory(pathBackUP);

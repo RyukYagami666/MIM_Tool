@@ -302,12 +302,468 @@ namespace App3.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string a9 {
+        public string DeskIconPfadMTemp {
             get {
-                return ((string)(this["a9"]));
+                return ((string)(this["DeskIconPfadMTemp"]));
             }
             set {
-                this["a9"] = value;
+                this["DeskIconPfadMTemp"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool eMonitorVorhanden1 {
+            get {
+                return ((bool)(this["eMonitorVorhanden1"]));
+            }
+            set {
+                this["eMonitorVorhanden1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool eMonitorAktiv1 {
+            get {
+                return ((bool)(this["eMonitorAktiv1"]));
+            }
+            set {
+                this["eMonitorAktiv1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string eMonitorIconsZugewiesen1 {
+            get {
+                return ((string)(this["eMonitorIconsZugewiesen1"]));
+            }
+            set {
+                this["eMonitorIconsZugewiesen1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool eMonitorIconsVerstaut1 {
+            get {
+                return ((bool)(this["eMonitorIconsVerstaut1"]));
+            }
+            set {
+                this["eMonitorIconsVerstaut1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int eMonitorIconsCount1 {
+            get {
+                return ((int)(this["eMonitorIconsCount1"]));
+            }
+            set {
+                this["eMonitorIconsCount1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string eMonitor1 {
+            get {
+                return ((string)(this["eMonitor1"]));
+            }
+            set {
+                this["eMonitor1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool eMonitorVorhanden2 {
+            get {
+                return ((bool)(this["eMonitorVorhanden2"]));
+            }
+            set {
+                this["eMonitorVorhanden2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool eMonitorAktiv2 {
+            get {
+                return ((bool)(this["eMonitorAktiv2"]));
+            }
+            set {
+                this["eMonitorAktiv2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string eMonitorIconsZugewiesen2 {
+            get {
+                return ((string)(this["eMonitorIconsZugewiesen2"]));
+            }
+            set {
+                this["eMonitorIconsZugewiesen2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool eMonitorIconsVerstaut2 {
+            get {
+                return ((bool)(this["eMonitorIconsVerstaut2"]));
+            }
+            set {
+                this["eMonitorIconsVerstaut2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int eMonitorIconsCount2 {
+            get {
+                return ((int)(this["eMonitorIconsCount2"]));
+            }
+            set {
+                this["eMonitorIconsCount2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string eMonitor2 {
+            get {
+                return ((string)(this["eMonitor2"]));
+            }
+            set {
+                this["eMonitor2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool eMonitorVorhanden3 {
+            get {
+                return ((bool)(this["eMonitorVorhanden3"]));
+            }
+            set {
+                this["eMonitorVorhanden3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool eMonitorAktiv3 {
+            get {
+                return ((bool)(this["eMonitorAktiv3"]));
+            }
+            set {
+                this["eMonitorAktiv3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string eMonitorIconsZugewiesen3 {
+            get {
+                return ((string)(this["eMonitorIconsZugewiesen3"]));
+            }
+            set {
+                this["eMonitorIconsZugewiesen3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool eMonitorIconsVerstaut3 {
+            get {
+                return ((bool)(this["eMonitorIconsVerstaut3"]));
+            }
+            set {
+                this["eMonitorIconsVerstaut3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int eMonitorIconsCount3 {
+            get {
+                return ((int)(this["eMonitorIconsCount3"]));
+            }
+            set {
+                this["eMonitorIconsCount3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string eMonitor3 {
+            get {
+                return ((string)(this["eMonitor3"]));
+            }
+            set {
+                this["eMonitor3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool eMonitorVorhanden4 {
+            get {
+                return ((bool)(this["eMonitorVorhanden4"]));
+            }
+            set {
+                this["eMonitorVorhanden4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool eMonitorAktiv4 {
+            get {
+                return ((bool)(this["eMonitorAktiv4"]));
+            }
+            set {
+                this["eMonitorAktiv4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string eMonitorIconsZugewiesen4 {
+            get {
+                return ((string)(this["eMonitorIconsZugewiesen4"]));
+            }
+            set {
+                this["eMonitorIconsZugewiesen4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool eMonitorIconsVerstaut4 {
+            get {
+                return ((bool)(this["eMonitorIconsVerstaut4"]));
+            }
+            set {
+                this["eMonitorIconsVerstaut4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int eMonitorIconsCount4 {
+            get {
+                return ((int)(this["eMonitorIconsCount4"]));
+            }
+            set {
+                this["eMonitorIconsCount4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string eMonitor4 {
+            get {
+                return ((string)(this["eMonitor4"]));
+            }
+            set {
+                this["eMonitor4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int eMonitorIconsCountTemp {
+            get {
+                return ((int)(this["eMonitorIconsCountTemp"]));
+            }
+            set {
+                this["eMonitorIconsCountTemp"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string b5 {
+            get {
+                return ((string)(this["b5"]));
+            }
+            set {
+                this["b5"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string b6 {
+            get {
+                return ((string)(this["b6"]));
+            }
+            set {
+                this["b6"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string b7 {
+            get {
+                return ((string)(this["b7"]));
+            }
+            set {
+                this["b7"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string b8 {
+            get {
+                return ((string)(this["b8"]));
+            }
+            set {
+                this["b8"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string b89 {
+            get {
+                return ((string)(this["b89"]));
+            }
+            set {
+                this["b89"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string c1 {
+            get {
+                return ((string)(this["c1"]));
+            }
+            set {
+                this["c1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string c2 {
+            get {
+                return ((string)(this["c2"]));
+            }
+            set {
+                this["c2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string c3 {
+            get {
+                return ((string)(this["c3"]));
+            }
+            set {
+                this["c3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string c4 {
+            get {
+                return ((string)(this["c4"]));
+            }
+            set {
+                this["c4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string c5 {
+            get {
+                return ((string)(this["c5"]));
+            }
+            set {
+                this["c5"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string c6 {
+            get {
+                return ((string)(this["c6"]));
+            }
+            set {
+                this["c6"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string c7 {
+            get {
+                return ((string)(this["c7"]));
+            }
+            set {
+                this["c7"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string c8 {
+            get {
+                return ((string)(this["c8"]));
+            }
+            set {
+                this["c8"] = value;
             }
         }
     }

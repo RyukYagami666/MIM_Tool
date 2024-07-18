@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using App3.Funktions;
 using App3.Services;
+using System.Linq; // Für die Verwendung von LINQ
 
 namespace App3.Views;
 
@@ -38,6 +39,32 @@ public partial class IconSavePage : Page, INotifyPropertyChanged
         storage = value;
         OnPropertyChanged(propertyName);
     }
-
+  // private void btnListeSpeichern_Click(object sender, RoutedEventArgs e)
+  // {
+  //     var selectedItems = IconListView.SelectedItems.Cast<FileIconInfo>().ToArray();
+  //     MessageBox.Show($"Anzahl der ausgewählten Elemente: {selectedItems.Length}", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+  //
+  // }
     private void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+    private void btnListeSpeichern_Click(object sender, RoutedEventArgs e)
+    {
+        var selectedPaths = IconListView.SelectedItems.Cast<FileIconInfo>().Select(item => item.Path).ToArray();
+
+        string selectedItemsString = string.Join(";", selectedPaths);
+        Properties.Settings.Default.DeskIconPfadMTemp = selectedItemsString;
+        Properties.Settings.Default.Save();
+        MessageBox.Show($"Anzahl der ausgewählten Elemente: {selectedPaths.Length}", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+        // Erstellen und Anzeigen des Fensters AuswahlFürISP nach dem Schließen der MessageBox
+        
+        if (selectedPaths.Length > 0)
+        {
+            FunktionAuswahlZiel auswahlFunkFürISP = new FunktionAuswahlZiel();
+            auswahlFunkFürISP.Prüfen();
+            MessageBox.Show("Drin");
+            AuswahlFürISP auswahlFürISP = new AuswahlFürISP();
+            auswahlFürISP.Show();
+
+        }
+    }
 }

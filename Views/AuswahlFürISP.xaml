@@ -1,0 +1,71 @@
+﻿<controls:MetroWindow x:Class="App3.Views.AuswahlFürISP"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      Title="AuswahlFürISP" Height="450" Width="800"
+                      Style="{StaticResource CustomMetroWindow}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+
+            <ColumnDefinition/>
+
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Button x:Name="btnMonitorAuswahl1"
+                Content="Button" 
+                HorizontalAlignment="Center" 
+                Height="100" Margin="0,30,0,0" 
+                VerticalAlignment="Top" Width="270"
+                Visibility="Collapsed"
+                Click="btnMonitorAuswahl1_Click"/>
+
+        <Button x:Name="btnMonitorAuswahl2"
+                Content="Button" 
+                HorizontalAlignment="Center" 
+                Height="100" Margin="0,30,0,0" 
+                VerticalAlignment="Top" Width="270"
+                Grid.Column="1"
+                HorizontalContentAlignment="Center"
+                Click="btnMonitorAuswahl2_Click"/>
+
+        <Button x:Name="btnMonitorAuswahl3"
+                Content="Button" 
+                HorizontalAlignment="Center" 
+                Height="100" Margin="0,160,0,0" 
+                VerticalAlignment="Top" Width="270"
+                HorizontalContentAlignment="Center"
+                Click="btnMonitorAuswahl3_Click"/>
+
+        <Button x:Name="btnMonitorAuswahl4"
+                Content="Button" 
+                HorizontalAlignment="Center" 
+                Height="100" Margin="0,160,0,0" 
+                VerticalAlignment="Top" Width="270"
+                Grid.Column="1"
+                HorizontalContentAlignment="Center"
+                Click="btnMonitorAuswahl4_Click"/>
+
+
+        <Label x:Name="lblMonitorAuswahl1" Content="Monitor 1" HorizontalAlignment="Center" Margin="0,0,0,50" Width="600" Grid.ColumnSpan="2" VerticalAlignment="Bottom" Height="100" BorderThickness="3" BorderBrush="Black" UseLayoutRounding="False">
+            <Label.Style>
+                <Style TargetType="Label">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Label">
+                                <Border
+                            Background="{DynamicResource MahApps.Brushes.Gray10}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="5">
+                                    <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Label.Style>
+        </Label>
+    </Grid>
+</controls:MetroWindow>

@@ -2,3 +2,7 @@
  zuBearbeitenderString.Replace($"{SuchString}", "ErsetzString");
  System.IO.Directory.Exists(pathFolder)
  System.IO.File.Exists(Properties.Settings.Default.eDeskOkLastSave)
+
+
+ //abfrage ob ein Wert in den Einstellungen gespeichert ist
+if (!string.IsNullOrEmpty(Properties.Settings.Default.eDeskOkLastSave))

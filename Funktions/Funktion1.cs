@@ -14,6 +14,11 @@ namespace App3.Funktions
     {
         public static List<FileIconInfo> LastExecutedFiles { get; private set; }
 
+        public void MonitorAuswahl()
+        {
+
+        }
+
         public static string GetDesktopPath()
         {
             return Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
@@ -76,5 +81,8 @@ namespace App3.Funktions
         public string Path { get; set; }
         public BitmapImage Icon { get; set; }
     }
+
+
+    
 
 }
