@@ -166,7 +166,7 @@ namespace App3.Funktions
 
                 try
                 {
-                    if (!string.IsNullOrEmpty(Properties.Settings.Default.eDeskOkLastSave))
+                    if (!string.IsNullOrEmpty(Properties.Settings.Default.eDeskOkLastSave) && System.IO.File.Exists(Properties.Settings.Default.eDeskOkLastSave))
                     {
                         string fileToMove = pathLastData.Replace($"{pathFolder}", "");
                         System.IO.Directory.CreateDirectory(pathBackUP);
@@ -265,6 +265,33 @@ namespace App3.Funktions
             
         }
 
+        public static void IconRestore(string pathExe,string pathLastData)             //mit DesktopOK Positionen der Icons wiederherstellen-----------------------------------------------------------------------------------         
+        {
+            if(Properties.Settings.Default.eDeskOkDataReedDone && !string.IsNullOrEmpty(Properties.Settings.Default.eDeskOkLastSave))
+            {
+                try
+                {
+                   
+                    ProcessStartInfo startInfo = new ProcessStartInfo();
+                    startInfo.FileName = pathExe; // Pfad zur Anwendung
+                    startInfo.Arguments = "/load /silent " + pathLastData; // Argumente (z. B. Dateipfad)
+                    startInfo.WindowStyle = ProcessWindowStyle.Hidden; // Fenster nicht anzeigen
 
+                    //Process.Start(startInfo);
+                    Process process = Process.Start(startInfo);
+                    process.WaitForExit();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Fehler beim Öffnen des Dokuments: " + ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Bedingung nicht erfüllt");
+            }
+
+
+        }
     }
 }

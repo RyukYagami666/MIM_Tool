@@ -1,5 +1,7 @@
 ﻿using System.Management;
 using System.Windows.Forms;
+using App3.Helpers;
+using Windows.UI.Accessibility;
 
 
 
@@ -7,13 +9,16 @@ namespace App3.Funktions
 {
     class FunktionDeskScen
     {
-        string[][] esSeMonitor = new string[Screen.AllScreens.Length][];
-
+        
+        string[][] esSeMonitor;
+        string monitorListen;
 
         public void AuslesenMonitoreUndPositionen()
         {
+            var screens = Screen.AllScreens;
+            esSeMonitor = new string[Screen.AllScreens.Length][];
             int i = 0;
-
+            
 
             foreach (var screen in Screen.AllScreens)
             {
@@ -28,17 +33,31 @@ namespace App3.Funktions
                 // Die Arbeitsbereichsgröße des Monitors (ohne Taskleiste und andere Desktop-Elemente)
                 var workingArea = screen.WorkingArea;
 
-                CopyMSGBox.Show($"Monitor Name: {monitNum} als {(monitPrimary ? "Primär" : "Sekundär")}, Position: {monitBounds.X}, {monitBounds.Y}, Größe: {monitBounds.Width}x{monitBounds.Height}, Arbeitsbereich: " +
+                CopyMSGBox.Show($"Monitor Name: {monitType} als {(monitPrimary ? "Primär" : "Sekundär")}, Position: {monitBounds.X}, {monitBounds.Y}, Größe: {monitBounds.Width}x{monitBounds.Height}, Arbeitsbereich: " +
                     $"{workingArea.Width}x{workingArea.Height}");
 
 
 
                 if (i <= 3 || i >= 0)
                 {
-                    esSeMonitor[i] = new string[] {"Richtiger Name", "", "Monitor Nummer",monitNum, "Primär/Sekundär",  (monitPrimary ? "Primär" : "Sekundär") ,
-                        "Position - X", Convert.ToString(monitBounds.X), "Position - Y", Convert.ToString(monitBounds.Y), 
-                        "Größe - Width", Convert.ToString(monitBounds.Width), "Größe - Height", Convert.ToString(monitBounds.Height), 
-                        "Arbeitsbereich - Width", Convert.ToString(workingArea.Width), "Arbeitsbereich - Height",  Convert.ToString(workingArea.Height) };
+                    esSeMonitor[i] = new string[] {"Richtiger Name",            //0
+                        "",                                                     //1
+                        "Monitor Nummer",                                       //2
+                        "",                                                     //3
+                        "Primär/Sekundär",                                      //4
+                        (monitPrimary ? "Primär" : "Sekundär") ,                //5
+                        "Position - X",                                         //6
+                        Convert.ToString(monitBounds.X),                        //7
+                        "Position - Y",                                         //8
+                        Convert.ToString(monitBounds.Y),                        //9
+                        "Größe - Width",                                        //10
+                        Convert.ToString(monitBounds.Width),                    //11
+                        "Größe - Height",                                       //12
+                        Convert.ToString(monitBounds.Height),                   //13
+                        "Arbeitsbereich - Width",                               //14
+                        Convert.ToString(workingArea.Width),                    //15
+                        "Arbeitsbereich - Height",                              //16
+                        Convert.ToString(workingArea.Height) };                 //17
                     i++;
                 }
                 else
@@ -49,6 +68,31 @@ namespace App3.Funktions
 
 
             }
+            switch (esSeMonitor.Length)
+            {
+                case 0:
+                    monitorListen = "fehler";
+                    break;
+                case 1:
+                    monitorListen = "\n\nMonitor Daten 1: ist ein " + esSeMonitor[0][5] + " Monitor; \nPosition(" + esSeMonitor[0][7] + "," + esSeMonitor[0][9] + "); Größe(" + esSeMonitor[0][11] + "," + esSeMonitor[0][13] +")";
+                    break;
+                case 2:
+                    monitorListen = "\n\nMonitor Daten 1: ist ein " + esSeMonitor[0][5] + " Monitor; \nPosition(" + esSeMonitor[0][7] + "," + esSeMonitor[0][9] + "); Größe(" + esSeMonitor[0][11] + "," + esSeMonitor[0][13] + ")" +
+                        "\n\nMonitor Daten 2: ist ein " + esSeMonitor[1][5] + " Monitor; \nPosition(" + esSeMonitor[1][7] + "," + esSeMonitor[1][9] + "); Größe(" + esSeMonitor[1][11] + "," + esSeMonitor[1][13] + ")";
+                    break;
+                case 3:
+                    monitorListen = "\n\nMonitor Daten 1: ist ein " + esSeMonitor[0][5] + " Monitor; \nPosition(" + esSeMonitor[0][7] + "," + esSeMonitor[0][9] + "); Größe(" + esSeMonitor[0][11] + "," + esSeMonitor[0][13] + ")" +
+                        "\n\nMonitor Daten 2: ist ein " + esSeMonitor[1][5] + " Monitor; \nPosition(" + esSeMonitor[1][7] + "," + esSeMonitor[1][9] + "); Größe(" + esSeMonitor[1][11] + "," + esSeMonitor[1][13] + ")" +
+                        "\n\nMonitor Daten 3: ist ein " + esSeMonitor[2][5] + " Monitor; \nPosition(" + esSeMonitor[2][7] + "," + esSeMonitor[2][9] + "); Größe(" + esSeMonitor[2][11] + "," + esSeMonitor[2][13] + ")";
+                    break;
+                case 4:
+                    monitorListen = "\n\nMonitor Daten 1: ist ein " + esSeMonitor[0][5] + " Monitor; \nPosition(" + esSeMonitor[0][7] + "," + esSeMonitor[0][9] + "); Größe(" + esSeMonitor[0][11] + "," + esSeMonitor[0][13] + ")" +
+                        "\n\nMonitor Daten 2: ist ein " + esSeMonitor[1][5] + " Monitor; \nPosition(" + esSeMonitor[1][7] + "," + esSeMonitor[1][9] + "); Größe(" + esSeMonitor[1][11] + "," + esSeMonitor[1][13] + ")" +
+                        "\n\nMonitor Daten 3: ist ein " + esSeMonitor[2][5] + " Monitor; \nPosition(" + esSeMonitor[2][7] + "," + esSeMonitor[2][9] + "); Größe(" + esSeMonitor[2][11] + "," + esSeMonitor[2][13] + ")" +
+                        "\n\nMonitor Daten 4: ist ein " + esSeMonitor[3][5] + " Monitor; \nPosition(" + esSeMonitor[3][7] + "," + esSeMonitor[3][9] + "); Größe(" + esSeMonitor[3][11] + "," + esSeMonitor[3][13] + ")";
+                    break;
+            }//abfrage ob ein Wert in den Einstellungen gespeichert ist 
+
             GetMonitorName();
         }
         public void GetMonitorName()
@@ -74,12 +118,23 @@ namespace App3.Funktions
                         // Konvertieren des UInt16-Arrays in einen lesbaren String
                         UInt16[] arrUserFriendlyName = (UInt16[])(queryObj["UserFriendlyName"]);
                         string monitName = new string(Array.ConvertAll(arrUserFriendlyName, item => Convert.ToChar(item)));
-                        CopyMSGBox.Show($"UserFriendlyName: {monitName}");
-
+                        monitName = monitName.Replace("\0", "");
+                        //CopyMSGBox.Show($"UserFriendlyName: {monitName}");
+                        //MessageBox.Show(monitorListen);
                         if (iz < esSeMonitor.Length && monitName != null && monitName != "")
                         {
-
-                            esSeMonitor[iz][1] = monitName;
+                            int auswahl = WählenArrayPosition(monitName);
+                            if (auswahl >= 0 && auswahl < esSeMonitor.Length)
+                            {
+                                esSeMonitor[auswahl][1] = monitName;
+                                esSeMonitor[auswahl][3] = Convert.ToString(iz + 1);
+                            }
+                            else
+                            {
+                                CopyMSGBox.Show("Ungültige Auswahl. Name wird nicht gespeichert.");
+                            }
+                            //esSeMonitor[iz][1] = monitName;
+                            //esSeMonitor[iz][3] = Convert.ToString(iz + 1);
                             iz++;
                         }
                         else
@@ -103,7 +158,21 @@ namespace App3.Funktions
             CheckAndSaveMonitorData();
 
         }
-
+        public int WählenArrayPosition(string monitName)
+        {
+            
+            string input = InputMSGBox.Show("Monitor Name " + monitName + " zu Monitor Daten hinzugefügen (1 bis " + esSeMonitor.Length + ")" + monitorListen,"Monitor Name zuweisen ");
+            int position;
+            if (int.TryParse(input, out position))
+            {
+                return position -1;
+            }
+            else
+            {
+                
+                return 10; // Standardposition
+            }
+        }
 
         public void CheckAndSaveMonitorData()
         {
@@ -164,7 +233,7 @@ namespace App3.Funktions
                             break;
                     }
                     Properties.Settings.Default.Save();
-                    CopyMSGBox.Show(infoMonitor);
+                    //CopyMSGBox.Show(infoMonitor);
                 }
             }
 

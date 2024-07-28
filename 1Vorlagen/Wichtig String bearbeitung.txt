@@ -6,3 +6,19 @@
 
  //abfrage ob ein Wert in den Einstellungen gespeichert ist
 if (!string.IsNullOrEmpty(Properties.Settings.Default.eDeskOkLastSave))
+
+                    switch (i)
+                    {
+                        case 0:
+                            ausfürung;
+                            break;
+                        case 1:
+                            ausfürung;
+                            break;
+                        case 2:
+                            ausfürung;
+                            break;
+                        case 3:
+                            ausfürung;
+                            break;
+                    }//abfrage ob ein Wert in den Einstellungen gespeichert ist 

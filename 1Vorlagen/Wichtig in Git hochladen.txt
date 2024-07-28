@@ -8,4 +8,4 @@
 7. Terminal schließen
 
 
-"Vergleichen und Tirmmen/Sortierung IconSavePage"
+Neues Fenster für IconAuswahl / VerschiebenAuswahl Speichern vorbereitet/ Dringend Buttn verknüpfen"

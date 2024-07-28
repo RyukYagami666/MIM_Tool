@@ -10,7 +10,6 @@ Version Von DeskOK auslesen
 
 
 IconListView mulltiselect
-Icons Verschieben
 Display Aktivirung On/Off
 BackUp System
 

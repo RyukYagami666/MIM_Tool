@@ -116,6 +116,20 @@ public partial class SettingsPage : Page, INotifyPropertyChanged, INavigationAwa
         {
             // Erstellen einer Instanz von FunktionIniPars und Aktualisieren des Pfades
             Properties.Settings.Default.pfadDeskOK = newPath;
+            if (!System.IO.Directory.Exists(newPath+"\\Icons") && !System.IO.Directory.Exists(newPath+ "\\BackUps"))
+            {
+                System.IO.Directory.CreateDirectory(newPath + "\\Icons");
+                System.IO.Directory.CreateDirectory(newPath + "\\BackUps");
+            }
+            else if (!System.IO.Directory.Exists(newPath + "\\Icons") && System.IO.Directory.Exists(newPath + "\\BackUps"))
+            {
+                System.IO.Directory.CreateDirectory(newPath + "\\Icons");
+            }
+            else if (System.IO.Directory.Exists(newPath + "\\Icons") && !System.IO.Directory.Exists(newPath + "\\BackUps"))
+            {
+                System.IO.Directory.CreateDirectory(newPath + "\\BackUps");
+            }
+            
             Properties.Settings.Default.Save();
         }
         btnSettingPath.Content = newPath;

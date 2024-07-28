@@ -28,6 +28,7 @@ namespace App3.Funktions
             };
             if (dialog.ShowDialog() == true)
             {
+                
                 // Rückgabe des ausgewählten Pfades
                 return Path.GetDirectoryName(dialog.FileName);
             }

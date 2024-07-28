@@ -111,4 +111,11 @@ public partial class FunktionPage : Page, INotifyPropertyChanged
         var doConvert = new FunktionVergleich();
         doConvert.AbwandelnDerData();
     }
+
+    private void btnVerschieben_Click(object sender, RoutedEventArgs e)
+    {
+        var iconMove = new FunktionVerschieben();
+        iconMove.Verschieben1Control();
+
+    }
 }

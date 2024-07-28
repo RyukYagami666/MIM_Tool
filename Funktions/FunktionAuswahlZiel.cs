@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using App3.Helpers;
+using App3.Views;
 
 namespace App3.Funktions
 {
@@ -43,55 +45,146 @@ namespace App3.Funktions
         }
         public void MonitorGewählt1()
         {
-            if (Properties.Settings.Default.eMonitorIconsZugewiesen1 != null)
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.eMonitorIconsZugewiesen1))
             {
-                    var result = MessageBox.Show("Es sind schon Icons zugewiesen! Wählen Sie eine Option: Ja (Alle überschreiben), Nein (Einen hinzufügen), Abbrechen (Aktion abbrechen).", "Aktion wählen", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                var result = CustomMSGBox.Show("Es sind schon Icons zugewiesen in 1!\nZugewiesener Strin: " + Properties.Settings.Default.eMonitorIconsZugewiesen1 + "\nWählen Sie eine Option:", "Aktion wählen", "Alle Überschreiben", "Einen hinzufügen","Abbrechen");
 
-                    switch (result)
-                    {
-                        case DialogResult.Yes:
-                        // Logik zum Überschreiben aller Icons
+                switch (result)
+                {
+                    case DialogResult.Yes:
+                    // Logik zum Überschreiben aller Icons
                         Properties.Settings.Default.eMonitorIconsZugewiesen1 = Properties.Settings.Default.DeskIconPfadMTemp;
                         Properties.Settings.Default.eMonitorIconsCount1 = Properties.Settings.Default.eMonitorIconsCountTemp;
-                        Properties.Settings.Default.DeskIconPfadMTemp = "";
-                        Properties.Settings.Default.eMonitorIconsCountTemp = 0;
                         MessageBox.Show("Alle Icons wurden überschrieben.");
-                            break;
-                        case DialogResult.No:
-                            int mNummer = 1;
-                            // Logik zum Hinzufügen eines Icons
-                            MessageBox.Show("Fügen Sie ein einzelnes Icon hinzu.");
-                            break;
-                        case DialogResult.Cancel:
-                            
-                            MessageBox.Show("Aktion abgebrochen.");
-                            break;
-                    }
-                    Properties.Settings.Default.Save();
-                
-
+                        break;
+                    case DialogResult.No:
+                        int mNummer = 1;
+                        MessageBox.Show("einzelne Icons werden hinzu.");
+                        EinzelnesIconHinzufügen einzelnesIconHinzufügen = new EinzelnesIconHinzufügen();
+                        einzelnesIconHinzufügen.Vergleich(mNummer);
+                        break;
+                    case DialogResult.Cancel:
+                        MessageBox.Show("Aktion abgebrochen.");
+                        break;
+                }
             }
             else
             {
                 Properties.Settings.Default.eMonitorIconsZugewiesen1 = Properties.Settings.Default.DeskIconPfadMTemp;
                 Properties.Settings.Default.eMonitorIconsCount1 = Properties.Settings.Default.eMonitorIconsCountTemp;
-                Properties.Settings.Default.DeskIconPfadMTemp = "";
-                Properties.Settings.Default.eMonitorIconsCountTemp = 0;
-                Properties.Settings.Default.Save();
                 MessageBox.Show("Icons wurden zugewiesen.");
-
             }
-
+            Properties.Settings.Default.DeskIconPfadMTemp = "";
+            Properties.Settings.Default.eMonitorIconsCountTemp = 0;
+            Properties.Settings.Default.Save();
         }
 
         public void MonitorGewählt2() 
         {
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.eMonitorIconsZugewiesen2))
+            {
+                var result = CustomMSGBox.Show("Es sind schon Icons zugewiesen in 2! \nZugewiesener Strin: " + Properties.Settings.Default.eMonitorIconsZugewiesen2 + " \nWählen Sie eine Option:", "Aktion wählen", "Alle Überschreiben", "Einen hinzufügen", "Abbrechen");
+
+                switch (result)
+                {
+                    case DialogResult.Yes:
+                        // Logik zum Überschreiben aller Icons
+                        Properties.Settings.Default.eMonitorIconsZugewiesen2 = Properties.Settings.Default.DeskIconPfadMTemp;
+                        Properties.Settings.Default.eMonitorIconsCount2 = Properties.Settings.Default.eMonitorIconsCountTemp;
+                        MessageBox.Show("Alle Icons wurden überschrieben.");
+                        break;
+                    case DialogResult.No:
+                        int mNummer = 2;
+                        MessageBox.Show("einzelne Icons werden hinzu.");
+                        EinzelnesIconHinzufügen einzelnesIconHinzufügen = new EinzelnesIconHinzufügen();
+                        einzelnesIconHinzufügen.Vergleich(mNummer);
+                        break;
+                    case DialogResult.Cancel:
+                        MessageBox.Show("Aktion abgebrochen.");
+                        break;
+                }
+            }
+            else
+            {
+                Properties.Settings.Default.eMonitorIconsZugewiesen2 = Properties.Settings.Default.DeskIconPfadMTemp;
+                Properties.Settings.Default.eMonitorIconsCount2 = Properties.Settings.Default.eMonitorIconsCountTemp;
+                MessageBox.Show("Icons wurden zugewiesen.");
+            }
+            Properties.Settings.Default.DeskIconPfadMTemp = "";
+            Properties.Settings.Default.eMonitorIconsCountTemp = 0;
+            Properties.Settings.Default.Save();
         }
+
         public void MonitorGewählt3() 
         {
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.eMonitorIconsZugewiesen3))
+            {
+                var result = CustomMSGBox.Show("Es sind schon Icons zugewiesen in 3! \nZugewiesener Strin: " + Properties.Settings.Default.eMonitorIconsZugewiesen3 + " \nWählen Sie eine Option:", "Aktion wählen", "Alle Überschreiben", "Einen hinzufügen", "Abbrechen");
+
+                switch (result)
+                {
+                    case DialogResult.Yes:
+                        // Logik zum Überschreiben aller Icons
+                        Properties.Settings.Default.eMonitorIconsZugewiesen3 = Properties.Settings.Default.DeskIconPfadMTemp;
+                        Properties.Settings.Default.eMonitorIconsCount3 = Properties.Settings.Default.eMonitorIconsCountTemp;
+                        MessageBox.Show("Alle Icons wurden überschrieben.");
+                        break;
+                    case DialogResult.No:
+                        int mNummer = 3;
+                        MessageBox.Show("einzelne Icons werden hinzu.");
+                        EinzelnesIconHinzufügen einzelnesIconHinzufügen = new EinzelnesIconHinzufügen();
+                        einzelnesIconHinzufügen.Vergleich(mNummer);
+                        break;
+                    case DialogResult.Cancel:
+                        MessageBox.Show("Aktion abgebrochen.");
+                        break;
+                }
+            }
+            else
+            {
+                Properties.Settings.Default.eMonitorIconsZugewiesen3 = Properties.Settings.Default.DeskIconPfadMTemp;
+                Properties.Settings.Default.eMonitorIconsCount3 = Properties.Settings.Default.eMonitorIconsCountTemp;
+                MessageBox.Show("Icons wurden zugewiesen.");
+            }
+            Properties.Settings.Default.DeskIconPfadMTemp = "";
+            Properties.Settings.Default.eMonitorIconsCountTemp = 0;
+            Properties.Settings.Default.Save();
         }
+
         public void MonitorGewählt4() 
         {
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.eMonitorIconsZugewiesen4))
+            {
+                var result = CustomMSGBox.Show("Es sind schon Icons zugewiesen in 4!\nZugewiesener Strin: " + Properties.Settings.Default.eMonitorIconsZugewiesen4 + "\nWählen Sie eine Option:", "Aktion wählen", "Alle Überschreiben", "Einen hinzufügen", "Abbrechen");
+
+                switch (result)
+                {
+                    case DialogResult.Yes:
+                        // Logik zum Überschreiben aller Icons
+                        Properties.Settings.Default.eMonitorIconsZugewiesen4 = Properties.Settings.Default.DeskIconPfadMTemp;
+                        Properties.Settings.Default.eMonitorIconsCount4 = Properties.Settings.Default.eMonitorIconsCountTemp;
+                        MessageBox.Show("Alle Icons wurden überschrieben.");
+                        break;
+                    case DialogResult.No:
+                        int mNummer = 4;
+                        MessageBox.Show("einzelne Icons werden hinzu.");
+                        EinzelnesIconHinzufügen einzelnesIconHinzufügen = new EinzelnesIconHinzufügen();
+                        einzelnesIconHinzufügen.Vergleich(mNummer);
+                        break;
+                    case DialogResult.Cancel:
+                        MessageBox.Show("Aktion abgebrochen.");
+                        break;
+                }
+            }
+            else
+            {
+                Properties.Settings.Default.eMonitorIconsZugewiesen4 = Properties.Settings.Default.DeskIconPfadMTemp;
+                Properties.Settings.Default.eMonitorIconsCount4 = Properties.Settings.Default.eMonitorIconsCountTemp;
+                MessageBox.Show("Icons wurden zugewiesen.");
+            }
+            Properties.Settings.Default.DeskIconPfadMTemp = "";
+            Properties.Settings.Default.eMonitorIconsCountTemp = 0;
+            Properties.Settings.Default.Save();
         }
 
 
@@ -128,6 +221,7 @@ namespace App3.Funktions
                         return; // Beendet die Methode, wenn eine Übereinstimmung gefunden wurde
                     }else
                     {
+                        MessageBox.Show($"Das Icon '{icon}' wurde erfolgreich hinzugefügt.", "Keine Übereinstimmung gefunden", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         // Hinzufügen des neuen Icons zum vorhandenen String, getrennt durch ";"
                         vorhandeneIcons = vorhandeneIcons + (string.IsNullOrEmpty(vorhandeneIcons) ? "" : ";") + icon;
 
@@ -151,12 +245,10 @@ namespace App3.Funktions
                                 break;
                         }
                     }
-                    Properties.Settings.Default.Save();
+                    
 
 
                 }
-
-                // Fügen Sie hier die Logik zum Hinzufügen der Icons hinzu, falls keine Übereinstimmungen gefunden wurden
             }
 
         }

@@ -50,21 +50,23 @@ public partial class IconSavePage : Page, INotifyPropertyChanged
     private void btnListeSpeichern_Click(object sender, RoutedEventArgs e)
     {
         var selectedPaths = IconListView.SelectedItems.Cast<FileIconInfo>().Select(item => item.Path).ToArray();
-
         string selectedItemsString = string.Join(";", selectedPaths);
         Properties.Settings.Default.DeskIconPfadMTemp = selectedItemsString;
+        Properties.Settings.Default.eMonitorIconsCountTemp = selectedPaths.Length;
         Properties.Settings.Default.Save();
-        MessageBox.Show($"Anzahl der ausgewählten Elemente: {selectedPaths.Length}", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
-        // Erstellen und Anzeigen des Fensters AuswahlFürISP nach dem Schließen der MessageBox
-        
+        MessageBox.Show($"Anzahl der ausgewählten Elemente: {selectedPaths.Length}\nPfad: {Properties.Settings.Default.DeskIconPfadMTemp}", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+
         if (selectedPaths.Length > 0)
         {
             FunktionAuswahlZiel auswahlFunkFürISP = new FunktionAuswahlZiel();
             auswahlFunkFürISP.Prüfen();
-            MessageBox.Show("Drin");
             AuswahlFürISP auswahlFürISP = new AuswahlFürISP();
             auswahlFürISP.Show();
 
+        }
+        else
+        {
+            MessageBox.Show("Es wurden keine Elemente ausgewählt.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }

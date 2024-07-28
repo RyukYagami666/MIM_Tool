@@ -40,6 +40,8 @@ namespace App3.Funktions
                     {
                         // Erstellt den Unterordner, falls er noch nicht existiert
                         System.IO.Directory.CreateDirectory(resolvedPath);
+                        System.IO.Directory.CreateDirectory(resolvedPath + "\\Icons");
+                        System.IO.Directory.CreateDirectory(resolvedPath + "\\BackUps");
                         Properties.Settings.Default.pfadDeskOK = resolvedPath;
                         Properties.Settings.Default.Save();
                         CopyMSGBox.Show($"Unterordner DSM_Files wurde erfolgreich erstellt. \n Pfad: {resolvedPath}");
