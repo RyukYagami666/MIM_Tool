@@ -1,5 +1,8 @@
-﻿using System.Management;
+﻿using System.Diagnostics;
+using System.IO;
+using System.Management;
 using System.Windows.Forms;
+using App3.Funktions;
 using App3.Helpers;
 using Windows.UI.Accessibility;
 
@@ -241,10 +244,7 @@ namespace App3.Funktions
         }
 
 
-    }
 
-
-}
 
 ////Wertte aus ainstellung lesen
 //
@@ -254,3 +254,85 @@ namespace App3.Funktions
 //
 //Properties.Settings.Default.MeineEinstellung = "Neuer Wert";
 //Properties.Settings.Default.Save();
+
+
+
+        public void MonitorSaveData()                                   //mit MultiMonitorTool Daten Speichern------------------------------------------------------------------------------------
+        {
+            string pathFolder = Properties.Settings.Default.pfadDeskOK;
+            string pathFile = $"{Properties.Settings.Default.pfadDeskOK}\\multimonitortool-x64.zip";
+            string pathExe = $"{Properties.Settings.Default.pfadDeskOK}\\MultiMonitorTool.exe";
+            string pathBackUP = $"{Properties.Settings.Default.pfadDeskOK}\\BackUps";
+            string pathBackUpFile = $"{Properties.Settings.Default.pfadDeskOK}\\BackUps\\MultiMonitorTool{Properties.Settings.Default.eMultiMonDownloadReady}.zip";
+            string pathLastData = Properties.Settings.Default.eMultiMonLastSave;
+           
+        
+            try
+            {
+                    
+                if (!string.IsNullOrEmpty(Properties.Settings.Default.InfoMonitor1))
+                {
+
+                    // Benutzer fragen, ob die Daten gespeichert werden sollen
+                    var result = MessageBox.Show("Möchten Sie Wirklich alle Monitor Daten Neu Einlesen", "Neu Lesen", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    // Überprüfen der Benutzerantwort
+                    if (result == DialogResult.Yes)
+                    {
+                        Properties.Settings.Default.Reset();
+                        Properties.Settings.Default.Save();
+                        CopyMSGBox.Show(Properties.Settings.Default.pfadDeskOK);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Zurücksetzten abgebrochen."); // Benachrichtigung, dass das Speichern abgebrochen wurde
+                    }
+                    string fileToMove = pathLastData.Replace($"{pathFolder}", "");
+                        System.IO.Directory.CreateDirectory(pathBackUP);
+                        System.IO.File.Move(Properties.Settings.Default.eMultiMonLastSave, $"{pathBackUP}{fileToMove}");
+        
+                }
+                    // Prozess für das Öffnen des Dokuments starten
+                    ProcessStartInfo startInfo = new ProcessStartInfo();
+                    startInfo.FileName = pathExe; // Pfad zur Anwendung
+                    startInfo.Arguments = $"/stext {pathFolder}\\MonitorDaten.txt"; // Argumente (z. B. Dateipfad)/SaveConfig
+                    startInfo.WindowStyle = ProcessWindowStyle.Hidden; // Fenster nicht anzeigen
+        
+                    Process.Start(startInfo);
+        
+                    CopyMSGBox.Show($"Monitor Daten Gespeichert");
+        
+                    var directoryInfo = new DirectoryInfo(pathFolder);
+                    var myFile = directoryInfo.GetFiles()
+                                              .OrderByDescending(f => f.LastWriteTime)
+                                              .FirstOrDefault();
+        
+                    if (myFile != null)
+                    {
+                        // Pfad der zuletzt erstellten Datei speichern
+                        Properties.Settings.Default.eMultiMonLastSave = myFile.FullName;
+                        Properties.Settings.Default.eMultiMonSavePosDone = true;
+                        Properties.Settings.Default.eMultiMonSavePosReady = false;
+                        Properties.Settings.Default.eMultiMonSavePosDate = Convert.ToString(DateTime.Now);
+                        Properties.Settings.Default.Save();
+        
+                        CopyMSGBox.Show($"Positionen Gespeichert: {myFile.FullName}");
+                    }
+                    else
+                    {
+                        CopyMSGBox.Show("Keine Datei gefunden.");
+                    }
+            }
+            catch (Exception ex)
+            {
+                CopyMSGBox.Show("Fehler beim Öffnen des Dokuments: " + ex.Message);
+            }
+        
+            Thread.Sleep(1000);
+            
+        }
+
+    }
+
+
+}

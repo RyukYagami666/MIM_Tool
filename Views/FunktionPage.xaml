@@ -61,24 +61,31 @@
                     Content="Datei Lesen" 
                     HorizontalAlignment="Left" 
                     Height="80" 
-                    Margin="481,252,0,0" 
+                    Margin="421,195,0,0" 
                     VerticalAlignment="Top" 
                     Width="125"
                     Click="btnDOReadData_Click"/>
             <Button x:Name="btnDOBearbeiten"
                     Content="Daten Bearbeiten" 
                     HorizontalAlignment="Left" 
-                    Height="55" Margin="206,307,0,0" 
+                    Height="55" Margin="86,312,0,0" 
                     VerticalAlignment="Top" 
                     Width="185"
                     Click="btnDOBearbeiten_Click"/>
             <Button x:Name="btnVerschieben"
                     Content="Verschieben" 
                     HorizontalAlignment="Left" 
-                    Height="65" Margin="36,297,0,0" 
+                    Height="65" Margin="428,302,0,0" 
                     VerticalAlignment="Top" 
-                    Width="145"
+                    Width="146"
                     Click="btnVerschieben_Click"/>
+            <Button x:Name="btnMoniOff"
+                    Content="Moni1 OFF" 
+                    HorizontalAlignment="Left" 
+                    Height="59" Margin="601,308,0,0" 
+                    VerticalAlignment="Top" 
+                    Width="75"
+                    Click="btnMoniOff_Click"/>
             <!--
             The Mahapps Gray10 color represents where you should place your content.
             Place your content here.

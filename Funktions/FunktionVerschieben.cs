@@ -8,8 +8,12 @@ namespace App3.Funktions
     public class FunktionVerschieben
     {
         string storagePath = Properties.Settings.Default.pfadDeskOK + "\\Icons";
-        public void Verschieben1Control()
+        public void Verschieben1Control()      //TODO:
         {
+            if (!System.IO.Directory.Exists(storagePath))
+            {
+                OrdnerAbfrage();
+            }
             // Hier können Sie den Code für das Verschieben von Dateien einfügen
             if (Properties.Settings.Default.eMonitorVorhanden1 == true && Properties.Settings.Default.eMonitorAktiv1 == false && !string.IsNullOrEmpty(Properties.Settings.Default.eMonitorIconsZugewiesen1) && Properties.Settings.Default.eMonitorIconsVerstaut1 == false)
             {
@@ -32,20 +36,20 @@ namespace App3.Funktions
                 MessageBox.Show($"Fehler {storagePath} nicht mehr Vorhanden? \n Bitte konntroliere", "Verschieben zu Speicher");
                 OrdnerAbfrage();
             }
-            else if (Properties.Settings.Default.eMonitorVorhanden3 == true && Properties.Settings.Default.eMonitorAktiv3 == true && !string.IsNullOrEmpty(Properties.Settings.Default.eMonitorIconsZugewiesen3) && Properties.Settings.Default.eMonitorIconsVerstaut3 == false)
+            else if (Properties.Settings.Default.eMonitorVorhanden1 == true && Properties.Settings.Default.eMonitorAktiv1 == true && !string.IsNullOrEmpty(Properties.Settings.Default.eMonitorIconsZugewiesen1) && Properties.Settings.Default.eMonitorIconsVerstaut1 == false)
             {
                 var result = MessageBox.Show("Icons in Speicher Verschieben?", "Verschieben zu Speicher", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
-                    MoveDeskToPath3();
+                    MoveDeskToPath1();
                 }
             }
-            else if (Properties.Settings.Default.eMonitorVorhanden3 == true && Properties.Settings.Default.eMonitorAktiv3 == false && !string.IsNullOrEmpty(Properties.Settings.Default.eMonitorIconsZugewiesen3) && Properties.Settings.Default.eMonitorIconsVerstaut3 == true)
+            else if (Properties.Settings.Default.eMonitorVorhanden1 == true && Properties.Settings.Default.eMonitorAktiv1 == false && !string.IsNullOrEmpty(Properties.Settings.Default.eMonitorIconsZugewiesen1) && Properties.Settings.Default.eMonitorIconsVerstaut1 == true)
             {
                 var result = MessageBox.Show("Icons zurück aus Desktop Verschieben?", "Verschieben zu Desktop", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
-                    MovePathToDesk3();
+                    MovePathToDesk1();
                 }
             }
         }

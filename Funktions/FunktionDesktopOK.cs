@@ -43,7 +43,8 @@ namespace App3.Funktions
                 Properties.Settings.Default.eDeskOkDownloadReady = false;
                 Properties.Settings.Default.Save();
             }
-
+            var mmdStatus = new FunktionMultiMonitor();
+            mmdStatus.MMDKontrolle();
         }
         public void DOSKontrolle()                  // Kontrolle ob DesktopOK bereit ist zum Speichern der IconPos------------------------------------------------------------------------------------
         {
@@ -67,7 +68,8 @@ namespace App3.Funktions
                 Properties.Settings.Default.eDeskOkSavePosReady = false;
                 Properties.Settings.Default.Save();
             }
-
+            var mmsStatus = new FunktionMultiMonitor();
+            mmsStatus.MMSKontrolle();
         }
         public void DORKontrolle()                  // Kontrolle ob DesktopOK bereit ist zum Lesenund Vergleichen------------------------------------------------------------------------------------
         {
@@ -91,7 +93,8 @@ namespace App3.Funktions
                 Properties.Settings.Default.eDeskOkDataReedReady = false;
                 Properties.Settings.Default.Save();
             }
-
+            var mmrStatus = new FunktionMultiMonitor();
+            mmrStatus.MMRKontrolle();
         }
 
         public void DODStart()          // Download von DesktopOK------------------------------------------------------------------------------------
@@ -117,6 +120,9 @@ namespace App3.Funktions
                             Properties.Settings.Default.eDeskOkDownloadReady = false;
                             Properties.Settings.Default.eDeskOkDownloadDate = Convert.ToString(DateTime.Now);
                             Properties.Settings.Default.Save();
+
+                            var mmdStart = new FunktionMultiMonitor();
+                            mmdStart.MMDStart();
                         }
                         catch (Exception ex)
                         {
@@ -133,12 +139,16 @@ namespace App3.Funktions
                         {
                             WebClient client = new WebClient();
                             client.DownloadFile("https://www.softwareok.com/Download/DesktopOK.zip", pathFile);
-                            CopyMSGBox.Show("Download abgeschlossen");
+                            MessageBox.Show("Download abgeschlossen");
                             ZipFile.ExtractToDirectory(pathFile, pathFolder, true);
                             Properties.Settings.Default.eDeskOkDownloadDone = true;
                             Properties.Settings.Default.eDeskOkDownloadReady = false;
                             Properties.Settings.Default.eDeskOkDownloadDate = Convert.ToString(DateTime.Now);
                             Properties.Settings.Default.Save();
+
+                            var mmdStart = new FunktionMultiMonitor();
+                            mmdStart.MMDStart();
+
                         }
                         catch (Exception ex)
                         {
@@ -156,6 +166,7 @@ namespace App3.Funktions
             {
                 CopyMSGBox.Show("Download bedingung nicht erfüllt!");
             }
+
 
         }
 
@@ -209,7 +220,10 @@ namespace App3.Funktions
                     CopyMSGBox.Show("Fehler beim Öffnen des Dokuments: " + ex.Message);
                 }
                 
-                Thread.Sleep(1000);
+                Thread.Sleep(2000);
+
+                var monSaveConfig = new FunktionMultiMonitor();
+                monSaveConfig.MonitorSaveConfig();
             }
         }
 

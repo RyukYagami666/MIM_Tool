@@ -10,7 +10,7 @@ Version Von DeskOK auslesen
 
 
 IconListView mulltiselect
-Display Aktivirung On/Off
+Display Aktivirung On/Off  (mit MultiMonitorTool wie DesktopOk) Text dadei auslesen in FDeskScen und ON/OFF fehlt in FMultiMonitor noch 
 BackUp System
 
 zu einer .exe packen

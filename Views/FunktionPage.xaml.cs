@@ -24,11 +24,6 @@ public partial class FunktionPage : Page, INotifyPropertyChanged
 
     }
 
-    //  private void InitializeComponent()
-    //  {
-    //      throw new NotImplementedException();
-    //  }
-
     public event PropertyChangedEventHandler PropertyChanged;
 
     private void Set<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
@@ -117,5 +112,12 @@ public partial class FunktionPage : Page, INotifyPropertyChanged
         var iconMove = new FunktionVerschieben();
         iconMove.Verschieben1Control();
 
+    }
+
+    private void btnMoniOff_Click(object sender, RoutedEventArgs e)
+    {
+        string pathExe = $"{Properties.Settings.Default.pfadDeskOK}\\MultiMonitorTool.exe";
+        
+        FunktionMultiMonitor.Monitor1Deaktivieren(pathExe);
     }
 }
