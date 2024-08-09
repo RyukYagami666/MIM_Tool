@@ -10,10 +10,7 @@ namespace App3.Funktions
         string storagePath = Properties.Settings.Default.pfadDeskOK + "\\Icons";
         public void Verschieben1Control()      //TODO:
         {
-            if (!System.IO.Directory.Exists(storagePath))
-            {
-                OrdnerAbfrage();
-            }
+            
             // Hier können Sie den Code für das Verschieben von Dateien einfügen
             if (Properties.Settings.Default.eMonitorVorhanden1 == true && Properties.Settings.Default.eMonitorAktiv1 == false && !string.IsNullOrEmpty(Properties.Settings.Default.eMonitorIconsZugewiesen1) && Properties.Settings.Default.eMonitorIconsVerstaut1 == false)
             {
@@ -34,7 +31,6 @@ namespace App3.Funktions
             {
                 Properties.Settings.Default.eMonitorIconsVerstaut1 = false;
                 MessageBox.Show($"Fehler {storagePath} nicht mehr Vorhanden? \n Bitte konntroliere", "Verschieben zu Speicher");
-                OrdnerAbfrage();
             }
             else if (Properties.Settings.Default.eMonitorVorhanden1 == true && Properties.Settings.Default.eMonitorAktiv1 == true && !string.IsNullOrEmpty(Properties.Settings.Default.eMonitorIconsZugewiesen1) && Properties.Settings.Default.eMonitorIconsVerstaut1 == false)
             {
@@ -54,18 +50,7 @@ namespace App3.Funktions
             }
         }
 
-        public void OrdnerAbfrage()
-        {
-            
-            if (System.IO.Directory.Exists(Properties.Settings.Default.pfadDeskOK) && !System.IO.Directory.Exists(storagePath))
-            {
-                    System.IO.Directory.CreateDirectory(storagePath);
-            }
-            else
-            {
-                MessageBox.Show("Der Pfad: \n" + Properties.Settings.Default.pfadDeskOK + "\n wurde nicht gefunden", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+ 
 
 // --------1----------------------------------------------------------Ab hier beginnt die Sektion für das Verschieben -----------------------------------------------------------------------------------------------------------------------------
 

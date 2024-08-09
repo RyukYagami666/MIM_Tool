@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.IO.Compression;
 using System.Diagnostics;
 using System.IO;
+using System.Net.NetworkInformation;
 
 namespace App3.Funktions
 {
@@ -23,78 +24,36 @@ namespace App3.Funktions
 
         public void DODKontrolle()                  // Kontrolle ob DesktopOK bereit ist zum Downloaden------------------------------------------------------------------------------------
         {
-            if (System.IO.Directory.Exists(pathFolder)){
-                if (Properties.Settings.Default.InfoMonitor1 != null){
-                    if (ISPSaveState.IsReady){
-                        Properties.Settings.Default.eDeskOkDownloadReady = true;
-                        Properties.Settings.Default.Save();
-                    }
-                    else {
-                        Properties.Settings.Default.eDeskOkDownloadReady = false;
-                        Properties.Settings.Default.Save();
-                    }
-                }
-                else{
-                    Properties.Settings.Default.eDeskOkDownloadReady = false;
-                    Properties.Settings.Default.Save();
-                }
+            if (System.IO.Directory.Exists(pathFolder) && NetworkInterface.GetIsNetworkAvailable())
+            {
+                Properties.Settings.Default.eDeskOkDownloadReady = true;
             }
             else{
                 Properties.Settings.Default.eDeskOkDownloadReady = false;
-                Properties.Settings.Default.Save();
             }
-            var mmdStatus = new FunktionMultiMonitor();
-            mmdStatus.MMDKontrolle();
+            Properties.Settings.Default.Save();
         }
         public void DOSKontrolle()                  // Kontrolle ob DesktopOK bereit ist zum Speichern der IconPos------------------------------------------------------------------------------------
         {
-            if (System.IO.Directory.Exists(pathFolder)){
-                if (System.IO.File.Exists(pathExe)){
-                    if (Properties.Settings.Default.eDeskOkDownloadDone){
-                        Properties.Settings.Default.eDeskOkSavePosReady = true;
-                        Properties.Settings.Default.Save();
-                    }
-                    else{
-                        Properties.Settings.Default.eDeskOkSavePosReady = false;
-                        Properties.Settings.Default.Save();
-                    }
-                }
-                else {
-                    Properties.Settings.Default.eDeskOkSavePosReady = false;
-                    Properties.Settings.Default.Save();
-                }
+            if (System.IO.Directory.Exists(pathFolder) && System.IO.File.Exists(pathExe) && Properties.Settings.Default.eDeskOkDownloadDone)
+            {
+                Properties.Settings.Default.eDeskOkSavePosReady = true;
             }
             else{
                 Properties.Settings.Default.eDeskOkSavePosReady = false;
-                Properties.Settings.Default.Save();
             }
-            var mmsStatus = new FunktionMultiMonitor();
-            mmsStatus.MMSKontrolle();
+            Properties.Settings.Default.Save();
         }
         public void DORKontrolle()                  // Kontrolle ob DesktopOK bereit ist zum Lesenund Vergleichen------------------------------------------------------------------------------------
         {
-            if (System.IO.Directory.Exists(pathFolder)){
-                if (System.IO.File.Exists(Properties.Settings.Default.eDeskOkLastSave)){
-                    if (Properties.Settings.Default.eDeskOkSavePosDone){
-                        Properties.Settings.Default.eDeskOkDataReedReady = true;
-                        Properties.Settings.Default.Save();
-                    }
-                    else{
-                        Properties.Settings.Default.eDeskOkDataReedReady = false;
-                        Properties.Settings.Default.Save();
-                    }
-                }
-                else{
-                    Properties.Settings.Default.eDeskOkDataReedReady = false;
-                    Properties.Settings.Default.Save();
-                }
+            if (System.IO.Directory.Exists(pathFolder) && System.IO.File.Exists(Properties.Settings.Default.eDeskOkLastSave) && Properties.Settings.Default.eDeskOkSavePosDone)
+            {
+                 Properties.Settings.Default.eDeskOkDataReedReady = true;
             }
             else{
                 Properties.Settings.Default.eDeskOkDataReedReady = false;
-                Properties.Settings.Default.Save();
             }
-            var mmrStatus = new FunktionMultiMonitor();
-            mmrStatus.MMRKontrolle();
+            Properties.Settings.Default.Save();
         }
 
         public void DODStart()          // Download von DesktopOK------------------------------------------------------------------------------------
@@ -121,8 +80,6 @@ namespace App3.Funktions
                             Properties.Settings.Default.eDeskOkDownloadDate = Convert.ToString(DateTime.Now);
                             Properties.Settings.Default.Save();
 
-                            var mmdStart = new FunktionMultiMonitor();
-                            mmdStart.MMDStart();
                         }
                         catch (Exception ex)
                         {
@@ -145,9 +102,6 @@ namespace App3.Funktions
                             Properties.Settings.Default.eDeskOkDownloadReady = false;
                             Properties.Settings.Default.eDeskOkDownloadDate = Convert.ToString(DateTime.Now);
                             Properties.Settings.Default.Save();
-
-                            var mmdStart = new FunktionMultiMonitor();
-                            mmdStart.MMDStart();
 
                         }
                         catch (Exception ex)
@@ -173,8 +127,8 @@ namespace App3.Funktions
 
         public void IconSavePos()                                   //mit DesktopOK Positionen Speichern------------------------------------------------------------------------------------
         {
-            if (Properties.Settings.Default.eDeskOkSavePosReady) {
-
+            if (Properties.Settings.Default.eDeskOkSavePosReady) 
+            {
                 try
                 {
                     if (!string.IsNullOrEmpty(Properties.Settings.Default.eDeskOkLastSave) && System.IO.File.Exists(Properties.Settings.Default.eDeskOkLastSave))
@@ -190,7 +144,8 @@ namespace App3.Funktions
                     startInfo.Arguments = $"/save /silent {pathFolder}\\DeskOk_date_time_.dok"; // Argumente (z. B. Dateipfad)
                     startInfo.WindowStyle = ProcessWindowStyle.Hidden; // Fenster nicht anzeigen
 
-                    Process.Start(startInfo);
+                    Process process = Process.Start(startInfo);
+                    process.WaitForExit(); // Warten, bis der Prozess abgeschlossen ist
 
                     CopyMSGBox.Show($"Positionen Gespeichert");
 
@@ -222,8 +177,6 @@ namespace App3.Funktions
                 
                 Thread.Sleep(2000);
 
-                var monSaveConfig = new FunktionMultiMonitor();
-                monSaveConfig.MonitorSaveConfig();
             }
         }
 
@@ -253,27 +206,18 @@ namespace App3.Funktions
                     else
                     {
                         CopyMSGBox.Show("Datei nicht gefunden.");
-                        // Hier müssen Sie entscheiden, was zurückgegeben werden soll, wenn die Datei nicht existiert.
-                        // Zum Beispiel könnten Sie ein leeres Array zurückgeben:
                         return new string[0];
                     }
-
-                    
-
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"Ein Fehler ist aufgetreten: {ex.Message}");
-                    // Auch hier müssen Sie entscheiden, was im Fehlerfall zurückgegeben werden soll.
-                    // Zum Beispiel könnten Sie ein leeres Array zurückgeben:
+                    MessageBox.Show($"Ein Fehler ist aufgetreten: {ex.Message}");
                     return new string[0];
                 }
             }
             else 
             { 
                 MessageBox.Show("Bedingung nicht erfüllt");
-            // Wenn eDeskOkDataReedReady false ist, müssen Sie auch entscheiden, was zurückgegeben werden soll.
-            // Zum Beispiel könnten Sie ein leeres Array zurückgeben:
             return new string[0];
             }
             
@@ -285,13 +229,11 @@ namespace App3.Funktions
             {
                 try
                 {
-                   
                     ProcessStartInfo startInfo = new ProcessStartInfo();
                     startInfo.FileName = pathExe; // Pfad zur Anwendung
                     startInfo.Arguments = "/load /silent " + pathLastData; // Argumente (z. B. Dateipfad)
                     startInfo.WindowStyle = ProcessWindowStyle.Hidden; // Fenster nicht anzeigen
 
-                    //Process.Start(startInfo);
                     Process process = Process.Start(startInfo);
                     process.WaitForExit();
                 }
@@ -304,8 +246,6 @@ namespace App3.Funktions
             {
                 MessageBox.Show("Bedingung nicht erfüllt");
             }
-
-
         }
     }
 }

@@ -17,3 +17,29 @@ zu einer .exe packen
 
 Externes icon zum steuern von hauptaufgaben
 (Icons verschieben->Display On/Off->Layout wiederherstellen)
+
+
+_inizialisierungs liste
+	Fehlerfall zurücksetzen aller daten
+
+DefaultPath			FunktionDefaultPath.cs
+DODKontrolle		FunktionDesktopOK.cs
+DODStart			FunktionDesktopOK.cs
+MMDKontrolle		FunktionMultiMonitor.cs
+MMDStart			FunktionMultiMonitor.cs
+Lesen der daten
+
+
+_Lesen der daten
+
+DOSKontrolle		FunktionDesktopOK.cs
+IconSavePos			FunktionDesktopOK.cs
+MMSKontrolle		FunktionMultiMonitor.cs
+MonitorSaveConfig	FunktionMultiMonitor.cs
+MMRKontrolle		FunktionMultiMonitor.cs
+MonitorSaveData		FunktionDeskScen.cs
+DORKontrolle		FunktionDesktopOK.cs
+DataRead			FunktionDesktopOK.cs         doReadData.DataRead(Properties.Settings.Default.eDeskOkLastSave);
+AbwandelnDerData	FunktionVergleich.cs
+Execute				FunktionIconListe.cs		FunktionIconListe.Execute();
+

@@ -173,34 +173,34 @@
     <Setting Name="eMultiMonSavePosDate" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="eMultiMonDataReedReady" Type="System.Boolean" Scope="User">
+    <Setting Name="eMultiMonSaveDataReady" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="eMultiMonDataReedDone" Type="System.Boolean" Scope="User">
+    <Setting Name="eMultiMonSaveDataDone" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="eMultiMonDataReedDate" Type="System.String" Scope="User">
+    <Setting Name="eMultiMonSaveDataDate" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="eMultiMonLastSave" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="c8" Type="System.String" Scope="User">
+    <Setting Name="MultiMonData" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="a1" Type="System.String" Scope="User">
+    <Setting Name="reserve2" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="a2" Type="System.String" Scope="User">
+    <Setting Name="MultiMonDataTrim1" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="a" Type="System.String" Scope="User">
+    <Setting Name="MultiMonDataTrim2" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="a4" Type="System.String" Scope="User">
+    <Setting Name="MultiMonDataTrim3" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="a5" Type="System.String" Scope="User">
+    <Setting Name="MultiMonDataTrim4" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="a6" Type="System.String" Scope="User">

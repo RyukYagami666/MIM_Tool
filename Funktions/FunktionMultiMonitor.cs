@@ -10,6 +10,7 @@ using System.IO.Compression;
 using System.Diagnostics;
 using System.IO;
 using System.Drawing.Drawing2D;
+using System.Net.NetworkInformation;
 
 namespace App3.Funktions
 {
@@ -24,78 +25,39 @@ namespace App3.Funktions
 
         public void MMDKontrolle()                  // Kontrolle ob DesktopOK bereit ist zum Downloaden------------------------------------------------------------------------------------
         {
-            if (System.IO.Directory.Exists(pathFolder)){
-                if (Properties.Settings.Default.InfoMonitor1 != null){
-                    if (ISPSaveState.IsReady){
-                        Properties.Settings.Default.eMultiMonDownloadReady = true;
-                        Properties.Settings.Default.Save();
-                    }
-                    else {
-                        Properties.Settings.Default.eMultiMonDownloadReady = false;
-                        Properties.Settings.Default.Save();
-                    }
-                }
-                else{
-                    Properties.Settings.Default.eMultiMonDownloadReady = false;
-                    Properties.Settings.Default.Save();
-                }
+            if (System.IO.Directory.Exists(pathFolder) && NetworkInterface.GetIsNetworkAvailable())
+            {
+                 Properties.Settings.Default.eMultiMonDownloadReady = true;
             }
-            else{
+            else
+            {
                 Properties.Settings.Default.eMultiMonDownloadReady = false;
-                Properties.Settings.Default.Save();
             }
-
+            Properties.Settings.Default.Save();
         }
         public void MMSKontrolle()                  // Kontrolle ob DesktopOK bereit ist zum Speichern der IconPos------------------------------------------------------------------------------------
         {
-            if (System.IO.Directory.Exists(pathFolder)){
-                if (System.IO.File.Exists(pathExe)){
-                    if (Properties.Settings.Default.eMultiMonDownloadDone){
-                        Properties.Settings.Default.eMultiMonSavePosReady = true;
-                        Properties.Settings.Default.Save();
-                    }
-                    else{
-                        Properties.Settings.Default.eMultiMonSavePosReady = false;
-                        Properties.Settings.Default.Save();
-                        MessageBox.Show("download nicht abgeschlossen");
-                    }
-                }
-                else {
-                    Properties.Settings.Default.eMultiMonSavePosReady = false;
-                    Properties.Settings.Default.Save();
-                    MessageBox.Show("Exe Fehler!");
-                }
+            if (System.IO.Directory.Exists(pathFolder)&& System.IO.File.Exists(pathExe)&& Properties.Settings.Default.eMultiMonDownloadDone)
+            {
+                Properties.Settings.Default.eMultiMonSavePosReady = true;
             }
-            else{
+            else
+            {
                 Properties.Settings.Default.eMultiMonSavePosReady = false;
-                Properties.Settings.Default.Save();
-                MessageBox.Show("Pfad Fehler!");
             }
-
+            Properties.Settings.Default.Save();
         }
         public void MMRKontrolle()                  // Kontrolle ob DesktopOK bereit ist zum Lesenund Vergleichen------------------------------------------------------------------------------------
         {
-            if (System.IO.Directory.Exists(pathFolder)){
-                if (System.IO.File.Exists(Properties.Settings.Default.eMultiMonLastSave)){
-                    if (Properties.Settings.Default.eMultiMonSavePosDone){
-                        Properties.Settings.Default.eMultiMonDataReedReady = true;
-                        Properties.Settings.Default.Save();
-                    }
-                    else{
-                        Properties.Settings.Default.eMultiMonDataReedReady = false;
-                        Properties.Settings.Default.Save();
-                    }
-                }
-                else{
-                    Properties.Settings.Default.eMultiMonDataReedReady = false;
-                    Properties.Settings.Default.Save();
-                }
+            if (System.IO.Directory.Exists(pathFolder) && System.IO.File.Exists(Properties.Settings.Default.eMultiMonLastSave) && Properties.Settings.Default.eMultiMonSavePosDone)
+            {
+                Properties.Settings.Default.eMultiMonSaveDataReady = true;
             }
-            else{
-                Properties.Settings.Default.eMultiMonDataReedReady = false;
-                Properties.Settings.Default.Save();
+            else
+            {
+                Properties.Settings.Default.eMultiMonSaveDataReady = false;
             }
-
+            Properties.Settings.Default.Save();
         }
 
 
@@ -153,7 +115,6 @@ namespace App3.Funktions
                 {
                     CopyMSGBox.Show("Pfad Fehler!");
                 }
-
             }
             else
             {
@@ -162,7 +123,7 @@ namespace App3.Funktions
         }
 
 
-        public void MonitorSaveConfig()                                   //mit MultiMonitorTool Daten Speichern------------------------------------------------------------------------------------
+        public void MonitorSaveConfig()                                   //mit MultiMonitorTool Monitor Config Speichern------------------------------------------------------------------------------------
         {
             string pathDeskOkDate = Properties.Settings.Default.eDeskOkLastSave;
             string pathDate = pathDeskOkDate.Replace($"{pathFolder}\\", "");
@@ -185,7 +146,8 @@ namespace App3.Funktions
                     startInfo.Arguments = $"/SaveConfig {pathFolder}\\MultiMon{pathDate}.cfg"; // Argumente (z. B. Dateipfad)/SaveConfig  _{pathDate}
                     startInfo.WindowStyle = ProcessWindowStyle.Hidden; // Fenster nicht anzeigen
 
-                    Process.Start(startInfo);
+                    Process process = Process.Start(startInfo);
+                    process.WaitForExit(); // Warten, bis der Prozess abgeschlossen ist
 
                     CopyMSGBox.Show($"Monitor Daten Gespeichert {pathDate}");
 

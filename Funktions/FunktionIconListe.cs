@@ -10,14 +10,9 @@ using Microsoft.VisualBasic;
 
 namespace App3.Funktions
 {
-    internal class Funktion1
+    internal class FunktionIconListe
     {
         public static List<FileIconInfo> LastExecutedFiles { get; private set; }
-
-        public void MonitorAuswahl()
-        {
-
-        }
 
         public static string GetDesktopPath()
         {

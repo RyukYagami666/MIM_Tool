@@ -1,5 +1,6 @@
 ﻿Convert.ToString(andere Variablen)
  zuBearbeitenderString.Replace($"{SuchString}", "ErsetzString");
+ string[] splitContent = zuBearbeitenderString.Split(new string[] { ";;" }, StringSplitOptions.None);
  System.IO.Directory.Exists(pathFolder)
  System.IO.File.Exists(Properties.Settings.Default.eDeskOkLastSave)
 

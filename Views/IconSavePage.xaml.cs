@@ -15,7 +15,7 @@ public partial class IconSavePage : Page, INotifyPropertyChanged
     {
         InitializeComponent();
         DataContext = this;
-        IconListView.ItemsSource = App3.Funktions.Funktion1.LastExecutedFiles;
+        IconListView.ItemsSource = App3.Funktions.FunktionIconListe.LastExecutedFiles;
         this.Loaded += IconSavePage_Loaded;
         var dodStatus = new FunktionDesktopOK();
         dodStatus.DODKontrolle();

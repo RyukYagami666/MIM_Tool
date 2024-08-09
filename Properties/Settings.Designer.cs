@@ -710,36 +710,36 @@ namespace App3.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool eMultiMonDataReedReady {
+        public bool eMultiMonSaveDataReady {
             get {
-                return ((bool)(this["eMultiMonDataReedReady"]));
+                return ((bool)(this["eMultiMonSaveDataReady"]));
             }
             set {
-                this["eMultiMonDataReedReady"] = value;
+                this["eMultiMonSaveDataReady"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool eMultiMonDataReedDone {
+        public bool eMultiMonSaveDataDone {
             get {
-                return ((bool)(this["eMultiMonDataReedDone"]));
+                return ((bool)(this["eMultiMonSaveDataDone"]));
             }
             set {
-                this["eMultiMonDataReedDone"] = value;
+                this["eMultiMonSaveDataDone"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string eMultiMonDataReedDate {
+        public string eMultiMonSaveDataDate {
             get {
-                return ((string)(this["eMultiMonDataReedDate"]));
+                return ((string)(this["eMultiMonSaveDataDate"]));
             }
             set {
-                this["eMultiMonDataReedDate"] = value;
+                this["eMultiMonSaveDataDate"] = value;
             }
         }
         
@@ -758,72 +758,72 @@ namespace App3.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string c8 {
+        public string MultiMonData {
             get {
-                return ((string)(this["c8"]));
+                return ((string)(this["MultiMonData"]));
             }
             set {
-                this["c8"] = value;
+                this["MultiMonData"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string a1 {
+        public string reserve2 {
             get {
-                return ((string)(this["a1"]));
+                return ((string)(this["reserve2"]));
             }
             set {
-                this["a1"] = value;
+                this["reserve2"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string a2 {
+        public string MultiMonDataTrim1 {
             get {
-                return ((string)(this["a2"]));
+                return ((string)(this["MultiMonDataTrim1"]));
             }
             set {
-                this["a2"] = value;
+                this["MultiMonDataTrim1"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string a {
+        public string MultiMonDataTrim2 {
             get {
-                return ((string)(this["a"]));
+                return ((string)(this["MultiMonDataTrim2"]));
             }
             set {
-                this["a"] = value;
+                this["MultiMonDataTrim2"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string a4 {
+        public string MultiMonDataTrim3 {
             get {
-                return ((string)(this["a4"]));
+                return ((string)(this["MultiMonDataTrim3"]));
             }
             set {
-                this["a4"] = value;
+                this["MultiMonDataTrim3"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string a5 {
+        public string MultiMonDataTrim4 {
             get {
-                return ((string)(this["a5"]));
+                return ((string)(this["MultiMonDataTrim4"]));
             }
             set {
-                this["a5"] = value;
+                this["MultiMonDataTrim4"] = value;
             }
         }
         

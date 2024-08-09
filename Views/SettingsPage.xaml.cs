@@ -9,6 +9,7 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
+using System.IO;
 
 namespace App3.Views;
 
@@ -42,10 +43,6 @@ public partial class SettingsPage : Page, INotifyPropertyChanged, INavigationAwa
         _applicationInfoService = applicationInfoService;
         InitializeComponent();
         DataContext = this;
-        var defaultPath = new FunktionDefaultPath();
-        defaultPath.DefaultPath();
-        var dodStatus = new FunktionDesktopOK();
-        dodStatus.DODKontrolle();
         btnSettingPath.Content = Properties.Settings.Default.pfadDeskOK;
     }
 
@@ -114,25 +111,14 @@ public partial class SettingsPage : Page, INotifyPropertyChanged, INavigationAwa
         // Überprüfen, ob ein Pfad ausgewählt wurde
         if (!string.IsNullOrEmpty(newPath))
         {
-            // Erstellen einer Instanz von FunktionIniPars und Aktualisieren des Pfades
+            Directory.Delete(Properties.Settings.Default.pfadDeskOK,true);
+            Properties.Settings.Default.Reset();
             Properties.Settings.Default.pfadDeskOK = newPath;
-            if (!System.IO.Directory.Exists(newPath+"\\Icons") && !System.IO.Directory.Exists(newPath+ "\\BackUps"))
-            {
-                System.IO.Directory.CreateDirectory(newPath + "\\Icons");
-                System.IO.Directory.CreateDirectory(newPath + "\\BackUps");
-            }
-            else if (!System.IO.Directory.Exists(newPath + "\\Icons") && System.IO.Directory.Exists(newPath + "\\BackUps"))
-            {
-                System.IO.Directory.CreateDirectory(newPath + "\\Icons");
-            }
-            else if (System.IO.Directory.Exists(newPath + "\\Icons") && !System.IO.Directory.Exists(newPath + "\\BackUps"))
-            {
-                System.IO.Directory.CreateDirectory(newPath + "\\BackUps");
-            }
-            
             Properties.Settings.Default.Save();
         }
         btnSettingPath.Content = newPath;
+        var iniziStart = new Funktion1Initialisieren();
+        iniziStart.Initialisieren();
 
     }
 
@@ -141,6 +127,7 @@ public partial class SettingsPage : Page, INotifyPropertyChanged, INavigationAwa
         FunktionDefaultPath resetPath = new FunktionDefaultPath();
         resetPath.ResetPath();
         btnSettingPath.Content = Properties.Settings.Default.pfadDeskOK;
-
+        var iniziStart = new Funktion1Initialisieren();
+        iniziStart.Initialisieren();
     }
 }

@@ -58,22 +58,30 @@ public partial class FunktionPage : Page, INotifyPropertyChanged
 
     private void btnGetIconList_Click(object sender, System.Windows.RoutedEventArgs e)
     {
-        Funktion1.Execute(); // Rufen Sie die Execute-Methode von Funktion1 auf
+        FunktionIconListe.Execute(); // Rufen Sie die Execute-Methode von Funktion1 auf
         ISPSaveState.IsReady = true;
         this.Loaded += FunktionPage_Loaded;
     }
 
     private void btnMoniScann_Click(object sender, System.Windows.RoutedEventArgs e)
     {
-        var deskScen = new FunktionDeskScen();
-        deskScen.AuslesenMonitoreUndPositionen();
+        var mmrStatus = new FunktionMultiMonitor();
+        mmrStatus.MMRKontrolle();
+        var mmrData = new FunktionDeskScen();
+        mmrData.MonitorSaveData();
+
+        var mmDataRead = new FunktionDeskScen();
+        mmDataRead.DataRead(Properties.Settings.Default.pfadDeskOK + "\\MonitorDaten.txt");
+
+        var mmDataTrim = new FunktionVergleich();
+        mmDataTrim.MultiMonDataTrim();
         this.Loaded += FunktionPage_Loaded;
     }
 
     private void btnIniziStart_Click(object sender, System.Windows.RoutedEventArgs e)
     {
-        var defaultPath = new FunktionDefaultPath();
-        defaultPath.DefaultPath();
+        var defaultPath = new Funktion1Initialisieren();
+        defaultPath.Initialisieren();
 
         var openPath = new FunktionDefaultPath();
         openPath.OpenConfig();
@@ -82,9 +90,11 @@ public partial class FunktionPage : Page, INotifyPropertyChanged
 
     private void btnDeskOkDownload_Click(object sender, System.Windows.RoutedEventArgs e)
     {
-
         var dodStart = new FunktionDesktopOK();
         dodStart.DODStart();
+        var mmdStart = new FunktionMultiMonitor();
+        mmdStart.MMDStart();
+
     }
 
     private void btnDOSavePos_Click(object sender, RoutedEventArgs e)
