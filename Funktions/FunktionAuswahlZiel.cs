@@ -14,35 +14,7 @@ namespace App3.Funktions
 {
     class FunktionAuswahlZiel
     {
-        public void Prüfen()
-        {
-
-            if (!string.IsNullOrEmpty(Properties.Settings.Default.InfoMonitor1))
-            {
-                Properties.Settings.Default.eMonitorVorhanden1 = true;
-            }
-            else { Properties.Settings.Default.eMonitorVorhanden1 = false; }
-            if (!string.IsNullOrEmpty(Properties.Settings.Default.InfoMonitor2))
-            {
-                Properties.Settings.Default.eMonitorVorhanden2 = true;
-            }
-            else { Properties.Settings.Default.eMonitorVorhanden2 = false; }
-            if (!string.IsNullOrEmpty(Properties.Settings.Default.InfoMonitor3))
-            {
-                Properties.Settings.Default.eMonitorVorhanden3 = true;
-            }
-            else { Properties.Settings.Default.eMonitorVorhanden3 = false; }
-            if (!string.IsNullOrEmpty(Properties.Settings.Default.InfoMonitor4))
-            {
-                Properties.Settings.Default.eMonitorVorhanden4 = true;
-            }
-            else { Properties.Settings.Default.eMonitorVorhanden4 = false; }
-            Properties.Settings.Default.Save();
-
-
-
-
-        }
+        
         public void MonitorGewählt1()
         {
             if (!string.IsNullOrEmpty(Properties.Settings.Default.eMonitorIconsZugewiesen1))

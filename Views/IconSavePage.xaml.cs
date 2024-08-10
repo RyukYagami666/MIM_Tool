@@ -58,8 +58,7 @@ public partial class IconSavePage : Page, INotifyPropertyChanged
 
         if (selectedPaths.Length > 0)
         {
-            FunktionAuswahlZiel auswahlFunkFürISP = new FunktionAuswahlZiel();
-            auswahlFunkFürISP.Prüfen();
+           
             AuswahlFürISP auswahlFürISP = new AuswahlFürISP();
             auswahlFürISP.Show();
 

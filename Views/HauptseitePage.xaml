@@ -5,26 +5,84 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:converters="clr-namespace:App3.Converters"
+    xmlns:models="clr-namespace:App3.Models"
     xmlns:properties="clr-namespace:App3.Properties"
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800">
+
+    <Page.Resources>
+        <converters:BooleanToGrayConverter x:Key="BooleanToGrayConverter" />
+        <converters:BooleanToPrimaryConverter x:Key="BooleanToPrimaryConverter" />
+    </Page.Resources>
+
+
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="48" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <TextBlock
-            Style="{StaticResource PageTitleStyle}"
-            Margin="{StaticResource MediumLeftMargin}"
-            Text="{x:Static properties:Resources.HauptseitePageTitle}" />
-        <Grid
-            Grid.Row="1"
-            Margin="{StaticResource MediumLeftRightMargin}"
-            Background="{DynamicResource MahApps.Brushes.Gray10}">
-            <!--
-            The Mahapps Gray10 color represents where you should place your content.
-            Place your content here.
-            -->
+                Style="{StaticResource PageTitleStyle}"
+                Margin="{StaticResource MediumLeftMargin}"
+                Text="{x:Static properties:Resources.HauptseitePageTitle}" />
+        <Grid Grid.Row="1" Background="{DynamicResource MahApps.Brushes.Gray10}" >
+            
+            <Button x:Name="Moni1" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Moni1_Click"/>
+            <Button x:Name="Moni2" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Moni2_Click" FontWeight="Normal"/>
+            <Button x:Name="Moni3" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Moni3_Click"/>
+            <Button x:Name="Moni4" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Moni4_Click"/>
+            <Border BorderBrush="Black" BorderThickness="2,2,2,2" Margin="0,20,28,20" Grid.RowSpan="2" HorizontalAlignment="Right" Width="300" CornerRadius="8,8,8,8">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="15"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="1"  Text="Monitor Infos" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" RenderTransformOrigin="1.015,0.376" Grid.ColumnSpan="2"/>
+                    <TextBlock Grid.Row="2" Text="Monitor Name:" HorizontalAlignment="left" VerticalAlignment="top" FontSize="14" Padding="10,10,0,0"/>
+                    <TextBlock Grid.Row="2" Grid.Column="1" x:Name="t2a1" HorizontalAlignment="left" VerticalAlignment="top" FontSize="14" Padding="10,10,0,0"/>
+                    <TextBlock Grid.Row="3" Text="Monitor Nummer:" HorizontalAlignment="left" VerticalAlignment="top" FontSize="14" Padding="10,10,0,0"/>
+                    <TextBlock Grid.Row="3" Grid.Column="1" x:Name="t3a3" HorizontalAlignment="left" VerticalAlignment="top" FontSize="14" Padding="10,10,0,0"/>
+                    <TextBlock Grid.Row="4" Text="Resolution:" HorizontalAlignment="left" VerticalAlignment="top" FontSize="14" Padding="10,10,0,0"/>
+                    <TextBlock Grid.Row="4" Grid.Column="1" x:Name="t4a5" HorizontalAlignment="left" VerticalAlignment="top" FontSize="14" Padding="10,10,0,0"/>
+                    <TextBlock Grid.Row="5" Text="Position:" HorizontalAlignment="left" VerticalAlignment="top" FontSize="14" Padding="10,10,0,0"/>
+                    <TextBlock Grid.Row="5" Grid.Column="1" x:Name="t5a7" HorizontalAlignment="left" VerticalAlignment="top" FontSize="14" Padding="10,10,0,0"/>
+                    <TextBlock Grid.Row="6" Text="Active:" HorizontalAlignment="left" VerticalAlignment="top" FontSize="14" Padding="10,10,0,0"/>
+                    <TextBlock Grid.Row="6" Grid.Column="1" x:Name="t6a9" HorizontalAlignment="left" VerticalAlignment="top" FontSize="14" Padding="10,10,0,0"/>
+                    <TextBlock Grid.Row="7" Text="Primary:" HorizontalAlignment="left" VerticalAlignment="top" FontSize="14" Padding="10,10,0,0"/>
+                    <TextBlock Grid.Row="7" Grid.Column="1" x:Name="t7a11" HorizontalAlignment="left" VerticalAlignment="top" FontSize="14" Padding="10,10,0,0"/>
+                    <TextBlock Grid.Row="8" Text="Frequency:" HorizontalAlignment="left" VerticalAlignment="top" FontSize="14" Padding="10,10,0,0"/>
+                    <TextBlock Grid.Row="8" Grid.Column="1" x:Name="t8a13" HorizontalAlignment="left" VerticalAlignment="top" FontSize="14" Padding="10,10,0,0"/>
+                    <TextBlock Grid.Row="9" Text="Max Resolution:" HorizontalAlignment="left" VerticalAlignment="top" FontSize="14" Padding="10,10,0,0"/>
+                    <TextBlock Grid.Row="9" Grid.Column="1" x:Name="t9a15" HorizontalAlignment="left" VerticalAlignment="top" FontSize="14" Padding="10,10,0,0"/>
+                    <TextBlock Grid.Row="10" Text="Short Monitor ID:" HorizontalAlignment="left" VerticalAlignment="top" FontSize="14" Padding="10,10,0,0"/>
+                    <TextBlock Grid.Row="10" Grid.Column="1" x:Name="t10a17" HorizontalAlignment="left" VerticalAlignment="top" FontSize="14" Padding="10,10,0,0"/>
+                    <TextBlock Grid.Row="11" Text="Monitor S.Nr:" HorizontalAlignment="left" VerticalAlignment="top" FontSize="14" Padding="10,10,0,0"/>
+                    <TextBlock Grid.Row="11" Grid.Column="1" x:Name="t11a19" HorizontalAlignment="left" VerticalAlignment="top" FontSize="14" Padding="10,10,0,0"/>
+                </Grid>
+                    
+            </Border>
+                    
+             <Border/>
+
+
         </Grid>
+
     </Grid>
 </Page>

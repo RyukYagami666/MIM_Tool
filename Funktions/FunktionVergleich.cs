@@ -176,24 +176,28 @@ namespace App3.Funktions
                 if (MultiMonDataArray[3] == "Active:Yes") { Properties.Settings.Default.eMonitorAktiv1 = true; }
                 else { Properties.Settings.Default.eMonitorAktiv1 = false; }
                 Properties.Settings.Default.InfoMonitor1 = infoMonitor;
+                Properties.Settings.Default.eMonitorVorhanden1 = true;
             }
             else if (MultiMonDataArray[10] == "Name:\\\\.\\DISPLAY2")
             {
                 if (MultiMonDataArray[3] == "Active:Yes"){Properties.Settings.Default.eMonitorAktiv2 = true;}
                 else{Properties.Settings.Default.eMonitorAktiv2 = false;}
                 Properties.Settings.Default.InfoMonitor2 = infoMonitor;
+                Properties.Settings.Default.eMonitorVorhanden2 = true;
             }
             else if (MultiMonDataArray[10] == "Name:\\\\.\\DISPLAY3")
             {
                 if (MultiMonDataArray[3] == "Active:Yes") { Properties.Settings.Default.eMonitorAktiv3 = true; }
                 else { Properties.Settings.Default.eMonitorAktiv3 = false; }
                 Properties.Settings.Default.InfoMonitor3 = infoMonitor;
+                Properties.Settings.Default.eMonitorVorhanden3 = true;
             }
             else if (MultiMonDataArray[10] == "Name:\\\\.\\DISPLAY4")
             {
                 if (MultiMonDataArray[3] == "Active:Yes") { Properties.Settings.Default.eMonitorAktiv4 = true; }
                 else { Properties.Settings.Default.eMonitorAktiv4 = false; }
                 Properties.Settings.Default.InfoMonitor4 = infoMonitor;
+                Properties.Settings.Default.eMonitorVorhanden4 = true;
             }
             else
             {

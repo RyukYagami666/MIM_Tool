@@ -43,3 +43,9 @@ DataRead			FunktionDesktopOK.cs         doReadData.DataRead(Properties.Settings.
 AbwandelnDerData	FunktionVergleich.cs
 Execute				FunktionIconListe.cs		FunktionIconListe.Execute();
 
+
+
+                                <TextBlock Text="{Binding Name}" Foreground="{Binding IsPrimary, Converter={StaticResource BooleanToPrimaryConverter}}" FontSize="7" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding Resolution}" Foreground="Black" FontSize="7" />
+                                <TextBlock Text="{Binding Position}" Foreground="Black" FontSize="7"/>
+
