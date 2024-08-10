@@ -11,6 +11,7 @@
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800">
 
+
     <Page.Resources>
         <converters:BooleanToGrayConverter x:Key="BooleanToGrayConverter" />
         <converters:BooleanToPrimaryConverter x:Key="BooleanToPrimaryConverter" />
@@ -27,62 +28,167 @@
                 Style="{StaticResource PageTitleStyle}"
                 Margin="{StaticResource MediumLeftMargin}"
                 Text="{x:Static properties:Resources.HauptseitePageTitle}" />
-        <Grid Grid.Row="1" Background="{DynamicResource MahApps.Brushes.Gray10}" >
-            
-            <Button x:Name="Moni1" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Moni1_Click"/>
-            <Button x:Name="Moni2" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Moni2_Click" FontWeight="Normal"/>
-            <Button x:Name="Moni3" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Moni3_Click"/>
-            <Button x:Name="Moni4" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Moni4_Click"/>
-            <Border BorderBrush="Black" BorderThickness="2,2,2,2" Margin="0,20,28,20" Grid.RowSpan="2" HorizontalAlignment="Right" Width="300" CornerRadius="8,8,8,8">
+        <Grid Grid.Row="1" Background="{DynamicResource MahApps.Brushes.Gray10}" Margin="24,0,24,0" >
+
+            <Button x:Name="Moni1" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Moni1_Click"
+                    ToolTip="Monitore: &#x0a;  die angeschlossen sind: die Position der Monitore &#x0a;  entspricht ungefähr den, der Windows Einstellung ( zur Übersicht), &#x0a;  Es werden auch sowohl Namen aktiv oder inaktiv primär oder nicht primär Informationen dargestellt . &#x0a;  Mit dem Klick willst du den Monitor aus um damit weiterarbeiten zu können.  &#x0a;  Monitor Name Blau = Primer Monitor. Feld Stark ausgegraut = Monitor Inaktiv."/>
+            <Button x:Name="Moni2" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Moni2_Click"
+                    ToolTip="Monitore: &#x0a;  die angeschlossen sind: die Position der Monitore  &#x0a; entspricht ungefähr den, der Windows Einstellung ( zur Übersicht),  &#x0a; Es werden auch sowohl Namen aktiv oder inaktiv primär oder nicht primär Informationen dargestellt .  &#x0a; Mit dem Klick willst du den Monitor aus um damit weiterarbeiten zu können.  &#x0a; "/>
+            <Button x:Name="Moni3" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Moni3_Click"
+                    ToolTip="Monitore: &#x0a;  die angeschlossen sind: die Position der Monitore &#x0a;  entspricht ungefähr den, der Windows Einstellung ( zur Übersicht), &#x0a;  Es werden auch sowohl Namen aktiv oder inaktiv primär oder nicht primär Informationen dargestellt . &#x0a;  Mit dem Klick willst du den Monitor aus um damit weiterarbeiten zu können.  &#x0a; "/>
+            <Button x:Name="Moni4" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Moni4_Click"
+                    ToolTip="Monitore: &#x0a;  die angeschlossen sind: die Position der Monitore  &#x0a; entspricht ungefähr den, der Windows Einstellung ( zur Übersicht), &#x0a;  Es werden auch sowohl Namen aktiv oder inaktiv primär oder nicht primär Informationen dargestellt . &#x0a;  Mit dem Klick willst du den Monitor aus um damit weiterarbeiten zu können   &#x0a; "/>
+
+            <Border BorderBrush="Black" BorderThickness="2,2,2,2" Margin="0,20,25,20" Grid.RowSpan="2" HorizontalAlignment="Right" Width="300" CornerRadius="8,8,8,8" Panel.ZIndex="100" ToolTip="Monitorinfos: &#x0a;  hier werden alle Monitorinfos vom ausgewählten Monitor angezeigt &#x0a;  diese werden bei der Initialisierung gelesen">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"></ColumnDefinition>
-                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="15"></RowDefinition>
-                        <RowDefinition Height="auto"></RowDefinition>
-                        <RowDefinition Height="auto"></RowDefinition>
-                        <RowDefinition Height="auto"></RowDefinition>
-                        <RowDefinition Height="auto"></RowDefinition>
-                        <RowDefinition Height="auto"></RowDefinition>
-                        <RowDefinition Height="auto"></RowDefinition>
-                        <RowDefinition Height="auto"></RowDefinition>
-                        <RowDefinition Height="auto"></RowDefinition>
-                        <RowDefinition Height="auto"></RowDefinition>
-                        <RowDefinition Height="auto"></RowDefinition>
-                        <RowDefinition Height="auto"></RowDefinition>
-                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="15"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
+
                     <TextBlock Grid.Row="1"  Text="Monitor Infos" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" RenderTransformOrigin="1.015,0.376" Grid.ColumnSpan="2"/>
-                    <TextBlock Grid.Row="2" Text="Monitor Name:" HorizontalAlignment="left" VerticalAlignment="top" FontSize="14" Padding="10,10,0,0"/>
-                    <TextBlock Grid.Row="2" Grid.Column="1" x:Name="t2a1" HorizontalAlignment="left" VerticalAlignment="top" FontSize="14" Padding="10,10,0,0"/>
-                    <TextBlock Grid.Row="3" Text="Monitor Nummer:" HorizontalAlignment="left" VerticalAlignment="top" FontSize="14" Padding="10,10,0,0"/>
-                    <TextBlock Grid.Row="3" Grid.Column="1" x:Name="t3a3" HorizontalAlignment="left" VerticalAlignment="top" FontSize="14" Padding="10,10,0,0"/>
-                    <TextBlock Grid.Row="4" Text="Resolution:" HorizontalAlignment="left" VerticalAlignment="top" FontSize="14" Padding="10,10,0,0"/>
-                    <TextBlock Grid.Row="4" Grid.Column="1" x:Name="t4a5" HorizontalAlignment="left" VerticalAlignment="top" FontSize="14" Padding="10,10,0,0"/>
-                    <TextBlock Grid.Row="5" Text="Position:" HorizontalAlignment="left" VerticalAlignment="top" FontSize="14" Padding="10,10,0,0"/>
-                    <TextBlock Grid.Row="5" Grid.Column="1" x:Name="t5a7" HorizontalAlignment="left" VerticalAlignment="top" FontSize="14" Padding="10,10,0,0"/>
-                    <TextBlock Grid.Row="6" Text="Active:" HorizontalAlignment="left" VerticalAlignment="top" FontSize="14" Padding="10,10,0,0"/>
-                    <TextBlock Grid.Row="6" Grid.Column="1" x:Name="t6a9" HorizontalAlignment="left" VerticalAlignment="top" FontSize="14" Padding="10,10,0,0"/>
-                    <TextBlock Grid.Row="7" Text="Primary:" HorizontalAlignment="left" VerticalAlignment="top" FontSize="14" Padding="10,10,0,0"/>
-                    <TextBlock Grid.Row="7" Grid.Column="1" x:Name="t7a11" HorizontalAlignment="left" VerticalAlignment="top" FontSize="14" Padding="10,10,0,0"/>
-                    <TextBlock Grid.Row="8" Text="Frequency:" HorizontalAlignment="left" VerticalAlignment="top" FontSize="14" Padding="10,10,0,0"/>
-                    <TextBlock Grid.Row="8" Grid.Column="1" x:Name="t8a13" HorizontalAlignment="left" VerticalAlignment="top" FontSize="14" Padding="10,10,0,0"/>
-                    <TextBlock Grid.Row="9" Text="Max Resolution:" HorizontalAlignment="left" VerticalAlignment="top" FontSize="14" Padding="10,10,0,0"/>
-                    <TextBlock Grid.Row="9" Grid.Column="1" x:Name="t9a15" HorizontalAlignment="left" VerticalAlignment="top" FontSize="14" Padding="10,10,0,0"/>
-                    <TextBlock Grid.Row="10" Text="Short Monitor ID:" HorizontalAlignment="left" VerticalAlignment="top" FontSize="14" Padding="10,10,0,0"/>
-                    <TextBlock Grid.Row="10" Grid.Column="1" x:Name="t10a17" HorizontalAlignment="left" VerticalAlignment="top" FontSize="14" Padding="10,10,0,0"/>
-                    <TextBlock Grid.Row="11" Text="Monitor S.Nr:" HorizontalAlignment="left" VerticalAlignment="top" FontSize="14" Padding="10,10,0,0"/>
-                    <TextBlock Grid.Row="11" Grid.Column="1" x:Name="t11a19" HorizontalAlignment="left" VerticalAlignment="top" FontSize="14" Padding="10,10,0,0"/>
+                    <TextBlock Grid.Row="2" Text="Monitor Name:" HorizontalAlignment="left" VerticalAlignment="top" FontSize="10" Padding="10,10,0,0"/>
+                    <TextBlock Grid.Row="2" Grid.Column="1" x:Name="t2a1" HorizontalAlignment="left" VerticalAlignment="top" FontSize="10" Padding="10,10,0,0"/>
+                    <TextBlock Grid.Row="3" Text="Monitor Nummer:" HorizontalAlignment="left" VerticalAlignment="top" FontSize="10" Padding="10,10,0,0"/>
+                    <TextBlock Grid.Row="3" Grid.Column="1" x:Name="t3a3" HorizontalAlignment="left" VerticalAlignment="top" FontSize="10" Padding="10,10,0,0"/>
+                    <TextBlock Grid.Row="4" Text="Resolution:" HorizontalAlignment="left" VerticalAlignment="top" FontSize="10" Padding="10,10,0,0"/>
+                    <TextBlock Grid.Row="4" Grid.Column="1" x:Name="t4a5" HorizontalAlignment="left" VerticalAlignment="top" FontSize="10" Padding="10,10,0,0"/>
+                    <TextBlock Grid.Row="5" Text="Position:" HorizontalAlignment="left" VerticalAlignment="top" FontSize="10" Padding="10,10,0,0"/>
+                    <TextBlock Grid.Row="5" Grid.Column="1" x:Name="t5a7" HorizontalAlignment="left" VerticalAlignment="top" FontSize="10" Padding="10,10,0,0"/>
+                    <TextBlock Grid.Row="6" Text="Active:" HorizontalAlignment="left" VerticalAlignment="top" FontSize="10" Padding="10,10,0,0"/>
+                    <TextBlock Grid.Row="6" Grid.Column="1" x:Name="t6a9" HorizontalAlignment="left" VerticalAlignment="top" FontSize="10" Padding="10,10,0,0"/>
+                    <TextBlock Grid.Row="7" Text="Primary:" HorizontalAlignment="left" VerticalAlignment="top" FontSize="10" Padding="10,10,0,0"/>
+                    <TextBlock Grid.Row="7" Grid.Column="1" x:Name="t7a11" HorizontalAlignment="left" VerticalAlignment="top" FontSize="10" Padding="10,10,0,0"/>
+                    <TextBlock Grid.Row="8" Text="Frequency:" HorizontalAlignment="left" VerticalAlignment="top" FontSize="10" Padding="10,10,0,0"/>
+                    <TextBlock Grid.Row="8" Grid.Column="1" x:Name="t8a13" HorizontalAlignment="left" VerticalAlignment="top" FontSize="10" Padding="10,10,0,0"/>
+                    <TextBlock Grid.Row="9" Text="Max Resolution:" HorizontalAlignment="left" VerticalAlignment="top" FontSize="10" Padding="10,10,0,0"/>
+                    <TextBlock Grid.Row="9" Grid.Column="1" x:Name="t9a15" HorizontalAlignment="left" VerticalAlignment="top" FontSize="10" Padding="10,10,0,0"/>
+                    <TextBlock Grid.Row="10" Text="Short Monitor ID:" HorizontalAlignment="left" VerticalAlignment="top" FontSize="10" Padding="10,10,0,0"/>
+                    <TextBlock Grid.Row="10" Grid.Column="1" x:Name="t10a17" HorizontalAlignment="left" VerticalAlignment="top" FontSize="10" Padding="10,10,0,0"/>
+                    <TextBlock Grid.Row="11" Text="Monitor S.Nr:" HorizontalAlignment="left" VerticalAlignment="top" FontSize="10" Padding="10,10,0,0"/>
+                    <TextBlock Grid.Row="11" Grid.Column="1" x:Name="t11a19" HorizontalAlignment="left" VerticalAlignment="top" FontSize="10" Padding="10,10,0,0"/>
+                    <TextBlock Grid.Row="12" Text="Gespeicherte Icons:" HorizontalAlignment="left" VerticalAlignment="top" FontSize="10" Padding="10,10,0,0"/>
+                    <TextBlock Grid.Row="12" Grid.Column="1" x:Name="t12a21" HorizontalAlignment="left" VerticalAlignment="top" FontSize="10" Padding="10,10,0,0"/>
+
+                    <Label Content="Icon Liste"   Grid.Row="13" Grid.Column="0" Panel.ZIndex="30" Margin="12,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" IsHitTestVisible="false"/>
+                    <ComboBox  x:Name="SavedLists" Grid.Row="13" Grid.Column="0" Grid.ColumnSpan="2" IsReadOnly="True" Text="Liste der icons" FontSize="9" BorderThickness="2" Padding="2,0,2,2" BorderBrush="#FF414040" MinHeight="24" FontStretch="UltraCondensed" ClipToBounds="True" Margin="2,3,2,0" SnapsToDevicePixels="False" Background="#FF454545">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding Icon}" Width="16" Height="16" Margin="0,0,5,0"/>
+                                    <TextBlock Text="{Binding Path}" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
                 </Grid>
-                    
             </Border>
-                    
-             <Border/>
+
+            <Border BorderBrush="Black" BorderThickness="2,2,2,2" Margin="25,0,0,20" HorizontalAlignment="Left" Width="400" Height="190" CornerRadius="8,8,8,8" VerticalAlignment="Bottom" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="15"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
 
 
+                    <TextBlock Text="Steuerpannel:"
+                               Grid.Row="1"  Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="13" />
+                    <TextBlock Text="Wähle zuerst ein Monitor aus indem du drauf klickst die Auswahl bleibt so lange bestehen bis du das Fenster wechselst " 
+                               Grid.Row=" 2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" TextWrapping="Wrap"/>
+                    <TextBlock Text="Wenn du über einen Button mit deiner Maus stehenbleibst als du weitere Informationen dazu. " 
+                               Grid.Row=" 3" Grid.Column="1" HorizontalAlignment="Center" FontSize="10" TextWrapping="Wrap" Margin="60,0,60,0"/>
+                    <TextBlock Text="Die Farbe der Knöpfe zeigt dir bereitschaft der Funktion an. " 
+                               Grid.Row=" 4" Grid.Column="1" HorizontalAlignment="Center" FontSize="10" TextWrapping="Wrap" Margin="80,0,80,0"/>
+
+                    <Button x:Name="btnSaveIconPos" Content="&#xEDA4;" Grid.Row=" 3" Grid.Column="1" FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Left" Height="44" Margin="0,0,0,0" VerticalAlignment="Top" Width="44" Padding="3,3,3,3" FontSize="20" 
+                            ToolTip="Icon Auswahl :  &#x0a; hiermit kannst du bestimmen welcher Icons verschoben werden sollen  &#x0a; wenn ein Monitor deaktiviert wird ," Click="btnSaveIconPos_Click"/>
+
+                    <Button x:Name="btnCreateShortCut" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" Height="44" Margin="22,50,0,0" VerticalAlignment="Top" Width="44" Padding="3,3,3,3" FontSize="8" Grid.RowSpan="2"
+                            ToolTip="Verknüpfung erstellen:  &#x0a; es wird ein Icon auf den Desktopgespeichert der das aus  &#x0a;  und Einschalten sowie das Verschieben der Icons ausführt ,  &#x0a; dies ist dann von Monitor zu Monitor einzeln steuerbar." Click="btnCreateShortCut_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="17" Text="&#xE771;"/>
+                            <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="16" Text="&#xE8F4;" RenderTransformOrigin="0.5,0.5" Height="22">
+                                <TextBlock.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform Angle="-9.417"/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </TextBlock.RenderTransform>
+                            </TextBlock>
+                        </StackPanel>
+                    </Button>
+
+                    <Button x:Name="btnMonitorSwitch" Grid.Row="2" Grid.Column="1" Margin="0,50,10,6" HorizontalAlignment="Right" Width="44" Padding="3,3,3,3"
+                            ToolTip="Monitor Schalter:  &#x0a; Hier kannst du den ausgewählten Monitor aktivieren oder deaktivieren  &#x0a; dabei werden keine Icons verschoben jedoch werden Daten gelesen." Grid.RowSpan="2" Click="btnMonitorSwitch_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock x:Name="spiegel252" FontFamily="Segoe MDL2 Assets" FontSize="17" Text="&#xEB55;" Height="23" />
+                            <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="16" Text="&#xE7F9;" Height="15" Width="26" RenderTransformOrigin="0.5,0.5">
+                                <TextBlock.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform Angle="16.7"/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </TextBlock.RenderTransform>
+                            </TextBlock>
+                        </StackPanel>
+                    </Button>
+
+                    <Button x:Name="btnIconsVerschieben" Grid.Row="3" Grid.Column="1" Height="44" Margin="0,50,30,0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="44" Grid.RowSpan="2"
+                            ToolTip="Icons verschieben:  &#x0a; Hier werden von den ausgewählten Monitor die Icons verschoben,  &#x0a; die zuvor in der Icon Auswahl gespeichert wurden. Beim zweiten Mal drücken mit dem  &#x0a; gleichen ausgewählten Monitor, werden die Icons wieder zurückverschoben." Click="btnIconsVerschieben_Click">
+                        <StackPanel Orientation="Horizontal" Width="40">
+                            <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="17" Text="&#xE927;" Width="16" Height="18" RenderTransformOrigin="0.433,0.939" >
+                                <TextBlock.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform Angle="9.725"/>
+                                        <TranslateTransform X="-0.945" Y="-0.775"/>
+                                    </TransformGroup>
+                                </TextBlock.RenderTransform>
+                            </TextBlock>
+                            <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="16" Text="&#xE19C;" RenderTransformOrigin="0.5,0.5" Width="15" Height="19" >
+                                <TextBlock.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="-1"/>
+                                        <SkewTransform/>
+                                        <RotateTransform Angle="4.828"/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </TextBlock.RenderTransform>
+                            </TextBlock>
+                        </StackPanel>
+                    </Button>
+                </Grid>
+            </Border>
         </Grid>
-
     </Grid>
 </Page>

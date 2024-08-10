@@ -26,12 +26,25 @@ public partial class HauptseitePage : Page, INotifyPropertyChanged
 
         this.Loaded += HauptPage_Loaded;
     }
+    public event PropertyChangedEventHandler PropertyChanged;
+
+    
     private void HauptPage_Loaded(object sender, RoutedEventArgs e)
     {
+
+        if (!Properties.Settings.Default.Inizialisiert)
+        {
+            MessageBox.Show("Bitte zuerst die Einstellungen vornehmen");
+            var inizialisiert = new Funktion1Initialisieren();
+            inizialisiert.Initialisieren();
+            return;
+        }
+
         LoadInfoMonitor();
         MonitorGröße();
         MultiMonPos();
 
+        
         Moni1.Visibility = Properties.Settings.Default.eMonitorVorhanden1 ? Visibility.Visible : Visibility.Collapsed;
         Moni2.Visibility = Properties.Settings.Default.eMonitorVorhanden2 ? Visibility.Visible : Visibility.Collapsed;
         Moni3.Visibility = Properties.Settings.Default.eMonitorVorhanden3 ? Visibility.Visible : Visibility.Collapsed;
@@ -54,7 +67,7 @@ public partial class HauptseitePage : Page, INotifyPropertyChanged
             Moni4.Background = (monitorData4[11] == "Yes") ? transparentGreen : transparentGray;}
             Moni4.Background = Properties.Settings.Default.eMonitorAktiv4 ? transparentGray : transparentDarkGray;        
     }
-    public event PropertyChangedEventHandler PropertyChanged;
+    
 
     private void Set<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
     {
@@ -142,8 +155,6 @@ public partial class HauptseitePage : Page, INotifyPropertyChanged
     public void MonitorGröße()
     {
         var BlauerText = new SolidColorBrush(Color.FromArgb(250, 50, 50, 255));
-        var NormalerText = new SolidColorBrush(Color.FromArgb(100, 255, 255, 255));
-        var Textverw = NormalerText;
 
         if (monitorData1.Length > 1) { 
             var resolutionParts1 = monitorData1[5].Split('X');
@@ -151,20 +162,26 @@ public partial class HauptseitePage : Page, INotifyPropertyChanged
             Moni1.Height = int.Parse(resolutionParts1[1].Trim()) * ScaleFactor;
             Moni1.Content = $"{monitorData1[1]}\n{monitorData1[5]}\n{monitorData1[7]}";
             if (monitorData1[11] == "Yes"){
-                Textverw = BlauerText;
-            }
-            else {
-                Textverw = NormalerText;
-            }
-            Moni1.Content = new TextBlock
-            {
-                Inlines = {
-                new Run($"{monitorData1[1]}\n") { FontWeight = FontWeights.Bold , Foreground = Textverw },
+                Moni1.Content = new TextBlock
+                {
+                    Inlines = {
+                new Run($"{monitorData1[1]}\n") { FontWeight = FontWeights.Bold , Foreground = BlauerText },
                 new Run($"{monitorData1[5]}\n") { FontWeight = FontWeights.Normal },
                 new Run($"{monitorData1[7]}")   { FontWeight = FontWeights.Normal }
+                }
+                };
             }
-            };
-            Textverw = NormalerText;
+            else {
+                Moni1.Content = new TextBlock
+                {
+                    Inlines = {
+                new Run($"{monitorData1[1]}\n") { FontWeight = FontWeights.Bold  },
+                new Run($"{monitorData1[5]}\n") { FontWeight = FontWeights.Normal },
+                new Run($"{monitorData1[7]}")   { FontWeight = FontWeights.Normal }
+                }
+                };
+            }
+           
         }
         if (monitorData2.Length > 1){
             var resolutionParts2 = monitorData2[5].Split('X');
@@ -173,21 +190,26 @@ public partial class HauptseitePage : Page, INotifyPropertyChanged
             Moni2.Content = $"{monitorData2[1]}\n{monitorData2[5]}\n{monitorData2[7]}";
             if (monitorData2[11] == "Yes")
             {
-                Textverw = BlauerText;
+                Moni2.Content = new TextBlock
+                {
+                    Inlines = {
+                        new Run($"{monitorData2[1]}\n") { FontWeight = FontWeights.Bold, Foreground = BlauerText },
+                        new Run($"{monitorData2[5]}\n"){ FontWeight = FontWeights.Normal },
+                        new Run($"{monitorData2[7]}")  { FontWeight = FontWeights.Normal }
+                    }
+                };
             }
             else
             {
-                Textverw = NormalerText;
+                Moni2.Content = new TextBlock
+                {
+                    Inlines = {
+                        new Run($"{monitorData2[1]}\n") { FontWeight = FontWeights.Bold},
+                        new Run($"{monitorData2[5]}\n"){ FontWeight = FontWeights.Normal },
+                        new Run($"{monitorData2[7]}")  { FontWeight = FontWeights.Normal }
+                    }
+                };
             }
-            Moni2.Content = new TextBlock
-            {
-                Inlines = {
-                new Run($"{monitorData2[1]}\n") { FontWeight = FontWeights.Bold, Foreground = Textverw },
-                new Run($"{monitorData2[5]}\n"){ FontWeight = FontWeights.Normal },
-                new Run($"{monitorData2[7]}")  { FontWeight = FontWeights.Normal }
-            }
-            };
-            Textverw = NormalerText;
         }
         if (monitorData3.Length > 1){
             var resolutionParts3 = monitorData3[5].Split('X');
@@ -195,23 +217,26 @@ public partial class HauptseitePage : Page, INotifyPropertyChanged
             Moni3.Height = int.Parse(resolutionParts3[1].Trim()) * ScaleFactor;
             if (monitorData3[11] == "Yes")
             {
-                Textverw = BlauerText;
-                MessageBox.Show("Monitor3");
+                Moni3.Content = new TextBlock
+                {
+                    Inlines = {
+                        new Run($"{monitorData3[1]}\n") { FontWeight = FontWeights.Bold , Foreground = BlauerText},
+                        new Run($"{monitorData3[5]}\n"){ FontWeight = FontWeights.Normal },
+                        new Run($"{monitorData3[7]}")  { FontWeight = FontWeights.Normal }
+                    }
+                };
             }
             else
             {
-                Textverw = NormalerText;
+                Moni3.Content = new TextBlock
+                {
+                    Inlines = {
+                        new Run($"{monitorData3[1]}\n") { FontWeight = FontWeights.Bold },
+                        new Run($"{monitorData3[5]}\n"){ FontWeight = FontWeights.Normal },
+                        new Run($"{monitorData3[7]}")  { FontWeight = FontWeights.Normal }
+                    }
+                };
             }
-            Moni3.Content = new TextBlock
-            {
-                Inlines = {
-                new Run($"{monitorData3[1]}\n") { FontWeight = FontWeights.Bold , Foreground = Textverw},
-                new Run($"{monitorData3[5]}\n"){ FontWeight = FontWeights.Normal },
-                new Run($"{monitorData3[7]}")  { FontWeight = FontWeights.Normal }
-                
-            }
-            };
-            Textverw = NormalerText;
         }
         if (monitorData4.Length > 1){
             var resolutionParts4 = monitorData4[5].Split('X');
@@ -219,21 +244,27 @@ public partial class HauptseitePage : Page, INotifyPropertyChanged
             Moni4.Height = int.Parse(resolutionParts4[1].Trim()) * ScaleFactor;
             if (monitorData4[11] == "Yes")
             {
-                Textverw = BlauerText;
+                Moni4.Content = new TextBlock
+                {
+                    Inlines = {
+                        new Run($"{monitorData4[1]}\n") { FontWeight = FontWeights.Bold , Foreground = BlauerText},
+                        new Run($"{monitorData4[5]}\n"){ FontWeight = FontWeights.Normal },
+                        new Run($"{monitorData4[7]}")  { FontWeight = FontWeights.Normal }
+                    }
+                };
             }
             else
             {
-                Textverw = NormalerText;
+                Moni4.Content = new TextBlock
+                {
+                    Inlines = {
+                        new Run($"{monitorData4[1]}\n") { FontWeight = FontWeights.Bold},
+                        new Run($"{monitorData4[5]}\n"){ FontWeight = FontWeights.Normal },
+                        new Run($"{monitorData4[7]}")  { FontWeight = FontWeights.Normal }
+                    }
+                };
             }
-            Moni4.Content = new TextBlock
-            {
-                Inlines = {
-                new Run($"{monitorData4[1]}\n") { FontWeight = FontWeights.Bold , Foreground = Textverw},
-                new Run($"{monitorData4[5]}\n"){ FontWeight = FontWeights.Normal },
-                new Run($"{monitorData4[7]}")  { FontWeight = FontWeights.Normal }
-            }
-            };
-            Textverw = NormalerText;
+            
         }
     }
 
@@ -259,38 +290,103 @@ public partial class HauptseitePage : Page, INotifyPropertyChanged
             t9a15.Text = monitorData[GewählterMonitor][15];
             t10a17.Text = monitorData[GewählterMonitor][17];
             t11a19.Text = monitorData[GewählterMonitor][19];
-
         }
-
     }
-
 
     private void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
     private void Moni1_Click(object sender, System.Windows.RoutedEventArgs e)
     {
-
-        TextSchreiben(0);
-
+        SavedLists.ItemsSource = null;
+        Properties.Settings.Default.SelectetMonitor = 0;
+        Properties.Settings.Default.Save();
+        TextSchreiben(Properties.Settings.Default.SelectetMonitor);
         this.Loaded += HauptPage_Loaded;
-
+        t12a21.Text = Properties.Settings.Default.eMonitorIconsCount1.ToString();
+        List<FunktionIconListe.FileIconInfo> savedIcons = FunktionIconListe.gespeicherteIcons();
+        if (savedIcons != null)
+        {
+            SavedLists.ItemsSource = savedIcons;
+        }
+        Thread.Sleep(1000);
+        savedIcons = null;
     }
     private void Moni2_Click(object sender, System.Windows.RoutedEventArgs e)
     {
-        TextSchreiben(1);
-
+        SavedLists.ItemsSource = null;
+        Properties.Settings.Default.SelectetMonitor = 1;
+        Properties.Settings.Default.Save();
+        TextSchreiben(Properties.Settings.Default.SelectetMonitor);
         this.Loaded += HauptPage_Loaded;
+        t12a21.Text = Properties.Settings.Default.eMonitorIconsCount2.ToString();
+        List<FunktionIconListe.FileIconInfo> savedIcons = FunktionIconListe.gespeicherteIcons();
+        if (savedIcons != null)
+        {
+            SavedLists.ItemsSource = savedIcons;
+        }
+        Thread.Sleep(1000);
+        savedIcons = null;
     }
     private void Moni3_Click(object sender, System.Windows.RoutedEventArgs e)
     {
-        TextSchreiben(2);
-
-        this.Loaded += HauptPage_Loaded; ;
+        SavedLists.ItemsSource = null;
+        Properties.Settings.Default.SelectetMonitor = 2;
+        Properties.Settings.Default.Save();
+        TextSchreiben(Properties.Settings.Default.SelectetMonitor);
+        this.Loaded += HauptPage_Loaded;
+        t12a21.Text = Properties.Settings.Default.eMonitorIconsCount3.ToString();
+        List<FunktionIconListe.FileIconInfo> savedIcons = FunktionIconListe.gespeicherteIcons();
+        if (savedIcons != null)
+        {
+            SavedLists.ItemsSource = savedIcons;
+        }
+        Thread.Sleep(1000);
+        savedIcons = null;
     }
     private void Moni4_Click(object sender, System.Windows.RoutedEventArgs e)
     {
-        TextSchreiben(3);
+        SavedLists.ItemsSource = null;
+        Properties.Settings.Default.SelectetMonitor = 3;
+        Properties.Settings.Default.Save();
+        TextSchreiben(Properties.Settings.Default.SelectetMonitor);
+        this.Loaded += HauptPage_Loaded;
+        t12a21.Text = Properties.Settings.Default.eMonitorIconsCount4.ToString();
+        List<FunktionIconListe.FileIconInfo> savedIcons = FunktionIconListe.gespeicherteIcons();
+        if (savedIcons != null)
+        {
+            SavedLists.ItemsSource = savedIcons;
+        }
+        Thread.Sleep(1000);
+        savedIcons = null;
+    }
 
-        this.Loaded += HauptPage_Loaded; ;
+    private void btnSaveIconPos_Click(object sender, RoutedEventArgs e)
+    {
+        if (Properties.Settings.Default.SelectetMonitor < 4)
+        {
+            FunktionIconListe.Execute(); // Rufen Sie die Execute-Methode von Funktion1 auf
+            ISPSaveState.IsReady = true;
+            
+            // Navigation zur IconSavePage
+            this.NavigationService.Navigate(new IconSavePage());
+        }
+        else         {
+            MessageBox.Show("Bitte wählen Sie erst Monitor aus");
+        }
+    }
+
+    private void btnCreateShortCut_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    private void btnMonitorSwitch_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    private void btnIconsVerschieben_Click(object sender, RoutedEventArgs e)
+    {
+
     }
 }

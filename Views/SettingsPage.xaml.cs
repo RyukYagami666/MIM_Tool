@@ -44,6 +44,8 @@ public partial class SettingsPage : Page, INotifyPropertyChanged, INavigationAwa
         InitializeComponent();
         DataContext = this;
         btnSettingPath.Content = Properties.Settings.Default.pfadDeskOK;
+        Properties.Settings.Default.SelectetMonitor = 10;
+        Properties.Settings.Default.Save();
     }
 
     public void OnNavigatedTo(object parameter)

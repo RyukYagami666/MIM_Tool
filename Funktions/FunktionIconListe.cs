@@ -53,6 +53,51 @@ namespace App3.Funktions
         }
 
 
+        public static List<FileIconInfo> LastSavedFiles { get; private set; }
+
+        public static List<FileIconInfo> gespeicherteIcons()
+        {
+
+            int iSelMonitor = Properties.Settings.Default.SelectetMonitor;
+
+            string[] gespeicherteIconListen =
+            {
+            Properties.Settings.Default.eMonitorIconsZugewiesen1,
+            Properties.Settings.Default.eMonitorIconsZugewiesen2,
+            Properties.Settings.Default.eMonitorIconsZugewiesen3,
+            Properties.Settings.Default.eMonitorIconsZugewiesen4
+            };
+        
+            if (iSelMonitor < 4 && !string.IsNullOrEmpty(gespeicherteIconListen[iSelMonitor]))
+            { 
+                string gespeicherteIconListe = gespeicherteIconListen[iSelMonitor];
+                string[] savedListAuswawl = gespeicherteIconListe.Split(';');
+                List<string> savedListAuswawlIcons = savedListAuswawl.ToList();
+
+                List<FileIconInfo> files = new List<FileIconInfo>();
+                foreach (var filePath in savedListAuswawlIcons)
+                {
+                    if (File.Exists(filePath)) // Überprüfen, ob die Datei existiert
+                    {
+                        Icon icon = System.Drawing.Icon.ExtractAssociatedIcon(filePath);
+                        BitmapImage bitmapImage = ConvertIconToImageSource(icon);
+                        files.Add(new FileIconInfo
+                        {
+                            Path = filePath,
+                            Icon = bitmapImage
+                        });
+                    }
+                }
+
+                LastSavedFiles = files; // Speichern der Liste in der statischen Eigenschaft
+                return files;
+            }
+            else
+            {
+
+                return null;
+            }
+        }
 
         private static BitmapImage ConvertIconToImageSource(Icon icon)
         {
@@ -68,16 +113,13 @@ namespace App3.Funktions
                 return bitmapImage;
             }
         }
+
+        // Definieren Sie zusätzliche Klassen außerhalb der DataPage-Klasse.
+        public class FileIconInfo
+        {
+            public string Path { get; set; }
+            public BitmapImage Icon { get; set; }
+        }
     }
-
-    // Definieren Sie zusätzliche Klassen außerhalb der DataPage-Klasse.
-    public class FileIconInfo
-    {
-        public string Path { get; set; }
-        public BitmapImage Icon { get; set; }
-    }
-
-
-    
 
 }

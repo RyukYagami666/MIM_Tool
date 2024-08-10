@@ -30,6 +30,9 @@ namespace App3.Funktions
             var datenLesen = new Funktion2DatenLesen();
             datenLesen.DatenLesen();
 
+            
+
+
         }
         
     }

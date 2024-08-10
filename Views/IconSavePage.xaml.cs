@@ -5,7 +5,8 @@ using System.Windows;
 using System.Windows.Controls;
 using App3.Funktions;
 using App3.Services;
-using System.Linq; // Für die Verwendung von LINQ
+using System.Linq;
+using static App3.Funktions.FunktionIconListe; // Für die Verwendung von LINQ
 
 namespace App3.Views;
 

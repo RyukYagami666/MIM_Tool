@@ -206,11 +206,11 @@
     <Setting Name="a6" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="a7" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="SelectetMonitor" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">10</Value>
     </Setting>
-    <Setting Name="a8" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="Inizialisiert" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="a9" Type="System.String" Scope="User">
       <Value Profile="(Default)" />

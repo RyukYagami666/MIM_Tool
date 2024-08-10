@@ -41,6 +41,9 @@ public partial class FunktionPage : Page, INotifyPropertyChanged
 
     private void FunktionPage_Loaded(object sender, RoutedEventArgs e)
     {
+        Properties.Settings.Default.SelectetMonitor=10;
+        Properties.Settings.Default.Save();
+
         var dodStatus = new FunktionDesktopOK();
         dodStatus.DODKontrolle();
         var dosStatus = new FunktionDesktopOK();

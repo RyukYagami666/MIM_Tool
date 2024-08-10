@@ -841,25 +841,25 @@ namespace App3.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string a7 {
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public int SelectetMonitor {
             get {
-                return ((string)(this["a7"]));
+                return ((int)(this["SelectetMonitor"]));
             }
             set {
-                this["a7"] = value;
+                this["SelectetMonitor"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string a8 {
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Inizialisiert {
             get {
-                return ((string)(this["a8"]));
+                return ((bool)(this["Inizialisiert"]));
             }
             set {
-                this["a8"] = value;
+                this["Inizialisiert"] = value;
             }
         }
         

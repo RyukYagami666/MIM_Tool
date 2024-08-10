@@ -47,6 +47,8 @@ namespace App3.Funktions
 
             FunktionIconListe.Execute();
 
+            Properties.Settings.Default.Inizialisiert = true;
+
 
         }
     }
