@@ -53,10 +53,19 @@ namespace App3.Views
     
             var transparentGreen = new SolidColorBrush(Color.FromArgb(20, 0, 255, 0)); // 50% Transparenz grünen
             var transparentRed = new SolidColorBrush(Color.FromArgb(20, 255, 0, 0)); // 50% Transparenz roten
-    
-            btnDeskOkDownload.Background = Properties.Settings.Default.eDeskOkDownloadReady ? transparentGreen : transparentRed;
-            btnDOSavePos.Background = Properties.Settings.Default.eDeskOkSavePosReady ? transparentGreen : transparentRed;
-            btnDOReadData.Background = Properties.Settings.Default.eDeskOkDataReedReady ? transparentGreen : transparentRed;
+
+            btnGetIconList.Visibility = Properties.Settings.Default.AdminMode ? Visibility.Visible : Visibility.Collapsed;
+            btnMoniScann.Visibility = Properties.Settings.Default.AdminMode ? Visibility.Visible : Visibility.Collapsed;
+            btnIniziStart.Visibility = Properties.Settings.Default.AdminMode ? Visibility.Visible : Visibility.Collapsed;
+            btnDeskOkDownload.Visibility = Properties.Settings.Default.AdminMode ? Visibility.Visible : Visibility.Collapsed;
+            btnDOSavePos.Visibility = Properties.Settings.Default.AdminMode ? Visibility.Visible : Visibility.Collapsed;
+            btnDOReadData.Visibility = Properties.Settings.Default.AdminMode ? Visibility.Visible : Visibility.Collapsed;
+            btnDOBearbeiten.Visibility = Properties.Settings.Default.AdminMode ? Visibility.Visible : Visibility.Collapsed;
+            btnVerschieben.Visibility = Properties.Settings.Default.AdminMode ? Visibility.Visible : Visibility.Collapsed;
+            btnMoniOff.Visibility = Properties.Settings.Default.AdminMode ? Visibility.Visible : Visibility.Collapsed;
+
+
+
         }
     
         private void btnGetIconList_Click(object sender, System.Windows.RoutedEventArgs e)

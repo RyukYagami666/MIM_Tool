@@ -5,6 +5,7 @@ using App3.Core.Services;
 using App3.Models;
 using App3.Services;
 using App3.Views;
+using App3.Funktions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -14,7 +15,6 @@ using System.Windows;
 using System.Windows.Threading;
 using IniParser;
 using IniParser.Model;
-using App3.Funktions;
 
 
 namespace App3;
@@ -39,17 +39,37 @@ public partial class App : Application
 
     private async void OnStartup(object sender, StartupEventArgs e)
     {
-        var appLocation = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
-        // For more information about .NET generic host see  https://docs.microsoft.com/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-3.0
-        _host = Host.CreateDefaultBuilder(e.Args)
-                .ConfigureAppConfiguration(c =>
-                {
-                    c.SetBasePath(appLocation);
-                })
-                .ConfigureServices(ConfigureServices)
-                .Build();
+        if (e.Args.Length > 0)
+        {
+            if (int.TryParse(e.Args[0], out int auswahl))
+            {
+                MessageBox.Show($"Auswahl: {auswahl}", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                var kontrolle = new Funktion3MonitorKontrolle();
+                kontrolle.MonitorKontrolle(auswahl);
 
-        await _host.StartAsync();
+                // Anwendung beenden, nachdem die Funktion ausgeführt wurde
+                Shutdown();
+            }
+            else
+            {
+                MessageBox.Show("Das Argument muss eine Zahl sein.", "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
+                Shutdown();
+            }
+        }
+        else
+        {
+            var appLocation = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+            // For more information about .NET generic host see  https://docs.microsoft.com/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-3.0
+            _host = Host.CreateDefaultBuilder(e.Args)
+                    .ConfigureAppConfiguration(c =>
+                    {
+                        c.SetBasePath(appLocation);
+                    })
+                    .ConfigureServices(ConfigureServices)
+                    .Build();
+
+            await _host.StartAsync();
+        }
     }
 
     private void ConfigureServices(HostBuilderContext context, IServiceCollection services)

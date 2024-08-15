@@ -132,4 +132,12 @@ public partial class SettingsPage : Page, INotifyPropertyChanged, INavigationAwa
         var iniziStart = new Funktion1Initialisieren();
         iniziStart.Initialisieren();
     }
+
+    private void btnAdmin_Click(object sender, RoutedEventArgs e)
+    {
+        if (Properties.Settings.Default.AdminMode) Properties.Settings.Default.AdminMode = false;
+        else Properties.Settings.Default.AdminMode = true;
+        
+        Properties.Settings.Default.Save();
+    }
 }

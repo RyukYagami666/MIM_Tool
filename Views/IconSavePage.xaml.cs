@@ -3,6 +3,7 @@ using System.Net.NetworkInformation;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using App3.Funktions;
 using App3.Services;
 using System.Linq;
@@ -48,6 +49,9 @@ public partial class IconSavePage : Page, INotifyPropertyChanged
   //
   // }
     private void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+
+
 
     private void btnListeSpeichern_Click(object sender, RoutedEventArgs e)
     {

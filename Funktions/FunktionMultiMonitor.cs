@@ -20,7 +20,7 @@ namespace App3.Funktions
         string pathFile = $"{Properties.Settings.Default.pfadDeskOK}\\multimonitortool-x64.zip";
         string pathExe = $"{Properties.Settings.Default.pfadDeskOK}\\MultiMonitorTool.exe";
         string pathBackUP = $"{Properties.Settings.Default.pfadDeskOK}\\BackUps";
-        string pathBackUpFile = $"{Properties.Settings.Default.pfadDeskOK}\\BackUps\\MultiMonitorTool{Properties.Settings.Default.eMultiMonDownloadReady}.zip";
+        string pathBackUpFile;
         string pathLastData = Properties.Settings.Default.eMultiMonLastSave;
 
         public void MMDKontrolle()                  // Kontrolle ob DesktopOK bereit ist zum Downloaden------------------------------------------------------------------------------------
@@ -61,6 +61,11 @@ namespace App3.Funktions
         }
 
 
+        public void GEVersion()
+        {
+            pathBackUpFile = $"{Properties.Settings.Default.pfadDeskOK}\\BackUps\\MultiMonitorTool{GetExeVersion()}.zip";
+        }
+
         public void MMDStart()          // Download von MultiMonitorTool------------------------------------------------------------------------------------
         {
             if (Properties.Settings.Default.eMultiMonDownloadReady)
@@ -72,8 +77,10 @@ namespace App3.Funktions
                     {
                         try
                         {
-                            System.IO.Directory.CreateDirectory(pathBackUP);
-                            System.IO.File.Move(pathFile, pathBackUpFile);
+                            GEVersion();
+                            if (System.IO.Directory.Exists(pathBackUP)) System.IO.Directory.CreateDirectory(pathBackUP);
+                            if (!System.IO.File.Exists(pathBackUpFile)) System.IO.File.Move(pathFile, pathBackUpFile);
+                            if (System.IO.File.Exists(pathBackUpFile)) System.IO.File.Delete(pathFile);
                             WebClient client = new WebClient();
                             client.DownloadFile("https://www.nirsoft.net/utils/multimonitortool-x64.zip", pathFile);
                             CopyMSGBox.Show("Download abgeschlossen");
@@ -292,6 +299,18 @@ namespace App3.Funktions
             }
 
 
+        }
+        public string GetExeVersion() // Methode zum Auslesen der Version von DesktopOK.exe
+        {
+            if (File.Exists(pathExe))
+            {
+                FileVersionInfo versionInfo = FileVersionInfo.GetVersionInfo(pathExe);
+                return versionInfo.FileVersion;
+            }
+            else
+            {
+                return "Datei nicht gefunden.";
+            }
         }
     }
 }

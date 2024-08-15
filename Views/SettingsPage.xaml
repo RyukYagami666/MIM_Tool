@@ -32,7 +32,7 @@
                     Margin="{StaticResource SmallTopMargin}"
                     Style="{StaticResource SubtitleTextStyle}"
                     Text="{x:Static properties:Resources.SettingsPagePersonalizationTitle}" />
-                
+
                 <StackPanel Margin="{StaticResource SmallTopBottomMargin}">
                     <TextBlock
                         Style="{StaticResource BodyTextStyle}"
@@ -66,19 +66,20 @@
                             IsChecked="{Binding Theme, ConverterParameter=Default, Converter={StaticResource EnumToBooleanConverter}}" Margin="0,8,20,0"/>
                     </Grid>
                 </StackPanel>
-                
+
                 <StackPanel Margin="{StaticResource SmallTopBottomMargin}">
                     <StackPanel Margin="{StaticResource XSmallTopMargin}">
                         <TextBlock
                             Margin="{StaticResource XSmallTopMargin}"
                             Style="{StaticResource BodyTextStyle}"
-                            Text="Pfad für DesktopOK:" />
+                            Text="Pfad für Hintergrund Daten:" />
                         <Grid Margin="0,10,0,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="2*"></ColumnDefinition>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <Button x:Name="btnSettingPath" Height="19" Padding="3" Margin="0,0,0,0" Grid.Column="0" Width="auto" Click="btnSettingPath_Click" HorizontalContentAlignment="Left" >
+                            <Button x:Name="btnSettingPath" Height="19" Padding="3" Margin="0,0,0,0" Grid.Column="0" Width="auto" Click="btnSettingPath_Click" HorizontalContentAlignment="Left" 
+                                    ToolTip="Pfad ändern:  &#x0a; Wähle einen Pfad in dem alle Hintergrunddateien gespeichert werden soll.  &#x0a; In diesen Ordner werden die Icons verschoben oder config Dateien gespeichert.  &#x0a; Nach dem ändern wird die Initialisierung erneut durchgeführt und alle Daten gelöscht.">
                                 <Button.Style>
                                     <Style TargetType="Button">
                                         <Setter Property="Template">
@@ -100,13 +101,13 @@
                             </Button>
                         </Grid>
                     </StackPanel>
-                    
+
                     <Grid Margin="0,10,0,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        
+
                         <TextBlock
                             Style="{StaticResource BodyTextStyle}"
                             Text="Gespeicherte Einstellungen zurücksetzen:" 
@@ -114,12 +115,13 @@
                             Grid.Column="0"/>
 
                         <Button x:Name="btnReset" Content="Reset" MinHeight="20" Width="100" Padding="3" Grid.Column="1" 
-                                Click="btnReset_Click" HorizontalAlignment="Left" VerticalAlignment="center" Margin="0,0,100,0"/>
+                                Click="btnReset_Click" HorizontalAlignment="Left" VerticalAlignment="center" Margin="0,0,100,0"
+                                 ToolTip="Reset:  &#x0a; Hier werden alle Hintergrundsdaten gelöscht.  &#x0a; Anschließend wird die Initialisierung erneut durchgeführt. &#x0a; Nur durchführen wenn du absolut sicher bist oder im Fehlerfall! "/>
                     </Grid>
                 </StackPanel>
-                
+
                 <StackPanel Margin="{StaticResource XSmallTopMargin}">
-                
+
                     <TextBlock
                         Margin="{StaticResource SmallTopMargin}"
                         Style="{StaticResource SubtitleTextStyle}"
@@ -133,7 +135,9 @@
                         Style="{StaticResource BodyTextStyle}"
                         Text="{x:Static properties:Resources.SettingsPageAboutText}" />
                 </StackPanel>
+
             </StackPanel>
+            <Button x:Name="btnAdmin" Height="24" Margin="517,200,211,153" Grid.Row="1" Opacity="0" IsHitTestVisible="True" Click="btnAdmin_Click"/>
 
         </Grid>
     </ScrollViewer>

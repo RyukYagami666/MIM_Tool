@@ -34,7 +34,27 @@ public partial class HauptseitePage : Page, INotifyPropertyChanged
 
         if (!Properties.Settings.Default.Inizialisiert)
         {
-            MessageBox.Show("Info Box Tutorial!");                          //TODO: Info Box Tutorial
+            MessageBox.Show("Herzlich Willkommen bei Monitor Icon Manager. " +
+                "\nDies ist ein Tool Zum Steuern von Monitoren und Verschieben von ausgewählten Icons. " +
+                "\nIcons können einzeln mit einem Monitor verknüpft werden. " +
+                "\nDies kann notwendig werden wenn man z.B. Verzeichnisse auf mehreren Monitoren haben möchte. " +
+                "\n\nIm Hintergrund werden Zusatzprogramme erstellt und Ordner für Config Daten, " +
+                "\ndieser Ordner lässt sich unter Einstellungen ändern. ", "Tutorial");
+            MessageBox.Show("Bevor es losgeht, stelle dein Monitor Setup vollständig ein, mit Icons ETC!" +
+                "\nDa nach dem Tutorial das Programm initialisiert wird muss dieser Schritt vorher abgeschlossen sein. " +
+                "\nBei der Initialisierung werden Hintergrundprogramme, config Dateien und Einstellungen erstellt." +
+                "\nEs werden die Positionen der Icons und die Informationen der Monitore gespeichern.  " +
+                "\nWenn sich etwas ändert kannst du mit einem Reload Button Daten neu Speichern  " +
+                "\nnNach dem ersten Start verknüpfe Icons mit Monitoren, " +
+                "\nDazu gibt es 2 Möglichkeiten entweder du wählst auf der Hauptseite ein Monitor aus " +
+                "\nund Klickst auf den unteren Button (Icon Auswahl) oder gehst im seitlichen Menü auf IconSave. " +
+                "\nWähle nun alle Icons aus der Liste, die du für einen entsprechenden Monitor wählen möchtest und klicke dann auf Speichern. " +
+                "\nGewählte Icons werden in einer Liste gespeichert, diese lässt sich entweder überschreiben oder Icons können hinzugefügt werden. " +
+                "\nNach dem Zuweisen kannst du Verknüpfungen zum Desktop erstellen mit Button (Verknüpfung Erstellen), " +
+                "\num einzelne Monitore zuschalten, dabei werden die verknüpften Icons in den Hintergrund verschoben. " +
+                "\nSomit sind die Grundlagen fertig. " +
+                "\nWenn du über einzelne Buttons oder Felder mit der Maus stehenbleibst, " +
+                "\nbekommst du noch einen Tooltip und auf der InfoSeite gibt es noch weitere Anleitungen ", "Tutorial");
             var inizialisiert = new Funktion1Initialisieren();
             inizialisiert.Initialisieren();
             return;
@@ -304,6 +324,13 @@ public partial class HauptseitePage : Page, INotifyPropertyChanged
             monitorData3,
             monitorData4
         };
+        bool[] aktiv =
+        {
+            Properties.Settings.Default.eMonitorAktiv1,
+            Properties.Settings.Default.eMonitorAktiv2,
+            Properties.Settings.Default.eMonitorAktiv3,
+            Properties.Settings.Default.eMonitorAktiv4
+        };
 
         if (monitorData[GewählterMonitor].Length > 1)
         {
@@ -311,7 +338,7 @@ public partial class HauptseitePage : Page, INotifyPropertyChanged
             t3a3.Text = monitorData[GewählterMonitor][3];
             t4a5.Text = monitorData[GewählterMonitor][5];
             t5a7.Text = monitorData[GewählterMonitor][7];
-            t6a9.Text = monitorData[GewählterMonitor][9];
+            t6a9.Text = aktiv[GewählterMonitor] ? "Aktiv" : "Inaktiv";
             t7a11.Text = monitorData[GewählterMonitor][11];
             t8a13.Text = monitorData[GewählterMonitor][13];
             t9a15.Text = monitorData[GewählterMonitor][15];
@@ -398,7 +425,8 @@ public partial class HauptseitePage : Page, INotifyPropertyChanged
 
     private void btnCreateShortCut_Click(object sender, RoutedEventArgs e)
     {
-
+        var verknüpfung = new FunktionVerknüpfung();
+        verknüpfung.VerknüpfungStart();
     }
 
     private void btnMonitorSwitch_Click(object sender, RoutedEventArgs e)

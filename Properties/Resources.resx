@@ -121,7 +121,7 @@
     <value>Settings</value>
   </data>
   <data name="SettingsPageTitle" xml:space="preserve">
-    <value>Settings</value>
+    <value>Einstellungen</value>
   </data>
   <data name="SettingsPageAboutText" xml:space="preserve">
     <value>Settings page placeholder text.  Your app description goes here.</value>
@@ -130,40 +130,40 @@
     <value>About this application</value>
   </data>
   <data name="SettingsPageChooseThemeText" xml:space="preserve">
-    <value>Choose Theme</value>
+    <value>Theme wählen</value>
   </data>
   <data name="SettingsPagePersonalizationTitle" xml:space="preserve">
-    <value>Personalization</value>
+    <value>Personalieseieren</value>
   </data>
   <data name="SettingsPagePrivacyStatementText" xml:space="preserve">
     <value>Privacy Statement</value>
   </data>
   <data name="SettingsPageRadioButtonDarkTheme" xml:space="preserve">
-    <value>Dark</value>
+    <value>Dark/Blue</value>
   </data>
   <data name="SettingsPageRadioButtonLightTheme" xml:space="preserve">
-    <value>Light</value>
+    <value>Light/Blue</value>
   </data>
   <data name="SettingsPageRadioButtonWindowsDefaultTheme" xml:space="preserve">
     <value>Default</value>
   </data>
   <data name="ShellFunktionPage" xml:space="preserve">
-    <value>Funktion</value>
+    <value>InfoPage</value>
   </data>
   <data name="FunktionPageTitle" xml:space="preserve">
-    <value>Funktion</value>
+    <value>Info Seite</value>
   </data>
   <data name="ShellIconSavePage" xml:space="preserve">
     <value>IconSave</value>
   </data>
   <data name="IconSavePageTitle" xml:space="preserve">
-    <value>IconSave</value>
+    <value>Icons Speichern</value>
   </data>
   <data name="ShellHauptseitePage" xml:space="preserve">
     <value>Hauptseite</value>
   </data>
   <data name="HauptseitePageTitle" xml:space="preserve">
-    <value>Hauptseite</value>
+    <value>Monitor Icon Manager</value>
   </data>
   <data name="ShellGoBackButton" xml:space="preserve">
     <value>Go back</value>
@@ -172,7 +172,7 @@
     <value>Open or close navigation</value>
   </data>
   <data name="AppDisplayName" xml:space="preserve">
-    <value>DSM</value>
-    <comment>Desktok - Save - Manager</comment>
+    <value>MIM</value>
+    <comment>Monitor Icon Manager</comment>
   </data>
 </root>

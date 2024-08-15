@@ -19,7 +19,7 @@ namespace App3.Funktions
         {
             if (!string.IsNullOrEmpty(Properties.Settings.Default.eMonitorIconsZugewiesen1))
             {
-                var result = CustomMSGBox.Show("Es sind schon Icons zugewiesen in 1!\nZugewiesener Strin: " + Properties.Settings.Default.eMonitorIconsZugewiesen1 + "\nWählen Sie eine Option:", "Aktion wählen", "Alle Überschreiben", "Einen hinzufügen","Abbrechen");
+                var result = CustomMSGBox.Show("Es sind schon Icons zugewiesen in 1!\nZugewiesener Strin: " + Properties.Settings.Default.eMonitorIconsZugewiesen1 + "\nWählen Sie eine Option:", "Aktion wählen!", "Alle Überschreiben", "Einzeln hinzufügen","Abbrechen");
 
                 switch (result)
                 {

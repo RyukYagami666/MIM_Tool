@@ -15,14 +15,14 @@
         <Button x:Name="btnMonitorAuswahl1"
                 Content="Button" 
                 HorizontalAlignment="Center" 
-                Height="100" Margin="0,30,0,0" 
+                Height="100" Margin="0,160,0,0" 
                 VerticalAlignment="Top" Width="270"
                 Click="btnMonitorAuswahl1_Click"/>
 
         <Button x:Name="btnMonitorAuswahl2"
                 Content="Button" 
                 HorizontalAlignment="Center" 
-                Height="100" Margin="0,30,0,0" 
+                Height="100" Margin="0,160,0,0" 
                 VerticalAlignment="Top" Width="270"
                 Grid.Column="1"
                 HorizontalContentAlignment="Center"
@@ -31,7 +31,7 @@
         <Button x:Name="btnMonitorAuswahl3"
                 Content="Button" 
                 HorizontalAlignment="Center" 
-                Height="100" Margin="0,160,0,0" 
+                Height="100" Margin="0,290,0,0" 
                 VerticalAlignment="Top" Width="270"
                 HorizontalContentAlignment="Center"
                 Click="btnMonitorAuswahl3_Click"/>
@@ -39,14 +39,14 @@
         <Button x:Name="btnMonitorAuswahl4"
                 Content="Button" 
                 HorizontalAlignment="Center" 
-                Height="100" Margin="0,160,0,0" 
+                Height="100" Margin="0,290,0,0" 
                 VerticalAlignment="Top" Width="270"
                 Grid.Column="1"
                 HorizontalContentAlignment="Center"
                 Click="btnMonitorAuswahl4_Click"/>
 
 
-        <Label x:Name="lblMonitorAuswahl1" Content="Monitor 1" HorizontalAlignment="Center" Margin="0,0,0,50" Width="600" Grid.ColumnSpan="2" VerticalAlignment="Bottom" Height="100" BorderThickness="3" BorderBrush="Black" UseLayoutRounding="False">
+        <Label x:Name="lblMonitorAuswahl1" Content="Gewählte Icons zu einem Monitor zuweisen mit einem Klick auf gewünschten &#x0a;Monitor Button, wenn der Monitor schon zugewiesene Icons hat,  &#x0a;gibt es Folgende Möglichkeiten:  &#x0a;alle überschreiben; einzeln hinzufügen oder abbrechen " HorizontalAlignment="Center" Margin="0,0,0,304" Width="600" Grid.ColumnSpan="2" VerticalAlignment="Bottom" Height="100" BorderThickness="3" BorderBrush="Black" UseLayoutRounding="False" FontWeight="Bold" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
             <Label.Style>
                 <Style TargetType="Label">
                     <Setter Property="Template">

@@ -15,12 +15,17 @@ namespace App3.Funktions
 {
     internal class FunktionDesktopOK
     {
-        string pathFolder = Properties.Settings.Default.pfadDeskOK; 
+        string pathFolder = Properties.Settings.Default.pfadDeskOK;
         string pathFile = $"{Properties.Settings.Default.pfadDeskOK}\\DesktopOK.zip";
         string pathExe = $"{Properties.Settings.Default.pfadDeskOK}\\DesktopOK.exe";
         string pathBackUP = $"{Properties.Settings.Default.pfadDeskOK}\\BackUps";
-        string pathBackUpFile = $"{Properties.Settings.Default.pfadDeskOK}\\BackUps\\DesktopOk{Properties.Settings.Default.eDeskOkDownloadReady}.zip";
+        string pathBackUpFile;
         string pathLastData = Properties.Settings.Default.eDeskOkLastSave;
+
+        public void GEVersion()
+        {
+            pathBackUpFile = $"{Properties.Settings.Default.pfadDeskOK}\\BackUps\\DesktopOk{GetExeVersion()}.zip";
+        }
 
         public void DODKontrolle()                  // Kontrolle ob DesktopOK bereit ist zum Downloaden------------------------------------------------------------------------------------
         {
@@ -28,7 +33,8 @@ namespace App3.Funktions
             {
                 Properties.Settings.Default.eDeskOkDownloadReady = true;
             }
-            else{
+            else
+            {
                 Properties.Settings.Default.eDeskOkDownloadReady = false;
             }
             Properties.Settings.Default.Save();
@@ -39,7 +45,8 @@ namespace App3.Funktions
             {
                 Properties.Settings.Default.eDeskOkSavePosReady = true;
             }
-            else{
+            else
+            {
                 Properties.Settings.Default.eDeskOkSavePosReady = false;
             }
             Properties.Settings.Default.Save();
@@ -48,9 +55,10 @@ namespace App3.Funktions
         {
             if (System.IO.Directory.Exists(pathFolder) && System.IO.File.Exists(Properties.Settings.Default.eDeskOkLastSave) && Properties.Settings.Default.eDeskOkSavePosDone)
             {
-                 Properties.Settings.Default.eDeskOkDataReedReady = true;
+                Properties.Settings.Default.eDeskOkDataReedReady = true;
             }
-            else{
+            else
+            {
                 Properties.Settings.Default.eDeskOkDataReedReady = false;
             }
             Properties.Settings.Default.Save();
@@ -58,7 +66,7 @@ namespace App3.Funktions
 
         public void DODStart()          // Download von DesktopOK------------------------------------------------------------------------------------
         {
-           
+
 
             if (Properties.Settings.Default.eDeskOkDownloadReady)
             {
@@ -69,8 +77,10 @@ namespace App3.Funktions
                     {
                         try
                         {
-                            System.IO.Directory.CreateDirectory(pathBackUP);
-                            System.IO.File.Move(pathFile, pathBackUpFile);  
+                            GEVersion();
+                            if (System.IO.Directory.Exists(pathBackUP)) System.IO.Directory.CreateDirectory(pathBackUP);
+                            if (!System.IO.File.Exists(pathBackUpFile)) System.IO.File.Move(pathFile, pathBackUpFile);
+                            if (System.IO.File.Exists(pathBackUpFile)) System.IO.File.Delete(pathFile);
                             WebClient client = new WebClient();
                             client.DownloadFile("https://www.softwareok.com/Download/DesktopOK.zip", pathFile);
                             CopyMSGBox.Show("Download abgeschlossen");
@@ -110,7 +120,7 @@ namespace App3.Funktions
                         }
                     }
                 }
-                else 
+                else
                 {
                     CopyMSGBox.Show("Pfad Fehler!");
                 }
@@ -127,7 +137,7 @@ namespace App3.Funktions
 
         public void IconSavePos()                                   //mit DesktopOK Positionen Speichern------------------------------------------------------------------------------------
         {
-            if (Properties.Settings.Default.eDeskOkSavePosReady) 
+            if (Properties.Settings.Default.eDeskOkSavePosReady)
             {
                 try
                 {
@@ -174,7 +184,7 @@ namespace App3.Funktions
                 {
                     CopyMSGBox.Show("Fehler beim Öffnen des Dokuments: " + ex.Message);
                 }
-                
+
                 Thread.Sleep(2000);
 
             }
@@ -215,17 +225,17 @@ namespace App3.Funktions
                     return new string[0];
                 }
             }
-            else 
-            { 
+            else
+            {
                 MessageBox.Show("Bedingung nicht erfüllt");
-            return new string[0];
+                return new string[0];
             }
-            
+
         }
 
-        public static void IconRestore(string pathExe,string pathLastData)             //mit DesktopOK Positionen der Icons wiederherstellen-----------------------------------------------------------------------------------         
+        public static void IconRestore(string pathExe, string pathLastData)             //mit DesktopOK Positionen der Icons wiederherstellen-----------------------------------------------------------------------------------         
         {
-            if(Properties.Settings.Default.eDeskOkDataReedDone && !string.IsNullOrEmpty(Properties.Settings.Default.eDeskOkLastSave))
+            if (Properties.Settings.Default.eDeskOkDataReedDone && !string.IsNullOrEmpty(Properties.Settings.Default.eDeskOkLastSave))
             {
                 try
                 {
@@ -245,6 +255,18 @@ namespace App3.Funktions
             else
             {
                 MessageBox.Show("Bedingung nicht erfüllt");
+            }
+        }
+        public string GetExeVersion() // Methode zum Auslesen der Version von DesktopOK.exe
+        {
+            if (File.Exists(pathExe))
+            {
+                FileVersionInfo versionInfo = FileVersionInfo.GetVersionInfo(pathExe);
+                return versionInfo.FileVersion;
+            }
+            else
+            {
+                return "Datei nicht gefunden.";
             }
         }
     }

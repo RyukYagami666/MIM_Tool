@@ -4,16 +4,13 @@ Debugg LogFile
 müll entfernen
 Sprache gradeziehen
 interne AufgabenListe
-Version Von DeskOK auslesen
 
 
-IconListView mulltiselect
 BackUp System
 
 zu einer .exe packen
 
-Externes icon zum steuern von hauptaufgaben
-(Icons verschieben->Display On/Off->Layout wiederherstellen)
+
 
 
 

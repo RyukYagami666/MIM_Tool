@@ -830,12 +830,12 @@ namespace App3.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string a6 {
+        public string reserve3 {
             get {
-                return ((string)(this["a6"]));
+                return ((string)(this["reserve3"]));
             }
             set {
-                this["a6"] = value;
+                this["reserve3"] = value;
             }
         }
         
@@ -865,13 +865,13 @@ namespace App3.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string a9 {
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AdminMode {
             get {
-                return ((string)(this["a9"]));
+                return ((bool)(this["AdminMode"]));
             }
             set {
-                this["a9"] = value;
+                this["AdminMode"] = value;
             }
         }
         

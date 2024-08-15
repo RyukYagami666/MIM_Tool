@@ -23,13 +23,13 @@
         <Grid Grid.Row="1" Background="{DynamicResource MahApps.Brushes.Gray10}" Margin="24,0,24,0" >
 
             <Button x:Name="Moni1" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Moni1_Click"
-                    ToolTip="Monitore: &#x0a;  die angeschlossen sind: die Position der Monitore &#x0a;  entspricht ungefähr den, der Windows Einstellung ( zur Übersicht), &#x0a;  Es werden auch sowohl Namen aktiv oder inaktiv primär oder nicht primär Informationen dargestellt . &#x0a;  Mit dem Klick willst du den Monitor aus um damit weiterarbeiten zu können.  &#x0a;  Monitor Name Blau = Primer Monitor. Feld Stark ausgegraut = Monitor Inaktiv."/>
+                    ToolTip="Monitor 1: &#x0a; Angezeigte Monitore haben ungefähr die Position der Windows Einstellung. &#x0a; Dies dient zur Übersicht, falls Namen nicht bekannt. &#x0a; Es werden auch: Namen, Aktivität und ob Primär dargestellt. &#x0a; Mit dem Klick wählst du den Monitor aus, um damit weiter zu Arbeiten. &#x0a; Monitorname Blau = Primer Monitor; Feld stark ausgegraut = Monitor inaktiv."/>
             <Button x:Name="Moni2" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Moni2_Click"
-                    ToolTip="Monitore: &#x0a;  die angeschlossen sind: die Position der Monitore  &#x0a; entspricht ungefähr den, der Windows Einstellung ( zur Übersicht),  &#x0a; Es werden auch sowohl Namen aktiv oder inaktiv primär oder nicht primär Informationen dargestellt .  &#x0a; Mit dem Klick willst du den Monitor aus um damit weiterarbeiten zu können.  &#x0a; "/>
+                    ToolTip="Monitor 2: &#x0a; Angezeigte Monitore haben ungefähr die Position der Windows Einstellung. &#x0a; Dies dient zur Übersicht, falls Namen nicht bekannt. &#x0a; Es werden auch: Namen, Aktivität und ob Primär dargestellt. &#x0a; Mit dem Klick wählst du den Monitor aus, um damit weiter zu Arbeiten. &#x0a; Monitorname Blau = Primer Monitor; Feld stark ausgegraut = Monitor inaktiv."/>
             <Button x:Name="Moni3" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Moni3_Click"
-                    ToolTip="Monitore: &#x0a;  die angeschlossen sind: die Position der Monitore &#x0a;  entspricht ungefähr den, der Windows Einstellung ( zur Übersicht), &#x0a;  Es werden auch sowohl Namen aktiv oder inaktiv primär oder nicht primär Informationen dargestellt . &#x0a;  Mit dem Klick willst du den Monitor aus um damit weiterarbeiten zu können.  &#x0a; "/>
+                    ToolTip="Monitor 3: &#x0a; Angezeigte Monitore haben ungefähr die Position der Windows Einstellung. &#x0a; Dies dient zur Übersicht, falls Namen nicht bekannt. &#x0a; Es werden auch: Namen, Aktivität und ob Primär dargestellt. &#x0a; Mit dem Klick wählst du den Monitor aus, um damit weiter zu Arbeiten. &#x0a; Monitorname Blau = Primer Monitor; Feld stark ausgegraut = Monitor inaktiv."/>
             <Button x:Name="Moni4" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Moni4_Click"
-                    ToolTip="Monitore: &#x0a;  die angeschlossen sind: die Position der Monitore  &#x0a; entspricht ungefähr den, der Windows Einstellung ( zur Übersicht), &#x0a;  Es werden auch sowohl Namen aktiv oder inaktiv primär oder nicht primär Informationen dargestellt . &#x0a;  Mit dem Klick willst du den Monitor aus um damit weiterarbeiten zu können   &#x0a; "/>
+                    ToolTip="Monitor 4: &#x0a; Angezeigte Monitore haben ungefähr die Position der Windows Einstellung. &#x0a; Dies dient zur Übersicht, falls Namen nicht bekannt. &#x0a; Es werden auch: Namen, Aktivität und ob Primär dargestellt. &#x0a; Mit dem Klick wählst du den Monitor aus, um damit weiter zu Arbeiten. &#x0a; Monitorname Blau = Primer Monitor; Feld stark ausgegraut = Monitor inaktiv."/>
 
             <Border BorderBrush="Black" BorderThickness="2,2,2,2" Margin="0,20,25,20" Grid.RowSpan="2" HorizontalAlignment="Right" Width="300" CornerRadius="8,8,8,8" Panel.ZIndex="100" ToolTip="Monitorinfos: &#x0a;  hier werden alle Monitorinfos vom ausgewählten Monitor angezeigt &#x0a;  diese werden bei der Initialisierung gelesen">
                 <Grid>
@@ -110,15 +110,15 @@
 
                     <TextBlock Text="Steuerpannel:"
                                Grid.Row="1"  Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="13" />
-                    <TextBlock Text="Wähle zuerst ein Monitor aus indem du drauf klickst die Auswahl bleibt so lange bestehen bis du das Fenster wechselst " 
+                    <TextBlock Text="Wähle zuerst ein Monitor aus indem du drauf klickst, die Auswahl bleibt so lange bestehen bis du das Fenster wechselst " 
                                Grid.Row=" 2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" TextWrapping="Wrap"/>
-                    <TextBlock Text="Wenn du über einen Button mit deiner Maus stehenbleibst als du weitere Informationen dazu. " 
+                    <TextBlock Text="Wenn du über einen Button mit deiner Maus stehenbleibst, Erscheinen weitere Informationen dazu. " 
                                Grid.Row=" 3" Grid.Column="1" HorizontalAlignment="Center" FontSize="10" TextWrapping="Wrap" Margin="60,0,60,0"/>
-                    <TextBlock Text="Die Farbe der Knöpfe zeigt dir bereitschaft der Funktion an. " 
+                    <TextBlock Text="Das erneute Lesen der Daten, nur mit vollen Setup durchführen, sonst gibt es Komplikation beim Wiederherstellen." 
                                Grid.Row=" 4" Grid.Column="1" HorizontalAlignment="Center" FontSize="10" TextWrapping="Wrap" Margin="80,0,80,0"/>
 
                     <Button x:Name="btnSaveIconPos" Content="&#xEDA4;" Grid.Row=" 3" Grid.Column="1" FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Left" Height="44" Margin="0,0,0,0" VerticalAlignment="Top" Width="44" Padding="3,3,3,3" FontSize="20"  Click="btnSaveIconPos_Click"
-                            ToolTip="Icon Auswahl :  &#x0a; hiermit kannst du bestimmen welcher Icons verschoben werden sollen  &#x0a; wenn ein Monitor deaktiviert wird ,"/>
+                            ToolTip="Icon Auswahl:  &#x0a; hiermit kannst du bestimmen welcher Icons verschoben werden sollen  &#x0a; wenn ein Monitor deaktiviert wird ,"/>
 
                     <Button x:Name="btnCreateShortCut" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" Height="44" Margin="22,50,0,0" VerticalAlignment="Top" Width="44" Padding="3,3,3,3" FontSize="8" Grid.RowSpan="2"  Click="btnCreateShortCut_Click"
                             ToolTip="Verknüpfung erstellen:  &#x0a; es wird ein Icon auf den Desktopgespeichert der das aus  &#x0a;  und Einschalten sowie das Verschieben der Icons ausführt ,  &#x0a; dies ist dann von Monitor zu Monitor einzeln steuerbar.">

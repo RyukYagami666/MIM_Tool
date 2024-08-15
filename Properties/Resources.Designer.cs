@@ -61,7 +61,7 @@ namespace App3.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die DSM ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die MIM ähnelt.
         /// </summary>
         public static string AppDisplayName {
             get {
@@ -70,7 +70,7 @@ namespace App3.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Funktion ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Info Seite ähnelt.
         /// </summary>
         public static string FunktionPageTitle {
             get {
@@ -79,7 +79,7 @@ namespace App3.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Hauptseite ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Monitor Icon Manager ähnelt.
         /// </summary>
         public static string HauptseitePageTitle {
             get {
@@ -88,7 +88,7 @@ namespace App3.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die IconSave ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Icons Speichern ähnelt.
         /// </summary>
         public static string IconSavePageTitle {
             get {
@@ -115,7 +115,7 @@ namespace App3.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Choose Theme ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Theme wählen ähnelt.
         /// </summary>
         public static string SettingsPageChooseThemeText {
             get {
@@ -124,7 +124,7 @@ namespace App3.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Personalization ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Personalieseieren ähnelt.
         /// </summary>
         public static string SettingsPagePersonalizationTitle {
             get {
@@ -142,7 +142,7 @@ namespace App3.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Dark ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Dark/Blue ähnelt.
         /// </summary>
         public static string SettingsPageRadioButtonDarkTheme {
             get {
@@ -151,7 +151,7 @@ namespace App3.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Light ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Light/Blue ähnelt.
         /// </summary>
         public static string SettingsPageRadioButtonLightTheme {
             get {
@@ -169,7 +169,7 @@ namespace App3.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Settings ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Einstellungen ähnelt.
         /// </summary>
         public static string SettingsPageTitle {
             get {
@@ -178,7 +178,7 @@ namespace App3.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Funktion ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die InfoPage ähnelt.
         /// </summary>
         public static string ShellFunktionPage {
             get {

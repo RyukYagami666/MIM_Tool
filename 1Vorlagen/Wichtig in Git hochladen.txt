@@ -1,11 +1,11 @@
 ﻿1. Terminal öffnen mit (strg + ö)o.(Ansicht->Terminal)									Command Line
 2. Änderungen Stagen mit																git add .
 3. Änderungen committen mit			"Nachricht"->ändern									git commit -m "
-4. Tag erstellen mit				"v0.0.3"/"Nachricht"->ändern						git tag -a v0.0.13 -m "
+4. Tag erstellen mit				"v0.0.3"/"Nachricht"->ändern						git tag -a v0.0.14 -m "
 5. Änderungen pushen mit			"master"->Namen des Branches						git push origin master
-6. Tag pushen mit					"v0.0.3"->muss = wie oben							git push origin v0.0.13
+6. Tag pushen mit					"v0.0.3"->muss = wie oben							git push origin v0.0.14
 
 7. Terminal schließen
 
 
-Bug Fixes/ Overlay Buttons Verknüpft/ Icon Move und ON/OFF verallgemeinert"
+Text bearbeitet/Verknüpfung erstellen/Hintergund steuerung/MultiSelect"

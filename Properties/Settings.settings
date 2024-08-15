@@ -203,7 +203,7 @@
     <Setting Name="MultiMonDataTrim4" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="a6" Type="System.String" Scope="User">
+    <Setting Name="reserve3" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="SelectetMonitor" Type="System.Int32" Scope="User">
@@ -212,8 +212,8 @@
     <Setting Name="Inizialisiert" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="a9" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="AdminMode" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="b1" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
