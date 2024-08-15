@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Media.Imaging;
 using System;
 using Microsoft.VisualBasic;
+using App3.Services;
 
 namespace App3.Funktions
 {
@@ -21,7 +22,7 @@ namespace App3.Funktions
         public static List<FileIconInfo> Execute()
         {
            // string directoryPath = GetDesktopPath();
-            MessageBox.Show("Funktion1 wird ausgeführt."); // MessageBox hinzugefügt
+            //MessageBox.Show("Funktion1 wird ausgeführt."); // MessageBox hinzugefügt
             string deskOkDataTrim = Properties.Settings.Default.DeskOkDataTrim;
             string[] deskOkData = deskOkDataTrim.Split(';');
             List<string> deskOkNames = deskOkData.ToList();
@@ -42,13 +43,14 @@ namespace App3.Funktions
                 }
             }
             //files = SortFilesBasedOnDeskOkData(files);
-            StringBuilder sb = new StringBuilder();
-            foreach (var file in files)
-            {
-                sb.AppendLine(file.Path);
-            }
-            MessageBox.Show(sb.ToString(), "Dateipfade", MessageBoxButton.OK, MessageBoxImage.Information);
+            //StringBuilder sb = new StringBuilder();
+            //foreach (var file in files)
+            //{
+            //    sb.AppendLine(file.Path);
+            //}
+            //MessageBox.Show(sb.ToString(), "Dateipfade", MessageBoxButton.OK, MessageBoxImage.Information);
             LastExecutedFiles = files; // Speichern der Liste in der statischen Eigenschaft
+            ISPSaveState.IsReady = true;
             return files;
         }
 

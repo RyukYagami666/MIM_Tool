@@ -210,23 +210,34 @@ namespace App3.Funktions
 
         }
 
-        public static void Monitor1Deaktivieren(string pathExe)             //Monitor 1 ausschalten (Nach Icon move to Storrage)-----------------------------------------------------------------------------------         
+        public static void MonitorDeaktivieren(string pathExe, string moniAuswhal,int moniNr)             //Monitor 1 ausschalten (Nach Icon move to Storrage)-----------------------------------------------------------------------------------         
         {
-            if(!string.IsNullOrEmpty(Properties.Settings.Default.eMultiMonLastSave) && Properties.Settings.Default.eMonitorAktiv1)
+            bool[] aktiv =
+            {
+                Properties.Settings.Default.eMonitorAktiv1,
+                Properties.Settings.Default.eMonitorAktiv2,
+                Properties.Settings.Default.eMonitorAktiv3,
+                Properties.Settings.Default.eMonitorAktiv4
+            };
+            MessageBox.Show($"Monitor {moniAuswhal} Aktiv: {aktiv[moniNr]}");
+            if(!string.IsNullOrEmpty(Properties.Settings.Default.eMultiMonLastSave) && aktiv[moniNr])
             {
                 try
                 {
-                   
+
                     ProcessStartInfo startInfo = new ProcessStartInfo();
                     startInfo.FileName = pathExe; // Pfad zur Anwendung
-                    startInfo.Arguments = "/disable \\\\.\\DISPLAY2"; // Argumente (z. B. Dateipfad)
+                    startInfo.Arguments = $"/disable {moniAuswhal}"; // Argumente (z. B. Dateipfad)
                     startInfo.WindowStyle = ProcessWindowStyle.Hidden; // Fenster nicht anzeigen
 
                     //Process.Start(startInfo);
                     Process process = Process.Start(startInfo);
                     process.WaitForExit();
 
-                    Properties.Settings.Default.eMonitorAktiv1 = false;
+                    if (moniNr == 0) Properties.Settings.Default.eMonitorAktiv1 = false;
+                    if (moniNr == 1) Properties.Settings.Default.eMonitorAktiv2 = false;
+                    if (moniNr == 2) Properties.Settings.Default.eMonitorAktiv3 = false;
+                    if (moniNr == 3) Properties.Settings.Default.eMonitorAktiv4 = false;
                     Properties.Settings.Default.Save();
 
                 }
@@ -238,13 +249,13 @@ namespace App3.Funktions
             }
             else
             {
-                Monitor1Aktivieren(pathExe);
+                MonitorAktivieren(pathExe, moniAuswhal, moniNr);
                 MessageBox.Show("Bedingung nicht erfüllt");
             }
 
 
         }
-        public static void Monitor1Aktivieren(string pathExe)             //mit DesktopOK Positionen der Icons wiederherstellen-----------------------------------------------------------------------------------         
+        public static void MonitorAktivieren(string pathExe, string moniAuswhal, int moniNr)             //mit DesktopOK Positionen der Icons wiederherstellen-----------------------------------------------------------------------------------         
         {
             if (!string.IsNullOrEmpty(Properties.Settings.Default.eMultiMonLastSave))
             {
@@ -253,7 +264,7 @@ namespace App3.Funktions
 
                     ProcessStartInfo startInfo = new ProcessStartInfo();
                     startInfo.FileName = pathExe; // Pfad zur Anwendung
-                    startInfo.Arguments = "/enable \\\\.\\DISPLAY2"; // Argumente (z. B. Dateipfad)
+                    startInfo.Arguments = $"/enable {moniAuswhal}"; // Argumente (z. B. Dateipfad)
                     startInfo.WindowStyle = ProcessWindowStyle.Hidden; // Fenster nicht anzeigen
 
                     //Process.Start(startInfo);
@@ -263,7 +274,10 @@ namespace App3.Funktions
                     var loadConfig = new FunktionMultiMonitor();
                     loadConfig.MonitorLoadConfig();
 
-                    Properties.Settings.Default.eMonitorAktiv1 = true;
+                    if (moniNr == 0) Properties.Settings.Default.eMonitorAktiv1 = true;
+                    if (moniNr == 1) Properties.Settings.Default.eMonitorAktiv2 = true;
+                    if (moniNr == 2) Properties.Settings.Default.eMonitorAktiv3 = true;
+                    if (moniNr == 3) Properties.Settings.Default.eMonitorAktiv4 = true;
                     Properties.Settings.Default.Save();
                 }
                 catch (Exception ex)

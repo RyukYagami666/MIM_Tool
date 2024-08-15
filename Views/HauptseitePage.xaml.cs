@@ -8,11 +8,11 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Media;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace App3.Views;
-
 public partial class HauptseitePage : Page, INotifyPropertyChanged
-{
+    {
     public string[] monitorData1;
     public string[] monitorData2;
     public string[] monitorData3;
@@ -34,7 +34,7 @@ public partial class HauptseitePage : Page, INotifyPropertyChanged
 
         if (!Properties.Settings.Default.Inizialisiert)
         {
-            MessageBox.Show("Bitte zuerst die Einstellungen vornehmen");
+            MessageBox.Show("Info Box Tutorial!");                          //TODO: Info Box Tutorial
             var inizialisiert = new Funktion1Initialisieren();
             inizialisiert.Initialisieren();
             return;
@@ -44,28 +44,21 @@ public partial class HauptseitePage : Page, INotifyPropertyChanged
         MonitorGröße();
         MultiMonPos();
 
-        
+        Properties.Settings.Default.SelectetMonitor = 10;
+        Properties.Settings.Default.Save();
+
         Moni1.Visibility = Properties.Settings.Default.eMonitorVorhanden1 ? Visibility.Visible : Visibility.Collapsed;
         Moni2.Visibility = Properties.Settings.Default.eMonitorVorhanden2 ? Visibility.Visible : Visibility.Collapsed;
         Moni3.Visibility = Properties.Settings.Default.eMonitorVorhanden3 ? Visibility.Visible : Visibility.Collapsed;
         Moni4.Visibility = Properties.Settings.Default.eMonitorVorhanden4 ? Visibility.Visible : Visibility.Collapsed;
 
-        var transparentGreen = new SolidColorBrush(Color.FromArgb(5, 0, 255, 0)); // 50% Transparenz grünen
         var transparentGray = new SolidColorBrush(Color.FromArgb(30, 10, 10, 10)); // 50% Transparenz roten
-        var transparentDarkGray = new SolidColorBrush(Color.FromArgb(60, 10, 10, 10)); // 50% Transparenz roten
+        var transparentDarkGray = new SolidColorBrush(Color.FromArgb(200, 10, 10, 10)); // 50% Transparenz roten
 
-        if (monitorData1.Length > 1){
-            Moni1.Background = (monitorData1[11] == "Yes") ? transparentGreen : transparentGray;}
-            Moni1.Background = Properties.Settings.Default.eMonitorAktiv1 ? transparentGray : transparentDarkGray;        
-        if (monitorData2.Length > 1){
-            Moni2.Background = (monitorData2[11] == "Yes") ? transparentGreen : transparentGray;}
-            Moni2.Background = Properties.Settings.Default.eMonitorAktiv2 ? transparentGray : transparentDarkGray;        
-        if (monitorData3.Length > 1){
-            Moni3.Background = (monitorData3[11] == "Yes") ? transparentGreen : transparentGray;}
-            Moni3.Background = Properties.Settings.Default.eMonitorAktiv3 ? transparentGray : transparentDarkGray;        
-        if (monitorData4.Length > 1){
-            Moni4.Background = (monitorData4[11] == "Yes") ? transparentGreen : transparentGray;}
-            Moni4.Background = Properties.Settings.Default.eMonitorAktiv4 ? transparentGray : transparentDarkGray;        
+        Moni1.Background = Properties.Settings.Default.eMonitorAktiv1 ? transparentGray : transparentDarkGray;     
+        Moni2.Background = Properties.Settings.Default.eMonitorAktiv2 ? transparentGray : transparentDarkGray;        
+        Moni3.Background = Properties.Settings.Default.eMonitorAktiv3 ? transparentGray : transparentDarkGray;        
+        Moni4.Background = Properties.Settings.Default.eMonitorAktiv4 ? transparentGray : transparentDarkGray;        
     }
     
 
@@ -82,14 +75,14 @@ public partial class HauptseitePage : Page, INotifyPropertyChanged
 
     public void LoadInfoMonitor()
     {
-        string infoMonitor1 = Properties.Settings.Default.InfoMonitor1;
-        monitorData1 = infoMonitor1.Split(';');
-        string infoMonitor2 = Properties.Settings.Default.InfoMonitor2;
-        monitorData2 = infoMonitor2.Split(';');
-        string infoMonitor3 = Properties.Settings.Default.InfoMonitor3;
-        monitorData3 = infoMonitor3.Split(';');
-        string infoMonitor4 = Properties.Settings.Default.InfoMonitor4;
-        monitorData4 = infoMonitor4.Split(';');
+            string infoMonitor1 = Properties.Settings.Default.InfoMonitor1;
+            monitorData1 = infoMonitor1.Split(';');
+            string infoMonitor2 = Properties.Settings.Default.InfoMonitor2;
+            monitorData2 = infoMonitor2.Split(';');
+            string infoMonitor3 = Properties.Settings.Default.InfoMonitor3;
+            monitorData3 = infoMonitor3.Split(';');
+            string infoMonitor4 = Properties.Settings.Default.InfoMonitor4;
+            monitorData4 = infoMonitor4.Split(';');
     }
 
     public void MultiMonPos()
@@ -118,37 +111,71 @@ public partial class HauptseitePage : Page, INotifyPropertyChanged
             positions[3] = new Point(int.Parse(positionParts4[0].Trim()), int.Parse(positionParts4[1].Trim()));
         }
 
+        // Extrahiere die Positionen aus den monitorData-Arrays
+        Point[] positionsM = new Point[4];
+        if (monitorData1.Length > 1)
+        {
+            var positionParts1 = monitorData1[7].Split(',');
+            var positionPartsR1 = monitorData1[5].Split('X');
+            positionsM[0] = new Point(int.Parse(positionParts1[0].Trim()) + int.Parse(positionPartsR1[0].Trim()), int.Parse(positionParts1[1].Trim()) + int.Parse(positionPartsR1[1].Trim()));
+        }
+        if (monitorData2.Length > 1)
+        {
+            var positionParts2 = monitorData2[7].Split(',');
+            var positionPartsR2 = monitorData2[5].Split('X');
+            positionsM[1] = new Point(int.Parse(positionParts2[0].Trim()) + int.Parse(positionPartsR2[0].Trim()), int.Parse(positionParts2[1].Trim()) + int.Parse(positionPartsR2[1].Trim()));
+        }
+        if (monitorData3.Length > 1)
+        {
+            var positionParts3 = monitorData3[7].Split(',');
+            var positionPartsR3 = monitorData3[5].Split('X');
+            positionsM[2] = new Point(int.Parse(positionParts3[0].Trim()) + int.Parse(positionPartsR3[0].Trim()), int.Parse(positionParts3[1].Trim()) + int.Parse(positionPartsR3[1].Trim()));
+        }
+        if (monitorData4.Length > 1)
+        {
+            var positionParts4 = monitorData4[7].Split(',');
+            var positionPartsR4 = monitorData4[5].Split('X');
+            positionsM[3] = new Point(int.Parse(positionParts4[0].Trim()) + int.Parse(positionPartsR4[0].Trim()), int.Parse(positionParts4[1].Trim()) + int.Parse(positionPartsR4[1].Trim()));
+        }
+
         // Finde die minimalen und maximalen Werte der Positionen
         double minX = positions.Min(p => p.X);
-        double maxX = positions.Max(p => p.X);
+        double maxX = positionsM.Max(p => p.X);
         double minY = positions.Min(p => p.Y);
-        double maxY = positions.Max(p => p.Y);
+        double maxY = positionsM.Max(p => p.Y);
+
 
         // Normalisiere die Positionen auf einen Bereich von 0 bis 1
         for (int i = 0; i < positions.Length; i++)
         {
             positions[i] = new Point(
-                (positions[i].X - minX) / (maxX - minX),
+                (positions[i].X - minX) / (maxX - minX) ,
                 (positions[i].Y - minY) / (maxY - minY)
             );
         }
 
-        // Skaliere die normalisierten Positionen auf den gewünschten Bereich
-        double maxMarginX = 193; // Beispielwert, anpassen nach Bedarf
-        double maxMarginY = 108; // Beispielwert, anpassen nach Bedarf
+        double scaleX;
+        double scaleY;
+        if (minX < 0) scaleX = (maxX + Math.Abs(minX)) * ScaleFactor;
+        else scaleX = maxX * ScaleFactor;
+
+        if (minY < 0) scaleY = (maxY + Math.Abs(minY)) * ScaleFactor;
+        else scaleY = maxY * ScaleFactor;
+        
+
         for (int i = 0; i < positions.Length; i++)
         {
             positions[i] = new Point(
-                positions[i].X * maxMarginX,
-                positions[i].Y * maxMarginY
+                positions[i].X * scaleX,
+                positions[i].Y * scaleY
             );
         }
 
         // Setze die Margin-Eigenschaft der Monitore basierend auf den skalierten Werten
-        if (positions.Length > 0) Moni1.Margin = new Thickness(positions[0].X+20,positions[0].Y+ 20,  0, 0);
-        if (positions.Length > 1) Moni2.Margin = new Thickness(positions[1].X + 20, positions[1].Y+ 20,  0, 0); // Tausch mit Moni3
-        if (positions.Length > 2) Moni3.Margin = new Thickness(positions[2].X+ 20, positions[2].Y+ 20,  0, 0); // Tausch mit Moni2
-        if (positions.Length > 3) Moni4.Margin = new Thickness(positions[3].X + 20, positions[3].Y+ 20, 0, 0);
+        if (positions.Length > 0) Moni1.Margin = new Thickness(positions[0].X + 20, positions[0].Y + 20, 0, 0);
+        if (positions.Length > 1) Moni2.Margin = new Thickness(positions[1].X + 20, positions[1].Y + 20, 0, 0);
+        if (positions.Length > 2) Moni3.Margin = new Thickness(positions[2].X + 20, positions[2].Y + 20, 0, 0);
+        if (positions.Length > 3) Moni4.Margin = new Thickness(positions[3].X + 20, positions[3].Y + 20, 0, 0);
     }
 
 
@@ -301,14 +328,13 @@ public partial class HauptseitePage : Page, INotifyPropertyChanged
         Properties.Settings.Default.SelectetMonitor = 0;
         Properties.Settings.Default.Save();
         TextSchreiben(Properties.Settings.Default.SelectetMonitor);
-        this.Loaded += HauptPage_Loaded;
         t12a21.Text = Properties.Settings.Default.eMonitorIconsCount1.ToString();
         List<FunktionIconListe.FileIconInfo> savedIcons = FunktionIconListe.gespeicherteIcons();
         if (savedIcons != null)
         {
             SavedLists.ItemsSource = savedIcons;
         }
-        Thread.Sleep(1000);
+        Thread.Sleep(300);
         savedIcons = null;
     }
     private void Moni2_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -317,14 +343,13 @@ public partial class HauptseitePage : Page, INotifyPropertyChanged
         Properties.Settings.Default.SelectetMonitor = 1;
         Properties.Settings.Default.Save();
         TextSchreiben(Properties.Settings.Default.SelectetMonitor);
-        this.Loaded += HauptPage_Loaded;
         t12a21.Text = Properties.Settings.Default.eMonitorIconsCount2.ToString();
         List<FunktionIconListe.FileIconInfo> savedIcons = FunktionIconListe.gespeicherteIcons();
         if (savedIcons != null)
         {
             SavedLists.ItemsSource = savedIcons;
         }
-        Thread.Sleep(1000);
+        Thread.Sleep(300);
         savedIcons = null;
     }
     private void Moni3_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -333,14 +358,13 @@ public partial class HauptseitePage : Page, INotifyPropertyChanged
         Properties.Settings.Default.SelectetMonitor = 2;
         Properties.Settings.Default.Save();
         TextSchreiben(Properties.Settings.Default.SelectetMonitor);
-        this.Loaded += HauptPage_Loaded;
         t12a21.Text = Properties.Settings.Default.eMonitorIconsCount3.ToString();
         List<FunktionIconListe.FileIconInfo> savedIcons = FunktionIconListe.gespeicherteIcons();
         if (savedIcons != null)
         {
             SavedLists.ItemsSource = savedIcons;
         }
-        Thread.Sleep(1000);
+        Thread.Sleep(300);
         savedIcons = null;
     }
     private void Moni4_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -349,14 +373,13 @@ public partial class HauptseitePage : Page, INotifyPropertyChanged
         Properties.Settings.Default.SelectetMonitor = 3;
         Properties.Settings.Default.Save();
         TextSchreiben(Properties.Settings.Default.SelectetMonitor);
-        this.Loaded += HauptPage_Loaded;
         t12a21.Text = Properties.Settings.Default.eMonitorIconsCount4.ToString();
         List<FunktionIconListe.FileIconInfo> savedIcons = FunktionIconListe.gespeicherteIcons();
         if (savedIcons != null)
         {
             SavedLists.ItemsSource = savedIcons;
         }
-        Thread.Sleep(1000);
+        Thread.Sleep(300);
         savedIcons = null;
     }
 
@@ -364,13 +387,11 @@ public partial class HauptseitePage : Page, INotifyPropertyChanged
     {
         if (Properties.Settings.Default.SelectetMonitor < 4)
         {
-            FunktionIconListe.Execute(); // Rufen Sie die Execute-Methode von Funktion1 auf
-            ISPSaveState.IsReady = true;
-            
             // Navigation zur IconSavePage
             this.NavigationService.Navigate(new IconSavePage());
         }
-        else         {
+        else         
+        {
             MessageBox.Show("Bitte wählen Sie erst Monitor aus");
         }
     }
@@ -382,11 +403,73 @@ public partial class HauptseitePage : Page, INotifyPropertyChanged
 
     private void btnMonitorSwitch_Click(object sender, RoutedEventArgs e)
     {
-
+        string[][] monitorData =
+        {
+            monitorData1,
+            monitorData2,
+            monitorData3,
+            monitorData4
+        };
+        if (Properties.Settings.Default.SelectetMonitor < 4)
+        {
+            string pathExe = $"{Properties.Settings.Default.pfadDeskOK}\\MultiMonitorTool.exe";
+            FunktionMultiMonitor.MonitorDeaktivieren(pathExe, monitorData[Properties.Settings.Default.SelectetMonitor][17], Properties.Settings.Default.SelectetMonitor);
+            HauptPage_Loaded(this, new RoutedEventArgs());
+        }
+        else
+        {
+            MessageBox.Show("Bitte wählen Sie erst Monitor aus");
+        }
     }
 
     private void btnIconsVerschieben_Click(object sender, RoutedEventArgs e)
     {
+        string[] iconsZugewiesen =
+        {
+            Properties.Settings.Default.eMonitorIconsZugewiesen1,
+            Properties.Settings.Default.eMonitorIconsZugewiesen2,
+            Properties.Settings.Default.eMonitorIconsZugewiesen3,
+            Properties.Settings.Default.eMonitorIconsZugewiesen4
+        };
+        bool[] iconsVerstaut =
+        {
+            Properties.Settings.Default.eMonitorIconsVerstaut1,
+            Properties.Settings.Default.eMonitorIconsVerstaut2,
+            Properties.Settings.Default.eMonitorIconsVerstaut3,
+            Properties.Settings.Default.eMonitorIconsVerstaut4
+        };
+        if (Properties.Settings.Default.SelectetMonitor < 4)
+        {
+            if (!string.IsNullOrEmpty(iconsZugewiesen[Properties.Settings.Default.SelectetMonitor]) && iconsVerstaut[Properties.Settings.Default.SelectetMonitor] == false)
+            {
+                var moveIcons = new FunktionVerschieben();
+                moveIcons.MoveDeskToPath(Properties.Settings.Default.SelectetMonitor);
+            }
+            else if (!string.IsNullOrEmpty(iconsZugewiesen[Properties.Settings.Default.SelectetMonitor]) && iconsVerstaut[Properties.Settings.Default.SelectetMonitor] == true)
+            {
+                var moveIcons = new FunktionVerschieben();
+                moveIcons.MovePathToDesk(Properties.Settings.Default.SelectetMonitor);
+            }
+            else
+            {
+                MessageBox.Show("Bitte speichere erst Icons zum Monitor!");
+            }
+        }
+        else
+        {
+            MessageBox.Show("Bitte wählen Sie erst Monitor aus");
+        }
+
+    }
+
+        private void btnReload_Click(object sender, RoutedEventArgs e)
+    {
+        var reloadData = new Funktion2DatenLesen();
+        reloadData.DatenLesenAbfrage();
+
+        MessageBox.Show("Daten wurden neu geladen");
+
+        HauptPage_Loaded(this, new RoutedEventArgs());
 
     }
 }

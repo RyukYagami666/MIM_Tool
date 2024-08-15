@@ -11,14 +11,6 @@
     mc:Ignorable="d"
     d:DesignHeight="450" d:DesignWidth="800">
 
-
-    <Page.Resources>
-        <converters:BooleanToGrayConverter x:Key="BooleanToGrayConverter" />
-        <converters:BooleanToPrimaryConverter x:Key="BooleanToPrimaryConverter" />
-    </Page.Resources>
-
-
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="48" />
@@ -125,11 +117,11 @@
                     <TextBlock Text="Die Farbe der Knöpfe zeigt dir bereitschaft der Funktion an. " 
                                Grid.Row=" 4" Grid.Column="1" HorizontalAlignment="Center" FontSize="10" TextWrapping="Wrap" Margin="80,0,80,0"/>
 
-                    <Button x:Name="btnSaveIconPos" Content="&#xEDA4;" Grid.Row=" 3" Grid.Column="1" FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Left" Height="44" Margin="0,0,0,0" VerticalAlignment="Top" Width="44" Padding="3,3,3,3" FontSize="20" 
-                            ToolTip="Icon Auswahl :  &#x0a; hiermit kannst du bestimmen welcher Icons verschoben werden sollen  &#x0a; wenn ein Monitor deaktiviert wird ," Click="btnSaveIconPos_Click"/>
+                    <Button x:Name="btnSaveIconPos" Content="&#xEDA4;" Grid.Row=" 3" Grid.Column="1" FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Left" Height="44" Margin="0,0,0,0" VerticalAlignment="Top" Width="44" Padding="3,3,3,3" FontSize="20"  Click="btnSaveIconPos_Click"
+                            ToolTip="Icon Auswahl :  &#x0a; hiermit kannst du bestimmen welcher Icons verschoben werden sollen  &#x0a; wenn ein Monitor deaktiviert wird ,"/>
 
-                    <Button x:Name="btnCreateShortCut" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" Height="44" Margin="22,50,0,0" VerticalAlignment="Top" Width="44" Padding="3,3,3,3" FontSize="8" Grid.RowSpan="2"
-                            ToolTip="Verknüpfung erstellen:  &#x0a; es wird ein Icon auf den Desktopgespeichert der das aus  &#x0a;  und Einschalten sowie das Verschieben der Icons ausführt ,  &#x0a; dies ist dann von Monitor zu Monitor einzeln steuerbar." Click="btnCreateShortCut_Click">
+                    <Button x:Name="btnCreateShortCut" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" Height="44" Margin="22,50,0,0" VerticalAlignment="Top" Width="44" Padding="3,3,3,3" FontSize="8" Grid.RowSpan="2"  Click="btnCreateShortCut_Click"
+                            ToolTip="Verknüpfung erstellen:  &#x0a; es wird ein Icon auf den Desktopgespeichert der das aus  &#x0a;  und Einschalten sowie das Verschieben der Icons ausführt ,  &#x0a; dies ist dann von Monitor zu Monitor einzeln steuerbar.">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="17" Text="&#xE771;"/>
                             <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="16" Text="&#xE8F4;" RenderTransformOrigin="0.5,0.5" Height="22">
@@ -145,8 +137,8 @@
                         </StackPanel>
                     </Button>
 
-                    <Button x:Name="btnMonitorSwitch" Grid.Row="2" Grid.Column="1" Margin="0,50,10,6" HorizontalAlignment="Right" Width="44" Padding="3,3,3,3"
-                            ToolTip="Monitor Schalter:  &#x0a; Hier kannst du den ausgewählten Monitor aktivieren oder deaktivieren  &#x0a; dabei werden keine Icons verschoben jedoch werden Daten gelesen." Grid.RowSpan="2" Click="btnMonitorSwitch_Click">
+                    <Button x:Name="btnMonitorSwitch" Grid.Row="2" Grid.Column="1" Margin="0,50,10,6" HorizontalAlignment="Right" Width="44" Padding="3,3,3,3 " Grid.RowSpan="2" Click="btnMonitorSwitch_Click"
+                            ToolTip="Monitor Schalter:  &#x0a; Hier kannst du den ausgewählten Monitor aktivieren oder deaktivieren  &#x0a; dabei werden keine Icons verschoben jedoch werden Daten gelesen." >
                         <StackPanel Orientation="Horizontal">
                             <TextBlock x:Name="spiegel252" FontFamily="Segoe MDL2 Assets" FontSize="17" Text="&#xEB55;" Height="23" />
                             <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="16" Text="&#xE7F9;" Height="15" Width="26" RenderTransformOrigin="0.5,0.5">
@@ -162,8 +154,8 @@
                         </StackPanel>
                     </Button>
 
-                    <Button x:Name="btnIconsVerschieben" Grid.Row="3" Grid.Column="1" Height="44" Margin="0,50,30,0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="44" Grid.RowSpan="2"
-                            ToolTip="Icons verschieben:  &#x0a; Hier werden von den ausgewählten Monitor die Icons verschoben,  &#x0a; die zuvor in der Icon Auswahl gespeichert wurden. Beim zweiten Mal drücken mit dem  &#x0a; gleichen ausgewählten Monitor, werden die Icons wieder zurückverschoben." Click="btnIconsVerschieben_Click">
+                    <Button x:Name="btnIconsVerschieben" Grid.Row="3" Grid.Column="1" Height="44" Margin="0,50,30,0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="44" Grid.RowSpan="2" Click="btnIconsVerschieben_Click"
+                            ToolTip="Icons verschieben:  &#x0a; Hier werden von den ausgewählten Monitor die Icons verschoben,  &#x0a; die zuvor in der Icon Auswahl gespeichert wurden. Beim zweiten Mal drücken mit dem  &#x0a; gleichen ausgewählten Monitor, werden die Icons wieder zurückverschoben." >
                         <StackPanel Orientation="Horizontal" Width="40">
                             <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="17" Text="&#xE927;" Width="16" Height="18" RenderTransformOrigin="0.433,0.939" >
                                 <TextBlock.RenderTransform>
@@ -189,6 +181,8 @@
                     </Button>
                 </Grid>
             </Border>
+            <Button x:Name="btnReload" Content="&#xE117;" FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Left" Height="40" Margin="375,135,0,0" VerticalAlignment="Top" Width="40" FontSize="16" Click="btnReload_Click"
+                     ToolTip="Daten Lesen :  &#x0a; Hiermit werden Monitordaten und Iconposition neu gelesen u. Gespeichert &#x0a; Gespeicherte Daten werden überschrieben also vorsichtig."/>
         </Grid>
     </Grid>
 </Page>

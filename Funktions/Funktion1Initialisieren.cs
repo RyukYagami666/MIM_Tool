@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace App3.Funktions
 {
@@ -30,10 +31,14 @@ namespace App3.Funktions
             var datenLesen = new Funktion2DatenLesen();
             datenLesen.DatenLesen();
 
-            
-
-
         }
-        
+        public void InitialisierenAbfrage()
+        {
+            var result = MessageBox.Show("Initialisierenerneut durchführen, Gespeichertes wird überschrieben", "Initialisieren", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                Initialisieren();
+            }
+        }
     }
 }

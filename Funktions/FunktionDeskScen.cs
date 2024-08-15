@@ -119,6 +119,7 @@ namespace App3.Funktions
                 {
                     if (File.Exists(pathData))
                     {
+                        MessageBox.Show("Datei gefunden.");
                         // Lesen aller Zeilen der Datei in ein Array
                         string[] zeilen = File.ReadAllLines(pathData);
 

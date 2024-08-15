@@ -16,6 +16,7 @@ public partial class IconSavePage : Page, INotifyPropertyChanged
     {
         InitializeComponent();
         DataContext = this;
+        FunktionIconListe.Execute(); // Rufen Sie die Execute-Methode von Funktion1 auf
         IconListView.ItemsSource = App3.Funktions.FunktionIconListe.LastExecutedFiles;
         this.Loaded += IconSavePage_Loaded;
         var dodStatus = new FunktionDesktopOK();
@@ -59,14 +60,43 @@ public partial class IconSavePage : Page, INotifyPropertyChanged
 
         if (selectedPaths.Length > 0)
         {
-           
-            AuswahlFürISP auswahlFürISP = new AuswahlFürISP();
-            auswahlFürISP.Show();
+            if (Properties.Settings.Default.SelectetMonitor == 10)
+            {
+                var auswahlFürISP = new AuswahlFürISP();
+                auswahlFürISP.Show();
+            }
+            else if (Properties.Settings.Default.SelectetMonitor == 0)
+            {
+                FunktionAuswahlZiel auswahlFunk= new FunktionAuswahlZiel();
+                auswahlFunk.MonitorGewählt1();
 
+                this.NavigationService.Navigate(new HauptseitePage());
+            }
+            else if (Properties.Settings.Default.SelectetMonitor == 1)
+            {
+                FunktionAuswahlZiel auswahlFunk = new FunktionAuswahlZiel();
+                auswahlFunk.MonitorGewählt2();
+
+                this.NavigationService.Navigate(new HauptseitePage());
+            }
+            else if (Properties.Settings.Default.SelectetMonitor == 2)
+            {
+                FunktionAuswahlZiel auswahlFunk = new FunktionAuswahlZiel();
+                auswahlFunk.MonitorGewählt3();
+
+                this.NavigationService.Navigate(new HauptseitePage());
+            }
+            else if (Properties.Settings.Default.SelectetMonitor == 3)
+            {
+                FunktionAuswahlZiel auswahlFunk = new FunktionAuswahlZiel();
+                auswahlFunk.MonitorGewählt4();
+
+                this.NavigationService.Navigate(new HauptseitePage());
+            }
         }
         else
         {
-            MessageBox.Show("Es wurden keine Elemente ausgewählt.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("Bitte wähle Icons aus um zu speichern", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }

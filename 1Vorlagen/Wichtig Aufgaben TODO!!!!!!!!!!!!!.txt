@@ -4,15 +4,10 @@ Debugg LogFile
 müll entfernen
 Sprache gradeziehen
 interne AufgabenListe
-FensterRunde Ecken
 Version Von DeskOK auslesen
-
-Selectmonitor deselcten
-
 
 
 IconListView mulltiselect
-Display Aktivirung On/Off  (mit MultiMonitorTool wie DesktopOk) Text dadei auslesen in FDeskScen und ON/OFF fehlt in FMultiMonitor noch 
 BackUp System
 
 zu einer .exe packen

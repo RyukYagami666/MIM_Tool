@@ -103,17 +103,23 @@ namespace App3.Funktions
             if (splitContent.Length == 1)
             {
                 Properties.Settings.Default.MultiMonDataTrim1 = splitContent[0];
+                Properties.Settings.Default.MultiMonDataTrim2 = "";
+                Properties.Settings.Default.MultiMonDataTrim3 = "";
+                Properties.Settings.Default.MultiMonDataTrim4 = "";
             }
             else if (splitContent.Length == 2)
             {
                 Properties.Settings.Default.MultiMonDataTrim1 = splitContent[0];
                 Properties.Settings.Default.MultiMonDataTrim2 = splitContent[1];
+                Properties.Settings.Default.MultiMonDataTrim3 = "";
+                Properties.Settings.Default.MultiMonDataTrim4 = "";
             }
             else if (splitContent.Length == 3)
             {
                 Properties.Settings.Default.MultiMonDataTrim1 = splitContent[0];
                 Properties.Settings.Default.MultiMonDataTrim2 = splitContent[1];
                 Properties.Settings.Default.MultiMonDataTrim3 = splitContent[2];
+                Properties.Settings.Default.MultiMonDataTrim4 = "";
             }
             else if (splitContent.Length == 4)
             {
@@ -144,12 +150,12 @@ namespace App3.Funktions
             {
                 if (!string.IsNullOrEmpty(multiMonDataTrims[i]))
                 {
-                    OrdneMonitorDatenNeu(multiMonDataTrims[i]);
+                    OrdneMonitorDatenNeu(multiMonDataTrims[i],i);
                 }
             }
         }
 
-        private void OrdneMonitorDatenNeu(string stringMultiMon)
+        private void OrdneMonitorDatenNeu(string stringMultiMon,int index)
         {
             string[] MultiMonDataArray = stringMultiMon.Split(';');
             string[] esSeMonitor =
@@ -171,31 +177,31 @@ namespace App3.Funktions
             infoMonitor = infoMonitor.Replace(";Name;", ";Monitor Nummer;");
             infoMonitor = infoMonitor.Replace(";Left-Top;", ";Position;");
 
-            if (MultiMonDataArray[10] == "Name:\\\\.\\DISPLAY1")
+            if (index == 0)
             {
-                if (MultiMonDataArray[3] == "Active:Yes") { Properties.Settings.Default.eMonitorAktiv1 = true; }
-                else { Properties.Settings.Default.eMonitorAktiv1 = false; }
+                if (MultiMonDataArray[3] == "Active:Yes") Properties.Settings.Default.eMonitorAktiv1 = true; 
+                else Properties.Settings.Default.eMonitorAktiv1 = false; 
                 Properties.Settings.Default.InfoMonitor1 = infoMonitor;
                 Properties.Settings.Default.eMonitorVorhanden1 = true;
             }
-            else if (MultiMonDataArray[10] == "Name:\\\\.\\DISPLAY2")
+            else if (index == 1)
             {
-                if (MultiMonDataArray[3] == "Active:Yes"){Properties.Settings.Default.eMonitorAktiv2 = true;}
-                else{Properties.Settings.Default.eMonitorAktiv2 = false;}
+                if (MultiMonDataArray[3] == "Active:Yes") Properties.Settings.Default.eMonitorAktiv2 = true;
+                else Properties.Settings.Default.eMonitorAktiv2 = false;
                 Properties.Settings.Default.InfoMonitor2 = infoMonitor;
                 Properties.Settings.Default.eMonitorVorhanden2 = true;
             }
-            else if (MultiMonDataArray[10] == "Name:\\\\.\\DISPLAY3")
+            else if (index == 2)
             {
-                if (MultiMonDataArray[3] == "Active:Yes") { Properties.Settings.Default.eMonitorAktiv3 = true; }
-                else { Properties.Settings.Default.eMonitorAktiv3 = false; }
+                if (MultiMonDataArray[3] == "Active:Yes") Properties.Settings.Default.eMonitorAktiv3 = true; 
+                else Properties.Settings.Default.eMonitorAktiv3 = false; 
                 Properties.Settings.Default.InfoMonitor3 = infoMonitor;
                 Properties.Settings.Default.eMonitorVorhanden3 = true;
             }
-            else if (MultiMonDataArray[10] == "Name:\\\\.\\DISPLAY4")
+            else if (index == 3)
             {
-                if (MultiMonDataArray[3] == "Active:Yes") { Properties.Settings.Default.eMonitorAktiv4 = true; }
-                else { Properties.Settings.Default.eMonitorAktiv4 = false; }
+                if (MultiMonDataArray[3] == "Active:Yes") Properties.Settings.Default.eMonitorAktiv4 = true; 
+                else Properties.Settings.Default.eMonitorAktiv4 = false; 
                 Properties.Settings.Default.InfoMonitor4 = infoMonitor;
                 Properties.Settings.Default.eMonitorVorhanden4 = true;
             }
