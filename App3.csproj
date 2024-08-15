@@ -8,7 +8,12 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <StartupObject>App3.App</StartupObject>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>Styles\icon.ico</ApplicationIcon>
   </PropertyGroup>
+  
+  <ItemGroup>
+    <None Remove="Styles\icon.ico" />
+  </ItemGroup>
   
   <ItemGroup>
     <COMReference Include="IWshRuntimeLibrary">
@@ -20,6 +25,12 @@
       <Isolated>false</Isolated>
       <EmbedInteropTypes>true</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Content Include="Styles\icon.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   
   <ItemGroup>
