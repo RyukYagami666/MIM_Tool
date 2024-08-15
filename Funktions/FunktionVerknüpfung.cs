@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using IWshRuntimeLibrary;
 
-namespace App3.Funktions
+namespace MIM_Tool.Funktions
 {
     internal class FunktionVerknüpfung
     {

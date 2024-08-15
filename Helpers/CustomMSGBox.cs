@@ -1,4 +1,4 @@
-﻿using App3.Funktions;
+﻿using MIM_Tool.Funktions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,11 +6,11 @@ using System.Text;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using App3.Views;
+using MIM_Tool.Views;
 
 
 
-namespace App3.Helpers
+namespace MIM_Tool.Helpers
 {
     internal class CustomMSGBox : Form
     {

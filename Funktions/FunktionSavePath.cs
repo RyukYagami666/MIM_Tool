@@ -8,10 +8,10 @@ using System.IO;
 using System.Windows;
 using Microsoft.Win32;
 using Windows.Devices.Geolocation;
-using App3.Funktions;
+using MIM_Tool.Funktions;
 
 
-namespace App3.Funktions
+namespace MIM_Tool.Funktions
 {
     class FunktionSavePath
     {

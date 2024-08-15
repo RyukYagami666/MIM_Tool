@@ -1,10 +1,10 @@
-﻿using App3.Contracts.Services;
-using App3.Models;
+﻿using MIM_Tool.Contracts.Services;
+using MIM_Tool.Models;
 using ControlzEx.Theming;
 using MahApps.Metro.Theming;
 using System.Windows;
 
-namespace App3.Services;
+namespace MIM_Tool.Services;
 
 public class ThemeSelectorService : IThemeSelectorService
 {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
-namespace App3.Funktions
+namespace MIM_Tool.Funktions
 {
     
         public static class CopyMSGBox

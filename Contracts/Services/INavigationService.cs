@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace App3.Contracts.Services;
+namespace MIM_Tool.Contracts.Services;
 
 public interface INavigationService
 {

@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace App3.Contracts.Views;
+namespace MIM_Tool.Contracts.Views;
 
 public interface IShellWindow
 {

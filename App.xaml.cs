@@ -1,11 +1,11 @@
-﻿using App3.Contracts.Services;
-using App3.Contracts.Views;
-using App3.Core.Contracts.Services;
-using App3.Core.Services;
-using App3.Models;
-using App3.Services;
-using App3.Views;
-using App3.Funktions;
+﻿using MIM_Tool.Contracts.Services;
+using MIM_Tool.Contracts.Views;
+using MIM_Tool.Core.Contracts.Services;
+using MIM_Tool.Core.Services;
+using MIM_Tool.Models;
+using MIM_Tool.Services;
+using MIM_Tool.Views;
+using MIM_Tool.Funktions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -17,7 +17,7 @@ using IniParser;
 using IniParser.Model;
 
 
-namespace App3;
+namespace MIM_Tool;
 
 
 // For more information about application lifecycle events see https://docs.microsoft.com/dotnet/framework/wpf/app-development/application-management-overview

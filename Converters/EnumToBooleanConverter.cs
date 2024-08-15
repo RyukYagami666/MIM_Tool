@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using System.Windows.Data;
 
-namespace App3.Converters;
+namespace MIM_Tool.Converters;
 
 public class EnumToBooleanConverter : IValueConverter
 {

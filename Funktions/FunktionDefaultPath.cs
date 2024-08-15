@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace App3.Funktions
+namespace MIM_Tool.Funktions
 {
     class FunktionDefaultPath
     {
@@ -126,7 +126,7 @@ namespace App3.Funktions
         {
             // Benutzer fragen, ob die Daten gespeichert werden sollen
             var result = MessageBox.Show("Möchten Sie die Einstellungens Datei Öffnen?", "Öffnen", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            var filePath = @"C:\Users\Ryuk\AppData\Local\App3\App3_Url_ldzpvlgsqw3ui124dac3jxteyurvexdl\1.0.0.0\user.config"; // user.config"; // Pfad zur user.config Datei
+            var filePath = @"C:\Users\Ryuk\AppData\Local\MIM_Tool\MIM_Tool_Url_ldzpvlgsqw3ui124dac3jxteyurvexdl\1.0.0.0\user.config"; // user.config"; // Pfad zur user.config Datei
 
             // Überprüfen der Benutzerantwort
             if (result == DialogResult.Yes)

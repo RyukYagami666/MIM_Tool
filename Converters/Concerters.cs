@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace App3.Converters;
+namespace MIM_Tool.Converters;
 
 public class BooleanToGrayConverter : IValueConverter
 {

@@ -1,4 +1,4 @@
-﻿namespace App3.Contracts.Views;
+﻿namespace MIM_Tool.Contracts.Views;
 
 public interface INavigationAware
 {

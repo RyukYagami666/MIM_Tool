@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 
-namespace App3.TemplateSelectors;
+namespace MIM_Tool.TemplateSelectors;
 
 public class MenuItemTemplateSelector : DataTemplateSelector
 {

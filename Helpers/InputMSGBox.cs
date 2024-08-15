@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace App3.Helpers
+namespace MIM_Tool.Helpers
 {
     public class InputMSGBox : Form
     {

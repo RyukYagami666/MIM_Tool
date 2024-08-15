@@ -1,4 +1,4 @@
-﻿namespace App3.Properties {
+﻿namespace MIM_Tool.Properties {
     
     
     // Diese Klasse ermöglicht die Behandlung bestimmter Ereignisse der Einstellungsklasse:

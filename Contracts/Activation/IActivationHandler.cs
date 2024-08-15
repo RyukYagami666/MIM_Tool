@@ -1,4 +1,4 @@
-﻿namespace App3.Contracts.Activation;
+﻿namespace MIM_Tool.Contracts.Activation;
 
 public interface IActivationHandler
 {

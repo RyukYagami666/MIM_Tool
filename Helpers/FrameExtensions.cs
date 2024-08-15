@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace App3.Helpers;
+namespace MIM_Tool.Helpers;
 
 public static class FrameExtensions
 {

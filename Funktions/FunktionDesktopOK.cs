@@ -1,4 +1,4 @@
-﻿using App3.Services;
+﻿using MIM_Tool.Services;
 using System.Net;
 using System.Windows.Forms;
 using System;
@@ -11,7 +11,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net.NetworkInformation;
 
-namespace App3.Funktions
+namespace MIM_Tool.Funktions
 {
     internal class FunktionDesktopOK
     {

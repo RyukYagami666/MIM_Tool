@@ -1,13 +1,13 @@
 ﻿<controls:MetroWindow
-    x:Class="App3.Views.ShellWindow"
+    x:Class="MIM_Tool.Views.ShellWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
    
-    xmlns:properties="clr-namespace:App3.Properties"
-    xmlns:templateSelectors="clr-namespace:App3.TemplateSelectors"
+    xmlns:properties="clr-namespace:MIM_Tool.Properties"
+    xmlns:templateSelectors="clr-namespace:MIM_Tool.TemplateSelectors"
     Style="{StaticResource CustomMetroWindow}"
     mc:Ignorable="d"
     MinWidth="500"

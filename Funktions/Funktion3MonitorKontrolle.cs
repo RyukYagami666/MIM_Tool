@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace App3.Funktions
+namespace MIM_Tool.Funktions
 {
     internal class Funktion3MonitorKontrolle
     {

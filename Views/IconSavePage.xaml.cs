@@ -4,12 +4,12 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using App3.Funktions;
-using App3.Services;
+using MIM_Tool.Funktions;
+using MIM_Tool.Services;
 using System.Linq;
-using static App3.Funktions.FunktionIconListe; // Für die Verwendung von LINQ
+using static MIM_Tool.Funktions.FunktionIconListe; // Für die Verwendung von LINQ
 
-namespace App3.Views;
+namespace MIM_Tool.Views;
 
 public partial class IconSavePage : Page, INotifyPropertyChanged
 {
@@ -18,7 +18,7 @@ public partial class IconSavePage : Page, INotifyPropertyChanged
         InitializeComponent();
         DataContext = this;
         FunktionIconListe.Execute(); // Rufen Sie die Execute-Methode von Funktion1 auf
-        IconListView.ItemsSource = App3.Funktions.FunktionIconListe.LastExecutedFiles;
+        IconListView.ItemsSource = MIM_Tool.Funktions.FunktionIconListe.LastExecutedFiles;
         this.Loaded += IconSavePage_Loaded;
         var dodStatus = new FunktionDesktopOK();
         dodStatus.DODKontrolle();

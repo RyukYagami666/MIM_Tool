@@ -1,5 +1,5 @@
-﻿using App3.Contracts.Services;
-using App3.Contracts.Views;
+﻿using MIM_Tool.Contracts.Services;
+using MIM_Tool.Contracts.Views;
 using MahApps.Metro.Controls;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace App3.Views;
+namespace MIM_Tool.Views;
 
 public partial class ShellWindow : MetroWindow, IShellWindow, INotifyPropertyChanged
 {

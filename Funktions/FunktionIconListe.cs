@@ -7,9 +7,9 @@ using System.Windows;
 using System.Windows.Media.Imaging;
 using System;
 using Microsoft.VisualBasic;
-using App3.Services;
+using MIM_Tool.Services;
 
-namespace App3.Funktions
+namespace MIM_Tool.Funktions
 {
     internal class FunktionIconListe
     {

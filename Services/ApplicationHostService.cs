@@ -1,11 +1,11 @@
-﻿using App3.Contracts.Activation;
-using App3.Contracts.Services;
-using App3.Contracts.Views;
-using App3.Views;
+﻿using MIM_Tool.Contracts.Activation;
+using MIM_Tool.Contracts.Services;
+using MIM_Tool.Contracts.Views;
+using MIM_Tool.Views;
 
 using Microsoft.Extensions.Hosting;
 
-namespace App3.Services;
+namespace MIM_Tool.Services;
 
 public class ApplicationHostService : IHostedService
 {

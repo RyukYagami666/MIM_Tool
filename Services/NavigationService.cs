@@ -1,10 +1,10 @@
-﻿using App3.Contracts.Services;
-using App3.Contracts.Views;
-using App3.Helpers;
+﻿using MIM_Tool.Contracts.Services;
+using MIM_Tool.Contracts.Views;
+using MIM_Tool.Helpers;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 
-namespace App3.Services;
+namespace MIM_Tool.Services;
 
 public class NavigationService : INavigationService
 {

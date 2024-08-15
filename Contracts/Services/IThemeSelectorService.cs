@@ -1,6 +1,6 @@
-﻿using App3.Models;
+﻿using MIM_Tool.Models;
 
-namespace App3.Contracts.Services;
+namespace MIM_Tool.Contracts.Services;
 
 public interface IThemeSelectorService
 {

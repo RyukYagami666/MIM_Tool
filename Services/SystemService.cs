@@ -1,7 +1,7 @@
-﻿using App3.Contracts.Services;
+﻿using MIM_Tool.Contracts.Services;
 using System.Diagnostics;
 
-namespace App3.Services;
+namespace MIM_Tool.Services;
 
 public class SystemService : ISystemService
 {

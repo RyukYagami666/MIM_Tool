@@ -1,8 +1,8 @@
-﻿using App3.Contracts.Services;
-using App3.Contracts.Views;
-using App3.Models;
-using App3.Services;
-using App3.Funktions;
+﻿using MIM_Tool.Contracts.Services;
+using MIM_Tool.Contracts.Views;
+using MIM_Tool.Models;
+using MIM_Tool.Services;
+using MIM_Tool.Funktions;
 using Microsoft.Extensions.Options;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -11,7 +11,7 @@ using System.Windows.Controls;
 using System.Windows.Forms;
 using System.IO;
 
-namespace App3.Views;
+namespace MIM_Tool.Views;
 
 public partial class SettingsPage : Page, INotifyPropertyChanged, INavigationAware
 {

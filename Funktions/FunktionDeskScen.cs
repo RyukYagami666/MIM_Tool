@@ -2,13 +2,13 @@
 using System.IO;
 using System.Management;
 using System.Windows.Forms;
-using App3.Funktions;
-using App3.Helpers;
+using MIM_Tool.Funktions;
+using MIM_Tool.Helpers;
 using Windows.UI.Accessibility;
 
 
 
-namespace App3.Funktions
+namespace MIM_Tool.Funktions
 {
     class FunktionDeskScen
     {

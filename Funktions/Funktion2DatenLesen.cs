@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace App3.Funktions
+namespace MIM_Tool.Funktions
 {
     internal class Funktion2DatenLesen
     {

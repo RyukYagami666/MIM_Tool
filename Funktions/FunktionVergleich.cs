@@ -7,7 +7,7 @@ using System.IO;
 using System.Windows;
 using System.Text.RegularExpressions;
 
-namespace App3.Funktions
+namespace MIM_Tool.Funktions
 {
     internal class FunktionVergleich
     {

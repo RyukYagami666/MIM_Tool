@@ -1,4 +1,4 @@
-﻿namespace App3.Models;
+﻿namespace MIM_Tool.Models;
 
 public enum AppTheme
 {

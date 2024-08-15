@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App3", "App3.csproj", "{E3085159-3239-4737-8A66-6D0940861ABA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MIM_Tool", "MIM_Tool.csproj", "{E3085159-3239-4737-8A66-6D0940861ABA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App3.Core", "..\App3.Core\App3.Core.csproj", "{75230C7E-85D5-496C-8FC1-2C4BCE8AEA53}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MIM_Tool.Core", "..\MIM_Tool.Core\MIM_Tool.Core.csproj", "{75230C7E-85D5-496C-8FC1-2C4BCE8AEA53}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

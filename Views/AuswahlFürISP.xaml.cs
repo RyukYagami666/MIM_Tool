@@ -1,4 +1,4 @@
-﻿using App3.Services;
+﻿using MIM_Tool.Services;
 using MahApps.Metro.Controls;
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using App3.Funktions;
+using MIM_Tool.Funktions;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using System.Windows.Markup;
@@ -22,7 +22,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using System.Net;
 
 
-namespace App3.Views
+namespace MIM_Tool.Views
 {
     /// <summary>
     /// Interaktionslogik für AuswahlFürISP.xaml

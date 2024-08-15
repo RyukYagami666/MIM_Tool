@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace App3.Services
+namespace MIM_Tool.Services
 {
     internal class DesktopOkState
     {

@@ -1,5 +1,5 @@
-﻿using App3.Funktions;
-using App3.Services;
+﻿using MIM_Tool.Funktions;
+using MIM_Tool.Services;
 using MahApps.Metro.Controls;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -10,7 +10,7 @@ using System.Windows.Documents;
 using System.Windows.Media;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
-namespace App3.Views;
+namespace MIM_Tool.Views;
 public partial class HauptseitePage : Page, INotifyPropertyChanged
     {
     public string[] monitorData1;

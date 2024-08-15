@@ -1,10 +1,10 @@
-﻿using App3.Funktions;
+﻿using MIM_Tool.Funktions;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Markup;
-using App3.Services;
+using MIM_Tool.Services;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using System.Windows;
 using System.Windows.Media;
@@ -12,7 +12,7 @@ using System.Net;
 
 
 
-namespace App3.Views
+namespace MIM_Tool.Views
 {
     public partial class FunktionPage : Page, INotifyPropertyChanged
     {

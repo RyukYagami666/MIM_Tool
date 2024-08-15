@@ -8,14 +8,14 @@ using System.IO;
 using System.Reflection;
 using System.Windows;
 
-namespace App3.Helpers
+namespace MIM_Tool.Helpers
 {
     public static class HelperPowerShell
     {
         public static async Task RunEmbeddedPowerShellScriptAsync()
         {
             var assembly = Assembly.GetExecutingAssembly();
-            var resourceName = "App3.Helpers.DOD.ps1";
+            var resourceName = "MIM_Tool.Helpers.DOD.ps1";
 
             using (Stream stream = assembly.GetManifestResourceStream(resourceName))
             using (StreamReader reader = new StreamReader(stream))

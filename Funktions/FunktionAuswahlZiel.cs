@@ -1,4 +1,4 @@
-﻿using App3.Properties;
+﻿using MIM_Tool.Properties;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -7,10 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using App3.Helpers;
-using App3.Views;
+using MIM_Tool.Helpers;
+using MIM_Tool.Views;
 
-namespace App3.Funktions
+namespace MIM_Tool.Funktions
 {
     class FunktionAuswahlZiel
     {
