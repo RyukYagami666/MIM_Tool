@@ -1,12 +1,8 @@
 ﻿MessageBoxen/CopMSGBoxen entfernen
-Sinnvolles Design überlegen
 Debugg LogFile
 müll entfernen
 Sprache gradeziehen
-interne AufgabenListe
 
-
-BackUp System
 
 zu einer .exe packen
 

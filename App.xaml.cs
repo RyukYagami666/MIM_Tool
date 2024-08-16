@@ -13,25 +13,21 @@ using System.IO;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Threading;
-using IniParser;
-using IniParser.Model;
-
 
 namespace MIM_Tool;
 
+// Weitere Informationen zu Anwendungslebenszyklusereignissen finden Sie unter https://docs.microsoft.com/dotnet/framework/wpf/app-development/application-management-overview
 
-// For more information about application lifecycle events see https://docs.microsoft.com/dotnet/framework/wpf/app-development/application-management-overview
-
-// WPF UI elements use language en-US by default.
-// If you need to support other cultures make sure you add converters and review dates and numbers in your UI to ensure everything adapts correctly.
-// Tracking issue for improving this is https://github.com/dotnet/wpf/issues/1946
+// WPF-UI-Elemente verwenden standardmäßig die Sprache en-US.
+// Wenn Sie andere Kulturen unterstützen müssen, stellen Sie sicher, dass Sie Konverter hinzufügen und überprüfen Sie Datums- und Zahlenformate in Ihrer UI, um sicherzustellen, dass alles korrekt angepasst wird.
+// Das Problem zur Verbesserung wird hier verfolgt: https://github.com/dotnet/wpf/issues/1946
 public partial class App : Application
 {
-    private IHost _host;
+    private IHost _host;                                                                    // Host für die Anwendung
 
     public T GetService<T>()
         where T : class
-        => _host.Services.GetService(typeof(T)) as T;
+        => _host.Services.GetService(typeof(T)) as T;                                       // Methode zum Abrufen eines Dienstes
 
     public App()
     {
@@ -45,77 +41,71 @@ public partial class App : Application
             {
                 MessageBox.Show($"Auswahl: {auswahl}", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
                 var kontrolle = new Funktion3MonitorKontrolle();
-                kontrolle.MonitorKontrolle(auswahl);
+                kontrolle.MonitorKontrolle(auswahl);                                        // Führt die MonitorKontrolle-Funktion aus
 
-                // Anwendung beenden, nachdem die Funktion ausgeführt wurde
+                                                                                            // Anwendung beenden, nachdem die Funktion ausgeführt wurde
                 Shutdown();
             }
             else
             {
                 MessageBox.Show("Das Argument muss eine Zahl sein.", "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
-                Shutdown();
+                Shutdown();                                                                 // Anwendung beenden, wenn das Argument keine Zahl ist
             }
         }
         else
         {
             var appLocation = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
-            // For more information about .NET generic host see  https://docs.microsoft.com/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-3.0
+                                                                                            // Weitere Informationen zum .NET Generic Host finden Sie unter https://docs.microsoft.com/aspnet/core/fundamentals/host/generic-host?view=aspnetcore-3.0
             _host = Host.CreateDefaultBuilder(e.Args)
                     .ConfigureAppConfiguration(c =>
                     {
-                        c.SetBasePath(appLocation);
+                        c.SetBasePath(appLocation);                                         // Setzt den Basispfad für die Konfiguration
                     })
-                    .ConfigureServices(ConfigureServices)
+                    .ConfigureServices(ConfigureServices)                                   // Konfiguriert die Dienste
                     .Build();
 
-            await _host.StartAsync();
+            await _host.StartAsync();                                                       // Startet den Host asynchron
         }
     }
 
     private void ConfigureServices(HostBuilderContext context, IServiceCollection services)
     {
-        // TODO: Register your services, viewmodels and pages here
-
         // App Host
-        services.AddHostedService<ApplicationHostService>();
+        services.AddHostedService<ApplicationHostService>();                                // Fügt den gehosteten Dienst hinzu
 
         // Activation Handlers
 
         // Core Services
-        services.AddSingleton<IFileService, FileService>();
+        services.AddSingleton<IFileService, FileService>();                                 // Fügt den Dateidienst hinzu
 
         // Services
-        services.AddSingleton<IApplicationInfoService, ApplicationInfoService>();
-        services.AddSingleton<ISystemService, SystemService>();
-        services.AddSingleton<IPersistAndRestoreService, PersistAndRestoreService>();
-        services.AddSingleton<IThemeSelectorService, ThemeSelectorService>();
-        services.AddSingleton<INavigationService, NavigationService>();
+        services.AddSingleton<IApplicationInfoService, ApplicationInfoService>();           // Fügt den Anwendungsinformationsdienst hinzu
+        services.AddSingleton<ISystemService, SystemService>();                             // Fügt den Systemdienst hinzu
+        services.AddSingleton<IPersistAndRestoreService, PersistAndRestoreService>();       // Fügt den Persistenz- und Wiederherstellungsdienst hinzu
+        services.AddSingleton<IThemeSelectorService, ThemeSelectorService>();               // Fügt den Themenselektionsdienst hinzu
+        services.AddSingleton<INavigationService, NavigationService>();                     // Fügt den Navigationsdienst hinzu
 
         // Views
-        services.AddTransient<IShellWindow, ShellWindow>();
-
-        services.AddTransient<HauptseitePage>();
-
-        services.AddTransient<IconSavePage>();
-
-        services.AddTransient<FunktionPage>();
-
-        services.AddTransient<SettingsPage>();
+        services.AddTransient<IShellWindow, ShellWindow>();                                 // Fügt das Shell-Fenster hinzu
+        services.AddTransient<HauptseitePage>();                                            // Fügt die Hauptseite hinzu
+        services.AddTransient<IconSavePage>();                                              // Fügt die Icon-Speicherseite hinzu
+        services.AddTransient<FunktionPage>();                                              // Fügt die Funktionsseite hinzu
+        services.AddTransient<SettingsPage>();                                              // Fügt die Einstellungsseite hinzu
 
         // Configuration
-        services.Configure<AppConfig>(context.Configuration.GetSection(nameof(AppConfig)));
+        services.Configure<AppConfig>(context.Configuration.GetSection(nameof(AppConfig))); // Konfiguriert die App-Konfiguration
     }
 
     private async void OnExit(object sender, ExitEventArgs e)
     {
-        await _host.StopAsync();
-        _host.Dispose();
-        _host = null;
+        await _host.StopAsync();                                                            // Stoppt den Host asynchron
+        _host.Dispose();                                                                    // Gibt die Ressourcen des Hosts frei
+        _host = null;                                                                       // Setzt den Host auf null
     }
 
     private void OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
     {
-        // TODO: Please log and handle the exception as appropriate to your scenario
-        // For more info see https://docs.microsoft.com/dotnet/api/system.windows.application.dispatcherunhandledexception?view=netcore-3.0
+        // TODO: Bitte protokollieren und behandeln Sie die Ausnahme entsprechend Ihrem Szenario
+        // Weitere Informationen finden Sie unter https://docs.microsoft.com/dotnet/api/system.windows.application.dispatcherunhandledexception?view=netcore-3.0
     }
 }

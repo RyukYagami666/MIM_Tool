@@ -2,58 +2,51 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
-using System.Windows.Forms;
-using System.Windows.Markup;
-using MIM_Tool.Services;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using System.Windows;
 using System.Windows.Media;
-using System.Net;
 
-
-
-namespace MIM_Tool.Views
+namespace MIM_Tool.Views//-------------------------------------------------------------------------------------------Inizialisieren-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 {
-    public partial class FunktionPage : Page, INotifyPropertyChanged
+    public partial class FunktionPage : Page, INotifyPropertyChanged                                     // Erbt von Page und implementiert INotifyPropertyChanged.
     {
         public FunktionPage()
         {
-            InitializeComponent();
-            DataContext = this;
-            this.Loaded += FunktionPage_Loaded;
-    
+            InitializeComponent();                                                                       // Initialisiert die Komponenten.
+            DataContext = this;                                                                          // Setzt den Datenkontext auf die aktuelle Instanz.
+            this.Loaded += FunktionPage_Loaded;                                                          // Abonniert das Loaded-Ereignis.
         }
-    
-        public event PropertyChangedEventHandler PropertyChanged;
-    
-        private void Set<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
+
+        public event PropertyChangedEventHandler PropertyChanged;                                        // Ereignis für Eigenschaftsänderungen.
+
+        private void Set<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)       // Methode zum Setzen einer Eigenschaft.
         {
             if (Equals(storage, value))
             {
-                return;
+                return;                                                                                  // Beendet die Methode, wenn der Wert gleich ist.
             }
-    
-            storage = value;
-            OnPropertyChanged(propertyName);
-        }
-    
-        private void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    
-        private void FunktionPage_Loaded(object sender, RoutedEventArgs e)
-        {
-            Properties.Settings.Default.SelectetMonitor = 10;
-            Properties.Settings.Default.Save();
-    
-            var dodStatus = new FunktionDesktopOK();
-            dodStatus.DODKontrolle();
-            var dosStatus = new FunktionDesktopOK();
-            dosStatus.DOSKontrolle();
-            var dorStatus = new FunktionDesktopOK();
-            dorStatus.DORKontrolle();
-    
-            var transparentGreen = new SolidColorBrush(Color.FromArgb(20, 0, 255, 0)); // 50% Transparenz grünen
-            var transparentRed = new SolidColorBrush(Color.FromArgb(20, 255, 0, 0)); // 50% Transparenz roten
 
+            storage = value;                                                                             // Setzt den neuen Wert.
+            OnPropertyChanged(propertyName);                                                             // Benachrichtigt über die Eigenschaftsänderung.
+        }
+
+        private void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)); // Methode zur Benachrichtigung über Eigenschaftsänderungen.
+
+        private void FunktionPage_Loaded(object sender, RoutedEventArgs e)                               // Ereignishandler für das Loaded-Ereignis.
+        {
+            Properties.Settings.Default.SelectetMonitor = 10;                                            // Setzt den ausgewählten Monitor auf 10.
+            Properties.Settings.Default.Save();                                                          // Speichert die Einstellungen.
+
+            var dodStatus = new FunktionDesktopOK();
+            dodStatus.DODKontrolle();                                                                    // Führt die DOD-Kontrolle durch.
+            var dosStatus = new FunktionDesktopOK();
+            dosStatus.DOSKontrolle();                                                                    // Führt die DOS-Kontrolle durch.
+            var dorStatus = new FunktionDesktopOK();
+            dorStatus.DORKontrolle();                                                                    // Führt die DOR-Kontrolle durch.
+
+            var transparentGreen = new SolidColorBrush(Color.FromArgb(20, 0, 255, 0));                   // 50% Transparenz grünen.
+            var transparentRed = new SolidColorBrush(Color.FromArgb(20, 255, 0, 0));                     // 50% Transparenz roten.
+
+            // Setzt die Sichtbarkeit der Buttons basierend auf dem Admin-Modus.
             btnGetIconList.Visibility = Properties.Settings.Default.AdminMode ? Visibility.Visible : Visibility.Collapsed;
             btnMoniScann.Visibility = Properties.Settings.Default.AdminMode ? Visibility.Visible : Visibility.Collapsed;
             btnIniziStart.Visibility = Properties.Settings.Default.AdminMode ? Visibility.Visible : Visibility.Collapsed;
@@ -63,84 +56,81 @@ namespace MIM_Tool.Views
             btnDOBearbeiten.Visibility = Properties.Settings.Default.AdminMode ? Visibility.Visible : Visibility.Collapsed;
             btnVerschieben.Visibility = Properties.Settings.Default.AdminMode ? Visibility.Visible : Visibility.Collapsed;
             btnMoniOff.Visibility = Properties.Settings.Default.AdminMode ? Visibility.Visible : Visibility.Collapsed;
-
-
-
         }
-    
+        //------------------------------------------------------------------------------------------------------------------------Ereignishandler-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+        // Ereignishandler für die Klick-Ereignisse der Buttons.
         private void btnGetIconList_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            FunktionIconListe.Execute(); // Rufen Sie die Execute-Methode von Funktion1 auf
-            //ISPSaveState.IsReady = true;
-            this.Loaded += FunktionPage_Loaded;
+            FunktionIconListe.Execute();                                                               // Ruft die Execute-Methode von FunktionIconListe auf.
+            this.Loaded += FunktionPage_Loaded;                                                        // Abonniert das Loaded-Ereignis erneut.
         }
-    
+
         private void btnMoniScann_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             var mmrStatus = new FunktionMultiMonitor();
-            mmrStatus.MMRKontrolle();
+            mmrStatus.MMRKontrolle();                                                                  // Führt die MMR-Kontrolle durch.
             var mmrData = new FunktionDeskScen();
-            mmrData.MonitorSaveData();
-    
+            mmrData.MonitorSaveData();                                                                 // Speichert die Monitor-Daten.
+
             var mmDataRead = new FunktionDeskScen();
-            mmDataRead.DataRead(Properties.Settings.Default.pfadDeskOK + "\\MonitorDaten.txt");
-    
+            mmDataRead.DataRead(Properties.Settings.Default.pfadDeskOK + "\\MonitorDaten.txt");        // Liest die Monitor-Daten.
+
             var mmDataTrim = new FunktionVergleich();
-            mmDataTrim.MultiMonDataTrim();
-            this.Loaded += FunktionPage_Loaded;
+            mmDataTrim.MultiMonDataTrim();                                                             // Trimmt die Monitor-Daten.
+            this.Loaded += FunktionPage_Loaded;                                                        // Abonniert das Loaded-Ereignis erneut.
         }
-    
+
         private void btnIniziStart_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             var defaultPath = new Funktion1Initialisieren();
-            defaultPath.InitialisierenAbfrage();
-    
+            defaultPath.InitialisierenAbfrage();                                                       // Führt die Initialisierungsabfrage durch.
+
             var openPath = new FunktionDefaultPath();
-            openPath.OpenConfig();
-            this.Loaded += FunktionPage_Loaded;
+            openPath.OpenConfig();                                                                     // Öffnet die Konfiguration.
+            this.Loaded += FunktionPage_Loaded;                                                        // Abonniert das Loaded-Ereignis erneut.
         }
-    
+
         private void btnDeskOkDownload_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             var dodStart = new FunktionDesktopOK();
-            dodStart.DODStart();
+            dodStart.DODStart();                                                                       // Startet die DOD-Funktion.
             var mmdStart = new FunktionMultiMonitor();
-            mmdStart.MMDStart();
-    
+            mmdStart.MMDStart();                                                                       // Startet die MMD-Funktion.
         }
-    
+
         private void btnDOSavePos_Click(object sender, RoutedEventArgs e)
         {
-    
-    
             var doIconPos = new FunktionDesktopOK();
-            doIconPos.IconSavePos();
+            doIconPos.IconSavePos();                                                                   // Speichert die Position der Icons.
         }
-    
+
         private void btnDOReadData_Click(object sender, RoutedEventArgs e)
         {
             var doReadData = new FunktionDesktopOK();
-            doReadData.DataRead(Properties.Settings.Default.eDeskOkLastSave);
+            doReadData.DataRead(Properties.Settings.Default.eDeskOkLastSave);                          // Liest die gespeicherten Daten.
         }
-    
+
         private void btnDOBearbeiten_Click(object sender, RoutedEventArgs e)
         {
             var doConvert = new FunktionVergleich();
-            doConvert.AbwandelnDerData();
+            doConvert.AbwandelnDerData();                                                              // Wandelt die Daten ab.
         }
-    
+
         private void btnVerschieben_Click(object sender, RoutedEventArgs e)
         {
             var iconMove = new FunktionVerschieben();
-            iconMove.Verschieben1Control();
-    
+            iconMove.Verschieben1Control();                                                            // Verschiebt die Icons.
         }
-    
+
         private void btnMoniOff_Click(object sender, RoutedEventArgs e)
         {
-            string pathExe = $"{Properties.Settings.Default.pfadDeskOK}\\MultiMonitorTool.exe";
-            
-            FunktionMultiMonitor.MonitorDeaktivieren(pathExe, "2752",0);
+            string pathExe = $"{Properties.Settings.Default.pfadDeskOK}\\MultiMonitorTool.exe";        // Pfad zur MultiMonitorTool.exe.
+            FunktionMultiMonitor.MonitorDeaktivieren(pathExe, "2752", 0);                              // Deaktiviert den Monitor.
         }
     }
 }
+
+
+
+

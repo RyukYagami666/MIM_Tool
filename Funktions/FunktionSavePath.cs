@@ -1,39 +1,24 @@
-﻿using Microsoft.WindowsAPICodePack.Dialogs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
-using System.Windows;
-using Microsoft.Win32;
-using Windows.Devices.Geolocation;
-using MIM_Tool.Funktions;
-
+﻿using System.IO;
+using Microsoft.Win32; 
 
 namespace MIM_Tool.Funktions
 {
     class FunktionSavePath
     {
-        
-        public string GetNewSavePath()
+        public string GetNewSavePath()                         // Methode zum Abrufen eines neuen Speicherpfads.
         {
-            // Dialog zum Auswählen eines Pfades öffnen
-            var dialog = new OpenFileDialog
+            var dialog = new OpenFileDialog                    // Dialog zum Auswählen eines Pfades öffnen
             {
-                CheckFileExists = false,
-                CheckPathExists = true,
-                ValidateNames = false,
-                FileName = "Ordnerauswahl"
+                CheckFileExists = false,                       // Überprüft nicht, ob die Datei existiert.
+                CheckPathExists = true,                        // Überprüft, ob der Pfad existiert.
+                ValidateNames = false,                         // Validiert die Namen nicht.
+                FileName = "Ordnerauswahl"                     // Setzt den Dateinamen auf "Ordnerauswahl".
             };
-            if (dialog.ShowDialog() == true)
+            if (dialog.ShowDialog() == true)                   // Zeigt den Dialog an und überprüft, ob der Benutzer "OK" geklickt hat.
             {
-                
-                // Rückgabe des ausgewählten Pfades
-                return Path.GetDirectoryName(dialog.FileName);
+                return Path.GetDirectoryName(dialog.FileName); // Gibt das Verzeichnis des ausgewählten Pfades zurück.
             }
-            // Rückgabe von null, wenn kein Pfad ausgewählt wurde
-            return null;
+            return null;                                       // Gibt null zurück, wenn kein Pfad ausgewählt wurde.
         }
     }
 }

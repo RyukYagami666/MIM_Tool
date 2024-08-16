@@ -1,27 +1,30 @@
-﻿using MahApps.Metro.Controls;
-using System.Windows;
-using System.Windows.Controls;
+﻿using MahApps.Metro.Controls;                                                                
+using System.Windows;                                                                        
+using System.Windows.Controls;                                                               
 
-namespace MIM_Tool.TemplateSelectors;
-
-public class MenuItemTemplateSelector : DataTemplateSelector
+namespace MIM_Tool.TemplateSelectors
 {
-    public DataTemplate GlyphDataTemplate { get; set; }
-
-    public DataTemplate ImageDataTemplate { get; set; }
-
-    public override DataTemplate SelectTemplate(object item, DependencyObject container)
+    public class MenuItemTemplateSelector : DataTemplateSelector                             // Erbt von DataTemplateSelector, um benutzerdefinierte Vorlagen auszuwählen.
     {
-        if (item is HamburgerMenuGlyphItem)
-        {
-            return GlyphDataTemplate;
-        }
+        public DataTemplate GlyphDataTemplate { get; set; }                                  // Datenvorlage für Glyphen.
+        public DataTemplate ImageDataTemplate { get; set; }                                  // Datenvorlage für Bilder.
 
-        if (item is HamburgerMenuImageItem)
+        public override DataTemplate SelectTemplate(object item, DependencyObject container) // Überschreibt die Methode zur Auswahl der Vorlage.
         {
-            return ImageDataTemplate;
-        }
+            if (item is HamburgerMenuGlyphItem)                                              // Überprüft, ob das Element ein HamburgerMenuGlyphItem ist.
+            {
+                return GlyphDataTemplate;                                                    // Gibt die Glyphen-Datenvorlage zurück.
+            }
 
-        return base.SelectTemplate(item, container);
+            if (item is HamburgerMenuImageItem)                                              // Überprüft, ob das Element ein HamburgerMenuImageItem ist.
+            {
+                return ImageDataTemplate;                                                    // Gibt die Bild-Datenvorlage zurück.
+            }
+
+            return base.SelectTemplate(item, container);                                     // Gibt die Standardvorlage zurück, wenn keine Übereinstimmung gefunden wurde.
+        }
     }
 }
+
+
+

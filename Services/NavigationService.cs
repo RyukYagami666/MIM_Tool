@@ -1,96 +1,99 @@
-﻿using MIM_Tool.Contracts.Services;
-using MIM_Tool.Contracts.Views;
-using MIM_Tool.Helpers;
-using System.Windows.Controls;
-using System.Windows.Navigation;
+﻿using MIM_Tool.Contracts.Services;                                                                  
+using MIM_Tool.Contracts.Views;                                                                     
+using MIM_Tool.Helpers;                                                                             
+using System.Windows.Controls;                                                                      
+using System.Windows.Navigation;                                                                    
 
-namespace MIM_Tool.Services;
-
-public class NavigationService : INavigationService
+namespace MIM_Tool.Services
 {
-    private readonly IServiceProvider _serviceProvider;
-    private Frame _frame;
-    private object _lastParameterUsed;
-
-    public event EventHandler<Type> Navigated;
-
-    public bool CanGoBack => _frame.CanGoBack;
-
-    public NavigationService(IServiceProvider serviceProvider)
+    public class NavigationService : INavigationService                                              // Implementiert den INavigationService.
     {
-        _serviceProvider = serviceProvider;
-    }
+        private readonly IServiceProvider _serviceProvider;                                          // Dienstanbieter für die Abhängigkeitsinjektion.
+        private Frame _frame;                                                                        // Rahmen für die Navigation.
+        private object _lastParameterUsed;                                                           // Letztes verwendetes Parameter.
 
-    public void Initialize(Frame shellFrame)
-    {
-        if (_frame == null)
+        public event EventHandler<Type> Navigated;                                                   // Ereignis, das ausgelöst wird, wenn die Navigation abgeschlossen ist.
+
+        public bool CanGoBack => _frame.CanGoBack;                                                   // Überprüft, ob eine Rücknavigation möglich ist.
+
+        public NavigationService(IServiceProvider serviceProvider)
         {
-            _frame = shellFrame;
-            _frame.Navigated += OnNavigated;
+            _serviceProvider = serviceProvider;                                                      // Initialisiert den Dienstanbieter.
         }
-    }
 
-    public void UnsubscribeNavigation()
-    {
-        _frame.Navigated -= OnNavigated;
-        _frame = null;
-    }
-
-    public void GoBack()
-    {
-        if (_frame.CanGoBack)
+        public void Initialize(Frame shellFrame)                                                     // Initialisiert den Navigationsrahmen.
         {
-            var pageBeforeNavigation = _frame.Content;
-            _frame.GoBack();
-            if (pageBeforeNavigation is INavigationAware navigationAware)
+            if (_frame == null)
             {
-                navigationAware.OnNavigatedFrom();
+                _frame = shellFrame;                                                                 // Setzt den Navigationsrahmen.
+                _frame.Navigated += OnNavigated;                                                     // Abonniert das Navigationsereignis.
             }
         }
-    }
 
-    public bool NavigateTo(Type pageType, object parameter = null, bool clearNavigation = false)
-    {
-        if (_frame.Content?.GetType() != pageType || (parameter != null && !parameter.Equals(_lastParameterUsed)))
+        public void UnsubscribeNavigation()                                                          // Deabonniert das Navigationsereignis.
         {
-            _frame.Tag = clearNavigation;
-            var page = _serviceProvider.GetService(pageType) as Page;
+            _frame.Navigated -= OnNavigated;                                                         // Entfernt das Abonnement des Navigationsereignisses.
+            _frame = null;                                                                           // Setzt den Navigationsrahmen auf null.
+        }
 
-            var navigated = _frame.Navigate(page, parameter);
-            if (navigated)
+        public void GoBack()                                                                         // Methode zur Rücknavigation.
+        {
+            if (_frame.CanGoBack)
             {
-                _lastParameterUsed = parameter;
-                if (_frame.Content is INavigationAware navigationAware)
+                var pageBeforeNavigation = _frame.Content;                                           // Holt die aktuelle Seite vor der Navigation.
+                _frame.GoBack();                                                                     // Führt die Rücknavigation durch.
+                if (pageBeforeNavigation is INavigationAware navigationAware)
                 {
-                    navigationAware.OnNavigatedFrom();
+                    navigationAware.OnNavigatedFrom();                                               // Benachrichtigt die Seite, dass sie verlassen wurde.
                 }
             }
-
-            return navigated;
         }
 
-        return false;
-    }
-
-    public void CleanNavigation()
-        => _frame.CleanNavigation();
-
-    private void OnNavigated(object sender, NavigationEventArgs e)
-    {
-        if (sender is Frame frame)
+        public bool NavigateTo(Type pageType, object parameter = null, bool clearNavigation = false) // Methode zur Navigation zu einer bestimmten Seite.
         {
-            bool clearNavigation = (bool)frame.Tag;
-            if (clearNavigation)
+            if (_frame.Content?.GetType() != pageType || (parameter != null && !parameter.Equals(_lastParameterUsed)))
             {
-                frame.CleanNavigation();
+                _frame.Tag = clearNavigation;                                                        // Setzt das Tag des Rahmens, um anzugeben, ob die Navigation bereinigt werden soll.
+                var page = _serviceProvider.GetService(pageType) as Page;                            // Holt die Seite aus dem Dienstanbieter.
+
+                var navigated = _frame.Navigate(page, parameter);                                    // Navigiert zur Seite mit dem angegebenen Parameter.
+                if (navigated)
+                {
+                    _lastParameterUsed = parameter;                                                  // Speichert das zuletzt verwendete Parameter.
+                    if (_frame.Content is INavigationAware navigationAware)
+                    {
+                        navigationAware.OnNavigatedFrom();                                           // Benachrichtigt die Seite, dass sie verlassen wurde.
+                    }
+                }
+
+                return navigated;                                                                    // Gibt zurück, ob die Navigation erfolgreich war.
             }
 
-            if (frame.Content is INavigationAware navigationAware)
-            {
-                navigationAware.OnNavigatedTo(e.ExtraData);
-            }
+            return false;                                                                            // Gibt false zurück, wenn die Navigation nicht durchgeführt wurde.
+        }
 
-            Navigated?.Invoke(sender, frame.Content.GetType());
+        public void CleanNavigation()
+            => _frame.CleanNavigation();                                                             // Bereinigt die Navigation.
+
+        private void OnNavigated(object sender, NavigationEventArgs e)                               // Ereignishandler für die Navigation.
+        {
+            if (sender is Frame frame)
+            {
+                bool clearNavigation = (bool)frame.Tag;                                              // Holt das Tag des Rahmens.
+                if (clearNavigation)
+                {
+                    frame.CleanNavigation();                                                         // Bereinigt die Navigation, wenn das Tag gesetzt ist.
+                }
+
+                if (frame.Content is INavigationAware navigationAware)
+                {
+                    navigationAware.OnNavigatedTo(e.ExtraData);                                      // Benachrichtigt die Seite, dass sie navigiert wurde.
+                }
+
+                Navigated?.Invoke(sender, frame.Content.GetType());                                  // Löst das Navigated-Ereignis aus.
+            }
         }
     }
 }
+
+
