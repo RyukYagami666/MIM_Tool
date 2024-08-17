@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;                                                                                                               // Importiert Funktionen für Windows-Formulare.
+﻿using System.Windows.Forms;
+using System.Threading;// Importiert Funktionen für Windows-Formulare.
 
 namespace MIM_Tool.Funktions
 {
@@ -68,6 +69,7 @@ namespace MIM_Tool.Funktions
             if (index == 2) Properties.Settings.Default.eMonitorIconsVerstaut3 = true;                                                                          // Setzt den Status der verstauten Icons für Monitor 3 auf true.
             if (index == 3) Properties.Settings.Default.eMonitorIconsVerstaut4 = true;                                                                          // Setzt den Status der verstauten Icons für Monitor 4 auf true.
             Properties.Settings.Default.Save();                                                                                                                 // Speichert die Einstellungen.
+            Thread.Sleep(1000);                                                                                                                                // Wartet 2 Sekunden.
         }
 
         public void MovePathToDesk(int index)                                                                                                                  // Methode zum Verschieben der gespeicherten Liste vom Speicher zurück zum Desktop.
@@ -106,6 +108,7 @@ namespace MIM_Tool.Funktions
             if (index == 2) Properties.Settings.Default.eMonitorIconsVerstaut3 = false;                                                                        // Setzt den Status der verstauten Icons für Monitor 3 auf false.
             if (index == 3) Properties.Settings.Default.eMonitorIconsVerstaut4 = false;                                                                        // Setzt den Status der verstauten Icons für Monitor 4 auf false.
             Properties.Settings.Default.Save();                                                                                                                // Speichert die Einstellungen.
+            Thread.Sleep(1000);                                                                                                                                // Wartet 2 Sekunden.
         }
     }
 }

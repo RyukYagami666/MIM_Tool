@@ -877,13 +877,13 @@ namespace MIM_Tool.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string b1 {
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool FehlerPreReload {
             get {
-                return ((string)(this["b1"]));
+                return ((bool)(this["FehlerPreReload"]));
             }
             set {
-                this["b1"] = value;
+                this["FehlerPreReload"] = value;
             }
         }
         

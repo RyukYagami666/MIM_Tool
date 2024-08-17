@@ -4,6 +4,8 @@ using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 using System.Windows;
 using System.Windows.Media;
+using System.Drawing;
+using System.Windows.Media.Imaging;
 
 namespace MIM_Tool.Views//-------------------------------------------------------------------------------------------Inizialisieren-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 {
@@ -14,6 +16,7 @@ namespace MIM_Tool.Views//------------------------------------------------------
             InitializeComponent();                                                                       // Initialisiert die Komponenten.
             DataContext = this;                                                                          // Setzt den Datenkontext auf die aktuelle Instanz.
             this.Loaded += FunktionPage_Loaded;                                                          // Abonniert das Loaded-Ereignis.
+            LoadIcons();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;                                        // Ereignis für Eigenschaftsänderungen.
@@ -36,6 +39,8 @@ namespace MIM_Tool.Views//------------------------------------------------------
             Properties.Settings.Default.SelectetMonitor = 10;                                            // Setzt den ausgewählten Monitor auf 10.
             Properties.Settings.Default.Save();                                                          // Speichert die Einstellungen.
 
+            
+
             var dodStatus = new FunktionDesktopOK();
             dodStatus.DODKontrolle();                                                                    // Führt die DOD-Kontrolle durch.
             var dosStatus = new FunktionDesktopOK();
@@ -43,8 +48,8 @@ namespace MIM_Tool.Views//------------------------------------------------------
             var dorStatus = new FunktionDesktopOK();
             dorStatus.DORKontrolle();                                                                    // Führt die DOR-Kontrolle durch.
 
-            var transparentGreen = new SolidColorBrush(Color.FromArgb(20, 0, 255, 0));                   // 50% Transparenz grünen.
-            var transparentRed = new SolidColorBrush(Color.FromArgb(20, 255, 0, 0));                     // 50% Transparenz roten.
+            var transparentGreen = new SolidColorBrush(System.Windows.Media.Color.FromArgb(20, 0, 255, 0));                   // 50% Transparenz grünen.
+            var transparentRed = new SolidColorBrush(System.Windows.Media.Color.FromArgb(20, 255, 0, 0));                     // 50% Transparenz roten.
 
             // Setzt die Sichtbarkeit der Buttons basierend auf dem Admin-Modus.
             btnGetIconList.Visibility = Properties.Settings.Default.AdminMode ? Visibility.Visible : Visibility.Collapsed;
@@ -56,6 +61,86 @@ namespace MIM_Tool.Views//------------------------------------------------------
             btnDOBearbeiten.Visibility = Properties.Settings.Default.AdminMode ? Visibility.Visible : Visibility.Collapsed;
             btnVerschieben.Visibility = Properties.Settings.Default.AdminMode ? Visibility.Visible : Visibility.Collapsed;
             btnMoniOff.Visibility = Properties.Settings.Default.AdminMode ? Visibility.Visible : Visibility.Collapsed;
+            LoadIconStatus();
+        }
+        private void LoadIcons()
+        {   
+            BitmapImage bitmapImage1 = LoadIcon(Properties.Settings.Default.pfadDeskOK + "\\DesktopOK.exe");
+            BitmapImage bitmapImage2 = LoadIcon(Properties.Settings.Default.pfadDeskOK + "\\MultiMonitorTool.exe");
+
+            if (bitmapImage1 != null) DOImage.Source = bitmapImage1;
+            if (bitmapImage2 != null) MMImage.Source = bitmapImage2;
+        }
+
+        private BitmapImage LoadIcon(string iconPath)
+        {
+            if (System.IO.File.Exists(iconPath))
+            {
+                Icon icon = System.Drawing.Icon.ExtractAssociatedIcon(iconPath);
+                return FunktionIconListe.ConvertIconToImageSource(icon);
+            }
+            return null;
+        }
+        private void LoadIconStatus()
+        {
+
+            var transparentGreen = new SolidColorBrush(System.Windows.Media.Color.FromArgb(20, 0, 255, 0));                   // 50% Transparenz grünen.
+
+            if (Properties.Settings.Default.eDeskOkDownloadDone)
+            {
+                icoDO1Status.Background = transparentGreen;
+                icoDO1Status.ToolTip = $"Donwload fertig: zuletzt ausgefüh am: {Properties.Settings.Default.eDeskOkDownloadDate}";
+            }
+            else
+            {
+                icoDO1Status.ToolTip = "Donwload: nicht fertig.";
+            }
+            if (Properties.Settings.Default.eDeskOkSavePosDone)
+            {
+                icoDO2Status.Background = transparentGreen;
+                icoDO2Status.ToolTip = $"Icon Pos Save: zuletzt ausgefüh am: {Properties.Settings.Default.eDeskOkSavePosDate}";
+            }
+            else
+            {
+                icoDO2Status.ToolTip = "Icon Pos: nicht Gespeichert.";
+            }
+            if (Properties.Settings.Default.eDeskOkDataReedDone)
+            {
+                icoDO3Status.Background = transparentGreen;
+                icoDO3Status.ToolTip = $"Icon Daten Lesen: zuletzt ausgefüh am: {Properties.Settings.Default.eDeskOkDataReedDate}";
+            }
+            else
+            {
+                icoDO3Status.ToolTip = "Icon Daten: nicht Gespeichert.";
+            }
+
+            if (Properties.Settings.Default.eMultiMonDownloadDone)
+            {
+                icoMM1Status.Background = transparentGreen;
+                icoMM1Status.ToolTip = $"Donwload fertig: zuletzt ausgefüh am: {Properties.Settings.Default.eMultiMonDownloadDate}";
+            }
+            else
+            {
+                icoMM1Status.ToolTip = "Donwload: nicht fertig.";
+            }
+            if (Properties.Settings.Default.eMultiMonSavePosDone)
+            {
+                icoMM2Status.Background = transparentGreen;
+                icoMM2Status.ToolTip = $"Monitor Configs Save; zuletzt ausgefüh am: {Properties.Settings.Default.eMultiMonSavePosDate}";
+            }
+            else
+            {
+                icoMM2Status.ToolTip = "Icon Pos: nicht Gespeichert.";
+            }
+            if (Properties.Settings.Default.eMultiMonSaveDataDone)
+            {
+                icoMM3Status.Background = transparentGreen;
+                icoMM3Status.ToolTip = $"Monitor Infos Save; zuletzt ausgefüh am: {Properties.Settings.Default.eMultiMonSaveDataDate}";
+            }
+            else
+            {
+                icoMM3Status.ToolTip = "Monitor Infos: nicht Gespeichert.";
+            }
         }
         //------------------------------------------------------------------------------------------------------------------------Ereignishandler-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 

@@ -42,41 +42,61 @@ namespace MIM_Tool.Funktions
 
             Properties.Settings.Default.Inizialisiert = true;                // Setzt die Initialisierungseinstellung auf true
             Properties.Settings.Default.Save();                              // Speichert die Einstellungen
+
+            MessageBox.Show("Daten wurden geladen");                                                                                                                            // Zeigt eine Nachricht an, dass die Daten neu geladen wurden
+        }
+
+        public void DatenReset()
+        {
+            // Setze die Monitor-Informationen zurück
+            Properties.Settings.Default.InfoMonitor1 = "";                  // Setzt die Informationen für Monitor 1 zurück
+            Properties.Settings.Default.InfoMonitor2 = "";                  // Setzt die Informationen für Monitor 2 zurück
+            Properties.Settings.Default.InfoMonitor3 = "";                  // Setzt die Informationen für Monitor 3 zurück
+            Properties.Settings.Default.InfoMonitor4 = "";                  // Setzt die Informationen für Monitor 4 zurück
+
+            // Setze die Icon-Zuweisungen und -Status zurück
+            Properties.Settings.Default.eMonitorVorhanden1 = false;         // Setzt den Status für Monitor 1 zurück
+            Properties.Settings.Default.eMonitorAktiv1 = false;             // Setzt den Aktivitätsstatus für Monitor 1 zurück
+            Properties.Settings.Default.eMonitorVorhanden2 = false;         // Setzt den Status für Monitor 2 zurück
+            Properties.Settings.Default.eMonitorAktiv2 = false;             // Setzt den Aktivitätsstatus für Monitor 2 zurück
+            Properties.Settings.Default.eMonitorVorhanden3 = false;         // Setzt den Status für Monitor 3 zurück
+            Properties.Settings.Default.eMonitorAktiv3 = false;             // Setzt den Aktivitätsstatus für Monitor 3 zurück
+            Properties.Settings.Default.eMonitorVorhanden4 = false;         // Setzt den Status für Monitor 4 zurück
+            Properties.Settings.Default.eMonitorAktiv4 = false;             // Setzt den Aktivitätsstatus für Monitor 4 zurück
+
+            // Setze die Desktop-Informationen zurück
+            Properties.Settings.Default.MultiMonData = null;                // Setzt die Multi-Monitor-Daten zurück
+            Properties.Settings.Default.MultiMonDataTrim1 = null;           // Setzt die getrimmten Multi-Monitor-Daten für Monitor 1 zurück
+            Properties.Settings.Default.MultiMonDataTrim2 = null;           // Setzt die getrimmten Multi-Monitor-Daten für Monitor 2 zurück
+            Properties.Settings.Default.MultiMonDataTrim3 = null;           // Setzt die getrimmten Multi-Monitor-Daten für Monitor 3 zurück
+            Properties.Settings.Default.MultiMonDataTrim4 = null;           // Setzt die getrimmten Multi-Monitor-Daten für Monitor 4 zurück
+
+            Properties.Settings.Default.SelectetMonitor = 10;               // Setzt den ausgewählten Monitor zurück
+            Properties.Settings.Default.Save();                             // Speichert die Einstellungen
+
         }
 
         public void DatenLesenAbfrage()
         {
-            var result = MessageBox.Show("Monitordaten erneut Laden, Gespeichertes wird überschrieben", "Reload", MessageBoxButtons.YesNo, MessageBoxIcon.Question); // Zeigt eine Nachricht an, um zu fragen, ob die Monitor-Daten erneut geladen werden sollen
-
-            if (result == DialogResult.Yes)
+            Properties.Settings.Default.FehlerPreReload = false;
+            if (Properties.Settings.Default.eMonitorVorhanden1 && (!Properties.Settings.Default.eMonitorAktiv1 || Properties.Settings.Default.eMonitorIconsVerstaut1)) Properties.Settings.Default.FehlerPreReload = true;
+            if (Properties.Settings.Default.eMonitorVorhanden2 && (!Properties.Settings.Default.eMonitorAktiv2 || Properties.Settings.Default.eMonitorIconsVerstaut2)) Properties.Settings.Default.FehlerPreReload = true;
+            if (Properties.Settings.Default.eMonitorVorhanden3 && (!Properties.Settings.Default.eMonitorAktiv3 || Properties.Settings.Default.eMonitorIconsVerstaut3)) Properties.Settings.Default.FehlerPreReload = true;
+            if (Properties.Settings.Default.eMonitorVorhanden4 && (!Properties.Settings.Default.eMonitorAktiv4 || Properties.Settings.Default.eMonitorIconsVerstaut4)) Properties.Settings.Default.FehlerPreReload = true;
+            Properties.Settings.Default.Save();
+            if (Properties.Settings.Default.FehlerPreReload)
             {
-                // Setze die Monitor-Informationen zurück
-                Properties.Settings.Default.InfoMonitor1 = "";                  // Setzt die Informationen für Monitor 1 zurück
-                Properties.Settings.Default.InfoMonitor2 = "";                  // Setzt die Informationen für Monitor 2 zurück
-                Properties.Settings.Default.InfoMonitor3 = "";                  // Setzt die Informationen für Monitor 3 zurück
-                Properties.Settings.Default.InfoMonitor4 = "";                  // Setzt die Informationen für Monitor 4 zurück
+                MessageBox.Show("Es sind noch nicht alle Monitore aktiviert oder die Icons sind noch nicht Zurück! \nFalls du Trotzdem die Daten Neu Laden willst, gehe in die Einstellung.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error); // Zeigt eine Fehlermeldung an, wenn nicht alle Monitore aktiviert sind oder die Icons noch nicht verstaut sind
+            }
+            else
+            {
+                var result = MessageBox.Show("Monitordaten erneut Laden, Gespeichertes wird überschrieben", "Reload", MessageBoxButtons.YesNo, MessageBoxIcon.Question); // Zeigt eine Nachricht an, um zu fragen, ob die Monitor-Daten erneut geladen werden sollen
 
-                // Setze die Icon-Zuweisungen und -Status zurück
-                Properties.Settings.Default.eMonitorVorhanden1 = false;         // Setzt den Status für Monitor 1 zurück
-                Properties.Settings.Default.eMonitorAktiv1 = false;             // Setzt den Aktivitätsstatus für Monitor 1 zurück
-                Properties.Settings.Default.eMonitorVorhanden2 = false;         // Setzt den Status für Monitor 2 zurück
-                Properties.Settings.Default.eMonitorAktiv2 = false;             // Setzt den Aktivitätsstatus für Monitor 2 zurück
-                Properties.Settings.Default.eMonitorVorhanden3 = false;         // Setzt den Status für Monitor 3 zurück
-                Properties.Settings.Default.eMonitorAktiv3 = false;             // Setzt den Aktivitätsstatus für Monitor 3 zurück
-                Properties.Settings.Default.eMonitorVorhanden4 = false;         // Setzt den Status für Monitor 4 zurück
-                Properties.Settings.Default.eMonitorAktiv4 = false;             // Setzt den Aktivitätsstatus für Monitor 4 zurück
-
-                // Setze die Desktop-Informationen zurück
-                Properties.Settings.Default.MultiMonData = null;                // Setzt die Multi-Monitor-Daten zurück
-                Properties.Settings.Default.MultiMonDataTrim1 = null;           // Setzt die getrimmten Multi-Monitor-Daten für Monitor 1 zurück
-                Properties.Settings.Default.MultiMonDataTrim2 = null;           // Setzt die getrimmten Multi-Monitor-Daten für Monitor 2 zurück
-                Properties.Settings.Default.MultiMonDataTrim3 = null;           // Setzt die getrimmten Multi-Monitor-Daten für Monitor 3 zurück
-                Properties.Settings.Default.MultiMonDataTrim4 = null;           // Setzt die getrimmten Multi-Monitor-Daten für Monitor 4 zurück
-
-                Properties.Settings.Default.SelectetMonitor = 10;               // Setzt den ausgewählten Monitor zurück
-                Properties.Settings.Default.Save();                             // Speichert die Einstellungen
-
-                DatenLesen();                                                   // Ruft die Methode zum Lesen der Daten auf
+                if (result == DialogResult.Yes)
+                {
+                    DatenReset();
+                    DatenLesen();                                                   // Ruft die Methode zum Lesen der Daten auf
+                }
             }
         }
     }

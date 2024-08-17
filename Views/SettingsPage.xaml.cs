@@ -8,6 +8,7 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.IO;
+using System.Windows.Forms;
 
 namespace MIM_Tool.Views;//--------------------------------------------------------------------------------------Inizialiesieren-----------------------------------------------------------------------------
 
@@ -131,6 +132,7 @@ public partial class SettingsPage : Page, INotifyPropertyChanged, INavigationAwa
         iniziStart.Initialisieren();                                               // Initialisiert das Programm
     }
 
+
     private void btnAdmin_Click(object sender, RoutedEventArgs e)
     {
         // Schaltet den Admin-Modus um
@@ -138,5 +140,17 @@ public partial class SettingsPage : Page, INotifyPropertyChanged, INavigationAwa
         else Properties.Settings.Default.AdminMode = true;
 
         Properties.Settings.Default.Save();                                        // Speichert die Einstellungen
+    }
+
+    private void btnReload_Click(object sender, RoutedEventArgs e)
+    {
+        var result = System.Windows.Forms.MessageBox.Show("Monitordaten erneut Laden, Gespeichertes wird überschrieben", "Reload", MessageBoxButtons.YesNo, MessageBoxIcon.Question); // Zeigt eine Nachricht an, um zu fragen, ob die Monitor-Daten erneut geladen werden sollen
+
+        if (result == DialogResult.Yes)
+        {
+            var datenLesen = new Funktion2DatenLesen();
+            datenLesen.DatenReset();
+            datenLesen.DatenLesen();                                                   // Ruft die Methode zum Lesen der Daten auf
+        }
     }
 }

@@ -37,8 +37,8 @@ public partial class HauptseitePage : Page, INotifyPropertyChanged
         MonitorGröße();                                                               // Setzt die Größe der Monitore
         MultiMonPos();                                                                // Setzt die Position der Monitore
 
-        Properties.Settings.Default.SelectetMonitor = 10;                             // Setzt den ausgewählten Monitor auf 10
-        Properties.Settings.Default.Save();                                           // Speichert die Einstellungen
+        //Properties.Settings.Default.SelectetMonitor = 10;                             // Setzt den ausgewählten Monitor auf 10
+        //Properties.Settings.Default.Save();                                           // Speichert die Einstellungen
 
         // Setzt die Sichtbarkeit der Monitore basierend auf den Einstellungen
         Moni1.Visibility = Properties.Settings.Default.eMonitorVorhanden1 ? Visibility.Visible : Visibility.Collapsed;
@@ -227,6 +227,7 @@ public partial class HauptseitePage : Page, INotifyPropertyChanged
 
     public void TextSchreiben(int GewählterMonitor)                           // Definiert eine Methode zum Schreiben von Textinformationen für einen ausgewählten Monitor
     {
+        if (GewählterMonitor == 10) GewählterMonitor = 0;
         string[][] monitorData =                                              // Erstellt ein Array von Monitor-Datenarrays
         {
             monitorData1,
@@ -241,6 +242,20 @@ public partial class HauptseitePage : Page, INotifyPropertyChanged
             Properties.Settings.Default.eMonitorAktiv3,
             Properties.Settings.Default.eMonitorAktiv4
         };
+        bool[] verstaut =                                                        // Erstellt ein Array von Aktivitätsstatus für die Monitore
+        {
+            Properties.Settings.Default.eMonitorIconsVerstaut1,
+            Properties.Settings.Default.eMonitorIconsVerstaut2,
+            Properties.Settings.Default.eMonitorIconsVerstaut3,
+            Properties.Settings.Default.eMonitorIconsVerstaut4
+        };
+        string[] count =                                                             // Erstellt ein Array von Monitor-Icon-Zählern
+        {
+            Properties.Settings.Default.eMonitorIconsCount1.ToString(),
+            Properties.Settings.Default.eMonitorIconsCount2.ToString(),
+            Properties.Settings.Default.eMonitorIconsCount3.ToString(),
+            Properties.Settings.Default.eMonitorIconsCount4.ToString()
+        };
         if (monitorData[GewählterMonitor].Length > 1)                         // Überprüft, ob das ausgewählte Monitor-Datenarray mehr als ein Element enthält
         {                                                                   // Setzt die Textfelder mit den entsprechenden Monitor-Daten
             t2a1.Text = monitorData[GewählterMonitor][1];                   //Schreiben des Monitor-Namens
@@ -253,6 +268,8 @@ public partial class HauptseitePage : Page, INotifyPropertyChanged
             t9a15.Text = monitorData[GewählterMonitor][15];                 //Schreiben des Maximalen Monitor-Auflösung
             t10a17.Text = monitorData[GewählterMonitor][17];                //Schreiben des Monitor-DeviceNameID
             t11a19.Text = monitorData[GewählterMonitor][19];                //Schreiben des Monitor-Seriennummer
+            t12a21.Text = count[GewählterMonitor];                          // Setzt den Text von t12a21 auf die Anzahl der Monitor-Icons
+            t12a22.Text = verstaut[GewählterMonitor] ? "Verstaut" : "" ;    //Schreiben des Monitor-DeviceName
         }
     }
 
@@ -265,7 +282,6 @@ public partial class HauptseitePage : Page, INotifyPropertyChanged
         Properties.Settings.Default.SelectetMonitor = 0;                                            // Setzt den ausgewählten Monitor auf 0
         Properties.Settings.Default.Save();                                                         // Speichert die geänderten Einstellungen
         TextSchreiben(Properties.Settings.Default.SelectetMonitor);                                 // Schreibt die Textinformationen für den ausgewählten Monitor
-        t12a21.Text = Properties.Settings.Default.eMonitorIconsCount1.ToString();                   // Setzt den Text von t12a21 auf die Anzahl der Monitor-Icons
         List<FunktionIconListe.FileIconInfo> savedIcons = FunktionIconListe.gespeicherteIcons();    // Ruft die gespeicherten Icons ab
         if (savedIcons != null) SavedLists.ItemsSource = savedIcons;                                // Setzt die Datenquelle der gespeicherten Listen auf die abgerufenen Icons
         Thread.Sleep(300);                                                                          // Wartet 300 Millisekunden
@@ -277,7 +293,6 @@ public partial class HauptseitePage : Page, INotifyPropertyChanged
         Properties.Settings.Default.SelectetMonitor = 1;                                             // Setzt den ausgewählten Monitor auf 0
         Properties.Settings.Default.Save();                                                          // Speichert die geänderten Einstellungen
         TextSchreiben(Properties.Settings.Default.SelectetMonitor);                                  // Schreibt die Textinformationen für den ausgewählten Monitor
-        t12a21.Text = Properties.Settings.Default.eMonitorIconsCount2.ToString();                    // Setzt den Text von t12a21 auf die Anzahl der Monitor-Icons
         List<FunktionIconListe.FileIconInfo> savedIcons = FunktionIconListe.gespeicherteIcons();     // Ruft die gespeicherten Icons ab
         if (savedIcons != null) SavedLists.ItemsSource = savedIcons;                                 // Setzt die Datenquelle der gespeicherten Listen auf die abgerufenen Icons
         Thread.Sleep(300);                                                                           // Wartet 300 Millisekunden
@@ -289,7 +304,6 @@ public partial class HauptseitePage : Page, INotifyPropertyChanged
         Properties.Settings.Default.SelectetMonitor = 2;                                             // Setzt den ausgewählten Monitor auf 0
         Properties.Settings.Default.Save();                                                          // Speichert die geänderten Einstellungen
         TextSchreiben(Properties.Settings.Default.SelectetMonitor);                                  // Schreibt die Textinformationen für den ausgewählten Monitor
-        t12a21.Text = Properties.Settings.Default.eMonitorIconsCount3.ToString();                    // Setzt den Text von t12a21 auf die Anzahl der Monitor-Icons
         List<FunktionIconListe.FileIconInfo> savedIcons = FunktionIconListe.gespeicherteIcons();     // Ruft die gespeicherten Icons ab
         if (savedIcons != null) SavedLists.ItemsSource = savedIcons;                                 // Setzt die Datenquelle der gespeicherten Listen auf die abgerufenen Icons
         Thread.Sleep(300);                                                                           // Wartet 300 Millisekunden
@@ -301,7 +315,6 @@ public partial class HauptseitePage : Page, INotifyPropertyChanged
         Properties.Settings.Default.SelectetMonitor = 3;                                             // Setzt den ausgewählten Monitor auf 0
         Properties.Settings.Default.Save();                                                          // Speichert die geänderten Einstellungen
         TextSchreiben(Properties.Settings.Default.SelectetMonitor);                                  // Schreibt die Textinformationen für den ausgewählten Monitor
-        t12a21.Text = Properties.Settings.Default.eMonitorIconsCount4.ToString();                    // Setzt den Text von t12a21 auf die Anzahl der Monitor-Icons
         List<FunktionIconListe.FileIconInfo> savedIcons = FunktionIconListe.gespeicherteIcons();     // Ruft die gespeicherten Icons ab
         if (savedIcons != null) SavedLists.ItemsSource = savedIcons;                                 // Setzt die Datenquelle der gespeicherten Listen auf die abgerufenen Icons
         Thread.Sleep(300);                                                                           // Wartet 300 Millisekunden
@@ -320,6 +333,7 @@ public partial class HauptseitePage : Page, INotifyPropertyChanged
             MessageBox.Show("Bitte wählen Sie erst Monitor aus");                                // Zeigt eine Nachricht an, wenn kein Monitor ausgewählt ist
         }
         HauptPage_Loaded(this, new RoutedEventArgs());                                                                                                                          // Lädt die Hauptseite neu
+        TextSchreiben(Properties.Settings.Default.SelectetMonitor);
     }
 
     private void btnCreateShortCut_Click(object sender, RoutedEventArgs e)                       // Ereignishandler für den Klick auf die Schaltfläche zum Erstellen einer Verknüpfung
@@ -332,22 +346,37 @@ public partial class HauptseitePage : Page, INotifyPropertyChanged
     {
         string[][] monitorData =
         {
-        monitorData1,                                                                            // Daten für Monitor 1
-        monitorData2,                                                                            // Daten für Monitor 2
-        monitorData3,                                                                            // Daten für Monitor 3
-        monitorData4                                                                             // Daten für Monitor 4
+            monitorData1,                                                                            // Daten für Monitor 1
+            monitorData2,                                                                            // Daten für Monitor 2
+            monitorData3,                                                                            // Daten für Monitor 3
+            monitorData4                                                                             // Daten für Monitor 4
         };
+        bool[] aktiv =
+        {
+            Properties.Settings.Default.eMonitorAktiv1,
+            Properties.Settings.Default.eMonitorAktiv2,
+            Properties.Settings.Default.eMonitorAktiv3,
+            Properties.Settings.Default.eMonitorAktiv4
+        };
+
         if (Properties.Settings.Default.SelectetMonitor < 4)                                     // Überprüft, ob ein gültiger Monitor ausgewählt ist
         {
             string pathExe = $"{Properties.Settings.Default.pfadDeskOK}\\MultiMonitorTool.exe";  // Pfad zur MultiMonitorTool.exe
-            FunktionMultiMonitor.MonitorDeaktivieren(pathExe, monitorData[Properties.Settings.Default.SelectetMonitor][17], Properties.Settings.Default.SelectetMonitor); // Deaktiviert den ausgewählten Monitor
-            HauptPage_Loaded(this, new RoutedEventArgs());                                       // Lädt die Hauptseite neu
+            if (aktiv[Properties.Settings.Default.SelectetMonitor])                              // Überprüft, ob der ausgewählte Monitor aktiv ist
+            {                           
+                FunktionMultiMonitor.MonitorDeaktivieren(pathExe, monitorData[Properties.Settings.Default.SelectetMonitor][17], Properties.Settings.Default.SelectetMonitor); // Deaktiviert den ausgewählten Monitor
+            }
+            else
+            {
+                FunktionMultiMonitor.MonitorAktivieren(pathExe, monitorData[Properties.Settings.Default.SelectetMonitor][17], Properties.Settings.Default.SelectetMonitor); // Aktiviert den ausgewählten Monitor
+            }
         }
         else
         {
             MessageBox.Show("Bitte wählen Sie erst Monitor aus");                                // Zeigt eine Nachricht an, wenn kein Monitor ausgewählt ist
         }
         HauptPage_Loaded(this, new RoutedEventArgs());                                                                                                                          // Lädt die Hauptseite neu
+        TextSchreiben(Properties.Settings.Default.SelectetMonitor);
     }
 
     private void btnIconsVerschieben_Click(object sender, RoutedEventArgs e)                     // Ereignishandler für den Klick auf die Schaltfläche zum Verschieben der Icons
@@ -388,6 +417,7 @@ public partial class HauptseitePage : Page, INotifyPropertyChanged
             MessageBox.Show("Bitte wählen Sie erst Monitor aus");                                                                                                               // Zeigt eine Nachricht an, wenn kein Monitor ausgewählt ist
         }
         HauptPage_Loaded(this, new RoutedEventArgs());                                                                                                                          // Lädt die Hauptseite neu
+        TextSchreiben(Properties.Settings.Default.SelectetMonitor);
     }
   
     private void btnReload_Click(object sender, RoutedEventArgs e)                                                                                                              // Ereignishandler für den Klick auf die Schaltfläche zum Neuladen der Daten
@@ -395,9 +425,9 @@ public partial class HauptseitePage : Page, INotifyPropertyChanged
         var reloadData = new Funktion2DatenLesen();                                                                                                                             // Erstellt eine neue Instanz von Funktion2DatenLesen
         reloadData.DatenLesenAbfrage();                                                                                                                                         // Führt die Datenleseabfrage durch
 
-        MessageBox.Show("Daten wurden neu geladen");                                                                                                                            // Zeigt eine Nachricht an, dass die Daten neu geladen wurden
 
         HauptPage_Loaded(this, new RoutedEventArgs());                                                                                                                          // Lädt die Hauptseite neu
+        TextSchreiben(Properties.Settings.Default.SelectetMonitor);
     }
 
 }

@@ -13,6 +13,7 @@ using System.IO;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Threading;
+using System.Media;
 
 namespace MIM_Tool;
 
@@ -39,12 +40,11 @@ public partial class App : Application
         {
             if (int.TryParse(e.Args[0], out int auswahl))
             {
-                MessageBox.Show($"Auswahl: {auswahl}", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                SystemSounds.Exclamation.Play();
+
                 var kontrolle = new Funktion3MonitorKontrolle();
                 kontrolle.MonitorKontrolle(auswahl);                                        // Führt die MonitorKontrolle-Funktion aus
-
-                                                                                            // Anwendung beenden, nachdem die Funktion ausgeführt wurde
-                Shutdown();
+                Shutdown();                                                                          // Anwendung beenden, nachdem die Funktion ausgeführt wurde
             }
             else
             {

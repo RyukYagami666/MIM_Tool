@@ -215,8 +215,8 @@
     <Setting Name="AdminMode" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="b1" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="FehlerPreReload" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="b2" Type="System.String" Scope="User">
       <Value Profile="(Default)" />

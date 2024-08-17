@@ -16,11 +16,21 @@
             <RowDefinition Height="48" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+
         <TextBlock
                 Style="{StaticResource PageTitleStyle}"
                 Margin="{StaticResource MediumLeftMargin}"
                 Text="{x:Static properties:Resources.HauptseitePageTitle}" />
         <Grid Grid.Row="1" Background="{DynamicResource MahApps.Brushes.Gray10}" Margin="24,0,24,0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20*" />
+                <ColumnDefinition Width="13*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="18*" />
+                <RowDefinition Height="20*" />
+            </Grid.RowDefinitions>
+
 
             <Button x:Name="Moni1" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Moni1_Click"
                     ToolTip="Monitor 1: &#x0a; Angezeigte Monitore haben ungefähr die Position der Windows Einstellung. &#x0a; Dies dient zur Übersicht, falls Namen nicht bekannt. &#x0a; Es werden auch: Namen, Aktivität und ob Primär dargestellt. &#x0a; Mit dem Klick wählst du den Monitor aus, um damit weiter zu Arbeiten. &#x0a; Monitorname Blau = Primer Monitor; Feld stark ausgegraut = Monitor inaktiv."/>
@@ -31,7 +41,8 @@
             <Button x:Name="Moni4" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Moni4_Click"
                     ToolTip="Monitor 4: &#x0a; Angezeigte Monitore haben ungefähr die Position der Windows Einstellung. &#x0a; Dies dient zur Übersicht, falls Namen nicht bekannt. &#x0a; Es werden auch: Namen, Aktivität und ob Primär dargestellt. &#x0a; Mit dem Klick wählst du den Monitor aus, um damit weiter zu Arbeiten. &#x0a; Monitorname Blau = Primer Monitor; Feld stark ausgegraut = Monitor inaktiv."/>
 
-            <Border BorderBrush="Black" BorderThickness="2,2,2,2" Margin="0,20,25,20" Grid.RowSpan="2" HorizontalAlignment="Right" Width="300" CornerRadius="8,8,8,8" Panel.ZIndex="100" ToolTip="Monitorinfos: &#x0a;  hier werden alle Monitorinfos vom ausgewählten Monitor angezeigt &#x0a;  diese werden bei der Initialisierung gelesen">
+            <Border BorderBrush="Black" Grid.Column="1" BorderThickness="2,2,2,2" Margin="10,20,20,15" Grid.RowSpan="2" CornerRadius="8,8,8,8" Panel.ZIndex="100" 
+                    ToolTip="Monitorinfos: &#x0a;  hier werden alle Monitorinfos vom ausgewählten Monitor angezeigt &#x0a;  diese werden bei der Initialisierung gelesen">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"/>
@@ -78,6 +89,7 @@
                     <TextBlock Grid.Row="11" Grid.Column="1" x:Name="t11a19" HorizontalAlignment="left" VerticalAlignment="top" FontSize="10" Padding="10,10,0,0"/>
                     <TextBlock Grid.Row="12" Text="Gespeicherte Icons:" HorizontalAlignment="left" VerticalAlignment="top" FontSize="10" Padding="10,10,0,0"/>
                     <TextBlock Grid.Row="12" Grid.Column="1" x:Name="t12a21" HorizontalAlignment="left" VerticalAlignment="top" FontSize="10" Padding="10,10,0,0"/>
+                    <TextBlock Grid.Row="12" Grid.Column="1" x:Name="t12a22" HorizontalAlignment="left" VerticalAlignment="top" FontSize="10" Padding="30,10,0,0"/>
 
                     <Label Content="Icon Liste"   Grid.Row="13" Grid.Column="0" Panel.ZIndex="30" Margin="12,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" IsHitTestVisible="false"/>
                     <ComboBox  x:Name="SavedLists" Grid.Row="13" Grid.Column="0" Grid.ColumnSpan="2" IsReadOnly="True" Text="Liste der icons" FontSize="9" BorderThickness="2" Padding="2,0,2,2" BorderBrush="#FF414040" MinHeight="24" FontStretch="UltraCondensed" ClipToBounds="True" Margin="2,3,2,0" SnapsToDevicePixels="False" Background="#FF454545">
@@ -93,7 +105,7 @@
                 </Grid>
             </Border>
 
-            <Border BorderBrush="Black" BorderThickness="2,2,2,2" Margin="25,0,0,20" HorizontalAlignment="Left" Width="400" Height="190" CornerRadius="8,8,8,8" VerticalAlignment="Bottom" >
+            <Border BorderBrush="Black" Grid.Row="1" BorderThickness="2,2,2,2" Margin="20,10,10,15" CornerRadius="8,8,8,8" >
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="10"/>
@@ -137,7 +149,7 @@
                         </StackPanel>
                     </Button>
 
-                    <Button x:Name="btnMonitorSwitch" Grid.Row="2" Grid.Column="1" Margin="0,50,10,6" HorizontalAlignment="Right" Width="44" Padding="3,3,3,3 " Grid.RowSpan="2" Click="btnMonitorSwitch_Click"
+                    <Button x:Name="btnMonitorSwitch" Grid.Row="2" Grid.Column="1" Margin="0,49,10,7" HorizontalAlignment="Right" Width="44" Padding="3,3,3,3 " Grid.RowSpan="2" Click="btnMonitorSwitch_Click"
                             ToolTip="Monitor Schalter:  &#x0a; Hier kannst du den ausgewählten Monitor aktivieren oder deaktivieren  &#x0a; dabei werden keine Icons verschoben jedoch werden Daten gelesen." >
                         <StackPanel Orientation="Horizontal">
                             <TextBlock x:Name="spiegel252" FontFamily="Segoe MDL2 Assets" FontSize="17" Text="&#xEB55;" Height="23" />
@@ -181,8 +193,8 @@
                     </Button>
                 </Grid>
             </Border>
-            <Button x:Name="btnReload" Content="&#xE117;" FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Left" Height="40" Margin="375,135,0,0" VerticalAlignment="Top" Width="40" FontSize="16" Click="btnReload_Click"
-                     ToolTip="Daten Lesen :  &#x0a; Hiermit werden Monitordaten und Iconposition neu gelesen u. Gespeichert &#x0a; Gespeicherte Daten werden überschrieben also vorsichtig."/>
+            <Button x:Name="btnReload" Content="&#xE117;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,10" FontSize="16" Click="btnReload_Click"
+                     ToolTip="Daten Lesen :  &#x0a; Hiermit werden Monitordaten und Iconposition neu gelesen u. Gespeichert &#x0a; Gespeicherte Daten werden überschrieben also vorsichtig." HorizontalAlignment="Right" Width="40" Height="40" VerticalAlignment="Bottom"/>
         </Grid>
     </Grid>
 </Page>

@@ -102,21 +102,26 @@
                         </Grid>
                     </StackPanel>
 
-                    <Grid Margin="0,10,0,0">
+                    <Grid Margin="0,10,0,0" >
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="1.7*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
 
                         <TextBlock
                             Style="{StaticResource BodyTextStyle}"
-                            Text="Gespeicherte Einstellungen zurücksetzen:" 
+                            Text="Gespeicherte Einstellungen zurücksetzen oder Neu Laden:" 
                             VerticalAlignment="center"
                             Grid.Column="0"/>
 
                         <Button x:Name="btnReset" Content="Reset" MinHeight="20" Width="100" Padding="3" Grid.Column="1" 
-                                Click="btnReset_Click" HorizontalAlignment="Left" VerticalAlignment="center" Margin="0,0,100,0"
-                                 ToolTip="Reset:  &#x0a; Hier werden alle Hintergrundsdaten gelöscht.  &#x0a; Anschließend wird die Initialisierung erneut durchgeführt. &#x0a; Nur durchführen wenn du absolut sicher bist oder im Fehlerfall! "/>
+                                Click="btnReset_Click" HorizontalAlignment="Right" VerticalAlignment="center" 
+                                ToolTip="Reset:  &#x0a; Hier werden alle Hintergrundsdaten gelöscht.  &#x0a; Anschließend wird die Initialisierung erneut durchgeführt. &#x0a; Nur durchführen wenn du absolut sicher bist oder im Fehlerfall! "/>
+                        <Button x:Name="btnReload" Content="Neu Laden" MinHeight="20" Width="100" Padding="3" Grid.Column="2" 
+                                Click="btnReload_Click" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                ToolTip="Neu Laden:  &#x0a; Hier kannst du alle Monitordaten neu laden, &#x0a; ohne darauf zu achten ob Monitore deaktiviert sind oder Icons verstaut.  &#x0a; Wichtigige Daten werden evtl Falsch Gespeichert wie z.B.: &#x0a; Icon Position; Monitor Auflösung etc. &#x0a; &#x0a;Achte drauf was du tust! "/>
+
                     </Grid>
                 </StackPanel>
 
@@ -137,7 +142,8 @@
                 </StackPanel>
 
             </StackPanel>
-            <Button x:Name="btnAdmin" Height="24" Margin="517,200,211,153" Grid.Row="1" Opacity="0" IsHitTestVisible="True" Click="btnAdmin_Click"/>
+            <Button x:Name="btnAdmin" Height="24" Margin="335,80,393,273" Grid.Row="1" Opacity="0" IsHitTestVisible="True" Click="btnAdmin_Click"
+                    ToolTip="a"/>
 
         </Grid>
     </ScrollViewer>

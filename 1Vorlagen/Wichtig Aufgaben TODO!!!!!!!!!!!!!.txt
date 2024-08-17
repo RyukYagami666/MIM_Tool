@@ -3,6 +3,8 @@ Debugg LogFile
 müll entfernen
 Sprache gradeziehen
 
+FailSafe bei inizialisierung
+
 
 zu einer .exe packen
 

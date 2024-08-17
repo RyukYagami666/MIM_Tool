@@ -17,76 +17,104 @@
             Style="{StaticResource PageTitleStyle}"
             Margin="{StaticResource MediumLeftMargin}"
             Text="{x:Static properties:Resources.FunktionPageTitle}" />
-        <Grid
+        <Grid x:Name="grid"
             Grid.Row="1"
             Margin="{StaticResource MediumLeftRightMargin}"
             Background="{DynamicResource MahApps.Brushes.Gray10}">
-            <Button x:Name="btnGetIconList"
-                    Content="Get Icon List"
-                    HorizontalAlignment="Left"
-                    Height="60" Margin="350,50,0,0"
-                    VerticalAlignment="Top"
-                    Width="100"
-                    Click="btnGetIconList_Click"/>
-            <Button x:Name="btnMoniScann"
-                    Content="Monitor Scan"
-                    HorizontalAlignment="Left"
-                    Height="60"
-                    Margin="350,111,0,0"
-                    VerticalAlignment="Top"
-                    Width="100"
-                    Click="btnMoniScann_Click"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20*" />
+                <ColumnDefinition Width="4*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="24*" />
+                <RowDefinition Height="20*" />
+                <RowDefinition Height="6*" />
+                <RowDefinition Height="20*" />
+                <RowDefinition Height="16*" />
+            </Grid.RowDefinitions>
+
             <Button x:Name="btnIniziStart"
                     Content="Initialisierung " 
-                    HorizontalAlignment="Left" 
-                    Height="160" Margin="485,61,0,0" 
-                    VerticalAlignment="Top" 
-                    Width="65" 
-                    Click="btnIniziStart_Click"/>
-            <Button x:Name="btnDeskOkDownload"
-                    Content="DesktopOK Download" 
-                    HorizontalAlignment="Left" 
-                    Height="60" Margin="350,0,0,0" 
-                    VerticalAlignment="Center" 
-                    Width="100"
-                    Click="btnDeskOkDownload_Click" />
-            <Button x:Name="btnDOSavePos"
-                    Content="Save Icon Pos" 
-                    HorizontalAlignment="Left" 
-                    Height="60" 
-                    Margin="350,231,0,0" 
-                    VerticalAlignment="Top" 
-                    Width="100"
-                    Click="btnDOSavePos_Click"/>
-            <Button x:Name="btnDOReadData"
-                    Content="Datei Lesen" 
-                    HorizontalAlignment="Left" 
-                    Height="60" 
-                    Margin="350,291,0,0" 
-                    VerticalAlignment="Top" 
-                    Width="100"
-                    Click="btnDOReadData_Click"/>
-            <Button x:Name="btnDOBearbeiten"
-                    Content="Daten Bearbeiten" 
-                    HorizontalAlignment="Left" 
-                    Height="60" Margin="450,291,0,0" 
-                    VerticalAlignment="Top" 
-                    Width="100"
-                    Click="btnDOBearbeiten_Click"/>
-            <Button x:Name="btnVerschieben"
+                    Click="btnIniziStart_Click" Grid.Column="1" Grid.Row="4" Margin="10"/>
+
+
+            <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="0,10,0,0" TextWrapping="Wrap" Text="Allgemeine Statuse:" VerticalAlignment="Top"/>
+
+            <Border BorderBrush="Black" BorderThickness="1" Margin="10" CornerRadius="5"/>
+            <Image x:Name="DOImage" Grid.Row="1" Grid.Column="1" Width="70"  Height="70" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,28,20,0"
+                   ToolTip="DesktopOk Status:  &#x0a; Hiermit werden Die Statuse angezeigt  &#x0a;   Donwload fertig: bei Grün Erfolgreich runtergeladen. &#x0a;   Icon Pos Save; bei Grün Icon Positionen in extra Datei Gespeichert. &#x0a;   Daten Gelesen; bei Grün wurden Informatonen aus Datei gelesen und lesbar gespeichert."/>
+            <Border x:Name="icoDO1Status" BorderBrush="Black" Grid.Row="1" Grid.Column="1" Width="40" Height="40" Margin="0,0,10,0" BorderThickness="1" CornerRadius="20" HorizontalAlignment="Right" VerticalAlignment="Top" Background="{DynamicResource MahApps.Brushes.Gray10}" >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30">
+                    <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="30" Text="&#xE159;" Height="30"/>
+                </StackPanel>
+            </Border>
+            <Border x:Name="icoDO2Status" BorderBrush="Black" Grid.Row="1" Grid.Column="1" Width="40" Height="40" Margin="0,8,65,0" BorderThickness="1" CornerRadius="20" HorizontalAlignment="Right" VerticalAlignment="Top"  Background="{DynamicResource MahApps.Brushes.Gray10}">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30">
+                    <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="30" Text="&#xE1E4;" Height="25" Width="28"/>
+                </StackPanel>
+            </Border>
+            <Border  x:Name="icoDO3Status" BorderBrush="Black" Grid.Row="1" Grid.Column="1" Width="40" Height="40" Margin="0,50,85,0" BorderThickness="1" CornerRadius="20" HorizontalAlignment="Right" VerticalAlignment="Top"  Background="{DynamicResource MahApps.Brushes.Gray10}">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30">
+                    <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="23" Text="&#xF000;" Height="24" Width="21"/>
+                </StackPanel>
+            </Border>
+
+
+            <Image x:Name="MMImage" Grid.Row="3" Grid.Column="1" Width="70"  Height="70" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,28,20,0"
+                   ToolTip="MultiMonitorTool Status:  &#x0a; Hiermit werden Die Statuse angezeigt  &#x0a;   Donwload fertig: bei Grün Erfolgreich runtergeladen. &#x0a;   Monitor Configs Save; bei Grün alle Monitor Einstellungen in extra Config Datei Gespeichert. &#x0a;   Monitor Infos Save; bei Grün wurden Informatonen aus Datei gelesen und lesbar gespeichert."/>
+            <Border x:Name="icoMM1Status" BorderBrush="Black" Grid.Row="3" Grid.Column="1" Width="40" Height="40" Margin="0,0,10,0" BorderThickness="1" CornerRadius="20" HorizontalAlignment="Right" VerticalAlignment="Top" Background="{DynamicResource MahApps.Brushes.Gray10}" >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30">
+                    <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="30" Text="&#xE159;" Height="30"/>
+                </StackPanel>
+            </Border>
+            <Border x:Name="icoMM2Status" BorderBrush="Black" Grid.Row="3" Grid.Column="1" Width="40" Height="40" Margin="0,8,65,0" BorderThickness="1" CornerRadius="20" HorizontalAlignment="Right" VerticalAlignment="Top"  Background="{DynamicResource MahApps.Brushes.Gray10}">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30">
+                    <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="25" Text="&#xF259;" Height="24" Width="23"/>
+                </StackPanel>
+            </Border>
+            <Border x:Name="icoMM3Status" BorderBrush="Black" Grid.Row="3" Grid.Column="1" Width="40" Height="40" Margin="0,50,85,0" BorderThickness="1" CornerRadius="20" HorizontalAlignment="Right" VerticalAlignment="Top"  Background="{DynamicResource MahApps.Brushes.Gray10}">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30">
+                    <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="23" Text="&#xE178;" Height="24" Width="23"/>
+                </StackPanel>
+            </Border>
+
+            <Grid Grid.Row="4" Margin="10" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="btnGetIconList"
+                    Content="Get &#x0a;Icon &#x0a;List"
+                    Click="btnGetIconList_Click" Grid.Column="0" />
+                <Button x:Name="btnMoniScann"
+                    Content="Monitor &#x0a;Scan"
+                    Click="btnMoniScann_Click" Grid.Column="1"/>
+                <Button x:Name="btnDeskOkDownload"
+                    Content="DesktopOK &#x0a;Download" 
+                    Click="btnDeskOkDownload_Click" Grid.Column="2"/>
+                <Button x:Name="btnDOSavePos"
+                    Content="Save &#x0a;Icon &#x0a;Pos" 
+                    Click="btnDOSavePos_Click" Grid.Column="3"/>
+                <Button x:Name="btnDOReadData"
+                    Content="Datei &#x0a;Lesen" 
+                    Click="btnDOReadData_Click" Grid.Column="4"/>
+                <Button x:Name="btnDOBearbeiten"
+                    Content="Daten &#x0a;Bearbeiten" 
+                    Click="btnDOBearbeiten_Click" Grid.Column="5"/>
+                <Button x:Name="btnVerschieben"
                     Content="Verschieben" 
-                    HorizontalAlignment="Left" 
-                    Height="60" Margin="550,291,0,0" 
-                    VerticalAlignment="Top" 
-                    Width="100"
-                    Click="btnVerschieben_Click"/>
-            <Button x:Name="btnMoniOff"
-                    Content="Moni1 OFF" 
-                    HorizontalAlignment="Left" 
-                    Height="59" Margin="562,232,0,0" 
-                    VerticalAlignment="Top" 
-                    Width="76"
-                    Click="btnMoniOff_Click"/>
+                    Click="btnVerschieben_Click"  Grid.Column="6"/>
+                <Button x:Name="btnMoniOff"
+                    Content="Moni1 &#x0a;OFF" 
+                    Click="btnMoniOff_Click" Grid.Column="7"/>
+            </Grid>
             <!--
             The Mahapps Gray10 color represents where you should place your content.
             Place your content here.

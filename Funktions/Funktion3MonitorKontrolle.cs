@@ -1,4 +1,8 @@
-﻿namespace MIM_Tool.Funktions
+﻿using System.Windows;
+using System.Threading;
+using System.Media;
+
+namespace MIM_Tool.Funktions
 {
     internal class Funktion3MonitorKontrolle
     {
@@ -50,10 +54,7 @@
                 monitorData4                                          // ID-Daten von Monitor 4
             };
             string pathMMExe = $"{Properties.Settings.Default.pfadDeskOK}\\MultiMonitorTool.exe";     // Pfad zur MultiMonitorTool.exe
-
-            string pathDExe = Properties.Settings.Default.pfadDeskOK + "\\DesktopOK.exe";             // Pfad zur DesktopOK.exe
-            string pathDLastData = Properties.Settings.Default.eDeskOkLastSave;                       // Pfad zu den letzten gespeicherten Desktop-Daten
-
+            Thread.Sleep(1000);    // Wartet 1 Sekunde
             if (vorhanden[auswahl] && aktiv[auswahl])
             {
                 if (!verstaut[auswahl] && !string.IsNullOrEmpty(zugewieseneIcons[auswahl]))
@@ -63,8 +64,7 @@
                 }
                 Thread.Sleep(1000);                                                                   // Wartet 1 Sekunde
                 FunktionMultiMonitor.MonitorDeaktivieren(pathMMExe, monitorID[auswahl][17], auswahl); // Deaktiviert den Monitor
-                Thread.Sleep(1000);                                                                   // Wartet 1 Sekunde
-                FunktionDesktopOK.IconRestore(pathDExe, pathDLastData);                               // Stellt die Icons auf dem Desktop wieder her
+                
             }
             else if (vorhanden[auswahl] && !aktiv[auswahl])
             {
@@ -76,6 +76,9 @@
                     moveIcons.MovePathToDesk(auswahl);                                                // Verschiebt die Icons vom Pfad zum Desktop
                 }
             }
+            SystemSounds.Exclamation.Play();
+            Thread.Sleep(1000);    // Wartet 1 Sekunde
+            MessageBox.Show($"Monitor: {monitorID[auswahl][17]} deaktiviert.Aktiv:{aktiv[auswahl]}Verstaut:{verstaut[auswahl]}");
         }
     }
 }

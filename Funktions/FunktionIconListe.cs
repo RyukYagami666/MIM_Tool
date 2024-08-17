@@ -2,6 +2,7 @@
 using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Media.Imaging;
+using IWshRuntimeLibrary;
 using MIM_Tool.Services;
 
 namespace MIM_Tool.Funktions
@@ -23,7 +24,7 @@ namespace MIM_Tool.Funktions
             List<FileIconInfo> files = new List<FileIconInfo>();                         // Erstellt eine neue Liste für die Dateien.
             foreach (var filePath in deskOkNames)
             {
-                if (File.Exists(filePath))                                               // Überprüfen, ob die Datei existiert.
+                if (System.IO.File.Exists(filePath))                                               // Überprüfen, ob die Datei existiert.
                 {
                     Icon icon = System.Drawing.Icon.ExtractAssociatedIcon(filePath);     // Extrahiert das Icon der Datei.
                     BitmapImage bitmapImage = ConvertIconToImageSource(icon);            // Konvertiert das Icon in ein BitmapImage.
@@ -62,7 +63,7 @@ namespace MIM_Tool.Funktions
                 List<FileIconInfo> files = new List<FileIconInfo>();                     // Erstellt eine neue Liste für die Dateien.
                 foreach (var filePath in savedListAuswawlIcons)
                 {
-                    if (File.Exists(filePath))                                           // Überprüfen, ob die Datei existiert.
+                    if (System.IO.File.Exists(filePath))                                           // Überprüfen, ob die Datei existiert.
                     {
                         Icon icon = System.Drawing.Icon.ExtractAssociatedIcon(filePath); // Extrahiert das Icon der Datei.
                         BitmapImage bitmapImage = ConvertIconToImageSource(icon);        // Konvertiert das Icon in ein BitmapImage.
@@ -82,8 +83,27 @@ namespace MIM_Tool.Funktions
             }
         }
         //------------------------------------------------------------------------------------------------------------------------Konvertieren des Icons in ein BitmapImage-----------------------------------------------------------------------------------------------------------------------------------------------------------
+      //  public static List<FileIconInfo> StatusIcons { get; private set; }            // Statische Eigenschaft für die zuletzt gespeicherten Dateien.
+      //
+      //  public static List<FileIconInfo> GetStatusIcon()                             // Methode zum Abrufen der gespeicherten Icons.
+      //  {
+      //      string pathDO = Properties.Settings.Default.pfadDeskOK + "\\DesktopOK.exe";          // Holt die gespeicherten Daten.
+      //      string pathMM = Properties.Settings.Default.pfadDeskOK + "\\MultiMonitorTool.exe";               // Holt den ausgewählten Monitor.
+      //      if (System.IO.File.Exists(pathDO))
+      //      {
+      //          Icon icon = System.Drawing.Icon.ExtractAssociatedIcon(pathDO); // Extrahiert das Icon der Datei.
+      //          BitmapImage bitmapImage = ConvertIconToImageSource(icon);        // Konvertiert das Icon in ein BitmapImage.
+      //      }
+      //      if (System.IO.File.Exists(pathMM)) 
+      //      {
+      //          Icon icon = System.Drawing.Icon.ExtractAssociatedIcon(pathDO); // Extrahiert das Icon der Datei.
+      //          BitmapImage bitmapImage = ConvertIconToImageSource(icon);        // Konvertiert das Icon in ein BitmapImage.
+      //      }
+      //
+      //  }
 
-        private static BitmapImage ConvertIconToImageSource(Icon icon)                   // Methode zum Konvertieren eines Icons in ein BitmapImage.
+        //------------------------------------------------------------------------------------------------------------------------Konvertieren des Icons in ein BitmapImage-----------------------------------------------------------------------------------------------------------------------------------------------------------
+        public static BitmapImage ConvertIconToImageSource(Icon icon)                   // Methode zum Konvertieren eines Icons in ein BitmapImage.
         {
             using (MemoryStream ms = new MemoryStream())
             {

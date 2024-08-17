@@ -4,6 +4,7 @@ using System.IO.Compression;
 using System.Diagnostics;
 using System.IO;
 using System.Net.NetworkInformation;
+using System.Threading;
 
 namespace MIM_Tool.Funktions
 {
@@ -203,6 +204,7 @@ namespace MIM_Tool.Funktions
                     if (moniNr == 2) Properties.Settings.Default.eMonitorAktiv3 = false;                  // Setzt den Status von Monitor 3 auf inaktiv.
                     if (moniNr == 3) Properties.Settings.Default.eMonitorAktiv4 = false;                  // Setzt den Status von Monitor 4 auf inaktiv.
                     Properties.Settings.Default.Save();                                                   // Speichert die Einstellungen.
+                    Thread.Sleep(1000);                                                                    // Wartet eine Sekunde.
                 }
                 catch (Exception ex)
                 {
@@ -237,6 +239,7 @@ namespace MIM_Tool.Funktions
                     if (moniNr == 2) Properties.Settings.Default.eMonitorAktiv3 = true;                   // Setzt den Status von Monitor 3 auf aktiv.
                     if (moniNr == 3) Properties.Settings.Default.eMonitorAktiv4 = true;                   // Setzt den Status von Monitor 4 auf aktiv.
                     Properties.Settings.Default.Save();                                                   // Speichert die Einstellungen.
+                    Thread.Sleep(1000);                                                                    // Wartet eine Sekunde.
                 }
                 catch (Exception ex)
                 {
