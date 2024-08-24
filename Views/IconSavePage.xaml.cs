@@ -13,25 +13,25 @@ public partial class IconSavePage : Page, INotifyPropertyChanged
 {
     public IconSavePage()
     {
-        InitializeComponent();                                                                                // Initialisiert die Komponenten der Seite
-        DataContext = this;                                                                                   // Setzt den Datenkontext auf die aktuelle Instanz
+        InitializeComponent();                                                                                                          // Initialisiert die Komponenten der Seite
+        DataContext = this;                                                                                                             // Setzt den Datenkontext auf die aktuelle Instanz
         Log.inf("IconSavePage initialisiert. Komponenten und Datenkontext gesetzt.");
-        FunktionIconListe.Execute();                                                                          // Ruft die Execute-Methode von FunktionIconListe auf
+        FunktionIconListe.Execute();                                                                                                    // Ruft die Execute-Methode von FunktionIconListe auf
         Log.inf("FunktionIconListe.Execute() aufgerufen.");
-        IconListView.ItemsSource = MIM_Tool.Funktions.FunktionIconListe.LastExecutedFiles;                    // Setzt die Datenquelle der ListView
+        IconListView.ItemsSource = MIM_Tool.Funktions.FunktionIconListe.LastExecutedFiles;                                              // Setzt die Datenquelle der ListView
         Log.inf("Datenquelle der ListView gesetzt.");
-        this.Loaded += IconSavePage_Loaded;                                                                   // Abonniert das Loaded-Ereignis
+        this.Loaded += IconSavePage_Loaded;                                                                                             // Abonniert das Loaded-Ereignis
         Log.inf("Loaded-Ereignis abonniert.");
         var dodStatus = new FunktionDesktopOK();
-        dodStatus.DODKontrolle();                                                                             // Führt die DOD-Kontrolle durch
+        dodStatus.DODKontrolle();                                                                                                       // Führt die DOD-Kontrolle durch
         Log.inf("DOD-Kontrolle durchgeführt.");
     }
 
-    public event PropertyChangedEventHandler PropertyChanged;                                                 // Ereignis für Eigenschaftsänderungen
+    public event PropertyChangedEventHandler PropertyChanged;                                                                           // Ereignis für Eigenschaftsänderungen
 
     private void IconSavePage_Loaded(object sender, RoutedEventArgs e)
     {
-        // Setzt die Sichtbarkeit des Speichern-Buttons basierend auf dem Zustand von ISPSaveState
+                                                                                                                                        // Setzt die Sichtbarkeit des Speichern-Buttons basierend auf dem Zustand von ISPSaveState
         btnListeSpeichern.Visibility = ISPSaveState.IsReady ? Visibility.Visible : Visibility.Collapsed;
         Log.inf($"IconSavePage geladen. Sichtbarkeit des Speichern-Buttons gesetzt: {btnListeSpeichern.Visibility}");
     }
@@ -53,7 +53,7 @@ public partial class IconSavePage : Page, INotifyPropertyChanged
     private void btnListeSpeichern_Click(object sender, RoutedEventArgs e)
     {
         Log.inf("Button 'Liste Speichern' geklickt.");
-        // Holt die ausgewählten Pfade aus der ListView
+                                                                                                                                        // Holt die ausgewählten Pfade aus der ListView
         var selectedPaths = IconListView.SelectedItems.Cast<FileIconInfo>().Select(item => item.Path).ToArray();
         string selectedItemsString = string.Join(";", selectedPaths);                                                                   // Verbindet die Pfade zu einem String
         Properties.Settings.Default.DeskIconPfadMTemp = selectedItemsString;                                                            // Speichert die Pfade in den Einstellungen

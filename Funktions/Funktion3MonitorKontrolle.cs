@@ -58,7 +58,7 @@ namespace MIM_Tool.Funktions
             string pathMMExe = $"{Properties.Settings.Default.pfadDeskOK}\\MultiMonitorTool.exe";     // Pfad zur MultiMonitorTool.exe
             Log.inf("Gespeicherte und geladene Daten lesen zum Verwenden.");
 
-            Thread.Sleep(1000);    // Wartet 1 Sekunde
+            Thread.Sleep(1000);                                                                       // Wartet 1 Sekunde
 
             Log.inf("Starte Abfrage ob und welcher Monitor geschalten werden soll/ darf ");
             Log.inf($"Beim Starten der Verknüpfung wurde das Argument: {Convert.ToString(auswahl)} weitergegeben, dies entspricht Monitor: {monitorID[auswahl][17]}");
@@ -91,7 +91,7 @@ namespace MIM_Tool.Funktions
                 Log.inf("Das anschalten des ausgewählten Monitors beendet");
             }
             SystemSounds.Exclamation.Play();
-            Thread.Sleep(1000);    // Wartet 1 Sekunde
+            Thread.Sleep(1000);                                                                       // Wartet 1 Sekunde
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using System.Windows.Forms;
-using System.Threading;// Importiert Funktionen für Windows-Formulare.
+using System.Threading;                                                         
 using MIM_Tool.Helpers;                                                                                                                 // Importiert die Hilfsklassen.
 
 namespace MIM_Tool.Funktions
@@ -80,8 +80,8 @@ namespace MIM_Tool.Funktions
             if (index == 3) Properties.Settings.Default.eMonitorIconsVerstaut4 = true;                                                                          // Setzt den Status der verstauten Icons für Monitor 4 auf true.
             Properties.Settings.Default.Save();                                                                                                                 // Speichert die Einstellungen.
             Log.inf("Einstellungen gespeichert.");
-            Thread.Sleep(1000); // Wartet 1 Sekunde.
-            Log.inf("MoveDeskToPath abgeschlossen.");                                                                                                                                // Wartet 2 Sekunden.
+            Thread.Sleep(1000);                                                                                                                                 // Wartet 1 Sekunde.
+            Log.inf("MoveDeskToPath abgeschlossen.");                                                                                                           // Wartet 2 Sekunden.
         }
 
         public void MovePathToDesk(int index)                                                                                                                  // Methode zum Verschieben der gespeicherten Liste vom Speicher zurück zum Desktop.
@@ -94,40 +94,40 @@ namespace MIM_Tool.Funktions
                 Properties.Settings.Default.eMonitorIconsZugewiesen3,
                 Properties.Settings.Default.eMonitorIconsZugewiesen4
             };
-
-            string iconsZugewiesen = zugewieseneIcons[index];                                                                                                  // Holt die zugewiesenen Icons für den angegebenen Monitor.
-            string[] deskIconPath = iconsZugewiesen.Split(';');                                                                                                // Teilt die Icon-Pfade in ein Array auf.
-            string pathExe = Properties.Settings.Default.pfadDeskOK + "\\DesktopOK.exe";                                                                       // Holt den Pfad zur DesktopOK.exe.
-            string pathLastData = Properties.Settings.Default.eDeskOkLastSave;                                                                                 // Holt den Pfad zur letzten gespeicherten Daten.
+                                                                                                                                                                   
+            string iconsZugewiesen = zugewieseneIcons[index];                                                                                                        // Holt die zugewiesenen Icons für den angegebenen Monitor.
+            string[] deskIconPath = iconsZugewiesen.Split(';');                                                                                                      // Teilt die Icon-Pfade in ein Array auf.
+            string pathExe = Properties.Settings.Default.pfadDeskOK + "\\DesktopOK.exe";                                                                             // Holt den Pfad zur DesktopOK.exe.
+            string pathLastData = Properties.Settings.Default.eDeskOkLastSave;                                                                                       // Holt den Pfad zur letzten gespeicherten Daten.
             foreach (string icon in deskIconPath)
             {
-                if (System.IO.File.Exists(storagePath + "\\" + System.IO.Path.GetFileName(icon)))                                                              // Überprüft, ob die Datei im Speicherpfad existiert.
+                if (System.IO.File.Exists(storagePath + "\\" + System.IO.Path.GetFileName(icon)))                                                                    // Überprüft, ob die Datei im Speicherpfad existiert.
                 {
                     Log.inf($"Verschiebe {icon} zurück auf den Desktop.");
-                    System.IO.File.Move(storagePath + "\\" + System.IO.Path.GetFileName(icon), icon);                                                          // Verschiebt die Datei zurück auf den Desktop.
+                    System.IO.File.Move(storagePath + "\\" + System.IO.Path.GetFileName(icon), icon);                                                                // Verschiebt die Datei zurück auf den Desktop.
                 }
-                else if (System.IO.File.Exists(icon))                                                                                                          // Überprüft, ob die Datei bereits auf dem Desktop existiert.
+                else if (System.IO.File.Exists(icon))                                                                                                                // Überprüft, ob die Datei bereits auf dem Desktop existiert.
                 {
                     Log.war($"{System.IO.Path.GetFileName(icon)} schon verschoben.",4000);
-                    MessageBox.Show($"Fehler {System.IO.Path.GetFileName(icon)} schon Verschoben \n Bitte konntroliere", "Verschieben zu Desktop");            // Zeigt eine Fehlermeldung an.
+                    MessageBox.Show($"Fehler {System.IO.Path.GetFileName(icon)} schon Verschoben \n Bitte konntroliere", "Verschieben zu Desktop");                  // Zeigt eine Fehlermeldung an.
                 }
                 else
                 {
                     Log.err($"{System.IO.Path.GetFileName(icon)} nicht mehr vorhanden.\nIcons bitte neu zuweisen.",null,true);
-                    MessageBox.Show($"Fehler {System.IO.Path.GetFileName(icon)} nicht mehr Vorhanden? \nIcons bitte neu zuweisen.", "Verschieben zu Desktop"); // Zeigt eine Fehlermeldung an.
+                    MessageBox.Show($"Fehler {System.IO.Path.GetFileName(icon)} nicht mehr Vorhanden? \nIcons bitte neu zuweisen.", "Verschieben zu Desktop");       // Zeigt eine Fehlermeldung an.
                 }
             }
             Thread.Sleep(2000);
-            Log.inf("Icons wiederherstellen.");                                                                                                                           // Wartet 2 Sekunden.
-            FunktionDesktopOK.IconRestore(pathExe, pathLastData);                                                                                              // Ruft die Methode zum Wiederherstellen der Icons auf.
-            if (index == 0) Properties.Settings.Default.eMonitorIconsVerstaut1 = false;                                                                        // Setzt den Status der verstauten Icons für Monitor 1 auf false.
-            if (index == 1) Properties.Settings.Default.eMonitorIconsVerstaut2 = false;                                                                        // Setzt den Status der verstauten Icons für Monitor 2 auf false.
-            if (index == 2) Properties.Settings.Default.eMonitorIconsVerstaut3 = false;                                                                        // Setzt den Status der verstauten Icons für Monitor 3 auf false.
-            if (index == 3) Properties.Settings.Default.eMonitorIconsVerstaut4 = false;                                                                        // Setzt den Status der verstauten Icons für Monitor 4 auf false.
-            Properties.Settings.Default.Save();                                                                                                                // Speichert die Einstellungen.
+            Log.inf("Icons wiederherstellen.");                                                                                                                      // Wartet 2 Sekunden.
+            FunktionDesktopOK.IconRestore(pathExe, pathLastData);                                                                                                    // Ruft die Methode zum Wiederherstellen der Icons auf.
+            if (index == 0) Properties.Settings.Default.eMonitorIconsVerstaut1 = false;                                                                              // Setzt den Status der verstauten Icons für Monitor 1 auf false.
+            if (index == 1) Properties.Settings.Default.eMonitorIconsVerstaut2 = false;                                                                              // Setzt den Status der verstauten Icons für Monitor 2 auf false.
+            if (index == 2) Properties.Settings.Default.eMonitorIconsVerstaut3 = false;                                                                              // Setzt den Status der verstauten Icons für Monitor 3 auf false.
+            if (index == 3) Properties.Settings.Default.eMonitorIconsVerstaut4 = false;                                                                              // Setzt den Status der verstauten Icons für Monitor 4 auf false.
+            Properties.Settings.Default.Save();                                                                                                                      // Speichert die Einstellungen.
             Log.inf("Einstellungen gespeichert.");
-            Thread.Sleep(1000); // Wartet 1 Sekunde.
-            Log.inf("MovePathToDesk abgeschlossen.");                                                                                                                            // Wartet 2 Sekunden.
+            Thread.Sleep(1000);                                                                                                                                      // Wartet 1 Sekunde.
+            Log.inf("MovePathToDesk abgeschlossen.");                                                                                                                // Wartet 2 Sekunden.
         }
     }
 }
