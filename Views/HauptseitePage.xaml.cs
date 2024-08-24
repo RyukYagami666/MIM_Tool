@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Media;
+using MIM_Tool.Helpers;
 
 namespace MIM_Tool.Views;   //-----------------------------------------------------------------Inizialisiert die Hauptseite/Anwendung--------------------------------------------------------------------------------
 public partial class HauptseitePage : Page, INotifyPropertyChanged

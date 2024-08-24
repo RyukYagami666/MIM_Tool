@@ -22,115 +22,117 @@
             </Grid.RowDefinitions>
             <TextBlock
                 Style="{StaticResource PageTitleStyle}"
-                Text="{x:Static properties:Resources.SettingsPageTitle}" />
+                Text="{x:Static properties:Resources.SP_0_Title}" />
             <StackPanel
                 x:Name="ContentArea"
                 Grid.Row="1"
                 Margin="{StaticResource MediumLeftRightMargin}">
 
-                <TextBlock
-                    Margin="{StaticResource SmallTopMargin}"
-                    Style="{StaticResource SubtitleTextStyle}"
-                    Text="{x:Static properties:Resources.SettingsPagePersonalizationTitle}" />
-
-                <StackPanel Margin="{StaticResource SmallTopBottomMargin}">
+                <StackPanel x:Name="ThemeW" Margin="{StaticResource SmallTopBottomMargin}">
                     <TextBlock
+                        Margin="{StaticResource SmallTopMargin}"
+                        Style="{StaticResource SubtitleTextStyle}"
+                        Text="{x:Static properties:Resources.SP_1_ThemeTB1}" />
+                    <TextBlock
+                        Margin="{StaticResource SmallTopMargin}"
                         Style="{StaticResource BodyTextStyle}"
-                        Text="{x:Static properties:Resources.SettingsPageChooseThemeText}" />
-                    <Grid Margin="0,10,0,0">
+                        Text="{x:Static properties:Resources.SP_1_ThemeTB2}" />
+                    <Grid>
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"></ColumnDefinition>
                             <ColumnDefinition Width="auto"></ColumnDefinition>
                             <ColumnDefinition Width="auto"></ColumnDefinition>
                             <ColumnDefinition Width="auto"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <RadioButton
                             GroupName="AppTheme"
-                            Grid.Column="3"
-                            Content="{x:Static properties:Resources.SettingsPageRadioButtonLightTheme}"
+                            Grid.Column="0"
+                            Content="{x:Static properties:Resources.SP_1_ThemeRB1}"
                             FontSize="{StaticResource MediumFontSize}"
-                            Checked="OnLightChecked"
-                            IsChecked="{Binding Theme, ConverterParameter=Light, Converter={StaticResource EnumToBooleanConverter}}" Margin="0,8,20,0" />
+                            Checked="OnDefaultChecked"
+                            IsChecked="{Binding Theme, ConverterParameter=Default, Converter={StaticResource EnumToBooleanConverter}}" Margin="0,8,20,0"/>
                         <RadioButton
                             GroupName="AppTheme"
                             Grid.Column="1"
-                            Content="{x:Static properties:Resources.SettingsPageRadioButtonDarkTheme}"
+                            Content="{x:Static properties:Resources.SP_1_ThemeRB2}"
                             FontSize="{StaticResource MediumFontSize}"
                             Checked="OnDarkChecked"
                             IsChecked="{Binding Theme, ConverterParameter=Dark, Converter={StaticResource EnumToBooleanConverter}}" Margin="0,8,20,0"/>
                         <RadioButton
                             GroupName="AppTheme"
-                            Grid.Column="0"
-                            Content="{x:Static properties:Resources.SettingsPageRadioButtonWindowsDefaultTheme}"
+                            Grid.Column="2"
+                            Content="{x:Static properties:Resources.SP_1_ThemeRB3}"
                             FontSize="{StaticResource MediumFontSize}"
-                            Checked="OnDefaultChecked"
-                            IsChecked="{Binding Theme, ConverterParameter=Default, Converter={StaticResource EnumToBooleanConverter}}" Margin="0,8,20,0"/>
+                            Checked="OnLightChecked"
+                            IsChecked="{Binding Theme, ConverterParameter=Light, Converter={StaticResource EnumToBooleanConverter}}" Margin="0,8,20,0" />
+                        <Button 
+                            x:Name="btnAdmin" 
+                            Width="50"
+                            Margin="0,8,20,0" 
+                            Grid.Column="3" 
+                            Opacity="0" 
+                            IsHitTestVisible="True" Click="btnAdmin_Click"
+                            ToolTip="a"/>
                     </Grid>
                 </StackPanel>
 
-                <StackPanel Margin="{StaticResource SmallTopBottomMargin}">
-                    <StackPanel Margin="{StaticResource XSmallTopMargin}">
-                        <TextBlock
-                            Margin="{StaticResource XSmallTopMargin}"
-                            Style="{StaticResource BodyTextStyle}"
-                            Text="Pfad für Hintergrund Daten:" />
-                        <Grid Margin="0,10,0,0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="2*"></ColumnDefinition>
-                                <ColumnDefinition Width="*"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <Button x:Name="btnSettingPath" Height="19" Padding="3" Margin="0,0,0,0" Grid.Column="0" Width="auto" Click="btnSettingPath_Click" HorizontalContentAlignment="Left" 
-                                    ToolTip="Pfad ändern:  &#x0a; Wähle einen Pfad in dem alle Hintergrunddateien gespeichert werden soll.  &#x0a; In diesen Ordner werden die Icons verschoben oder config Dateien gespeichert.  &#x0a; Nach dem ändern wird die Initialisierung erneut durchgeführt und alle Daten gelöscht.">
-                                <Button.Style>
-                                    <Style TargetType="Button">
-                                        <Setter Property="Template">
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="Button">
-                                                    <Border
-                                                        Background="{DynamicResource MahApps.Brushes.Gray10}"
-                                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                                        CornerRadius="1">
-                                                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                                                    </Border>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                    </Style>
-                                </Button.Style>
-                            </Button>
-                        </Grid>
-                    </StackPanel>
-
+                <StackPanel x:Name="Config" Margin="{StaticResource SmallTopBottomMargin}">
+                    <TextBlock
+                        Margin="{StaticResource XSmallTopMargin}"
+                        Style="{StaticResource SubtitleTextStyle}"
+                        Text="{x:Static properties:Resources.SP_2_ConfigTB1}" />
+                    <Grid Margin="0,10,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name="btnSettingPath" Height="19" Padding="3" Margin="0,0,0,0" Grid.Column="0" Width="auto" Click="btnSettingPath_Click" HorizontalContentAlignment="Left" 
+                                ToolTip="{x:Static properties:Resources.SP_2_ConfigBu2_btnSettingPath_TT}">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="Button">
+                                                <Border
+                                                    Background="{DynamicResource MahApps.Brushes.Gray10}"
+                                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                                    CornerRadius="1">
+                                                    <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </Grid>
                     <Grid Margin="0,10,0,0" >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="3*"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                             <ColumnDefinition Width="1.7*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-
                         <TextBlock
                             Style="{StaticResource BodyTextStyle}"
-                            Text="Gespeicherte Einstellungen zurücksetzen oder Neu Laden:" 
+                            Text="{x:Static properties:Resources.SP_2_ConfigTB3}" 
                             VerticalAlignment="center"
                             Grid.Column="0"/>
-
-                        <Button x:Name="btnReset" Content="Reset" MinHeight="20" Width="100" Padding="3" Grid.Column="1" 
-                                Click="btnReset_Click" HorizontalAlignment="Right" VerticalAlignment="center" 
-                                ToolTip="Reset:  &#x0a; Hier werden alle Hintergrundsdaten gelöscht.  &#x0a; Anschließend wird die Initialisierung erneut durchgeführt. &#x0a; Nur durchführen wenn du absolut sicher bist oder im Fehlerfall! "/>
-                        <Button x:Name="btnReload" Content="Neu Laden" MinHeight="20" Width="100" Padding="3" Grid.Column="2" 
-                                Click="btnReload_Click" HorizontalAlignment="Left" VerticalAlignment="Center"
-                                ToolTip="Neu Laden:  &#x0a; Hier kannst du alle Monitordaten neu laden, &#x0a; ohne darauf zu achten ob Monitore deaktiviert sind oder Icons verstaut.  &#x0a; Wichtigige Daten werden evtl Falsch Gespeichert wie z.B.: &#x0a; Icon Position; Monitor Auflösung etc. &#x0a; &#x0a;Achte drauf was du tust! "/>
-
+                        <Button x:Name="btnReset" Content="{x:Static properties:Resources.SP_2_ConfigBu3_btnReset}" MinHeight="20" Width="100" Padding="3" Grid.Column="1" 
+                            Click="btnReset_Click" HorizontalAlignment="Right" VerticalAlignment="center" 
+                            ToolTip="{x:Static properties:Resources.SP_2_ConfigBu3_btnReset_TT}"/>
+                        <Button x:Name="btnReload" Content="{x:Static properties:Resources.SP_2_ConfigBu3_btnReload}" MinHeight="20" Width="100" Padding="3" Grid.Column="2" 
+                            Click="btnReload_Click" HorizontalAlignment="Left" VerticalAlignment="Center"
+                            ToolTip="{x:Static properties:Resources.SP_2_ConfigBu3_btnReload_TT}"/>
                     </Grid>
                 </StackPanel>
 
-                <StackPanel Margin="{StaticResource XSmallTopMargin}">
-
+                <StackPanel x:Name="About" Margin="{StaticResource XSmallTopMargin}">
                     <TextBlock
                         Margin="{StaticResource SmallTopMargin}"
                         Style="{StaticResource SubtitleTextStyle}"
-                        Text="{x:Static properties:Resources.SettingsPageAboutTitle}" />
+                        Text="{x:Static properties:Resources.SP_3_AboutTB1}" />
                     <TextBlock
                         Text="{Binding VersionDescription, Mode=OneWay}"
                         Margin="{StaticResource XSmallTopMargin}"
@@ -138,13 +140,9 @@
                     <TextBlock
                         Margin="{StaticResource XSmallTopMargin}"
                         Style="{StaticResource BodyTextStyle}"
-                        Text="{x:Static properties:Resources.SettingsPageAboutText}" />
+                        Text="{x:Static properties:Resources.SP_3_AboutTB3}" />
                 </StackPanel>
-
             </StackPanel>
-            <Button x:Name="btnAdmin" Height="24" Margin="335,80,393,273" Grid.Row="1" Opacity="0" IsHitTestVisible="True" Click="btnAdmin_Click"
-                    ToolTip="a"/>
-
         </Grid>
     </ScrollViewer>
 </Page>

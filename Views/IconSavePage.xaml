@@ -16,7 +16,7 @@
         <TextBlock
             Style="{StaticResource PageTitleStyle}"
             Margin="{StaticResource MediumLeftMargin}"
-            Text="{x:Static properties:Resources.IconSavePageTitle}" />
+            Text="{x:Static properties:Resources.ISP_0_Title}" />
         <Grid x:Name="grid"
             Grid.Row="1"
             Margin="{StaticResource MediumLeftRightMargin}"
@@ -24,20 +24,20 @@
             <ListView x:Name="IconListView" Background="{DynamicResource MahApps.Brushes.Gray10}" SelectionMode="Multiple" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Icon" Width="90" >
+                        <GridViewColumn Header="{x:Static properties:Resources.ISP_00_LV_Header1}" Width="90" >
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <Image Source="{Binding Icon}" Width="30" Height="30" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Pfad" Width="{Binding ElementName=grid, Path=ActualWidth}" DisplayMemberBinding="{Binding Path}"/>
+                        <GridViewColumn Header="{x:Static properties:Resources.ISP_00_LV_Header2}" Width="{Binding ElementName=grid, Path=ActualWidth}" DisplayMemberBinding="{Binding Path}"/>
                     </GridView>
                 </ListView.View>
             </ListView>
         </Grid>
-        <Button x:Name="btnListeSpeichern" Content="Speichern" HorizontalAlignment="Right" Margin="0,0,25,0" Grid.Row="1" VerticalAlignment="Top"  
+        <Button x:Name="btnListeSpeichern" Content="{x:Static properties:Resources.ISP_00_LV_btnListeSpeichern}" HorizontalAlignment="Right" Margin="0,0,25,0" Grid.Row="1" VerticalAlignment="Top"  
                 Width="100" FontSize="8"  Height="20" MinHeight="20" Padding="4" Click="btnListeSpeichern_Click" 
-                ToolTip="Icons zuweisen:  &#x0a; Speichere alle gewählten Icons.  &#x0a; Wenn in Monitor Liste schon Icons existieren,  &#x0a; kannst du entweder alle überschreiben, einzeln hinzufügen oder abbrechen."/>
+                ToolTip="{x:Static properties:Resources.ISP_00_LV_btnListeSpeichern_TT}"/>
     </Grid>
 </Page>

@@ -1,5 +1,6 @@
 ﻿using MIM_Tool.Contracts.Services;
 using MIM_Tool.Contracts.Views;
+using MIM_Tool.Helpers;
 using MahApps.Metro.Controls;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -53,77 +54,102 @@ public partial class ShellWindow : MetroWindow, IShellWindow, INotifyPropertyCha
         _navigationService = navigationService;                                // Initialisiert den Navigationsdienst
         InitializeComponent();                                                 // Initialisiert die Komponenten des Fensters
         DataContext = this;                                                    // Setzt den Datenkontext auf die aktuelle Instanz
+        Log.inf("ShellWindow initialisiert. Komponenten und Datenkontext gesetzt.");
     }
 
     public Frame GetNavigationFrame()
-        => shellFrame;                                                         // Gibt das Navigations-Frame zurück
+    {
+        Log.inf("GetNavigationFrame aufgerufen.");
+        return shellFrame;                                                     // Gibt das Navigations-Frame zurück
+    }
 
     public void ShowWindow()
-        => Show();                                                             // Zeigt das Fenster an
+    {
+        Log.inf("ShowWindow aufgerufen.");
+        Show();                                                                // Zeigt das Fenster an
+    }
 
     public void CloseWindow()
-        => Close();                                                            // Schließt das Fenster
+    {
+        Log.inf("CloseWindow aufgerufen.");
+        Close();                                                               // Schließt das Fenster
+    }
 
     private void OnLoaded(object sender, RoutedEventArgs e)
     {
         _navigationService.Navigated += OnNavigated;                           // Abonniert das Navigated-Ereignis
+        Log.inf("ShellWindow geladen. Navigated-Ereignis abonniert.");
     }
 
     private void OnUnloaded(object sender, RoutedEventArgs e)
     {
         _navigationService.Navigated -= OnNavigated;                           // Deabonniert das Navigated-Ereignis
+        Log.inf("ShellWindow entladen. Navigated-Ereignis deabonniert.");
     }
 
     private void OnItemClick(object sender, ItemClickEventArgs args)
-        => NavigateTo(SelectedMenuItem.TargetPageType);                        // Navigiert zur ausgewählten Seite
+    {
+        Log.inf($"Menüelement geklickt: {SelectedMenuItem?.Label}");
+        NavigateTo(SelectedMenuItem.TargetPageType);                           // Navigiert zur ausgewählten Seite
+    }
 
     private void OnOptionsItemClick(object sender, ItemClickEventArgs args)
-        => NavigateTo(SelectedOptionsMenuItem.TargetPageType);                 // Navigiert zur ausgewählten Optionen-Seite
+    {
+        Log.inf($"Optionen-Menüelement geklickt: {SelectedOptionsMenuItem?.Label}");
+        NavigateTo(SelectedOptionsMenuItem.TargetPageType);                    // Navigiert zur ausgewählten Optionen-Seite
+    }
 
     private void NavigateTo(Type targetPage)
     {
         if (targetPage != null)
         {
+            Log.inf($"Navigiere zu Seite: {targetPage.Name}");
             _navigationService.NavigateTo(targetPage);                         // Führt die Navigation zur Zielseite durch
         }
     }
 
     private void OnNavigated(object sender, Type pageType)
     {
-                                                                               // Aktualisiert das ausgewählte Menüelement basierend auf der Zielseite
+        Log.inf($"Navigiert zu Seite: {pageType.Name}");
+        // Aktualisiert das ausgewählte Menüelement basierend auf der Zielseite
         var item = MenuItems
                     .OfType<HamburgerMenuItem>()
                     .FirstOrDefault(i => pageType == i.TargetPageType);
         if (item != null)
         {
             SelectedMenuItem = item;                                           // Setzt das ausgewählte Menüelement
+            Log.inf($"Ausgewähltes Menüelement gesetzt: {item.Label}");
         }
         else
         {
             SelectedOptionsMenuItem = OptionMenuItems
                     .OfType<HamburgerMenuItem>()
-                    .FirstOrDefault(i => pageType == i.TargetPageType);                          // Setzt das ausgewählte Optionen-Menüelement
+                    .FirstOrDefault(i => pageType == i.TargetPageType);        // Setzt das ausgewählte Optionen-Menüelement
+            Log.inf($"Ausgewähltes Optionen-Menüelement gesetzt: {SelectedOptionsMenuItem?.Label}");
         }
 
-        CanGoBack = _navigationService.CanGoBack;                                                // Aktualisiert den Rücknavigation-Status
+        CanGoBack = _navigationService.CanGoBack;                              // Aktualisiert den Rücknavigation-Status
+        Log.inf($"Rücknavigation-Status aktualisiert: {CanGoBack}");
     }
 
     private void OnGoBack(object sender, RoutedEventArgs e)
     {
-        _navigationService.GoBack();                                                             // Führt die Rücknavigation durch
+        Log.inf("Button 'Zurück' geklickt.");
+        _navigationService.GoBack();                                           // Führt die Rücknavigation durch
     }
 
-    public event PropertyChangedEventHandler PropertyChanged;                                    // Ereignis für Eigenschaftsänderungen
+    public event PropertyChangedEventHandler PropertyChanged;                  // Ereignis für Eigenschaftsänderungen
 
     private void Set<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
     {
         if (Equals(storage, value))
         {
-            return;                                                                              // Beendet die Methode, wenn der Wert gleich ist
+            return;                                                            // Beendet die Methode, wenn der Wert gleich ist
         }
 
-        storage = value;                                                                         // Setzt den neuen Wert
-        OnPropertyChanged(propertyName);                                                         // Benachrichtigt über die Eigenschaftsänderung
+        storage = value;                                                       // Setzt den neuen Wert
+        OnPropertyChanged(propertyName);                                       // Benachrichtigt über die Eigenschaftsänderung
+        Log.inf($"Eigenschaft {propertyName} geändert auf {value}.");
     }
 
     private void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)); // Methode zur Benachrichtigung über Eigenschaftsänderungen

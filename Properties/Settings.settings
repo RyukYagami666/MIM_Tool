@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="pfadDeskOK" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Users\%username%\Documents\DSM_Files</Value>
+      <Value Profile="(Default)">C:\Users\%username%\Documents\MIM_Files</Value>
     </Setting>
     <Setting Name="InfoMonitor1" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
@@ -218,20 +218,20 @@
     <Setting Name="FehlerPreReload" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="b2" Type="System.String" Scope="User">
+    <Setting Name="LetzterFehler" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="b" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="InizialisierungAktiv" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="b3" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="InizialisierungsFehler" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="b4" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="DatenLesenAktiv" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="b5" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="DatenLesenFehler" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="b6" Type="System.String" Scope="User">
       <Value Profile="(Default)" />

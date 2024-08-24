@@ -61,6 +61,27 @@ namespace MIM_Tool.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Gewählte Icons zu einem Monitor zuweisen mit einem Klick auf gewünschten
+        ///Monitor Button, wenn der Monitor schon zugewiesene Icons hat,
+        ///gibt es Folgende Möglichkeiten:
+        ///alle überschreiben; einzeln hinzufügen oder abbrechen ähnelt.
+        /// </summary>
+        public static string AF_Text {
+            get {
+                return ResourceManager.GetString("AF_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Icons Zuweisen ähnelt.
+        /// </summary>
+        public static string AF_Title {
+            get {
+                return ResourceManager.GetString("AF_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die MIM ähnelt.
         /// </summary>
         public static string AppDisplayName {
@@ -72,108 +93,473 @@ namespace MIM_Tool.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Info Seite ähnelt.
         /// </summary>
-        public static string FunktionPageTitle {
+        public static string FP_0_Title {
             get {
-                return ResourceManager.GetString("FunktionPageTitle", resourceCulture);
+                return ResourceManager.GetString("FP_0_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Fehler Resetten: 
+        ///  In der ersten Zeile steht die Funktion dessen Methode, in den der Fehler passiert ist. 
+        ///  Danach kommt der Fehlertext, meist mit fehler und Tipps. 
+        ///  Zum Schluss ein Zeitstempel wann der Fehler passiert ist. 
+        ///  Wenn in der Fehler hier resetet wurde, heißt es nicht das der Fehler weg ist,
+        ///  dafür muss man die Nachricht lesen und handeln. ähnelt.
+        /// </summary>
+        public static string FP_00_Bo_FehlerResetBu2_TT {
+            get {
+                return ResourceManager.GetString("FP_00_Bo_FehlerResetBu2_TT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Letzte Fehlermeldung: ähnelt.
+        /// </summary>
+        public static string FP_00_Bo_FehlerTB00 {
+            get {
+                return ResourceManager.GetString("FP_00_Bo_FehlerTB00", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Hier wird die letzte Fehlermeldung angezeigt. Behebe dieser und führe die gewünschte Aktion erneut durch. Fehler bei der Initialisierung oder beim Lesen der Daten, erfordert genaue Aufmerksamkeit. ähnelt.
+        /// </summary>
+        public static string FP_00_Bo_FehlerTB02 {
+            get {
+                return ResourceManager.GetString("FP_00_Bo_FehlerTB02", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Info Texte: ähnelt.
+        /// </summary>
+        public static string FP_02_Bo_InfoTB00 {
+            get {
+                return ResourceManager.GetString("FP_02_Bo_InfoTB00", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Letzte Fehlermeldung: ähnelt.
+        /// </summary>
+        public static string FP_02_Bo_InfoTB01 {
+            get {
+                return ResourceManager.GetString("FP_02_Bo_InfoTB01", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Allgemeine Statuse: ähnelt.
+        /// </summary>
+        public static string FP_10_Bo_StatusTB00 {
+            get {
+                return ResourceManager.GetString("FP_10_Bo_StatusTB00", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Benutzer: ähnelt.
+        /// </summary>
+        public static string FP_10_Bo_StatusTB01 {
+            get {
+                return ResourceManager.GetString("FP_10_Bo_StatusTB01", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Ausgewählter M.: ähnelt.
+        /// </summary>
+        public static string FP_10_Bo_StatusTB02 {
+            get {
+                return ResourceManager.GetString("FP_10_Bo_StatusTB02", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Inizialisiert: ähnelt.
+        /// </summary>
+        public static string FP_10_Bo_StatusTB03 {
+            get {
+                return ResourceManager.GetString("FP_10_Bo_StatusTB03", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Modus: ähnelt.
+        /// </summary>
+        public static string FP_10_Bo_StatusTB04 {
+            get {
+                return ResourceManager.GetString("FP_10_Bo_StatusTB04", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Fehler Neuladen: ähnelt.
+        /// </summary>
+        public static string FP_10_Bo_StatusTB05 {
+            get {
+                return ResourceManager.GetString("FP_10_Bo_StatusTB05", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die DesktopOk Status:
+        ///  Hiermit werden Die Statuse angezeigt.
+        ///    Donwload fertig: bei Grün Erfolgreich runtergeladen. 
+        ///    Icon Pos Save: bei Grün Icon Positionen in extra Datei Gespeichert. 
+        ///    Daten Gelesen: bei Grün wurden Informatonen aus Datei gelesen und lesbar gespeichert. ähnelt.
+        /// </summary>
+        public static string FP_12_Im_DOImage_TT {
+            get {
+                return ResourceManager.GetString("FP_12_Im_DOImage_TT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die MultiMonitorTool Status:
+        ///  Hiermit werden Die Statuse angezeigt.
+        ///    Donwload fertig: bei Grün Erfolgreich runtergeladen.
+        ///    Monitor Configs Save: bei Grün alle Monitor Einstellungen in extra Config Datei Gespeichert.
+        ///    Monitor Infos Save: bei Grün wurden Informatonen aus Datei gelesen und lesbar gespeichert. ähnelt.
+        /// </summary>
+        public static string FP_14_Im_MMImage_TT {
+            get {
+                return ResourceManager.GetString("FP_14_Im_MMImage_TT", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Monitor Icon Manager ähnelt.
         /// </summary>
-        public static string HauptseitePageTitle {
+        public static string HP_0_Title {
             get {
-                return ResourceManager.GetString("HauptseitePageTitle", resourceCulture);
+                return ResourceManager.GetString("HP_0_Title", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Icons Speichern ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Daten neu Lesen:
+        ///  Hiermit werden Monitordaten und Iconposition neu gelesen u. Gespeichert.
+        ///  Gespeicherte Daten werden überschrieben also vorsichtig. ähnelt.
         /// </summary>
-        public static string IconSavePageTitle {
+        public static string HP_00_Bu_btnReload_TT {
             get {
-                return ResourceManager.GetString("IconSavePageTitle", resourceCulture);
+                return ResourceManager.GetString("HP_00_Bu_btnReload_TT", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Settings page placeholder text.  Your app description goes here. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Monitor 1:
+        ///  Angezeigte Monitore haben ungefähr die Position der Windows Einstellung.
+        ///  Dies dient zur Übersicht, falls Namen nicht bekannt.
+        ///  Es werden auch: Namen, Aktivität und ob Primär dargestellt.
+        ///  Mit dem Klick wählst du den Monitor aus, um damit weiter zu Arbeiten.
+        ///  Monitorname Blau = Primer Monitor; Feld stark ausgegraut = Monitor inaktiv. ähnelt.
         /// </summary>
-        public static string SettingsPageAboutText {
+        public static string HP_00_Bu_Moni1_TT {
             get {
-                return ResourceManager.GetString("SettingsPageAboutText", resourceCulture);
+                return ResourceManager.GetString("HP_00_Bu_Moni1_TT", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die About this application ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Monitor 2:
+        ///  Angezeigte Monitore haben ungefähr die Position der Windows Einstellung.
+        ///  Dies dient zur Übersicht, falls Namen nicht bekannt.
+        ///  Es werden auch: Namen, Aktivität und ob Primär dargestellt.
+        ///  Mit dem Klick wählst du den Monitor aus, um damit weiter zu Arbeiten.
+        ///  Monitorname Blau = Primer Monitor; Feld stark ausgegraut = Monitor inaktiv. ähnelt.
         /// </summary>
-        public static string SettingsPageAboutTitle {
+        public static string HP_00_Bu_Moni2_TT {
             get {
-                return ResourceManager.GetString("SettingsPageAboutTitle", resourceCulture);
+                return ResourceManager.GetString("HP_00_Bu_Moni2_TT", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Theme wählen ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Monitor 3:
+        ///  Angezeigte Monitore haben ungefähr die Position der Windows Einstellung.
+        ///  Dies dient zur Übersicht, falls Namen nicht bekannt.
+        ///  Es werden auch: Namen, Aktivität und ob Primär dargestellt.
+        ///  Mit dem Klick wählst du den Monitor aus, um damit weiter zu Arbeiten.
+        ///  Monitorname Blau = Primer Monitor; Feld stark ausgegraut = Monitor inaktiv. ähnelt.
         /// </summary>
-        public static string SettingsPageChooseThemeText {
+        public static string HP_00_Bu_Moni3_TT {
             get {
-                return ResourceManager.GetString("SettingsPageChooseThemeText", resourceCulture);
+                return ResourceManager.GetString("HP_00_Bu_Moni3_TT", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Personalieseieren ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Monitor 4:
+        ///  Angezeigte Monitore haben ungefähr die Position der Windows Einstellung.
+        ///  Dies dient zur Übersicht, falls Namen nicht bekannt.
+        ///  Es werden auch: Namen, Aktivität und ob Primär dargestellt.
+        ///  Mit dem Klick wählst du den Monitor aus, um damit weiter zu Arbeiten.
+        ///  Monitorname Blau = Primer Monitor; Feld stark ausgegraut = Monitor inaktiv. ähnelt.
         /// </summary>
-        public static string SettingsPagePersonalizationTitle {
+        public static string HP_00_Bu_Moni4_TT {
             get {
-                return ResourceManager.GetString("SettingsPagePersonalizationTitle", resourceCulture);
+                return ResourceManager.GetString("HP_00_Bu_Moni4_TT", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Privacy Statement ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Verknüpfung erstellen:
+        ///  es wird ein Icon auf den Desktopgespeichert der das aus
+        ///  und Einschalten sowie das Verschieben der Icons ausführt,
+        ///  dies ist dann von Monitor zu Monitor einzeln steuerbar. ähnelt.
         /// </summary>
-        public static string SettingsPagePrivacyStatementText {
+        public static string HP_01_Bo_PannelBu_btnCreateShortCut_TT {
             get {
-                return ResourceManager.GetString("SettingsPagePrivacyStatementText", resourceCulture);
+                return ResourceManager.GetString("HP_01_Bo_PannelBu_btnCreateShortCut_TT", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Dark/Blue ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Icons verschieben:
+        ///  Hier werden von den ausgewählten Monitor die Icons verschoben,
+        ///  die zuvor in der Icon Auswahl gespeichert wurden. Beim zweiten Mal drücken mit dem
+        ///  gleichen ausgewählten Monitor, werden die Icons wieder zurückverschoben. ähnelt.
         /// </summary>
-        public static string SettingsPageRadioButtonDarkTheme {
+        public static string HP_01_Bo_PannelBu_btnIconsVerschieben_TT {
             get {
-                return ResourceManager.GetString("SettingsPageRadioButtonDarkTheme", resourceCulture);
+                return ResourceManager.GetString("HP_01_Bo_PannelBu_btnIconsVerschieben_TT", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Light/Blue ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Monitor Schalter:
+        ///  Hier kannst du den ausgewählten Monitor aktivieren oder deaktivieren,
+        ///  dabei werden keine Icons verschoben jedoch werden Daten gelesen. ähnelt.
         /// </summary>
-        public static string SettingsPageRadioButtonLightTheme {
+        public static string HP_01_Bo_PannelBu_btnMonitorSwitch_TT {
             get {
-                return ResourceManager.GetString("SettingsPageRadioButtonLightTheme", resourceCulture);
+                return ResourceManager.GetString("HP_01_Bo_PannelBu_btnMonitorSwitch_TT", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Default ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Icon Auswahl:
+        ///  Hiermit kannst du bestimmen welcher Icons verschoben werden sollen,
+        ///  wenn ein Monitor deaktiviert wird. ähnelt.
         /// </summary>
-        public static string SettingsPageRadioButtonWindowsDefaultTheme {
+        public static string HP_01_Bo_PannelBu_btnSaveIconPos_TT {
             get {
-                return ResourceManager.GetString("SettingsPageRadioButtonWindowsDefaultTheme", resourceCulture);
+                return ResourceManager.GetString("HP_01_Bo_PannelBu_btnSaveIconPos_TT", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Einstellungen ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Steuerpannel: ähnelt.
         /// </summary>
-        public static string SettingsPageTitle {
+        public static string HP_01_Bo_PannelTB11 {
             get {
-                return ResourceManager.GetString("SettingsPageTitle", resourceCulture);
+                return ResourceManager.GetString("HP_01_Bo_PannelTB11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Wähle zuerst ein Monitor aus indem du drauf klickst, die Auswahl bleibt so lange bestehen bis du das Fenster wechselst ähnelt.
+        /// </summary>
+        public static string HP_01_Bo_PannelTB12 {
+            get {
+                return ResourceManager.GetString("HP_01_Bo_PannelTB12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Wenn du über einen Button mit deiner Maus stehenbleibst, Erscheinen weitere Informationen dazu. ähnelt.
+        /// </summary>
+        public static string HP_01_Bo_PannelTB13 {
+            get {
+                return ResourceManager.GetString("HP_01_Bo_PannelTB13", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Das erneute Lesen der Daten, nur mit vollen Setup durchführen, sonst gibt es Komplikation beim Wiederherstellen. ähnelt.
+        /// </summary>
+        public static string HP_01_Bo_PannelTB14 {
+            get {
+                return ResourceManager.GetString("HP_01_Bo_PannelTB14", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Monitorinfos:
+        ///  hier werden alle Monitorinfos vom ausgewählten Monitor angezeigt
+        ///  diese werden bei der Initialisierung gelesen ähnelt.
+        /// </summary>
+        public static string HP_10_Bo_Infos_TT {
+            get {
+                return ResourceManager.GetString("HP_10_Bo_Infos_TT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Monitor Infos ähnelt.
+        /// </summary>
+        public static string HP_10_Bo_InfosTB01 {
+            get {
+                return ResourceManager.GetString("HP_10_Bo_InfosTB01", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Kurze Monitor ID: ähnelt.
+        /// </summary>
+        public static string HP_10_Bo_InfosTB010 {
+            get {
+                return ResourceManager.GetString("HP_10_Bo_InfosTB010", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Monitor S.Nr: ähnelt.
+        /// </summary>
+        public static string HP_10_Bo_InfosTB011 {
+            get {
+                return ResourceManager.GetString("HP_10_Bo_InfosTB011", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Gespeicherte Icons: ähnelt.
+        /// </summary>
+        public static string HP_10_Bo_InfosTB012 {
+            get {
+                return ResourceManager.GetString("HP_10_Bo_InfosTB012", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Icon Liste ähnelt.
+        /// </summary>
+        public static string HP_10_Bo_InfosTB013 {
+            get {
+                return ResourceManager.GetString("HP_10_Bo_InfosTB013", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Monitor Name: ähnelt.
+        /// </summary>
+        public static string HP_10_Bo_InfosTB02 {
+            get {
+                return ResourceManager.GetString("HP_10_Bo_InfosTB02", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Monitor Nummer: ähnelt.
+        /// </summary>
+        public static string HP_10_Bo_InfosTB03 {
+            get {
+                return ResourceManager.GetString("HP_10_Bo_InfosTB03", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Auflösung: ähnelt.
+        /// </summary>
+        public static string HP_10_Bo_InfosTB04 {
+            get {
+                return ResourceManager.GetString("HP_10_Bo_InfosTB04", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Position: ähnelt.
+        /// </summary>
+        public static string HP_10_Bo_InfosTB05 {
+            get {
+                return ResourceManager.GetString("HP_10_Bo_InfosTB05", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Aktiv Status: ähnelt.
+        /// </summary>
+        public static string HP_10_Bo_InfosTB06 {
+            get {
+                return ResourceManager.GetString("HP_10_Bo_InfosTB06", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Primärstatus: ähnelt.
+        /// </summary>
+        public static string HP_10_Bo_InfosTB07 {
+            get {
+                return ResourceManager.GetString("HP_10_Bo_InfosTB07", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Frequenz: ähnelt.
+        /// </summary>
+        public static string HP_10_Bo_InfosTB08 {
+            get {
+                return ResourceManager.GetString("HP_10_Bo_InfosTB08", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Max Auflösung: ähnelt.
+        /// </summary>
+        public static string HP_10_Bo_InfosTB09 {
+            get {
+                return ResourceManager.GetString("HP_10_Bo_InfosTB09", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Icons Zusweisen ähnelt.
+        /// </summary>
+        public static string ISP_0_Title {
+            get {
+                return ResourceManager.GetString("ISP_0_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Speichern ähnelt.
+        /// </summary>
+        public static string ISP_00_LV_btnListeSpeichern {
+            get {
+                return ResourceManager.GetString("ISP_00_LV_btnListeSpeichern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Icons zuweisen:
+        ///  Speichere alle gewählten Icons.
+        ///  Wenn in Monitor Liste schon Icons existieren,
+        ///  kannst du entweder alle überschreiben, einzeln hinzufügen oder abbrechen. ähnelt.
+        /// </summary>
+        public static string ISP_00_LV_btnListeSpeichern_TT {
+            get {
+                return ResourceManager.GetString("ISP_00_LV_btnListeSpeichern_TT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Icons ähnelt.
+        /// </summary>
+        public static string ISP_00_LV_Header1 {
+            get {
+                return ResourceManager.GetString("ISP_00_LV_Header1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Pfad ähnelt.
+        /// </summary>
+        public static string ISP_00_LV_Header2 {
+            get {
+                return ResourceManager.GetString("ISP_00_LV_Header2", resourceCulture);
             }
         }
         
@@ -228,6 +614,154 @@ namespace MIM_Tool.Properties {
         public static string ShellSettingsPage {
             get {
                 return ResourceManager.GetString("ShellSettingsPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Einstellungen ähnelt.
+        /// </summary>
+        public static string SP_0_Title {
+            get {
+                return ResourceManager.GetString("SP_0_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Default ähnelt.
+        /// </summary>
+        public static string SP_1_ThemeRB1 {
+            get {
+                return ResourceManager.GetString("SP_1_ThemeRB1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Dunkel-Blau ähnelt.
+        /// </summary>
+        public static string SP_1_ThemeRB2 {
+            get {
+                return ResourceManager.GetString("SP_1_ThemeRB2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Hell-Blau ähnelt.
+        /// </summary>
+        public static string SP_1_ThemeRB3 {
+            get {
+                return ResourceManager.GetString("SP_1_ThemeRB3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Personalieseieren ähnelt.
+        /// </summary>
+        public static string SP_1_ThemeTB1 {
+            get {
+                return ResourceManager.GetString("SP_1_ThemeTB1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Theme wählen ähnelt.
+        /// </summary>
+        public static string SP_1_ThemeTB2 {
+            get {
+                return ResourceManager.GetString("SP_1_ThemeTB2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Pfad ändern:
+        ///  Wähle einen Pfad in dem alle Hintergrunddateien gespeichert werden soll.
+        ///  In diesen Ordner werden die Icons verschoben oder config Dateien gespeichert.
+        ///  Nach dem ändern wird die Initialisierung erneut durchgeführt und alle Daten gelöscht. ähnelt.
+        /// </summary>
+        public static string SP_2_ConfigBu2_btnSettingPath_TT {
+            get {
+                return ResourceManager.GetString("SP_2_ConfigBu2_btnSettingPath_TT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Neu Laden ähnelt.
+        /// </summary>
+        public static string SP_2_ConfigBu3_btnReload {
+            get {
+                return ResourceManager.GetString("SP_2_ConfigBu3_btnReload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Neu Laden:
+        ///  Hier kannst du alle Monitordaten neu laden,
+        ///  ohne darauf zu achten ob Monitore deaktiviert sind oder Icons verstaut.
+        ///  Wichtigige Daten werden evtl Falsch Gespeichert wie z.B.:
+        ///  Icon Position; Monitor Auflösung etc.
+        ///  
+        ///  Achte drauf was du tust! ähnelt.
+        /// </summary>
+        public static string SP_2_ConfigBu3_btnReload_TT {
+            get {
+                return ResourceManager.GetString("SP_2_ConfigBu3_btnReload_TT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Reset ähnelt.
+        /// </summary>
+        public static string SP_2_ConfigBu3_btnReset {
+            get {
+                return ResourceManager.GetString("SP_2_ConfigBu3_btnReset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Reset:
+        ///  Hier werden alle Hintergrundsdaten gelöscht.
+        ///  Anschließend wird die Initialisierung erneut durchgeführt.
+        ///  Nur durchführen wenn du absolut sicher bist oder im Fehlerfall! ähnelt.
+        /// </summary>
+        public static string SP_2_ConfigBu3_btnReset_TT {
+            get {
+                return ResourceManager.GetString("SP_2_ConfigBu3_btnReset_TT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Pfad für Hintergrund Daten: ähnelt.
+        /// </summary>
+        public static string SP_2_ConfigTB1 {
+            get {
+                return ResourceManager.GetString("SP_2_ConfigTB1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Gespeicherte Einstellungen zurücksetzen oder Neu Laden: ähnelt.
+        /// </summary>
+        public static string SP_2_ConfigTB3 {
+            get {
+                return ResourceManager.GetString("SP_2_ConfigTB3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Über das Programm ähnelt.
+        /// </summary>
+        public static string SP_3_AboutTB1 {
+            get {
+                return ResourceManager.GetString("SP_3_AboutTB1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Dieses Programm ist zum Steuern von Monitoren und dessen Icons da. 
+        ///Entwickelt von RyukYagami666, einen Programier Hobbyist. ähnelt.
+        /// </summary>
+        public static string SP_3_AboutTB3 {
+            get {
+                return ResourceManager.GetString("SP_3_AboutTB3", resourceCulture);
             }
         }
     }

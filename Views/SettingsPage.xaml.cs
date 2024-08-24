@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.IO;
 using System.Windows.Forms;
+using MIM_Tool.Helpers;
 
 namespace MIM_Tool.Views;//--------------------------------------------------------------------------------------Inizialiesieren-----------------------------------------------------------------------------
 
@@ -45,6 +46,7 @@ public partial class SettingsPage : Page, INotifyPropertyChanged, INavigationAwa
         btnSettingPath.Content = Properties.Settings.Default.pfadDeskOK;     // Setzt den Inhalt des Buttons auf den gespeicherten Pfad
         Properties.Settings.Default.SelectetMonitor = 10;                    // Setzt den ausgewählten Monitor auf 10
         Properties.Settings.Default.Save();                                  // Speichert die Einstellungen
+        Log.inf("SettingsPage initialisiert. Pfad und Monitor-Einstellungen gesetzt.");
     }
 
     public void OnNavigatedTo(object parameter)
@@ -53,17 +55,21 @@ public partial class SettingsPage : Page, INotifyPropertyChanged, INavigationAwa
         VersionDescription = $"{Properties.Resources.AppDisplayName} - {_applicationInfoService.GetVersion()}";
         Theme = _themeSelectorService.GetCurrentTheme();
         _isInitialized = true;                                             // Markiert die Seite als initialisiert
+        Log.inf($"Navigiert zu SettingsPage. Versionsbeschreibung: {VersionDescription}, aktuelles Thema: {Theme}.");
     }
 
     public void OnNavigatedFrom()
     {
-                                                                           // Methode wird aufgerufen, wenn von der Seite weg navigiert wird
+        // Methode wird aufgerufen, wenn von der Seite weg navigiert wird
+        Log.inf("Von SettingsPage weg navigiert.");
     }
-     private void OnLightChecked(object sender, RoutedEventArgs e)
+
+    private void OnLightChecked(object sender, RoutedEventArgs e)
     {
         if (_isInitialized)
         {
             _themeSelectorService.SetTheme(AppTheme.Light);                // Setzt das Thema auf "Light", wenn die Seite initialisiert ist
+            Log.inf("Thema auf 'Light' gesetzt.");
         }
     }
 
@@ -72,6 +78,7 @@ public partial class SettingsPage : Page, INotifyPropertyChanged, INavigationAwa
         if (_isInitialized)
         {
             _themeSelectorService.SetTheme(AppTheme.Dark);                 // Setzt das Thema auf "Dark", wenn die Seite initialisiert ist
+            Log.inf("Thema auf 'Dark' gesetzt.");
         }
     }
 
@@ -80,77 +87,105 @@ public partial class SettingsPage : Page, INotifyPropertyChanged, INavigationAwa
         if (_isInitialized)
         {
             _themeSelectorService.SetTheme(AppTheme.Default);              // Setzt das Thema auf "Default", wenn die Seite initialisiert ist
+            Log.inf("Thema auf 'Default' gesetzt.");
         }
     }
 
     private void OnPrivacyStatementClick(object sender, RoutedEventArgs e)
-        => _systemService.OpenInWebBrowser(_appConfig.PrivacyStatement);                           // Öffnet die Datenschutzrichtlinie im Webbrowser
+    {
+        _systemService.OpenInWebBrowser(_appConfig.PrivacyStatement);      // Öffnet die Datenschutzrichtlinie im Webbrowser
+        Log.inf($"Datenschutzrichtlinie im Webbrowser geöffnet: {_appConfig.PrivacyStatement}");
+    }
 
-    public event PropertyChangedEventHandler PropertyChanged;                                      // Ereignis für Eigenschaftsänderungen
+    public event PropertyChangedEventHandler PropertyChanged;              // Ereignis für Eigenschaftsänderungen
 
     private void Set<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
     {
         if (Equals(storage, value))
         {
-            return;                                                                                // Beendet die Methode, wenn der Wert gleich ist
+            return;                                                        // Beendet die Methode, wenn der Wert gleich ist
         }
 
-        storage = value;                                                                           // Setzt den neuen Wert
-        OnPropertyChanged(propertyName);                                                           // Benachrichtigt über die Eigenschaftsänderung
+        storage = value;                                                   // Setzt den neuen Wert
+        OnPropertyChanged(propertyName);                                   // Benachrichtigt über die Eigenschaftsänderung
+        Log.inf($"Eigenschaft {propertyName} geändert auf {value}.");
     }
 
     private void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)); // Methode zur Benachrichtigung über Eigenschaftsänderungen
 
-
-    //------------------------------------------------------------------------------------------------------------------------Ereignishandler-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
     public void btnSettingPath_Click(object sender, RoutedEventArgs e)
     {
-                                                                                   // Erstellen einer Instanz von FunktionSavePath
-        FunktionSavePath savePath = new FunktionSavePath();
-                                                                                   // Aufrufen der Methode, um den neuen Pfad zu erhalten
-        string newPath = savePath.GetNewSavePath();
-                                                                                   // Überprüfen, ob ein Pfad ausgewählt wurde
-        if (!string.IsNullOrEmpty(newPath))
+        Log.inf("Button 'Setting Path' geklickt.");
+        FunktionSavePath savePath = new FunktionSavePath();                // Erstellen einer Instanz von FunktionSavePath
+        string newPath = savePath.GetNewSavePath();                        // Aufrufen der Methode, um den neuen Pfad zu erhalten
+
+        if (!string.IsNullOrEmpty(newPath))                                // Überprüfen, ob ein Pfad ausgewählt wurde
         {
-            Directory.Delete(Properties.Settings.Default.pfadDeskOK, true);        // Löscht das alte Verzeichnis
-            Properties.Settings.Default.Reset();                                   // Setzt die Einstellungen zurück
-            Properties.Settings.Default.pfadDeskOK = newPath;                      // Setzt den neuen Pfad
-            Properties.Settings.Default.Save();                                    // Speichert die Einstellungen
+            Log.inf($"Neuer Pfad ausgewählt: {newPath}");
+            if (Directory.Exists(Properties.Settings.Default.pfadDeskOK))
+            {
+                Directory.Delete(Properties.Settings.Default.pfadDeskOK, true); // Löscht das alte Verzeichnis
+                Log.inf($"Altes Verzeichnis gelöscht: {Properties.Settings.Default.pfadDeskOK}");
+            }
+            Properties.Settings.Default.Reset();                           // Setzt die Einstellungen zurück
+            Properties.Settings.Default.pfadDeskOK = newPath;              // Setzt den neuen Pfad
+            Properties.Settings.Default.Save();                            // Speichert die Einstellungen
+            Log.inf($"Einstellungen zurückgesetzt und neuer Pfad gespeichert: {newPath}");
         }
-        btnSettingPath.Content = newPath;                                          // Setzt den Button-Inhalt auf den neuen Pfad
+
+        btnSettingPath.Content = newPath;                                  // Setzt den Button-Inhalt auf den neuen Pfad
         var iniziStart = new Funktion1Initialisieren();
-        iniziStart.Initialisieren();                                               // Initialisiert das Programm
+        iniziStart.Initialisieren();                                       // Initialisiert das Programm
+        Log.inf("Programm initialisiert nach Pfadänderung.");
     }
 
     private void btnReset_Click(object sender, RoutedEventArgs e)
     {
+        Log.inf("Button 'Reset' geklickt.");
         FunktionDefaultPath resetPath = new FunktionDefaultPath();
-        resetPath.ResetPath();                                                     // Setzt den Pfad auf den Standardpfad zurück
-        btnSettingPath.Content = Properties.Settings.Default.pfadDeskOK;           // Setzt den Button-Inhalt auf den Standardpfad
+        resetPath.ResetPath();                                             // Setzt den Pfad auf den Standardpfad zurück
+        Log.inf("Pfad auf Standardpfad zurückgesetzt.");
+        btnSettingPath.Content = Properties.Settings.Default.pfadDeskOK;   // Setzt den Button-Inhalt auf den Standardpfad
         var iniziStart = new Funktion1Initialisieren();
-        iniziStart.Initialisieren();                                               // Initialisiert das Programm
+        iniziStart.Initialisieren();                                       // Initialisiert das Programm
+        Log.inf("Programm initialisiert nach Pfadrücksetzung.");
     }
-
 
     private void btnAdmin_Click(object sender, RoutedEventArgs e)
     {
+        Log.inf("Button 'Admin' geklickt.");
         // Schaltet den Admin-Modus um
-        if (Properties.Settings.Default.AdminMode) Properties.Settings.Default.AdminMode = false;
-        else Properties.Settings.Default.AdminMode = true;
+        if (Properties.Settings.Default.AdminMode)
+        {
+            Properties.Settings.Default.AdminMode = false;
+            Log.inf("Admin-Modus deaktiviert.");
+        }
+        else
+        {
+            Properties.Settings.Default.AdminMode = true;
+            Log.inf("Admin-Modus aktiviert.");
+        }
 
-        Properties.Settings.Default.Save();                                        // Speichert die Einstellungen
+        Properties.Settings.Default.Save();                                // Speichert die Einstellungen
+        Log.inf("Admin-Modus-Einstellung gespeichert.");
     }
 
     private void btnReload_Click(object sender, RoutedEventArgs e)
     {
+        Log.inf("Button 'Reload' geklickt.");
         var result = System.Windows.Forms.MessageBox.Show("Monitordaten erneut Laden, Gespeichertes wird überschrieben", "Reload", MessageBoxButtons.YesNo, MessageBoxIcon.Question); // Zeigt eine Nachricht an, um zu fragen, ob die Monitor-Daten erneut geladen werden sollen
 
         if (result == DialogResult.Yes)
         {
+            Log.inf("Benutzer hat 'Ja' gewählt. Monitordaten werden erneut geladen.");
             var datenLesen = new Funktion2DatenLesen();
             datenLesen.DatenReset();
-            datenLesen.DatenLesen();                                                   // Ruft die Methode zum Lesen der Daten auf
+            datenLesen.DatenLesen();                                       // Ruft die Methode zum Lesen der Daten auf
+            Log.inf("Monitordaten erfolgreich erneut geladen.");
+        }
+        else
+        {
+            Log.inf("Benutzer hat 'Nein' gewählt. Monitordaten werden nicht erneut geladen.");
         }
     }
 }

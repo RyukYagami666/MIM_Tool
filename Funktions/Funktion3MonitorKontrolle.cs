@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Threading;
 using System.Media;
+using MIM_Tool.Helpers;
 
 namespace MIM_Tool.Funktions
 {
@@ -8,6 +9,7 @@ namespace MIM_Tool.Funktions
     {
         public void MonitorKontrolle(int auswahl)
         {
+            Log.inf("Start des automatischen Prozesses zum Steuern der Monitore und dessen Icons.");
             bool[] vorhanden =
             {
                  Properties.Settings.Default.eMonitorVorhanden1,      // Überprüft, ob Monitor 1 vorhanden ist
@@ -54,31 +56,42 @@ namespace MIM_Tool.Funktions
                 monitorData4                                          // ID-Daten von Monitor 4
             };
             string pathMMExe = $"{Properties.Settings.Default.pfadDeskOK}\\MultiMonitorTool.exe";     // Pfad zur MultiMonitorTool.exe
+            Log.inf("Gespeicherte und geladene Daten lesen zum Verwenden.");
+
             Thread.Sleep(1000);    // Wartet 1 Sekunde
+
+            Log.inf("Starte Abfrage ob und welcher Monitor geschalten werden soll/ darf ");
+            Log.inf($"Beim Starten der Verknüpfung wurde das Argument: {Convert.ToString(auswahl)} weitergegeben, dies entspricht Monitor: {monitorID[auswahl][17]}");
             if (vorhanden[auswahl] && aktiv[auswahl])
             {
+                Log.inf("Bedingung erfüllt das Ausgewähltr Monitore deaktiviert wird,");
                 if (!verstaut[auswahl] && !string.IsNullOrEmpty(zugewieseneIcons[auswahl]))
                 {
+                    Log.inf("Abfrage ob Icons noch nicht verstaut sind und der Monitor zu IconSpeicherliste zugewiesen wurde, positiv  ");
                     var moveIcons = new FunktionVerschieben();
                     moveIcons.MoveDeskToPath(auswahl);                                                // Verschiebt die Icons vom Desktop zum Pfad
                 }
+                Log.inf("Icons verschieben abgeschlossen weiter mit schalten des Monitors ");
                 Thread.Sleep(1000);                                                                   // Wartet 1 Sekunde
                 FunktionMultiMonitor.MonitorDeaktivieren(pathMMExe, monitorID[auswahl][17], auswahl); // Deaktiviert den Monitor
-                
+                Log.inf("Das ausschalten des ausgewählten Monitors beendet");
             }
             else if (vorhanden[auswahl] && !aktiv[auswahl])
             {
+                Log.inf("Bedingung erfüllt das Ausgewähltr Monitore Aktiviert wird");
                 FunktionMultiMonitor.MonitorAktivieren(pathMMExe, monitorID[auswahl][17], auswahl);   // Aktiviert den Monitor
                 Thread.Sleep(1000);                                                                   // Wartet 1 Sekunde
+                Log.inf("Das schalten das ausgewählte Monitors beendet ");
                 if (verstaut[auswahl] && !string.IsNullOrEmpty(zugewieseneIcons[auswahl]))
                 {
+                    Log.inf("Abfrage ob Icons verstaut sind und der Monitor zu IconSpeicherliste zugewiesen wurde, positiv ");
                     var moveIcons = new FunktionVerschieben();
                     moveIcons.MovePathToDesk(auswahl);                                                // Verschiebt die Icons vom Pfad zum Desktop
                 }
+                Log.inf("Das anschalten des ausgewählten Monitors beendet");
             }
             SystemSounds.Exclamation.Play();
             Thread.Sleep(1000);    // Wartet 1 Sekunde
-            MessageBox.Show($"Monitor: {monitorID[auswahl][17]} deaktiviert.Aktiv:{aktiv[auswahl]}Verstaut:{verstaut[auswahl]}");
         }
     }
 }

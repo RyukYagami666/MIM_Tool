@@ -120,50 +120,14 @@
   <data name="ShellSettingsPage" xml:space="preserve">
     <value>Settings</value>
   </data>
-  <data name="SettingsPageTitle" xml:space="preserve">
-    <value>Einstellungen</value>
-  </data>
-  <data name="SettingsPageAboutText" xml:space="preserve">
-    <value>Settings page placeholder text.  Your app description goes here.</value>
-  </data>
-  <data name="SettingsPageAboutTitle" xml:space="preserve">
-    <value>About this application</value>
-  </data>
-  <data name="SettingsPageChooseThemeText" xml:space="preserve">
-    <value>Theme wählen</value>
-  </data>
-  <data name="SettingsPagePersonalizationTitle" xml:space="preserve">
-    <value>Personalieseieren</value>
-  </data>
-  <data name="SettingsPagePrivacyStatementText" xml:space="preserve">
-    <value>Privacy Statement</value>
-  </data>
-  <data name="SettingsPageRadioButtonDarkTheme" xml:space="preserve">
-    <value>Dark/Blue</value>
-  </data>
-  <data name="SettingsPageRadioButtonLightTheme" xml:space="preserve">
-    <value>Light/Blue</value>
-  </data>
-  <data name="SettingsPageRadioButtonWindowsDefaultTheme" xml:space="preserve">
-    <value>Default</value>
-  </data>
   <data name="ShellFunktionPage" xml:space="preserve">
     <value>InfoPage</value>
-  </data>
-  <data name="FunktionPageTitle" xml:space="preserve">
-    <value>Info Seite</value>
   </data>
   <data name="ShellIconSavePage" xml:space="preserve">
     <value>IconSave</value>
   </data>
-  <data name="IconSavePageTitle" xml:space="preserve">
-    <value>Icons Speichern</value>
-  </data>
   <data name="ShellHauptseitePage" xml:space="preserve">
     <value>Hauptseite</value>
-  </data>
-  <data name="HauptseitePageTitle" xml:space="preserve">
-    <value>Monitor Icon Manager</value>
   </data>
   <data name="ShellGoBackButton" xml:space="preserve">
     <value>Go back</value>
@@ -174,5 +138,272 @@
   <data name="AppDisplayName" xml:space="preserve">
     <value>MIM</value>
     <comment>Monitor Icon Manager</comment>
+  </data>
+  <data name="FP_00_Bo_FehlerTB00" xml:space="preserve">
+    <value>Letzte Fehlermeldung:</value>
+    <comment>Bo = Border TB =TextBlock</comment>
+  </data>
+  <data name="FP_00_Bo_FehlerTB02" xml:space="preserve">
+    <value>Hier wird die letzte Fehlermeldung angezeigt. Behebe dieser und führe die gewünschte Aktion erneut durch. Fehler bei der Initialisierung oder beim Lesen der Daten, erfordert genaue Aufmerksamkeit.</value>
+  </data>
+  <data name="FP_0_Title" xml:space="preserve">
+    <value>Info Seite</value>
+    <comment>FP = FunktionPage 0 = ungefähre reihenfollge</comment>
+  </data>
+  <data name="FP_02_Bo_InfoTB00" xml:space="preserve">
+    <value>Info Texte:</value>
+  </data>
+  <data name="FP_02_Bo_InfoTB01" xml:space="preserve">
+    <value>Letzte Fehlermeldung:</value>
+  </data>
+  <data name="FP_10_Bo_StatusTB00" xml:space="preserve">
+    <value>Allgemeine Statuse:</value>
+  </data>
+  <data name="FP_10_Bo_StatusTB01" xml:space="preserve">
+    <value>Benutzer:</value>
+  </data>
+  <data name="FP_10_Bo_StatusTB02" xml:space="preserve">
+    <value>Ausgewählter M.:</value>
+  </data>
+  <data name="FP_10_Bo_StatusTB03" xml:space="preserve">
+    <value>Inizialisiert:</value>
+  </data>
+  <data name="FP_10_Bo_StatusTB04" xml:space="preserve">
+    <value>Modus:</value>
+  </data>
+  <data name="FP_10_Bo_StatusTB05" xml:space="preserve">
+    <value>Fehler Neuladen:</value>
+  </data>
+  <data name="FP_12_Im_DOImage_TT" xml:space="preserve">
+    <value>DesktopOk Status:
+  Hiermit werden Die Statuse angezeigt.
+    Donwload fertig: bei Grün Erfolgreich runtergeladen. 
+    Icon Pos Save: bei Grün Icon Positionen in extra Datei Gespeichert. 
+    Daten Gelesen: bei Grün wurden Informatonen aus Datei gelesen und lesbar gespeichert.</value>
+    <comment>Im = Image TT = ToolTip</comment>
+  </data>
+  <data name="FP_14_Im_MMImage_TT" xml:space="preserve">
+    <value>MultiMonitorTool Status:
+  Hiermit werden Die Statuse angezeigt.
+    Donwload fertig: bei Grün Erfolgreich runtergeladen.
+    Monitor Configs Save: bei Grün alle Monitor Einstellungen in extra Config Datei Gespeichert.
+    Monitor Infos Save: bei Grün wurden Informatonen aus Datei gelesen und lesbar gespeichert.</value>
+  </data>
+  <data name="HP_00_Bu_btnReload_TT" xml:space="preserve">
+    <value>Daten neu Lesen:
+  Hiermit werden Monitordaten und Iconposition neu gelesen u. Gespeichert.
+  Gespeicherte Daten werden überschrieben also vorsichtig.</value>
+    <comment>Bu = Button</comment>
+  </data>
+  <data name="HP_00_Bu_Moni1_TT" xml:space="preserve">
+    <value>Monitor 1:
+  Angezeigte Monitore haben ungefähr die Position der Windows Einstellung.
+  Dies dient zur Übersicht, falls Namen nicht bekannt.
+  Es werden auch: Namen, Aktivität und ob Primär dargestellt.
+  Mit dem Klick wählst du den Monitor aus, um damit weiter zu Arbeiten.
+  Monitorname Blau = Primer Monitor; Feld stark ausgegraut = Monitor inaktiv.</value>
+  </data>
+  <data name="HP_00_Bu_Moni2_TT" xml:space="preserve">
+    <value>Monitor 2:
+  Angezeigte Monitore haben ungefähr die Position der Windows Einstellung.
+  Dies dient zur Übersicht, falls Namen nicht bekannt.
+  Es werden auch: Namen, Aktivität und ob Primär dargestellt.
+  Mit dem Klick wählst du den Monitor aus, um damit weiter zu Arbeiten.
+  Monitorname Blau = Primer Monitor; Feld stark ausgegraut = Monitor inaktiv.</value>
+  </data>
+  <data name="HP_00_Bu_Moni3_TT" xml:space="preserve">
+    <value>Monitor 3:
+  Angezeigte Monitore haben ungefähr die Position der Windows Einstellung.
+  Dies dient zur Übersicht, falls Namen nicht bekannt.
+  Es werden auch: Namen, Aktivität und ob Primär dargestellt.
+  Mit dem Klick wählst du den Monitor aus, um damit weiter zu Arbeiten.
+  Monitorname Blau = Primer Monitor; Feld stark ausgegraut = Monitor inaktiv.</value>
+  </data>
+  <data name="HP_00_Bu_Moni4_TT" xml:space="preserve">
+    <value>Monitor 4:
+  Angezeigte Monitore haben ungefähr die Position der Windows Einstellung.
+  Dies dient zur Übersicht, falls Namen nicht bekannt.
+  Es werden auch: Namen, Aktivität und ob Primär dargestellt.
+  Mit dem Klick wählst du den Monitor aus, um damit weiter zu Arbeiten.
+  Monitorname Blau = Primer Monitor; Feld stark ausgegraut = Monitor inaktiv.</value>
+  </data>
+  <data name="HP_0_Title" xml:space="preserve">
+    <value>Monitor Icon Manager</value>
+    <comment>HP = HauptseitePage</comment>
+  </data>
+  <data name="HP_10_Bo_InfosTB01" xml:space="preserve">
+    <value>Monitor Infos</value>
+  </data>
+  <data name="HP_10_Bo_InfosTB02" xml:space="preserve">
+    <value>Monitor Name:</value>
+  </data>
+  <data name="HP_10_Bo_InfosTB03" xml:space="preserve">
+    <value>Monitor Nummer:</value>
+  </data>
+  <data name="HP_10_Bo_InfosTB04" xml:space="preserve">
+    <value>Auflösung:</value>
+  </data>
+  <data name="HP_10_Bo_InfosTB05" xml:space="preserve">
+    <value>Position:</value>
+  </data>
+  <data name="HP_10_Bo_InfosTB06" xml:space="preserve">
+    <value>Aktiv Status:</value>
+  </data>
+  <data name="HP_10_Bo_InfosTB07" xml:space="preserve">
+    <value>Primärstatus:</value>
+  </data>
+  <data name="HP_10_Bo_InfosTB08" xml:space="preserve">
+    <value>Frequenz:</value>
+  </data>
+  <data name="HP_10_Bo_InfosTB09" xml:space="preserve">
+    <value>Max Auflösung:</value>
+  </data>
+  <data name="HP_10_Bo_InfosTB010" xml:space="preserve">
+    <value>Kurze Monitor ID:</value>
+  </data>
+  <data name="HP_10_Bo_InfosTB011" xml:space="preserve">
+    <value>Monitor S.Nr:</value>
+  </data>
+  <data name="HP_10_Bo_InfosTB012" xml:space="preserve">
+    <value>Gespeicherte Icons:</value>
+  </data>
+  <data name="HP_10_Bo_InfosTB013" xml:space="preserve">
+    <value>Icon Liste</value>
+  </data>
+  <data name="HP_10_Bo_Infos_TT" xml:space="preserve">
+    <value>Monitorinfos:
+  hier werden alle Monitorinfos vom ausgewählten Monitor angezeigt
+  diese werden bei der Initialisierung gelesen</value>
+  </data>
+  <data name="HP_01_Bo_PannelBu_btnCreateShortCut_TT" xml:space="preserve">
+    <value>Verknüpfung erstellen:
+  es wird ein Icon auf den Desktopgespeichert der das aus
+  und Einschalten sowie das Verschieben der Icons ausführt,
+  dies ist dann von Monitor zu Monitor einzeln steuerbar.</value>
+  </data>
+  <data name="HP_01_Bo_PannelBu_btnIconsVerschieben_TT" xml:space="preserve">
+    <value>Icons verschieben:
+  Hier werden von den ausgewählten Monitor die Icons verschoben,
+  die zuvor in der Icon Auswahl gespeichert wurden. Beim zweiten Mal drücken mit dem
+  gleichen ausgewählten Monitor, werden die Icons wieder zurückverschoben.</value>
+  </data>
+  <data name="HP_01_Bo_PannelBu_btnMonitorSwitch_TT" xml:space="preserve">
+    <value>Monitor Schalter:
+  Hier kannst du den ausgewählten Monitor aktivieren oder deaktivieren,
+  dabei werden keine Icons verschoben jedoch werden Daten gelesen.</value>
+  </data>
+  <data name="HP_01_Bo_PannelBu_btnSaveIconPos_TT" xml:space="preserve">
+    <value>Icon Auswahl:
+  Hiermit kannst du bestimmen welcher Icons verschoben werden sollen,
+  wenn ein Monitor deaktiviert wird.</value>
+  </data>
+  <data name="HP_01_Bo_PannelTB11" xml:space="preserve">
+    <value>Steuerpannel:</value>
+  </data>
+  <data name="HP_01_Bo_PannelTB12" xml:space="preserve">
+    <value>Wähle zuerst ein Monitor aus indem du drauf klickst, die Auswahl bleibt so lange bestehen bis du das Fenster wechselst</value>
+  </data>
+  <data name="HP_01_Bo_PannelTB13" xml:space="preserve">
+    <value>Wenn du über einen Button mit deiner Maus stehenbleibst, Erscheinen weitere Informationen dazu.</value>
+  </data>
+  <data name="HP_01_Bo_PannelTB14" xml:space="preserve">
+    <value>Das erneute Lesen der Daten, nur mit vollen Setup durchführen, sonst gibt es Komplikation beim Wiederherstellen.</value>
+  </data>
+  <data name="ISP_00_LV_btnListeSpeichern" xml:space="preserve">
+    <value>Speichern</value>
+    <comment>LV = ListView</comment>
+  </data>
+  <data name="ISP_00_LV_btnListeSpeichern_TT" xml:space="preserve">
+    <value>Icons zuweisen:
+  Speichere alle gewählten Icons.
+  Wenn in Monitor Liste schon Icons existieren,
+  kannst du entweder alle überschreiben, einzeln hinzufügen oder abbrechen.</value>
+  </data>
+  <data name="ISP_00_LV_Header1" xml:space="preserve">
+    <value>Icons</value>
+  </data>
+  <data name="ISP_00_LV_Header2" xml:space="preserve">
+    <value>Pfad</value>
+  </data>
+  <data name="ISP_0_Title" xml:space="preserve">
+    <value>Icons Zusweisen</value>
+    <comment>ISP = IconSavePage</comment>
+  </data>
+  <data name="AF_Text" xml:space="preserve">
+    <value>Gewählte Icons zu einem Monitor zuweisen mit einem Klick auf gewünschten
+Monitor Button, wenn der Monitor schon zugewiesene Icons hat,
+gibt es Folgende Möglichkeiten:
+alle überschreiben; einzeln hinzufügen oder abbrechen</value>
+  </data>
+  <data name="AF_Title" xml:space="preserve">
+    <value>Icons Zuweisen</value>
+    <comment>AF = AuswahlFürISP</comment>
+  </data>
+  <data name="SP_0_Title" xml:space="preserve">
+    <value>Einstellungen</value>
+    <comment>SP = SettingsPage</comment>
+  </data>
+  <data name="SP_1_ThemeRB1" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="SP_1_ThemeRB2" xml:space="preserve">
+    <value>Dunkel-Blau</value>
+  </data>
+  <data name="SP_1_ThemeRB3" xml:space="preserve">
+    <value>Hell-Blau</value>
+  </data>
+  <data name="SP_1_ThemeTB1" xml:space="preserve">
+    <value>Personalieseieren</value>
+  </data>
+  <data name="SP_1_ThemeTB2" xml:space="preserve">
+    <value>Theme wählen</value>
+  </data>
+  <data name="SP_2_ConfigBu2_btnSettingPath_TT" xml:space="preserve">
+    <value>Pfad ändern:
+  Wähle einen Pfad in dem alle Hintergrunddateien gespeichert werden soll.
+  In diesen Ordner werden die Icons verschoben oder config Dateien gespeichert.
+  Nach dem ändern wird die Initialisierung erneut durchgeführt und alle Daten gelöscht.</value>
+  </data>
+  <data name="SP_2_ConfigBu3_btnReload" xml:space="preserve">
+    <value>Neu Laden</value>
+  </data>
+  <data name="SP_2_ConfigBu3_btnReload_TT" xml:space="preserve">
+    <value>Neu Laden:
+  Hier kannst du alle Monitordaten neu laden,
+  ohne darauf zu achten ob Monitore deaktiviert sind oder Icons verstaut.
+  Wichtigige Daten werden evtl Falsch Gespeichert wie z.B.:
+  Icon Position; Monitor Auflösung etc.
+  
+  Achte drauf was du tust!</value>
+  </data>
+  <data name="SP_2_ConfigBu3_btnReset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="SP_2_ConfigBu3_btnReset_TT" xml:space="preserve">
+    <value>Reset:
+  Hier werden alle Hintergrundsdaten gelöscht.
+  Anschließend wird die Initialisierung erneut durchgeführt.
+  Nur durchführen wenn du absolut sicher bist oder im Fehlerfall!</value>
+  </data>
+  <data name="SP_2_ConfigTB1" xml:space="preserve">
+    <value>Pfad für Hintergrund Daten:</value>
+  </data>
+  <data name="SP_2_ConfigTB3" xml:space="preserve">
+    <value>Gespeicherte Einstellungen zurücksetzen oder Neu Laden:</value>
+  </data>
+  <data name="SP_3_AboutTB1" xml:space="preserve">
+    <value>Über das Programm</value>
+  </data>
+  <data name="SP_3_AboutTB3" xml:space="preserve">
+    <value>Dieses Programm ist zum Steuern von Monitoren und dessen Icons da. 
+Entwickelt von RyukYagami666, einen Programier Hobbyist.</value>
+  </data>
+  <data name="FP_00_Bo_FehlerResetBu2_TT" xml:space="preserve">
+    <value>Fehler Resetten: 
+  In der ersten Zeile steht die Funktion dessen Methode, in den der Fehler passiert ist. 
+  Danach kommt der Fehlertext, meist mit fehler und Tipps. 
+  Zum Schluss ein Zeitstempel wann der Fehler passiert ist. 
+  Wenn in der Fehler hier resetet wurde, heißt es nicht das der Fehler weg ist,
+  dafür muss man die Nachricht lesen und handeln.</value>
   </data>
 </root>

@@ -1,9 +1,11 @@
-﻿MessageBoxen/CopMSGBoxen entfernen
-Debugg LogFile
+﻿MessageBoxen/CopMSGBoxen entfernen					letzte suche
+Debugg LogFile									+++sicherung wenn standart Ordner noch nicht erstellt wurde   ab wann ist die datei zu gro					(für infos ist admin mode verforderlich)
+FailSafe bei inizialisierung						testen							
 müll entfernen
+
 Sprache gradeziehen
 
-FailSafe bei inizialisierung
+FileManager für backup und log file und update
 
 
 zu einer .exe packen

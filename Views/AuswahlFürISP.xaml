@@ -2,51 +2,43 @@
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                       xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
-                      Title="AuswahlFürISP" Height="450" Width="800"
+                      xmlns:properties="clr-namespace:MIM_Tool.Properties"
+                      Title="{x:Static properties:Resources.AF_Title}" 
+                      Height="300" Width="600"
                       Style="{StaticResource CustomMetroWindow}">
     <Grid>
         <Grid.ColumnDefinitions>
-
-            <ColumnDefinition/>
-
-            <ColumnDefinition/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
 
         <Button x:Name="btnMonitorAuswahl1"
-                Content="Button" 
-                HorizontalAlignment="Center" 
-                Height="100" Margin="0,160,0,0" 
-                VerticalAlignment="Top" Width="270"
-                Click="btnMonitorAuswahl1_Click"/>
+                Click="btnMonitorAuswahl1_Click" 
+                Margin="20,10,20,10"
+                Grid.Column="0" Grid.Row="1"/>
 
         <Button x:Name="btnMonitorAuswahl2"
-                Content="Button" 
-                HorizontalAlignment="Center" 
-                Height="100" Margin="0,160,0,0" 
-                VerticalAlignment="Top" Width="270"
-                Grid.Column="1"
-                HorizontalContentAlignment="Center"
-                Click="btnMonitorAuswahl2_Click"/>
+                Click="btnMonitorAuswahl2_Click"
+                Margin="20,10,20,10"
+                Grid.Column="1" Grid.Row="1"/>
 
         <Button x:Name="btnMonitorAuswahl3"
-                Content="Button" 
-                HorizontalAlignment="Center" 
-                Height="100" Margin="0,290,0,0" 
-                VerticalAlignment="Top" Width="270"
-                HorizontalContentAlignment="Center"
-                Click="btnMonitorAuswahl3_Click"/>
+                Click="btnMonitorAuswahl3_Click"
+                Margin="20,10,20,10"
+                Grid.Column="0" Grid.Row="2"/>
 
         <Button x:Name="btnMonitorAuswahl4"
-                Content="Button" 
-                HorizontalAlignment="Center" 
-                Height="100" Margin="0,290,0,0" 
-                VerticalAlignment="Top" Width="270"
-                Grid.Column="1"
-                HorizontalContentAlignment="Center"
-                Click="btnMonitorAuswahl4_Click"/>
+                Click="btnMonitorAuswahl4_Click"
+                Margin="20,10,20,10"
+                Grid.Column="1" Grid.Row="2"/>
 
 
-        <Label x:Name="lblMonitorAuswahl1" Content="Gewählte Icons zu einem Monitor zuweisen mit einem Klick auf gewünschten &#x0a;Monitor Button, wenn der Monitor schon zugewiesene Icons hat,  &#x0a;gibt es Folgende Möglichkeiten:  &#x0a;alle überschreiben; einzeln hinzufügen oder abbrechen " HorizontalAlignment="Center" Margin="0,0,0,304" Width="600" Grid.ColumnSpan="2" VerticalAlignment="Bottom" Height="100" BorderThickness="3" BorderBrush="Black" UseLayoutRounding="False" FontWeight="Bold" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+        <Label x:Name="lblMonitorAuswahl1" Content="{x:Static properties:Resources.AF_Text}" Margin="20,10,20,10" Grid.ColumnSpan="2" BorderThickness="3" BorderBrush="Black" UseLayoutRounding="False" FontWeight="Bold" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
             <Label.Style>
                 <Style TargetType="Label">
                     <Setter Property="Template">

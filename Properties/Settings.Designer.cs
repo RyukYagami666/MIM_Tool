@@ -25,7 +25,7 @@ namespace MIM_Tool.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\%username%\\Documents\\DSM_Files")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\%username%\\Documents\\MIM_Files")]
         public string pfadDeskOK {
             get {
                 return ((string)(this["pfadDeskOK"]));
@@ -890,60 +890,60 @@ namespace MIM_Tool.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string b2 {
+        public string LetzterFehler {
             get {
-                return ((string)(this["b2"]));
+                return ((string)(this["LetzterFehler"]));
             }
             set {
-                this["b2"] = value;
+                this["LetzterFehler"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string b {
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool InizialisierungAktiv {
             get {
-                return ((string)(this["b"]));
+                return ((bool)(this["InizialisierungAktiv"]));
             }
             set {
-                this["b"] = value;
+                this["InizialisierungAktiv"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string b3 {
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool InizialisierungsFehler {
             get {
-                return ((string)(this["b3"]));
+                return ((bool)(this["InizialisierungsFehler"]));
             }
             set {
-                this["b3"] = value;
+                this["InizialisierungsFehler"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string b4 {
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DatenLesenAktiv {
             get {
-                return ((string)(this["b4"]));
+                return ((bool)(this["DatenLesenAktiv"]));
             }
             set {
-                this["b4"] = value;
+                this["DatenLesenAktiv"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string b5 {
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DatenLesenFehler {
             get {
-                return ((string)(this["b5"]));
+                return ((bool)(this["DatenLesenFehler"]));
             }
             set {
-                this["b5"] = value;
+                this["DatenLesenFehler"] = value;
             }
         }
         

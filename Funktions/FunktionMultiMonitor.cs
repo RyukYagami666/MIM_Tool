@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net.NetworkInformation;
 using System.Threading;
+using MIM_Tool.Helpers;
 
 namespace MIM_Tool.Funktions
 {
@@ -40,66 +41,86 @@ namespace MIM_Tool.Funktions
 
         public void GEVersion()                                                                                           // Methode zum Generieren des Backup-Dateipfads.
         {
-            pathBackUpFile = $"{Properties.Settings.Default.pfadDeskOK}\\BackUps\\MultiMonitorTool{GetExeVersion()}.zip"; // Setzt den Pfad der Backup-Datei.
+            pathBackUpFile = $"{Properties.Settings.Default.pfadDeskOK}\\BackUps\\MultiMonitorTool{Properties.Settings.Default.eMultiMonVers}.zip"; // Setzt den Pfad der Backup-Datei.
         }
         //--------------------------------------------------------------------Inizial Funktionen DesktopOK-------------------------------------------------------------------------------------------------------------------
 
         public void MMDStart()                                                                                            // Download von MultiMonitorTool.
         {
+            Log.inf("MMDStart gestartet.");
             if (Properties.Settings.Default.eMultiMonDownloadReady)
             {
+                Log.inf("eMultiMonitorDownloadReady ist wahr.");
                 if (System.IO.File.Exists(pathFile))
                 {
-                    var result = MessageBox.Show("MultiMonitorTool Erneut Herrunterladen?", "Downloaden", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    Log.inf($"Datei {pathFile} existiert.");
+                    var result = MessageBox.Show("Datei Erneut Herrunterladen?", "Downloaden", MessageBoxButtons.YesNo, MessageBoxIcon.Question); // Fragt den Benutzer, ob die Datei erneut heruntergeladen werden soll.
                     if (result == DialogResult.Yes)
                     {
+                        Log.inf("Benutzer hat 'Ja' zum erneuten Herunterladen gewählt.");
                         try
                         {
                             GEVersion();                                                                                 // Generiert den Backup-Dateipfad.
                             if (System.IO.Directory.Exists(pathBackUP)) System.IO.Directory.CreateDirectory(pathBackUP); // Erstellt den Backup-Ordner, falls er nicht existiert.
                             if (!System.IO.File.Exists(pathBackUpFile)) System.IO.File.Move(pathFile, pathBackUpFile);   // Verschiebt die Datei ins Backup.
                             if (System.IO.File.Exists(pathBackUpFile)) System.IO.File.Delete(pathFile);                  // Löscht die ursprüngliche Datei.
+                            Log.inf("Starte Download der Datei.");
                             WebClient client = new WebClient();
                             client.DownloadFile("https://www.nirsoft.net/utils/multimonitortool-x64.zip", pathFile);     // Lädt die Datei herunter.
                             Thread.Sleep(1000);                                                                          // Wartet eine Sekunde.
                             ZipFile.ExtractToDirectory(pathFile, pathFolder, true);                                      // Entpackt die ZIP-Datei.
+                            Log.inf("Download und Entpacken abgeschlossen.");
                             Properties.Settings.Default.eMultiMonDownloadDone = true;                                    // Setzt den Download-Status auf abgeschlossen.
                             Properties.Settings.Default.eMultiMonDownloadReady = false;                                  // Setzt den Download-Status auf nicht bereit.
                             Properties.Settings.Default.eMultiMonDownloadDate = Convert.ToString(DateTime.Now);          // Speichert das Download-Datum.
+                            Properties.Settings.Default.eMultiMonVers = $"{GetExeVersion()}";                            // Speichert die Version des Programms.
                             Properties.Settings.Default.Save();                                                          // Speichert die Einstellungen.
+                            Log.inf("Herunterladen von MultiMonitorTool war erfolgreich, Einstellungen gespeichert.");
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show($"Fehler beim Downloaden von MultiMonitorTool: {ex.Message}", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            Log.err($"Fehler beim erneuten Herunterladen der Datei", ex, true); // Speichert den Fehler in den Einstellungen und zeigt ihn an.
+                            if (Properties.Settings.Default.InizialisierungAktiv) Properties.Settings.Default.InizialisierungsFehler = true; // Setzt den Initialisierungsfehler auf true.
+                            Properties.Settings.Default.Save(); // Speichert die Einstellungen.                                                                                          // Speichert die Einstellungen.
                         }
                     }
                 }
                 else if (System.IO.Directory.Exists(pathFolder))
                 {
+                    Log.inf($"Verzeichnis {pathFolder} existiert.");
                     try
                     {
                         WebClient client = new WebClient();
                         client.DownloadFile("https://www.nirsoft.net/utils/multimonitortool-x64.zip", pathFile);     // Lädt die Datei herunter.
                         Thread.Sleep(1000);                                                                          // Wartet eine Sekunde.
                         ZipFile.ExtractToDirectory(pathFile, pathFolder, true);                                      // Entpackt die ZIP-Datei.
+                        Log.inf("Entpacke die heruntergeladene MultiMonitorTool.");
                         Properties.Settings.Default.eMultiMonDownloadDone = true;                                    // Setzt den Download-Status auf abgeschlossen.
                         Properties.Settings.Default.eMultiMonDownloadReady = false;                                  // Setzt den Download-Status auf nicht bereit.
                         Properties.Settings.Default.eMultiMonDownloadDate = Convert.ToString(DateTime.Now);          // Speichert das Download-Datum.
-                        Properties.Settings.Default.Save();                                                          // Speichert die Einstellungen.
+                        Properties.Settings.Default.eMultiMonVers = $"{GetExeVersion()}";                            // Speichert die Version des Programms.
+                        Properties.Settings.Default.Save();
+                        Log.inf("Herunterladen von MultiMonitorTool war erfolgreich, Einstellungen gespeichert.");
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Fehler beim Downloaden von MultiMonitorTool: {ex.Message}", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Log.err($"Fehler beim Herunterladen der Datei", ex, true); // Speichert den Fehler in den Einstellungen und zeigt ihn an.
+                        if (Properties.Settings.Default.InizialisierungAktiv) Properties.Settings.Default.InizialisierungsFehler = true; // Setzt den Initialisierungsfehler auf true.
+                        Properties.Settings.Default.Save(); // Speichert die Einstellungen.
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Pfad Fehler!");
+                    Log.err($"Fehler: Unterordner {pathFolder} nicht vorhanden.", null, true); // Speichert den Fehler in den Einstellungen und zeigt ihn an.
+                    if (Properties.Settings.Default.InizialisierungAktiv) Properties.Settings.Default.InizialisierungsFehler = true; // Setzt den Initialisierungsfehler auf true.
+                    Properties.Settings.Default.Save(); // Speichert die Einstellungen.
                 }
             }
             else
             {
-                MessageBox.Show("Download bedingung nicht erfüllt!");
+                Log.err("Fehler: eMultiMonitorDownloadReady ist falsch oder keine Internetverbindung.", null, true); // Speichert den Fehler in den Einstellungen und zeigt ihn an.
+                if (Properties.Settings.Default.InizialisierungAktiv) Properties.Settings.Default.InizialisierungsFehler = true; // Setzt den Initialisierungsfehler auf true.
+                Properties.Settings.Default.Save(); // Speichert die Einstellungen.
             }
         }
 
@@ -111,26 +132,32 @@ namespace MIM_Tool.Funktions
             pathDate = pathDate.Replace($".dok", "");                                                                    // Entfernt die Dateiendung.
             if (Properties.Settings.Default.eMultiMonSavePosReady)
             {
+                Log.inf("MultiMonitorTool erfolgreich runtergeladen und bereit ");
                 try
                 {
                     if (!string.IsNullOrEmpty(Properties.Settings.Default.eMultiMonLastSave) && System.IO.File.Exists(Properties.Settings.Default.eMultiMonLastSave))
                     {
+                        Log.inf("Letzte gespeicherte Datei existiert.");
                         string fileToMove = pathLastData.Replace($"{pathFolder}", "");                                   // Entfernt den Ordnerpfad.
                         System.IO.Directory.CreateDirectory(pathBackUP);                                                 // Erstellt den Backup-Ordner.
                         System.IO.File.Move(Properties.Settings.Default.eMultiMonLastSave, $"{pathBackUP}{fileToMove}"); // Verschiebt die Datei ins Backup.
+                         Log.inf("Alte Datei ins Backup-Verzeichnis verschoben.");
                     }
                     ProcessStartInfo startInfo = new ProcessStartInfo();
                     startInfo.FileName = pathExe;                                                                        // Pfad zur Anwendung.
                     startInfo.Arguments = $"/SaveConfig {pathFolder}\\MultiMon{pathDate}.cfg";                           // Argumente für das Speichern der Konfiguration.
                     startInfo.WindowStyle = ProcessWindowStyle.Hidden;                                                   // Fenster nicht anzeigen.
 
+                    Log.inf("Starte MultiMonitorTool Prozess zum Speichern der Monitor-Konfiguration.");
                     Process process = Process.Start(startInfo);
                     process.WaitForExit();                                                                               // Warten, bis der Prozess abgeschlossen ist.
 
+                    Log.inf("MultiMonitorTool Prozess abgeschlossen.");
                     var directoryInfo = new DirectoryInfo(pathFolder);
                     var myFile = directoryInfo.GetFiles()
                                               .OrderByDescending(f => f.LastWriteTime)
                                               .FirstOrDefault();                                                         // Holt die zuletzt erstellte Datei
+                    Log.inf("Zuletzt erstellte Datei ermittelt.");
                     if (myFile != null)
                     {
                         Properties.Settings.Default.eMultiMonLastSave = myFile.FullName;                                 // Speichert den Pfad der zuletzt erstellten Datei.
@@ -138,15 +165,20 @@ namespace MIM_Tool.Funktions
                         Properties.Settings.Default.eMultiMonSavePosReady = false;                                       // Setzt den Speicher-Status auf nicht bereit.
                         Properties.Settings.Default.eMultiMonSavePosDate = Convert.ToString(DateTime.Now);               // Speichert das Speicher-Datum.
                         Properties.Settings.Default.Save();                                                              // Speichert die Einstellungen.
+                        Log.inf("Monitor-Konfiguration erfolgreich gespeichert und Einstellungen aktualisiert.");
                     }
                     else
                     {
-                        MessageBox.Show("Keine Datei gefunden.");
+                        Log.err("MultiMonitorTool hat keine Daten geschrieben, möglicherweise ein Zugriffsfehler.", null, true);
+                        if (Properties.Settings.Default.DatenLesenAktiv) Properties.Settings.Default.DatenLesenFehler = true; // Setzt den Initialisierungsfehler auf true.
+                        Properties.Settings.Default.Save();
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Fehler beim Öffnen des Dokuments: " + ex.Message);
+                    Log.err("beim Ausführen des Programms MultiMonitorTool. Überprüfen Sie, ob das Programm im Hintergrund-Ordner vorhanden ist.", ex, true);
+                    if (Properties.Settings.Default.DatenLesenAktiv) Properties.Settings.Default.DatenLesenFehler = true; // Setzt den DatenLesen Ablauf auf true.
+                    Properties.Settings.Default.Save(); // Speichert die Einstellungen.
                 }
                 Thread.Sleep(1000);                                                                                      // Wartet eine Sekunde.
             }
@@ -168,12 +200,18 @@ namespace MIM_Tool.Funktions
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Fehler beim Öffnen des Dokuments: " + ex.Message);
+                    string errorMessage = $"Fehler(MultiMon-MonitorLoadConfig1) beim Ausführen des Programms MultiMonitorTool, Kontrolliere ob das Programm in Hintergrund Ordner vorhanden ist.: " + ex.Message;                               //Fehler Text festlegen 
+                    MessageBox.Show(errorMessage, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);                        // Zeigt eine Fehlermeldung an.
+                    Properties.Settings.Default.LetzterFehler = errorMessage + "\n(Timestamp of error: " + Convert.ToString(DateTime.Now) + ")";                                                   // Speichert den Fehler in den Einstellungen.
+                    Properties.Settings.Default.Save();                                                                         // Speichert die Einstellungen.
                 }
             }
             else
             {
-                MessageBox.Show("Bedingung nicht erfüllt");
+                string errorMessage = $"Fehler(MultiMon-MonitorLoadConfig2) Speicherdatei ({Properties.Settings.Default.eMultiMonLastSave}) nicht gefunden, \nkontrolliere bitte den Hintergrund Ordner.";                                 //Fehler Text festlegen 
+                MessageBox.Show(errorMessage, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);                        // Zeigt eine Fehlermeldung an.
+                Properties.Settings.Default.LetzterFehler = errorMessage + "\n(Timestamp of error: " + Convert.ToString(DateTime.Now) + ")";                                                   // Speichert den Fehler in den Einstellungen.
+                Properties.Settings.Default.Save();                                                                         // Speichert die Einstellungen.
             }
         }
         //--------------------------------------------------------------------Haupt Funktion Icon-Positionen-------------------------------------------------------------------------------------------------------------------
@@ -208,12 +246,18 @@ namespace MIM_Tool.Funktions
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Fehler beim Öffnen des Dokuments: " + ex.Message);
+                    string errorMessage = $"Fehler(MultiMon-MonitorDeaktivieren1) beim Ausführen des Programms MultiMonitorTool.:{ex.Message} \nKontrolliere evtl den Hintergrund Ordner, \nAchte auch bei mannuellen Schalten, auf richtige Ausführung beim Deaktivieren.";                                 //Fehler Text festlegen 
+                    MessageBox.Show(errorMessage, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);                        // Zeigt eine Fehlermeldung an.
+                    Properties.Settings.Default.LetzterFehler = errorMessage + "\n(Timestamp of error: " + Convert.ToString(DateTime.Now) + ")";                                                   // Speichert den Fehler in den Einstellungen.
+                    Properties.Settings.Default.Save();                                                                         // Speichert die Einstellungen.
                 }
             }
             else
             {
-                MessageBox.Show("Bedingung nicht erfüllt");
+                string errorMessage = $"Fehler(MultiMon-MonitorDeaktivieren2) der gewünschten Monitor hat den Status inaktiv oder die Speicherdatei fehlt, \nDas Neu Laden der Daten könnte helfen.";                                 //Fehler Text festlegen 
+                MessageBox.Show(errorMessage, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);                        // Zeigt eine Fehlermeldung an.
+                Properties.Settings.Default.LetzterFehler = errorMessage + "\n(Timestamp of error: " + Convert.ToString(DateTime.Now) + ")";                                                   // Speichert den Fehler in den Einstellungen.
+                Properties.Settings.Default.Save();                                                                         // Speichert die Einstellungen.
             }
         }
 
@@ -243,12 +287,18 @@ namespace MIM_Tool.Funktions
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Fehler beim Öffnen des Dokuments: " + ex.Message);
+                    string errorMessage = $"Fehler(MultiMon-MonitorAktivieren1) beim Ausführen des Programms MultiMonitorTool.:{ex.Message} \nKontrolliere evtl den Hintergrund Ordner,\nAchte auch bei mannuellen Schalten, auf richtige Ausführung beim Aktivieren.";                                 //Fehler Text festlegen 
+                    MessageBox.Show(errorMessage, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);                        // Zeigt eine Fehlermeldung an.
+                    Properties.Settings.Default.LetzterFehler = errorMessage + "\n(Timestamp of error: " + Convert.ToString(DateTime.Now) + ")";                                                   // Speichert den Fehler in den Einstellungen.
+                    Properties.Settings.Default.Save();                                                                         // Speichert die Einstellungen.
                 }
             }
             else
             {
-                MessageBox.Show("Bedingung nicht erfüllt");
+                string errorMessage = $"Fehler(MultiMon-MonitorAktivieren2) Speicherdatei ({Properties.Settings.Default.eMultiMonLastSave}) nicht gefunden, \nKontrolliere bitte den Hintergrund Ordner.";                                 //Fehler Text festlegen 
+                MessageBox.Show(errorMessage, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);                        // Zeigt eine Fehlermeldung an.
+                Properties.Settings.Default.LetzterFehler = errorMessage + "\n(Timestamp of error: " + Convert.ToString(DateTime.Now) + ")";                                                   // Speichert den Fehler in den Einstellungen.
+                Properties.Settings.Default.Save();                                                                         // Speichert die Einstellungen.
             }
         }
 
