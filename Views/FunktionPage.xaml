@@ -33,7 +33,7 @@
                 <RowDefinition Height="20*" />
                 <RowDefinition Height="12*" />
             </Grid.RowDefinitions>
-            
+
             <StackPanel Grid.Row="0" Grid.Column="0" Grid.RowSpan="5">
                 <Border x:Name="Fehlermeldung"  BorderBrush="Black"  BorderThickness="1" Margin="10" CornerRadius="5">
                     <StackPanel>
@@ -43,7 +43,7 @@
                         <TextBlock x:Name="FehlerTB02" HorizontalAlignment="Left" Margin="5,2,5,2" TextWrapping="Wrap" Text="{x:Static properties:Resources.FP_00_Bo_FehlerTB02}"  />
                     </StackPanel>
                 </Border>
-                
+
                 <Border x:Name="InfoText"  BorderBrush="Black" BorderThickness="1" Margin="10" CornerRadius="5">
                     <StackPanel>
                         <TextBlock x:Name="InfoTB00" HorizontalAlignment="Left" Margin="5,2,5,2" Text="{x:Static properties:Resources.FP_02_Bo_InfoTB00}" FontSize="14" FontWeight="Bold" />
@@ -118,8 +118,8 @@
                 </StackPanel>
             </Border>
 
-            
-            
+
+
             <Grid Grid.Row="5" Margin="5" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -175,7 +175,28 @@
             </Grid>
             <Button x:Name="btnIniziStart"
                     Content="Initialisierung " 
-                    Click="btnIniziStart_Click" Grid.Column="1" Grid.Row="5" Margin="10"/>
+                    Click="btnIniziStart_Click" Grid.Row="5" Margin="10,10,102,10" RenderTransformOrigin="0.5,0.5" Grid.Column="1">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="1"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+            </Button>
+            <Button x:Name="btnTest1"
+                Content="test " 
+                Click="btnTest1_Cilck" Grid.Column="1" Grid.Row="5"  HorizontalAlignment="Left" Width="20" Height="39" VerticalAlignment="Center" Margin="30,0,0,0"/>
+            <Button x:Name="btnTest2"
+    Content="test " 
+    Click="btnTest2_Cilck" Grid.Column="1" Grid.Row="5"  HorizontalAlignment="Left" Width="20" Height="39" VerticalAlignment="Center" Margin="50,0,0,0"/>
+            <Button x:Name="btnTest3"
+    Content="test " 
+    Click="btnTest3_Cilck" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" Width="20" Height="39" VerticalAlignment="Center" Margin="70,0,0,0"/>
+            <Button x:Name="btnTest4"
+    Content="test " 
+    Click="btnTest4_Cilck" Grid.Column="1" Grid.Row="5" Margin="95,10,10,10"/>
             <!--
             The Mahapps Gray10 color represents where you should place your content.
             Place your content here.

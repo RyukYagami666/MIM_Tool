@@ -2,6 +2,8 @@
 using System.Windows; 
 using System.Text.RegularExpressions;
 using MIM_Tool.Helpers;
+using System.Media;
+using System.Windows.Forms;
 
 namespace MIM_Tool.Funktions
 {
@@ -10,6 +12,10 @@ namespace MIM_Tool.Funktions
         public static string GetDesktopPath()                                                                     // Methode zum Abrufen des Desktop-Pfads.
         {
             return Environment.GetFolderPath(Environment.SpecialFolder.Desktop);                                  // Gibt den Pfad zum Desktop-Ordner zurück.
+        }
+        public static string GetPublicDesktopPath()
+        {
+            return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonDesktopDirectory));
         }
 
         public void AbwandelnDerData()                                                                            // Methode zum Anpassen der Daten.
@@ -36,12 +42,27 @@ namespace MIM_Tool.Funktions
                 }                                                                                                 // Überprüft, ob die Datei existiert.
                 else
                 {
-                    Log.inf("Datei existiert nicht, überprüfe Verzeichnis: " + fullPath);
-                    fullPath = fullPath.Replace($".lnk", "");                                                     // Entfernt die Dateiendung .lnk.
-                    if (System.IO.Directory.Exists(fullPath)) { Log.inf($"Verzeichnis existiert: {fullPath}"); }  // Überprüft, ob das Verzeichnis existiert.
+                    string publicDesktopPath = GetPublicDesktopPath();
+                    string publicFullPath = Path.Combine(publicDesktopPath, path);
+                    if (File.Exists(publicFullPath))
+                    {
+                        Log.inf($"Datei existiert im öffentlichen Desktop-Ordner: {publicFullPath}");
+                        DialogResult result = System.Windows.Forms.MessageBox.Show($"Die Datei {path} befindet sich im öffentlichen Desktop-Ordner. Möchten Sie sie verschieben?", "Datei verschieben", MessageBoxButtons.YesNo);
+                        if (result == DialogResult.Yes)
+                        {
+                            File.Move(publicFullPath, fullPath);
+                            Log.inf($"Datei verschoben von {publicFullPath} nach {fullPath}");
+                        }
+                    }
                     else
                     {
-                        Log.err($"Der Pfad {fullPath} existiert nicht.", null, true);                             // Zeigt eine Fehlermeldung an, wenn der Pfad nicht existiert.
+                        Log.inf("Datei existiert nicht, überprüfe Verzeichnis: " + fullPath);
+                        fullPath = fullPath.Replace($".lnk", "");                                                     // Entfernt die Dateiendung .lnk.
+                        if (System.IO.Directory.Exists(fullPath)) { Log.inf($"Verzeichnis existiert: {fullPath}"); }  // Überprüft, ob das Verzeichnis existiert.
+                        else
+                        {
+                            Log.err($"Der Pfad {fullPath} existiert nicht.", null, true);                             // Zeigt eine Fehlermeldung an, wenn der Pfad nicht existiert.
+                        }
                     }
                 }
                 Log.inf("Füge vollständigen Pfad zur Liste hinzu: " + fullPath);
@@ -164,6 +185,39 @@ namespace MIM_Tool.Funktions
                     Log.inf($"Ordne Monitor-Daten neu für Index {i}.");
                     OrdneMonitorDatenNeu(multiMonDataTrims[i], i);                                                               // Ruft die Methode zum Neuordnen der Monitor-Daten auf.
                 }
+                else
+                {
+                    Log.inf($"Keine Daten für Index {i} gefunden.");
+                    Log.inf("Start des Zurücksetzen von internen Daten, damit keine Kollisionen entstehen ");
+                    switch (i)
+                    {
+                        // Setze die Monitor-Informationen und Status zurück
+                        case 0:
+                        Properties.Settings.Default.eMonitorVorhanden1 = false;         // Setzt den Status für Monitor 1 zurück
+                        Properties.Settings.Default.eMonitorAktiv1 = false;             // Setzt den Aktivitätsstatus für Monitor 1 zurück
+                        Properties.Settings.Default.InfoMonitor1 = "";                  // Setzt die Informationen für Monitor 1 zurück;
+                        break;
+                        case 1:
+                        Properties.Settings.Default.eMonitorVorhanden2 = false;         // Setzt den Status für Monitor 2 zurück
+                        Properties.Settings.Default.eMonitorAktiv2 = false;             // Setzt den Aktivitätsstatus für Monitor 2 zurück
+                        Properties.Settings.Default.InfoMonitor2 = "";                  // Setzt die Informationen für Monitor 2 zurück;
+                        break;
+                        case 2:
+                        Properties.Settings.Default.eMonitorVorhanden3 = false;         // Setzt den Status für Monitor 3 zurück
+                        Properties.Settings.Default.eMonitorAktiv3 = false;             // Setzt den Aktivitätsstatus für Monitor 3 zurück
+                        Properties.Settings.Default.InfoMonitor3 = "";                  // Setzt die Informationen für Monitor 3 zurück;
+                        break;
+                        case 3:
+                        Properties.Settings.Default.eMonitorVorhanden4 = false;         // Setzt den Status für Monitor 4 zurück
+                        Properties.Settings.Default.eMonitorAktiv4 = false;             // Setzt den Aktivitätsstatus für Monitor 4 zurück
+                        Properties.Settings.Default.InfoMonitor4 = "";                  // Setzt die Informationen für Monitor 4 zurück;
+                        break;
+                    }//abfrage ob ein Wert in den Einstellungen gespeichert ist 
+                   
+                    Properties.Settings.Default.SelectetMonitor = 10;            
+                    Properties.Settings.Default.Save();
+                }
+
             }
             Log.inf("MultiMonDataNeuOrdnen abgeschlossen.");
         }
@@ -171,8 +225,14 @@ namespace MIM_Tool.Funktions
         private void OrdneMonitorDatenNeu(string stringMultiMon, int index)                                                      // Methode zum Neuordnen der Monitor-Daten.
         {
             Log.inf($"OrdneMonitorDatenNeu gestartet für Index {index}.");
-            string[] MultiMonDataArray = stringMultiMon.Split(';');                                                              // Teilt die Daten in ein Array auf.
+            string[] MultiMonDataArray = stringMultiMon.Split(';');
             Log.inf($"MultiMonDataArray Länge: {MultiMonDataArray.Length}");
+
+            if (MultiMonDataArray.Length < 20)
+            {
+                Log.err("MultiMonDataArray hat weniger als 20 Elemente.");
+                return;
+            }
 
             string[] esSeMonitor = {
                 MultiMonDataArray[18],

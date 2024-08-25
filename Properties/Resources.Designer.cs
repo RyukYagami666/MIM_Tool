@@ -204,7 +204,7 @@ namespace MIM_Tool.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die DesktopOk Status:
+        ///   Sucht eine lokalisierte Zeichenfolge, die  Status:
         ///  Hiermit werden Die Statuse angezeigt.
         ///    Donwload fertig: bei Grün Erfolgreich runtergeladen. 
         ///    Icon Pos Save: bei Grün Icon Positionen in extra Datei Gespeichert. 
@@ -217,7 +217,7 @@ namespace MIM_Tool.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die MultiMonitorTool Status:
+        ///   Sucht eine lokalisierte Zeichenfolge, die  Status:
         ///  Hiermit werden Die Statuse angezeigt.
         ///    Donwload fertig: bei Grün Erfolgreich runtergeladen.
         ///    Monitor Configs Save: bei Grün alle Monitor Einstellungen in extra Config Datei Gespeichert.

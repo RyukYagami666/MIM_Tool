@@ -15,6 +15,7 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Threading;
 using System.Media;
+using System.Threading;
 
 namespace MIM_Tool;
 // Weitere Informationen zu Anwendungslebenszyklusereignissen finden Sie unter https://docs.microsoft.com/dotnet/framework/wpf/app-development/application-management-overview
@@ -40,23 +41,23 @@ public partial class App : Application
         Log.inf("Anwendung startet.");
         if (e.Args.Length > 0)
         {
-            Log.inf("Startargumente vorhanden.");
-            if (int.TryParse(e.Args[0], out int auswahl))
+            Log.inf($"Startargumente vorhanden: {string.Join(", ", e.Args)}");
+            string argument = e.Args[0];
+            if (argument.StartsWith("/s"))
             {
-                Log.inf($"Startargument ist eine Zahl: {auswahl}");
+                string monitorID = e.Args[1];
+                Log.inf($"Startargument ist ein Befehl: /s {monitorID}");
                 SystemSounds.Exclamation.Play();
                 Log.inf("Systemsound abgespielt.");
                 var kontrolle = new Funktion3MonitorKontrolle();
-                kontrolle.MonitorKontrolle(auswahl);                                        // Führt die MonitorKontrolle-Funktion aus
+                kontrolle.MonitorKontrolle(monitorID);                                        // Führt die MonitorKontrolle-Funktion aus
                 Log.inf("MonitorKontrolle ausgeführt.");
                 Shutdown();                                                                 // Anwendung beenden, nachdem die Funktion ausgeführt wurde
                 Log.inf("Anwendung wird beendet.");
             }
             else
             {
-                Log.err("Startargument ist keine Zahl.", null, true);
-                MessageBox.Show("Das Argument muss eine Zahl sein.", "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
-                Log.inf("Fehlermeldung angezeigt.");
+                Log.err("Ungültiges Startargument.", null, true);
                 Shutdown();                                                                 // Anwendung beenden, wenn das Argument keine Zahl ist
                 Log.inf("Anwendung wird beendet.");
             }

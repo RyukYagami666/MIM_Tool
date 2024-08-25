@@ -36,6 +36,15 @@ public partial class HauptseitePage : Page, INotifyPropertyChanged
             Log.inf("Initialisierung abgeschlossen.");
             return;                                                                   // Beendet die Methode, wenn die Initialisierung nicht abgeschlossen ist
         }
+        else if (Properties.Settings.Default.DatenLesenAktiv)                         // Überprüft, ob das Lesen der Daten aktiv ist
+        {
+            Log.err("DatenLesenAktiv ist aktiv. aber ohne Prozess, Daten Lesen neu Starten.",null,true);
+            var datenLesen = new Funktion2DatenLesen();                               // Erstellt eine Instanz der Datenlesungsfunktion
+            datenLesen.DatenLesen();                                                  // Liest die Daten
+            Log.inf("Daten geladen.");
+            return;
+        }
+
         Log.inf("Anwendung bereits initialisiert.");
         LoadInfoMonitor();                                                            // Lädt die Monitorinformationen
         Log.inf("Monitorinformationen geladen.");
@@ -155,11 +164,11 @@ public partial class HauptseitePage : Page, INotifyPropertyChanged
         Log.inf("Minimale und maximale Werte der Positionen berechnet.");
         for (int i = 0; i < positions.Length; i++)                                    // Normalisiert die Positionen auf einen Bereich von 0 bis 1
         {
-            Log.inf("");
             positions[i] = new Point(
                 (positions[i].X - minX) / (maxX - minX),
                 (positions[i].Y - minY) / (maxY - minY)
             );
+            Log.inf($"Gerechnete Position: {positions[i]}");
         }
         Log.inf("Positionen normalisiert.");
         double scaleX;                                                                // Variable zur Speicherung des Skalierungsfaktors für X
@@ -378,8 +387,7 @@ public partial class HauptseitePage : Page, INotifyPropertyChanged
         }
         else
         {
-            Log.inf("Kein gültiger Monitor ausgewählt.");
-            MessageBox.Show("Bitte wählen Sie erst Monitor aus");                                // Zeigt eine Nachricht an, wenn kein Monitor ausgewählt ist
+            Log.war("Bitte wählen Sie erst Monitor aus.");                               // Zeigt eine Nachricht an, wenn kein Monitor ausgewählt ist
         }
         HauptPage_Loaded(this, new RoutedEventArgs());                                           // Lädt die Hauptseite neu
         TextSchreiben(Properties.Settings.Default.SelectetMonitor);

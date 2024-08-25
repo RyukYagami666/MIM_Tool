@@ -179,7 +179,6 @@ public partial class SettingsPage : Page, INotifyPropertyChanged, INavigationAwa
         {
             Log.inf("Benutzer hat 'Ja' gewählt. Monitordaten werden erneut geladen.");
             var datenLesen = new Funktion2DatenLesen();
-            datenLesen.DatenReset();
             datenLesen.DatenLesen();                                       // Ruft die Methode zum Lesen der Daten auf
             Log.inf("Monitordaten erfolgreich erneut geladen.");
         }

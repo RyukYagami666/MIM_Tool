@@ -97,7 +97,7 @@ namespace MIM_Tool.Views//------------------------------------------------------
         {
             Log.inf("Lade Icon-Status.");
 
-            var transparentGreen = new SolidColorBrush(System.Windows.Media.Color.FromArgb(20, 0, 255, 0));                   // 50% Transparenz grünen.
+            var transparentGreen = new SolidColorBrush(System.Windows.Media.Color.FromArgb(30, 0, 255, 0));                   // 50% Transparenz grünen.
 
             if (Properties.Settings.Default.eDeskOkDownloadDone)
             {
@@ -154,7 +154,10 @@ namespace MIM_Tool.Views//------------------------------------------------------
             {
                 icoMM3Status.ToolTip = "Monitor Infos: nicht Gespeichert.";
             }
-
+            string doImageToolTip = DOImage.ToolTip.ToString();
+            string mmImageToolTip = MMImage.ToolTip.ToString();
+            if (!doImageToolTip.StartsWith("DesktopOK")) DOImage.ToolTip = "DesktopOK v" + Properties.Settings.Default.eDeskOkVers + DOImage.ToolTip;
+            if (!mmImageToolTip.StartsWith("MultiMonitorTool")) MMImage.ToolTip = "MultiMonitorTool v" + Properties.Settings.Default.eMultiMonVers + MMImage.ToolTip;
             StatusTB11.Text = Properties.Settings.Default.eUsername;
             if (Properties.Settings.Default.SelectetMonitor == 10) StatusTB12.Text = "Keiner";
             else StatusTB12.Text = Convert.ToString(Properties.Settings.Default.SelectetMonitor);
@@ -245,17 +248,35 @@ namespace MIM_Tool.Views//------------------------------------------------------
         private void btnVerschieben_Click(object sender, RoutedEventArgs e)
         {
             Log.inf("Button 'Verschieben' geklickt.");
+            MessageBox.Show("Ohne Rücksicht auf verluste, alles zurück auf Desktop");
             var iconMove = new FunktionVerschieben();
-            iconMove.Verschieben1Control();                                                            // Verschiebt die Icons.
+            iconMove.MovePathToDesk(0);
+            iconMove.MovePathToDesk(1);
+            iconMove.MovePathToDesk(2); 
+            iconMove.MovePathToDesk(3);   // Verschiebt die Icons.
             Log.inf("Icons verschoben.");
+            string pathExe = $"{Properties.Settings.Default.pfadDeskOK}\\DesktopOk.exe";
+            FunktionDesktopOK.IconRestore(pathExe, Properties.Settings.Default.eDeskOkLastSave);
         }
 
         private void btnMoniOff_Click(object sender, RoutedEventArgs e)
         {
             Log.inf("Button 'Moni Off' geklickt.");
-            string pathExe = $"{Properties.Settings.Default.pfadDeskOK}\\MultiMonitorTool.exe";        // Pfad zur MultiMonitorTool.exe.
-            FunktionMultiMonitor.MonitorDeaktivieren(pathExe, "2752", 0);                              // Deaktiviert den Monitor.
-            Log.inf("Monitor deaktiviert.");
+            // Erstelle und zeige das Monitor-Auswahlfenster
+            var monitorSelectionWindow = new MonitorSelectionWindow();
+            if (monitorSelectionWindow.ShowDialog() == true)
+            {
+                int selectedMonitor = monitorSelectionWindow.SelectedMonitor;
+                string pathExe = $"{Properties.Settings.Default.pfadDeskOK}\\MultiMonitorTool.exe";
+
+                // Deaktiviere den ausgewählten Monitor
+                FunktionMultiMonitor.MonitorSwitch(pathExe, selectedMonitor);
+                Log.inf($"Monitor {selectedMonitor + 1} deaktiviert.");
+            }
+            else
+            {
+                Log.inf("Keine Monitor-Auswahl getroffen.");
+            }
         }
 
         private void btnFehlerReset_Click(object sender, RoutedEventArgs e)
@@ -265,8 +286,44 @@ namespace MIM_Tool.Views//------------------------------------------------------
             Properties.Settings.Default.Save();                                                        // Speichert die Einstellungen.
 
             Log.inf("Letzter Fehler zurückgesetzt und Einstellungen gespeichert.");
-            LoadIconStatus();                                                       // Abonniert das Loaded-Ereignis erneut.
+            LoadIconStatus();                                                                          // Abonniert das Loaded-Ereignis erneut.
 
+        }
+
+        private void btnTest1_Cilck(object sender, RoutedEventArgs e)
+        {
+           
+            var monitorSelectionWindow = new MonitorSelectionWindow();
+            if (monitorSelectionWindow.ShowDialog() == true)
+            {
+                int selectedMonitor = monitorSelectionWindow.SelectedMonitor;
+              
+                Log.inf($"Icons holen {selectedMonitor + 1} deaktiviert.");
+            }
+            else
+            {
+                Log.inf("Keine Monitor-Auswahl getroffen.");
+            }
+        }
+
+        private void btnTest2_Cilck(object sender, RoutedEventArgs e)
+        {
+            FunktionMultiMonitor.MMTTest(1);
+            MessageBox.Show("Test2");
+        }
+
+        private void btnTest3_Cilck(object sender, RoutedEventArgs e)
+        {
+            FunktionMultiMonitor.MMTTest(2);
+            MessageBox.Show("Test3");
+        }
+
+        private void btnTest4_Cilck(object sender, RoutedEventArgs e)
+        {
+            var loadConfig = new FunktionMultiMonitor();
+            loadConfig.MonitorLoadConfig();
+            loadConfig.MonitorLoadConfig();
+            MessageBox.Show("Test4");
         }
     }
 }

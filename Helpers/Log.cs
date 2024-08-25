@@ -10,11 +10,20 @@ using System.Windows.Forms;
 
 namespace MIM_Tool.Helpers
 {
-
     public static class Log
     {
+        private const int MaxLogLines = 1000; // Maximale Anzahl an Zeilen in der Logdatei
+        private static bool isLogInitialized = false;
+
+        public static void InitializeLog()
+        {
+            string logFilePath = $"{Properties.Settings.Default.pfadDeskOK}\\MIM_LogFile.txt";
+            EnsureLogFileSize(logFilePath);
+            isLogInitialized = true;
+        }
         public static void err(string message, Exception ex = null, bool alarmBox = false)
         {
+            if (!isLogInitialized) InitializeLog();
             string callingMethod = GetCallingMethod();
             string callingClass = GetCallingClass();
             if (Directory.Exists(Properties.Settings.Default.pfadDeskOK))
@@ -44,7 +53,8 @@ namespace MIM_Tool.Helpers
 
         public static void war(string message, int timeout = 2000)
         {
-            if(Directory.Exists(Properties.Settings.Default.pfadDeskOK))
+            if (!isLogInitialized) InitializeLog();
+            if (Directory.Exists(Properties.Settings.Default.pfadDeskOK))
             {
                 string callingMethod = GetCallingMethod();
                 string callingClass = GetCallingClass();
@@ -58,6 +68,7 @@ namespace MIM_Tool.Helpers
         }
         public static void inf(string message)
         {
+            if (!isLogInitialized) InitializeLog();
             if (Directory.Exists(Properties.Settings.Default.pfadDeskOK) && Properties.Settings.Default.AdminMode)
             {
                 string callingMethod = GetCallingMethod();
@@ -65,6 +76,18 @@ namespace MIM_Tool.Helpers
                 using (StreamWriter writer = new StreamWriter($"{Properties.Settings.Default.pfadDeskOK}\\MIM_LogFile.txt", true))
                 {
                     writer.WriteLine($"{DateTime.Now}: Info in {callingClass}-{callingMethod} : {message}");
+                }
+            }
+        }
+        private static void EnsureLogFileSize(string logFilePath)
+        {
+            if (File.Exists(logFilePath))
+            {
+                var lines = File.ReadAllLines(logFilePath).ToList();
+                if (lines.Count > MaxLogLines)
+                {
+                    lines = lines.Skip(lines.Count - MaxLogLines).ToList();
+                    File.WriteAllLines(logFilePath, lines);
                 }
             }
         }

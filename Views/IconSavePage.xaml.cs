@@ -60,8 +60,7 @@ public partial class IconSavePage : Page, INotifyPropertyChanged
         Properties.Settings.Default.eMonitorIconsCountTemp = selectedPaths.Length;                                                      // Speichert die Anzahl der ausgewählten Icons
         Properties.Settings.Default.Save();                                                                                             // Speichert die Einstellungen
         Log.inf($"Anzahl der ausgewählten Elemente: {selectedPaths.Length}, Pfade: {selectedItemsString}");
-        MessageBox.Show($"Anzahl der ausgewählten Elemente: {selectedPaths.Length}\nPfad: {Properties.Settings.Default.DeskIconPfadMTemp}", "Information", MessageBoxButton.OK, MessageBoxImage.Information); // Zeigt eine Informationsnachricht an
-
+       
         if (selectedPaths.Length > 0)
         {
             Log.inf("Ausgewählte Pfade vorhanden. Überprüfe den ausgewählten Monitor.");

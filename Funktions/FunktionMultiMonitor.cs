@@ -66,7 +66,7 @@ namespace MIM_Tool.Funktions
                             if (System.IO.File.Exists(pathBackUpFile)) System.IO.File.Delete(pathFile);                                           // Löscht die ursprüngliche Datei.
                             Log.inf("Starte Download der Datei.");
                             WebClient client = new WebClient();
-                            client.DownloadFile("https:                                                                                           //www.nirsoft.net/utils/multimonitortool-x64.zip", pathFile);     // Lädt die Datei herunter.
+                            client.DownloadFile("https://www.nirsoft.net/utils/multimonitortool-x64.zip", pathFile);     // Lädt die Datei herunter.
                             Thread.Sleep(1000);                                                                                                   // Wartet eine Sekunde.
                             ZipFile.ExtractToDirectory(pathFile, pathFolder, true);                                                               // Entpackt die ZIP-Datei.
                             Log.inf("Download und Entpacken abgeschlossen.");
@@ -91,7 +91,7 @@ namespace MIM_Tool.Funktions
                     try
                     {
                         WebClient client = new WebClient();
-                        client.DownloadFile("https:                                                                                               //www.nirsoft.net/utils/multimonitortool-x64.zip", pathFile);     // Lädt die Datei herunter.
+                        client.DownloadFile("https://www.nirsoft.net/utils/multimonitortool-x64.zip", pathFile);     // Lädt die Datei herunter.
                         Thread.Sleep(1000);                                                                                                       // Wartet eine Sekunde.
                         ZipFile.ExtractToDirectory(pathFile, pathFolder, true);                                                                   // Entpackt die ZIP-Datei.
                         Log.inf("Entpacke die heruntergeladene MultiMonitorTool.");
@@ -142,6 +142,21 @@ namespace MIM_Tool.Funktions
                         System.IO.Directory.CreateDirectory(pathBackUP);                                                                                                // Erstellt den Backup-Ordner.
                         System.IO.File.Move(Properties.Settings.Default.eMultiMonLastSave, $"{pathBackUP}{fileToMove}");                                                // Verschiebt die Datei ins Backup.
                          Log.inf("Alte Datei ins Backup-Verzeichnis verschoben.");
+
+                        // Löschen der ältesten Dateien, wenn mehr als 30 Backups vorhanden sind
+                        var backupFiles = new DirectoryInfo(pathBackUP)
+                            .GetFiles("*.cfg") // Nur Dateien mit der Erweiterung .dok berücksichtigen
+                            .OrderBy(f => f.CreationTime)
+                            .ToList();
+                        if (backupFiles.Count > 30)
+                        {
+                            Log.inf("Mehr als 30 Backup-Dateien gefunden. Löschen der ältesten Dateien.");
+                            for (int i = 0; i < backupFiles.Count - 30; i++)
+                            {
+                                Log.inf($"Lösche Datei: {backupFiles[i].FullName}");
+                                backupFiles[i].Delete();
+                            }
+                        }
                     }
                     ProcessStartInfo startInfo = new ProcessStartInfo();
                     startInfo.FileName = pathExe;                                                                                                                       // Pfad zur Anwendung.
@@ -154,8 +169,9 @@ namespace MIM_Tool.Funktions
 
                     Log.inf("MultiMonitorTool Prozess abgeschlossen.");
                     var directoryInfo = new DirectoryInfo(pathFolder);
-                    var myFile = directoryInfo.GetFiles()
-                                              .OrderByDescending(f => f.LastWriteTime)
+                    var myFile = directoryInfo.GetFiles("*.cfg")
+                                              .Where(f => f.Name.Contains("MultiMon"))                                                                                  // Nur Dateien, die "DesktopOK" im Namen enthalten
+                                               .OrderByDescending(f => f.LastWriteTime)
                                               .FirstOrDefault();                                                                                                        // Holt die zuletzt erstellte Datei
                     Log.inf("Zuletzt erstellte Datei ermittelt.");
                     if (myFile != null)
@@ -217,14 +233,7 @@ namespace MIM_Tool.Funktions
         public static void MonitorDeaktivieren(string pathExe, string moniAuswhal, int moniNr)            // Monitor deaktivieren.
         {
             Log.inf("Beginne mit dem Deaktivieren des Monitors.");
-            bool[] aktiv =
-            {
-                Properties.Settings.Default.eMonitorAktiv1,                                               // Status von Monitor 1.
-                Properties.Settings.Default.eMonitorAktiv2,                                               // Status von Monitor 2.
-                Properties.Settings.Default.eMonitorAktiv3,                                               // Status von Monitor 3.
-                Properties.Settings.Default.eMonitorAktiv4                                                // Status von Monitor 4.
-            };
-            if (!string.IsNullOrEmpty(Properties.Settings.Default.eMultiMonLastSave) && aktiv[moniNr])
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.eMultiMonLastSave) )
             {;
                 try
                 {
@@ -235,6 +244,7 @@ namespace MIM_Tool.Funktions
                     Log.inf($"Starte Prozess: {startInfo.FileName} mit Argumenten: {startInfo.Arguments}");
                     Process process = Process.Start(startInfo);
                     process.WaitForExit();                                                                // Warten, bis der Prozess abgeschlossen ist.
+                    
                     Log.inf("Monitor erfolgreich deaktiviert.");
                     if (moniNr == 0) Properties.Settings.Default.eMonitorAktiv1 = false;                  // Setzt den Status von Monitor 1 auf inaktiv.
                     if (moniNr == 1) Properties.Settings.Default.eMonitorAktiv2 = false;                  // Setzt den Status von Monitor 2 auf inaktiv.
@@ -270,19 +280,18 @@ namespace MIM_Tool.Funktions
                     Process process = Process.Start(startInfo);
                     process.WaitForExit();                                                                // Warten, bis der Prozess abgeschlossen ist.
                     Log.inf("Monitor erfolgreich aktiviert.");
-                    var loadConfig = new FunktionMultiMonitor();
-                    loadConfig.MonitorLoadConfig();                                                       // Lädt die Monitor-Konfiguration.
-                    Log.inf("Monitor-Konfiguration geladen.");
-                    if (moniNr == 0) Properties.Settings.Default.eMonitorAktiv1 = true;                   // Setzt den Status von Monitor 1 auf aktiv.
-                    if (moniNr == 1) Properties.Settings.Default.eMonitorAktiv2 = true;                   // Setzt den Status von Monitor 2 auf aktiv.
-                    if (moniNr == 2) Properties.Settings.Default.eMonitorAktiv3 = true;                   // Setzt den Status von Monitor 3 auf aktiv.
-                    if (moniNr == 3) Properties.Settings.Default.eMonitorAktiv4 = true;                   // Setzt den Status von Monitor 4 auf aktiv.
-                    Properties.Settings.Default.Save();                                                   // Speichert die Einstellungen.
+
                     Thread.Sleep(1000);                                                                   // Wartet eine Sekunde.
                     Log.inf("Einstellungen gespeichert und eine Sekunde gewartet.");
+                    if (Properties.Settings.Default.eMonitorAktiv1 && Properties.Settings.Default.eMonitorAktiv2 && Properties.Settings.Default.eMonitorAktiv3)
+                    {
+                        var loadConfig = new FunktionMultiMonitor();
+                        loadConfig.MonitorLoadConfig();                                                       // Lädt die Monitor-Konfiguration.
+                        Log.inf("Monitor-Konfiguration geladen.");
+                    }
                 }
                 catch (Exception ex)
-                {
+                { 
                     Log.err("Ausführungs missgeschick, beiManueller Steuerung korekte steuerung achten, oder schaum mal nach dem Programm. ", ex, true); //Fehler Text festlegen
                 }
             }
@@ -291,7 +300,49 @@ namespace MIM_Tool.Funktions
                 Log.err("Der gewünschten Monitor hat den Status inaktiv oder die Speicherdatei fehlt, \nDas Neu Laden der Daten könnte helfen.", null,true);//Fehler Text festlegen
             }
         }
-
+        public static void MonitorSwitch(string pathExe , int moniNr)            // Monitor deaktivieren.
+        {
+            Log.inf("Beginne mit dem Umschalten des Monitors.");
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.eMultiMonLastSave))
+            {
+                string moniAus1 = Properties.Settings.Default.InfoMonitor1;
+                string[] moniArray1 = moniAus1.Split(';');
+                string moniAus2 = Properties.Settings.Default.InfoMonitor2;
+                string[] moniArray2 = moniAus2.Split(';');
+                string moniAus3 = Properties.Settings.Default.InfoMonitor3;
+                string[] moniArray3 = moniAus3.Split(';');
+                string moniAus4 = Properties.Settings.Default.InfoMonitor4;
+                string[] moniArray4 = moniAus4.Split(';');
+                string[][] moniAuswhal =
+                    {
+                    moniArray1,
+                    moniArray2,
+                    moniArray3,
+                    moniArray4
+                    };
+                MessageBox.Show($"Monitor {moniAuswhal[moniNr][17]} wird geschallten");
+                try
+                {
+                    ProcessStartInfo startInfo = new ProcessStartInfo();
+                    startInfo.FileName = pathExe;                                                         // Pfad zur Anwendung.
+                    startInfo.Arguments = $"/switch {moniAuswhal[moniNr][17]}";                                      // Argumente für das Deaktivieren des Monitors.
+                    startInfo.WindowStyle = ProcessWindowStyle.Hidden;                                    // Fenster nicht anzeigen.
+                    Log.inf($"Starte Prozess: {startInfo.FileName} mit Argumenten: {startInfo.Arguments}");
+                    Process process = Process.Start(startInfo);
+                    process.WaitForExit();                                                                // Warten, bis der Prozess abgeschlossen ist.
+                    MessageBox.Show("Monitor erfolgreich im Admin Modus geschallten, variabelen werden Ignoriert");
+                    Log.inf("Monitor erfolgreich geschallten.");
+                }
+                catch (Exception ex)
+                {
+                    Log.err("Ausführungs missgeschick, beiManueller Steuerung korekte steuerung achten, oder schaum mal nach dem Programm. ", ex, true); //Fehler Text festlegen
+                }
+            }
+            else
+            {
+                Log.err("Der gewünschten Monitor hat den Status inaktiv oder die Speicherdatei fehlt, \nDas Neu Laden der Daten könnte helfen.", null, true);//Fehler Text festlegen 
+            }
+        }
         public string GetExeVersion()                                                                     // Methode zum Auslesen der Version von DesktopOK.exe.
         {
             if (File.Exists(pathExe))
@@ -302,6 +353,45 @@ namespace MIM_Tool.Funktions
             else
             {
                 return "Datei nicht gefunden.";                                                           // Gibt eine Fehlermeldung zurück, wenn die Datei nicht existiert.
+            }
+        }
+
+
+
+
+        public static void MMTTest(int index)                                                                                                                                 // Mit MultiMonitorTool Monitor-Daten laden.
+        {
+
+            string[] setMonitor = //0=alle an 1=aus an an 2= an aus an 3=aus aus an
+            {
+                " /SetMonitors \"Name=MONITOR\\SAM0A7A\\{4d36e96e-e325-11ce-bfc1-08002be10318}\\0001 BitsPerPixel=32 Width=1920 Height=1080 DisplayFrequency=60 PositionX=299 PositionY=2160\" \"Name=MONITOR\\AOC2752\\{4d36e96e-e325-11ce-bfc1-08002be10318}\\0006 BitsPerPixel=32 Width=1920 Height=1080 DisplayFrequency=60 PositionX=4294965376 PositionY=1080\" \"Name=MONITOR\\HEC0030\\{4d36e96e-e325-11ce-bfc1-08002be10318}\\0009 Primary=1 BitsPerPixel=32 Width=3840 Height=2160 DisplayFrequency=60 PositionX=0 PositionY=0\" ",
+                " /SetMonitors \"Name=MONITOR\\SAM0A7A\\{4d36e96e-e325-11ce-bfc1-08002be10318}\\0001 BitsPerPixel=0 Width=0 Height=0 DisplayFrequency=0 PositionX=0 PositionY=0\" \"Name=MONITOR\\AOC2752\\{4d36e96e-e325-11ce-bfc1-08002be10318}\\0006 BitsPerPixel=32 Width=1920 Height=1080 DisplayFrequency=60 PositionX=4294965376 PositionY=1080\" \"Name=MONITOR\\HEC0030\\{4d36e96e-e325-11ce-bfc1-08002be10318}\\0009 Primary=1 BitsPerPixel=32 Width=3840 Height=2160 DisplayFrequency=60 PositionX=0 PositionY=0\" ",
+                " /SetMonitors \"Name=MONITOR\\SAM0A7A\\{4d36e96e-e325-11ce-bfc1-08002be10318}\\0001 BitsPerPixel=32 Width=1920 Height=1080 DisplayFrequency=60 PositionX=299 PositionY=2160\" \"Name=MONITOR\\AOC2752\\{4d36e96e-e325-11ce-bfc1-08002be10318}\\0006 BitsPerPixel=0 Width=0 Height=0 DisplayFrequency=0 PositionX=0 PositionY=0\" \"Name=MONITOR\\HEC0030\\{4d36e96e-e325-11ce-bfc1-08002be10318}\\0009 Primary=1 BitsPerPixel=32 Width=3840 Height=2160 DisplayFrequency=60 PositionX=0 PositionY=0\" ",
+                " /SetMonitors \"Name=MONITOR\\SAM0A7A\\{4d36e96e-e325-11ce-bfc1-08002be10318}\\0001 BitsPerPixel=0 Width=0 Height=0 DisplayFrequency=0 PositionX=0 PositionY=0\" \"Name=MONITOR\\AOC2752\\{4d36e96e-e325-11ce-bfc1-08002be10318}\\0006 BitsPerPixel=0 Width=0 Height=0 DisplayFrequency=0 PositionX=0 PositionY=1080\" \"Name=MONITOR\\HEC0030\\{4d36e96e-e325-11ce-bfc1-08002be10318}\\0009 Primary=1 BitsPerPixel=32 Width=3840 Height=2160 DisplayFrequency=60 PositionX=0 PositionY=0\" ",
+
+            };
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.eMultiMonLastSave))
+            {
+                try
+                {
+                    Log.inf($"test beim schalten ({index}) \n0=alle an 1=aus an an 2= an aus an 3=aus aus an");
+                    ProcessStartInfo startInfo = new ProcessStartInfo();
+                    startInfo.FileName = "C:\\Users\\Ryuk\\Documents\\MIM_Files\\MultiMonitorTool.exe";                                                                                                                       // Pfad zur Anwendung.
+                    startInfo.Arguments = setMonitor[index];                                                               // Argumente für das Laden der Konfiguration.
+                    startInfo.WindowStyle = ProcessWindowStyle.Hidden;                                                                                                  // Fenster nicht anzeigen.
+                    Log.inf($"Starte Prozess: {startInfo.FileName} mit Argumenten: {startInfo.Arguments}");
+                    Process process = Process.Start(startInfo);
+                    process.WaitForExit();                                                                                                                              // Warten, bis der Prozess abgeschlossen ist.
+                    Log.inf("test Monitor-Konfiguration erfolgreich geladen.");
+                }
+                catch (Exception ex)
+                {
+                    Log.err("test Ladehemmung von MultiMonitorTool,Schau mal nach zugriffsberechtigung des Programms nach.", ex, true);                                       //Fehler Text festlegen                                                                                                                                                          // Speichert die Einstellungen.
+                }
+            }
+            else
+            {
+                Log.err($"test Speicherdatei ({Properties.Settings.Default.eMultiMonLastSave}) nicht gefunden, \nkontrolliere bitte den Hintergrund Ordner.", null, true);//Fehler Text festlegen                                                                                                                                                          // Speichert die Einstellungen.
             }
         }
     }

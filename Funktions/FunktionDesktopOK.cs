@@ -70,6 +70,11 @@ namespace MIM_Tool.Funktions
                             Thread.Sleep(1000);                                                                                                     // Wartet eine Sekunde.
                             ZipFile.ExtractToDirectory(pathFile, pathFolder, true);                                                                 // Entpackt die Datei.
                             Log.inf("Download und Entpacken abgeschlossen.");
+                            foreach (var file in Directory.GetFiles(pathFolder, "*.txt"))
+                            {
+                                if(file != pathFolder + "\\MIM_LogFile.txt")File.Delete(file);
+                                Log.inf($"Gelöschte Datei: {file}");
+                            }
                             Properties.Settings.Default.eDeskOkDownloadDone = true;                                                                 // Setzt die Einstellung auf abgeschlossen.
                             Properties.Settings.Default.eDeskOkDownloadReady = false;                                                               // Setzt die Einstellung auf nicht bereit.
                             Properties.Settings.Default.eDeskOkDownloadDate = Convert.ToString(DateTime.Now);                                       // Speichert das Download-Datum.
@@ -95,9 +100,15 @@ namespace MIM_Tool.Funktions
                         Thread.Sleep(1000);                                                                                                         // Wartet eine Sekunde.
                         ZipFile.ExtractToDirectory(pathFile, pathFolder, true);                                                                     // Entpackt die Datei.
                         Log.inf("Entpacke die heruntergeladene DesktopOk.");
+                        foreach (var file in Directory.GetFiles(pathFolder, "*.txt"))
+                        {
+                            if (file != pathFolder + "\\MIM_LogFile.txt") File.Delete(file);
+                            Log.inf($"Gelöschte Datei: {file}");
+                        }
                         Properties.Settings.Default.eDeskOkDownloadDone = true;                                                                     // Setzt die Einstellung auf abgeschlossen.
                         Properties.Settings.Default.eDeskOkDownloadReady = false;                                                                   // Setzt die Einstellung auf nicht bereit.
                         Properties.Settings.Default.eDeskOkDownloadDate = Convert.ToString(DateTime.Now);                                           // Speichert das Download-Datum.
+                        Properties.Settings.Default.eDeskOkVers = $"{GetExeVersion()}";                                                         // Speichert die Version des Programms.
                         Properties.Settings.Default.Save();                                                                                         // Speichert die Einstellungen.
                         Log.inf("Herunterlaaden von DesktopOk war erfolgreich, Einstellungen gespeichert.");
                     }
@@ -138,6 +149,22 @@ namespace MIM_Tool.Funktions
                         System.IO.Directory.CreateDirectory(pathBackUP);                                                                            // Erstellt das Backup-Verzeichnis, falls es nicht existiert.
                         System.IO.File.Move(Properties.Settings.Default.eDeskOkLastSave, $"{pathBackUP}{fileToMove}");                              // Verschiebt die alte Datei ins Backup-Verzeichnis.
                         Log.inf("Alte Datei ins Backup-Verzeichnis verschoben.");
+
+                        // Löschen der ältesten Dateien, wenn mehr als 30 Backups vorhanden sind
+                        var backupFiles = new DirectoryInfo(pathBackUP)
+                            .GetFiles("*.dok") // Nur Dateien mit der Erweiterung .dok berücksichtigen
+                            .OrderBy(f => f.CreationTime)
+                            .ToList();
+                        if (backupFiles.Count > 30)
+                        {
+                            Log.inf("Mehr als 30 Backup-Dateien gefunden. Löschen der ältesten Dateien.");
+                            for (int i = 0; i < backupFiles.Count - 30; i++)
+                            {
+                                Log.inf($"Lösche Datei: {backupFiles[i].FullName}");
+                                backupFiles[i].Delete();
+                            }
+                        }
+
                     }
                     ProcessStartInfo startInfo = new ProcessStartInfo();                                                                            // Prozess für das Öffnen des Dokuments starten
                     startInfo.FileName = pathExe;                                                                                                   // Pfad zur Anwendung.
@@ -148,7 +175,7 @@ namespace MIM_Tool.Funktions
                     process.WaitForExit();                                                                                                          // Warten, bis der Prozess abgeschlossen ist.
                     Log.inf("DesktopOK Prozess abgeschlossen.");
                     var directoryInfo = new DirectoryInfo(pathFolder);
-                    var myFile = directoryInfo.GetFiles()
+                    var myFile = directoryInfo.GetFiles("*.dok")
                                               .OrderByDescending(f => f.LastWriteTime)
                                               .FirstOrDefault();                                                                                    // Ermittelt die zuletzt erstellte Datei.
                     Log.inf("Zuletzt erstellte Datei ermittelt.");

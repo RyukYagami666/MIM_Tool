@@ -26,7 +26,6 @@ namespace MIM_Tool.Funktions
                     case DialogResult.No:
                         Log.inf("Das Hinzufügen einzelner Icons zur Liste 1 wurde ausgewählt und wird ausgeführt ");
                         int mNummer = 1;                                                                                            // Setzt die Monitor-Nummer.
-                        MessageBox.Show("einzelne Icons werden hinzugefügt.");                                                      // Zeigt eine Bestätigungsmeldung an.
                         EinzelnesIconHinzufügen einzelnesIconHinzufügen = new EinzelnesIconHinzufügen();                            // Erstellt eine Instanz der Klasse EinzelnesIconHinzufügen.
                         einzelnesIconHinzufügen.Vergleich(mNummer);                                                                 // Ruft die Methode Vergleich auf.
                         Log.war("Das einzelne Hinzufügen von Icons zu Liste 1 ist abgeschlossen ",4000);                            
@@ -68,7 +67,6 @@ namespace MIM_Tool.Funktions
                     case DialogResult.No:
                         Log.inf("Das Hinzufügen einzelner Icons zur Liste 2 wurde ausgewählt und wird ausgeführt ");
                         int mNummer = 2;                                                                                            // Setzt die Monitor-Nummer.
-                        MessageBox.Show("einzelne Icons werden hinzugefügt.");                                                      // Zeigt eine Bestätigungsmeldung an.
                         EinzelnesIconHinzufügen einzelnesIconHinzufügen = new EinzelnesIconHinzufügen();                            // Erstellt eine Instanz der Klasse EinzelnesIconHinzufügen.
                         einzelnesIconHinzufügen.Vergleich(mNummer);                                                                 // Ruft die Methode Vergleich auf.
                         Log.war("Das einzelne Hinzufügen von Icons zu Liste 2 ist abgeschlossen ", 4000);                           
@@ -110,7 +108,6 @@ namespace MIM_Tool.Funktions
                     case DialogResult.No:
                         Log.inf("Das Hinzufügen einzelner Icons zur Liste 3 wurde ausgewählt und wird ausgeführt ");
                         int mNummer = 3;                                                                                            // Setzt die Monitor-Nummer.
-                        MessageBox.Show("einzelne Icons werden hinzugefügt.");                                                      // Zeigt eine Bestätigungsmeldung an.
                         EinzelnesIconHinzufügen einzelnesIconHinzufügen = new EinzelnesIconHinzufügen();                            // Erstellt eine Instanz der Klasse EinzelnesIconHinzufügen.
                         einzelnesIconHinzufügen.Vergleich(mNummer);                                                                 // Ruft die Methode Vergleich auf.
                         Log.war("Das einzelne Hinzufügen von Icons zu Liste 3 ist abgeschlossen ", 4000);                           
@@ -151,7 +148,6 @@ namespace MIM_Tool.Funktions
                     case DialogResult.No:
                         Log.inf("Das Hinzufügen einzelner Icons zur Liste 4 wurde ausgewählt und wird ausgeführt ");
                         int mNummer = 4;                                                                                            // Setzt die Monitor-Nummer.
-                        MessageBox.Show("einzelne Icons werden hinzugefügt.");                                                      // Zeigt eine Bestätigungsmeldung an.
                         EinzelnesIconHinzufügen einzelnesIconHinzufügen = new EinzelnesIconHinzufügen();                            // Erstellt eine Instanz der Klasse EinzelnesIconHinzufügen.
                         einzelnesIconHinzufügen.Vergleich(mNummer);                                                                 // Ruft die Methode Vergleich auf.
                         Log.war("Das einzelne Hinzufügen von Icons zu Liste 4 ist abgeschlossen ", 4000);                           

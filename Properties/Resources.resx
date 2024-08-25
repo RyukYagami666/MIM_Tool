@@ -175,7 +175,7 @@
     <value>Fehler Neuladen:</value>
   </data>
   <data name="FP_12_Im_DOImage_TT" xml:space="preserve">
-    <value>DesktopOk Status:
+    <value> Status:
   Hiermit werden Die Statuse angezeigt.
     Donwload fertig: bei Grün Erfolgreich runtergeladen. 
     Icon Pos Save: bei Grün Icon Positionen in extra Datei Gespeichert. 
@@ -183,7 +183,7 @@
     <comment>Im = Image TT = ToolTip</comment>
   </data>
   <data name="FP_14_Im_MMImage_TT" xml:space="preserve">
-    <value>MultiMonitorTool Status:
+    <value> Status:
   Hiermit werden Die Statuse angezeigt.
     Donwload fertig: bei Grün Erfolgreich runtergeladen.
     Monitor Configs Save: bei Grün alle Monitor Einstellungen in extra Config Datei Gespeichert.

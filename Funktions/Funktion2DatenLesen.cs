@@ -17,7 +17,7 @@ namespace MIM_Tool.Funktions
             var dosStatus = new FunktionDesktopOK();
             dosStatus.DOSKontrolle();                                                           // Überprüft den Desktop-Status
             Log.inf("Bedingungsabfrage zum Benutzen von DesktopOk erfolgreich ");
-
+            
             var doIconPos = new FunktionDesktopOK();
             doIconPos.IconSavePos();                                                            // Speichert die Position der Icons
             Log.inf("Das Speichern der Icon Positionen mit DesktopOk erfolgreich ");
@@ -73,37 +73,6 @@ namespace MIM_Tool.Funktions
             Properties.Settings.Default.Save();                                                                                  // Speichert die Einstellungen
         }
 
-        public void DatenReset()
-        {
-            Log.inf("Start des Zurücksetzen von internen Daten, damit keine Kollisionen entstehen ");
-            // Setze die Monitor-Informationen zurück
-            Properties.Settings.Default.InfoMonitor1 = "";                  // Setzt die Informationen für Monitor 1 zurück
-            Properties.Settings.Default.InfoMonitor2 = "";                  // Setzt die Informationen für Monitor 2 zurück
-            Properties.Settings.Default.InfoMonitor3 = "";                  // Setzt die Informationen für Monitor 3 zurück
-            Properties.Settings.Default.InfoMonitor4 = "";                  // Setzt die Informationen für Monitor 4 zurück
-
-            // Setze die Icon-Zuweisungen und -Status zurück
-            Properties.Settings.Default.eMonitorVorhanden1 = false;         // Setzt den Status für Monitor 1 zurück
-            Properties.Settings.Default.eMonitorAktiv1 = false;             // Setzt den Aktivitätsstatus für Monitor 1 zurück
-            Properties.Settings.Default.eMonitorVorhanden2 = false;         // Setzt den Status für Monitor 2 zurück
-            Properties.Settings.Default.eMonitorAktiv2 = false;             // Setzt den Aktivitätsstatus für Monitor 2 zurück
-            Properties.Settings.Default.eMonitorVorhanden3 = false;         // Setzt den Status für Monitor 3 zurück
-            Properties.Settings.Default.eMonitorAktiv3 = false;             // Setzt den Aktivitätsstatus für Monitor 3 zurück
-            Properties.Settings.Default.eMonitorVorhanden4 = false;         // Setzt den Status für Monitor 4 zurück
-            Properties.Settings.Default.eMonitorAktiv4 = false;             // Setzt den Aktivitätsstatus für Monitor 4 zurück
-
-            // Setze die Desktop-Informationen zurück
-            Properties.Settings.Default.MultiMonData = null;                // Setzt die Multi-Monitor-Daten zurück
-            Properties.Settings.Default.MultiMonDataTrim1 = null;           // Setzt die getrimmten Multi-Monitor-Daten für Monitor 1 zurück
-            Properties.Settings.Default.MultiMonDataTrim2 = null;           // Setzt die getrimmten Multi-Monitor-Daten für Monitor 2 zurück
-            Properties.Settings.Default.MultiMonDataTrim3 = null;           // Setzt die getrimmten Multi-Monitor-Daten für Monitor 3 zurück
-            Properties.Settings.Default.MultiMonDataTrim4 = null;           // Setzt die getrimmten Multi-Monitor-Daten für Monitor 4 zurück
-
-            Properties.Settings.Default.SelectetMonitor = 10;               // Setzt den ausgewählten Monitor zurück
-            Properties.Settings.Default.Save();                             // Speichert die Einstellungen
-            Log.inf("fertch");
-        }
-
         public void DatenLesenAbfrage()
         {
             
@@ -126,7 +95,6 @@ namespace MIM_Tool.Funktions
                 if (result == DialogResult.Yes)
                 {
                     Log.inf("Die Userabfrage und Bedienung zum Starten das Datenlesens war erfolgreich ");
-                    DatenReset();
                     DatenLesen();                                                                                                                                                                 // Ruft die Methode zum Lesen der Daten auf
                 }
             }
