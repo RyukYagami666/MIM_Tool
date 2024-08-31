@@ -4,9 +4,9 @@ Mit diesem Programm kannst du Icons den einzelnen Monitoren zuordnen, was besond
 wenn du beispielsweise identische Verzeichnisse auf mehreren Monitoren verwenden möchtest.
 Das Programm unterstützt bis zu 4 Monitoren
 
-Download Link Installer: https://mega.nz/file/SItzGYLQ#t-mjWvH0SfXnGSM2DCaAQVrcKRTyIKpZ402s9uGeZAc
+Download Link Installer: [(https://mega.nz/file/WEVkUb7R#_D4FQezmqM2BLcEuv12VlQ0KKS7FDfZWL8ZrYZTjlkk)]
 
-Download Linkt zum Kompletten VisualStudio Projekt: https://mega.nz/file/SV0gBQDK#2QgQ8frKByGtND1bSvE1X0_4E9jxPom5RtlMJzQPqZs
+Download Linkt zum Kompletten VisualStudio Projekt: [(https://mega.nz/file/6ZFBGQZR#DFPgZY53V1WPQ3Er3mmAatINu12fEFRQFpmIMkYl_-o)]
 
 Tutorial: https://youtu.be/Omb_VjmDHYM
 Admin Tutorial: https://youtu.be/tKL3XhcXEts
