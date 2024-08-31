@@ -406,4 +406,10 @@ Entwickelt von RyukYagami666, einen Programier Hobbyist.</value>
   Wenn in der Fehler hier resetet wurde, heißt es nicht das der Fehler weg ist,
   dafür muss man die Nachricht lesen und handeln.</value>
   </data>
+  <data name="FP_10_Bo_StatusTB06" xml:space="preserve">
+    <value>Prozess Initialisieren:</value>
+  </data>
+  <data name="FP_10_Bo_StatusTB07" xml:space="preserve">
+    <value>Prozess DatenLesen:</value>
+  </data>
 </root>

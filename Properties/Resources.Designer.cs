@@ -204,6 +204,24 @@ namespace MIM_Tool.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Prozess Initialisieren: ähnelt.
+        /// </summary>
+        public static string FP_10_Bo_StatusTB06 {
+            get {
+                return ResourceManager.GetString("FP_10_Bo_StatusTB06", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Prozess DatenLesen: ähnelt.
+        /// </summary>
+        public static string FP_10_Bo_StatusTB07 {
+            get {
+                return ResourceManager.GetString("FP_10_Bo_StatusTB07", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die  Status:
         ///  Hiermit werden Die Statuse angezeigt.
         ///    Donwload fertig: bei Grün Erfolgreich runtergeladen. 

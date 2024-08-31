@@ -92,13 +92,3 @@ Oberhalb der Steuerungs-Buttons findest du bis zu vier Buttons, die deine Monito
 •	Zugeteilte Icons:
 	Listet alle Icons auf, die dem ausgewählten Monitor zugeordnet sind. Diese Liste aktualisiert sich automatisch, wenn du neue Icons zuweist oder bestehende Änderungen vornimmst.
 
-
-
-
-Dies ist mein erstes richtigees Programm, das ich vollständig alleine ohne Hilfe anderer umgesetzt habe. 
-Ich bin stolz darauf, es eigenständig geschafft zu haben. Auch wenn ich kein Profi bin, 
-habe ich mein Bestes gegeben und hoffe, dass es euch gefällt. Ich würde mich freuen, 
-wenn jemand das Programm verbessern könnte und ihn auch auf Englisch bereitstellt. Danke. 
-Ich bin ein Hobby-Programmierer, also bitte ich, eventuelle grundlegende Fehler nachzusehen.
-
-

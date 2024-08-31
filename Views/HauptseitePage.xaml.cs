@@ -6,6 +6,11 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Media;
 using MIM_Tool.Helpers;
+using System.Media;
+using System.Threading;
+using System.Windows.Forms;
+using System.IO;
+using System.Reflection;
 
 namespace MIM_Tool.Views;   //-----------------------------------------------------------------Inizialisiert die Hauptseite/Anwendung--------------------------------------------------------------------------------
 public partial class HauptseitePage : Page, INotifyPropertyChanged
@@ -30,19 +35,26 @@ public partial class HauptseitePage : Page, INotifyPropertyChanged
         Log.inf("HauptseitePage geladen.");
         if (!Properties.Settings.Default.Inizialisiert)                               // Überprüft, ob die Anwendung initialisiert wurde
         {
-            Log.war("Anwendung nicht initialisiert. Initialisierung wird durchgeführt.");
+            OpenEmbeddedDocx();
+            System.Windows.Forms.MessageBox.Show("Anwendung nicht initialisiert. Initialisierung wird nach den bestätigen durchgeführt.", "Initialisierung"); // Zeigt eine Warnung an, dass die Anwendung nicht initialisiert ist
             var inizialisiert = new Funktion1Initialisieren();                        // Erstellt eine Instanz der Initialisierungsfunktion
             inizialisiert.Initialisieren();                                           // Führt die Initialisierung durch
-            Log.inf("Initialisierung abgeschlossen.");
-            return;                                                                   // Beendet die Methode, wenn die Initialisierung nicht abgeschlossen ist
+            if (Properties.Settings.Default.InizialisierungsFehler || !Properties.Settings.Default.Inizialisiert)  // Überprüft, ob das Lesen der Daten aktiv ist
+            {
+                return;
+            }
+            Log.inf("Initialisierung abgeschlossen.");                                                          // Beendet die Methode, wenn die Initialisierung nicht abgeschlossen ist
         }
         else if (Properties.Settings.Default.DatenLesenAktiv)                         // Überprüft, ob das Lesen der Daten aktiv ist
         {
             Log.err("DatenLesenAktiv ist aktiv. aber ohne Prozess, Daten Lesen neu Starten.",null,true);
             var datenLesen = new Funktion2DatenLesen();                               // Erstellt eine Instanz der Datenlesungsfunktion
             datenLesen.DatenLesen();                                                  // Liest die Daten
+            if (Properties.Settings.Default.DatenLesenFehler || !Properties.Settings.Default.Inizialisiert)        // Überprüft, ob das Lesen der Daten aktiv ist
+            {
+                return;
+            }
             Log.inf("Daten geladen.");
-            return;
         }
 
         Log.inf("Anwendung bereits initialisiert.");
@@ -69,7 +81,21 @@ public partial class HauptseitePage : Page, INotifyPropertyChanged
         Moni4.Background = Properties.Settings.Default.eMonitorAktiv4 ? transparentGray : transparentDarkGray;
         Log.inf("Monitor-Hintergrundfarben basierend auf den Einstellungen gesetzt.");
     }
+    private void OpenEmbeddedDocx()
+    {
+        string filePath = Path.Combine(Directory.GetCurrentDirectory(), "1Vorlagen\\Herzlich Willkommen bei Monitor Icon Manager.docx");
+        Log.inf($"{filePath} auslesen.");
+        if (System.IO.File.Exists(filePath))
+        {
 
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(filePath) { UseShellExecute = true });                                // Öffnet die Konfigurationsdatei.
+            Log.inf("Die Datei wurde gefunden und geöffnet ");
+        }
+        else
+        {
+            Log.err($"Hallo die Dateien: {filePath} ist nicht vorhanden, \nwahrscheinlich ist es in einem anderen Unterordner, \nUnter %appdata% Temp MIM_Tool, müsste irgendwo die Datei sein ", null, true);// Zeigt eine Fehlermeldung an, wenn die Datei nicht gefunden wurde.
+        }
+    }
     private void Set<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
     {
         Log.inf($"Set-Methode aufgerufen für Eigenschaft: {propertyName}");
@@ -320,7 +346,6 @@ public partial class HauptseitePage : Page, INotifyPropertyChanged
             }
         Log.inf("TextSchreiben Methode beendet");
     }
-
                                                                                                                                       // Benachrichtigt die Benutzeroberfläche über eine Eigenschaftsänderung
     private void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)); // Löst das PropertyChanged-Ereignis aus
 
@@ -398,6 +423,7 @@ public partial class HauptseitePage : Page, INotifyPropertyChanged
         Log.inf("Erstellen einer Verknüpfung gestartet."); ;
         var verknüpfung = new FunktionVerknüpfung();                                             // Erstellt eine neue Instanz von FunktionVerknüpfung
         verknüpfung.VerknüpfungStart();                                                          // Startet die Erstellung der Verknüpfung
+        SystemSounds.Exclamation.Play();
     }
 
     private void btnMonitorSwitch_Click(object sender, RoutedEventArgs e)                        // Ereignishandler für den Klick auf die Schaltfläche zum Umschalten des Monitors
@@ -410,27 +436,23 @@ public partial class HauptseitePage : Page, INotifyPropertyChanged
             monitorData3,                                                                            // Daten für Monitor 3
             monitorData4                                                                             // Daten für Monitor 4
         };
-        bool[] aktiv =
-        {
-            Properties.Settings.Default.eMonitorAktiv1,
-            Properties.Settings.Default.eMonitorAktiv2,
-            Properties.Settings.Default.eMonitorAktiv3,
-            Properties.Settings.Default.eMonitorAktiv4
-        };
         Log.inf("Monitor-Daten und Aktiv-Status geladen.");
         if (Properties.Settings.Default.SelectetMonitor < 4)                                         // Überprüft, ob ein gültiger Monitor ausgewählt ist
         {
             Log.inf("Gültiger Monitor ausgewählt.");
-            string pathExe = $"{Properties.Settings.Default.pfadDeskOK}\\MultiMonitorTool.exe";      // Pfad zur MultiMonitorTool.exe
-            if (aktiv[Properties.Settings.Default.SelectetMonitor])                                  // Überprüft, ob der ausgewählte Monitor aktiv ist
+            var result = System.Windows.Forms.MessageBox.Show($"Willst du Monitor: {monitorData[Properties.Settings.Default.SelectetMonitor][1]} schalten?", "Schalten", MessageBoxButtons.YesNo, MessageBoxIcon.Question); // Fragt den Benutzer, ob die Datei erneut heruntergeladen werden soll.
+            if (result == DialogResult.Yes)
             {
-                Log.inf("Monitor ist aktiv. Deaktivieren wird gestartet.");
-                FunktionMultiMonitor.MonitorDeaktivieren(pathExe, monitorData[Properties.Settings.Default.SelectetMonitor][17], Properties.Settings.Default.SelectetMonitor); // Deaktiviert den ausgewählten Monitor
+                SystemSounds.Exclamation.Play();
+                Log.inf("Systemsound abgespielt.");
+                var kontrolle = new Funktion3MonitorKontrolle();
+                kontrolle.MonitorKontrolle(monitorData[Properties.Settings.Default.SelectetMonitor][17]);                                        // Führt die MonitorKontrolle-Funktion aus
+                Log.inf("MonitorKontrolle ausgeführt.");
+                SystemSounds.Exclamation.Play();
             }
             else
             {
-                Log.inf("Monitor ist nicht aktiv. Aktivieren wird gestartet.");
-                FunktionMultiMonitor.MonitorAktivieren(pathExe, monitorData[Properties.Settings.Default.SelectetMonitor][17], Properties.Settings.Default.SelectetMonitor); // Aktiviert den ausgewählten Monitor
+                Log.inf("Monitor nicht schalten.");
             }
         }
         else
@@ -443,6 +465,7 @@ public partial class HauptseitePage : Page, INotifyPropertyChanged
 
     private void btnIconsVerschieben_Click(object sender, RoutedEventArgs e)                                                                                                    // Ereignishandler für den Klick auf die Schaltfläche zum Verschieben der Icons
     {
+
         Log.inf("Verschieben der Icons gestartet.");
         string[] iconsZugewiesen =
         {
@@ -472,6 +495,8 @@ public partial class HauptseitePage : Page, INotifyPropertyChanged
             {
                 var moveIcons = new FunktionVerschieben();                                                                                                                      // Erstellt eine neue Instanz von FunktionVerschieben
                 moveIcons.MovePathToDesk(Properties.Settings.Default.SelectetMonitor);                                                                                          // Verschiebt die Icons vom Pfad zum Desktop
+                string pathExe = $"{Properties.Settings.Default.pfadDeskOK}\\DesktopOk.exe";
+                FunktionDesktopOK.IconRestore(pathExe, Properties.Settings.Default.eDeskOkLastSave);
                 Log.inf("Icons sind zugewiesen und verstaut. Verschieben zum Desktop wird gestartet.");
             }
             else

@@ -7,6 +7,9 @@ using System.Windows.Media;
 using System.Drawing;
 using System.Windows.Media.Imaging;
 using MIM_Tool.Helpers;
+using System.IO;
+using System.Reflection;
+
 
 namespace MIM_Tool.Views//-------------------------------------------------------------------------------------------Inizialisieren-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 {
@@ -19,6 +22,7 @@ namespace MIM_Tool.Views//------------------------------------------------------
             this.Loaded += FunktionPage_Loaded;                                                          // Abonniert das Loaded-Ereignis.
             Log.inf("FunktionPage initialisiert.");
             LoadIcons();
+            LoadAnleitung();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;                                        // Ereignis für Eigenschaftsänderungen.
@@ -66,6 +70,10 @@ namespace MIM_Tool.Views//------------------------------------------------------
             btnDOSavePos.Visibility = Properties.Settings.Default.AdminMode ? Visibility.Visible : Visibility.Collapsed;
             btnDOReadData.Visibility = Properties.Settings.Default.AdminMode ? Visibility.Visible : Visibility.Collapsed;
             btnDOBearbeiten.Visibility = Properties.Settings.Default.AdminMode ? Visibility.Visible : Visibility.Collapsed;
+            btnMMSaveConfig.Visibility = Properties.Settings.Default.AdminMode ? Visibility.Visible : Visibility.Collapsed;
+            btnMMSaveData.Visibility = Properties.Settings.Default.AdminMode ? Visibility.Visible : Visibility.Collapsed;
+            btnMMReadData.Visibility = Properties.Settings.Default.AdminMode ? Visibility.Visible : Visibility.Collapsed;
+            btnMMBearbeiten.Visibility = Properties.Settings.Default.AdminMode ? Visibility.Visible : Visibility.Collapsed;
             btnVerschieben.Visibility = Properties.Settings.Default.AdminMode ? Visibility.Visible : Visibility.Collapsed;
             btnMoniOff.Visibility = Properties.Settings.Default.AdminMode ? Visibility.Visible : Visibility.Collapsed;
             Log.inf("Sichtbarkeit der Admin-Buttons gesetzt.");
@@ -80,6 +88,21 @@ namespace MIM_Tool.Views//------------------------------------------------------
             if (bitmapImage1 != null) DOImage.Source = bitmapImage1;
             if (bitmapImage2 != null) MMImage.Source = bitmapImage2;
             Log.inf("Icons geladen und gesetzt.");
+        }
+
+        private void LoadAnleitung()
+        {
+            string filePath = Path.Combine(Directory.GetCurrentDirectory(), "1Vorlagen\\Anleitung.txt");
+            Log.inf($"{filePath} auslesen.");
+            if (File.Exists(filePath))
+            {
+                InfoTB01.Text = File.ReadAllText(filePath);
+            }
+            else
+            {
+                InfoTB01.Text = "Anleitung.txt nicht gefunden";
+                Log.err("Anleitung.txt nicht gefunden");
+            }
         }
 
         private BitmapImage LoadIcon(string iconPath)
@@ -164,6 +187,10 @@ namespace MIM_Tool.Views//------------------------------------------------------
             StatusTB13.Text = Properties.Settings.Default.Inizialisiert ? "Ja" : "Nein";
             StatusTB14.Text = Properties.Settings.Default.AdminMode ? "Admin" : "Benutzer";
             StatusTB15.Text = Properties.Settings.Default.FehlerPreReload ? "Fehler" : "OK";
+            if (Properties.Settings.Default.InizialisierungAktiv) StatusTB16.Text = Properties.Settings.Default.DatenLesenFehler ? "Fehler u. Aktiv" : "OK u. Aktiv";
+            else StatusTB16.Text = Properties.Settings.Default.InizialisierungsFehler ? "Fehler" : "OK";
+            if (Properties.Settings.Default.DatenLesenAktiv)StatusTB17.Text = Properties.Settings.Default.DatenLesenFehler ? "Fehler u. Aktiv" : "OK u. Aktiv";
+            else StatusTB17.Text = Properties.Settings.Default.DatenLesenFehler ? "Fehler" : "OK";
             if (!string.IsNullOrEmpty(Properties.Settings.Default.LetzterFehler)) btnFehlerReset.Content = Properties.Settings.Default.LetzterFehler;
             else btnFehlerReset.Content = "Keine fehler aufgetreten, Läuft!";
             Log.inf("Icon-Status geladen.");
@@ -290,40 +317,55 @@ namespace MIM_Tool.Views//------------------------------------------------------
 
         }
 
-        private void btnTest1_Cilck(object sender, RoutedEventArgs e)
+        private void btnMMSaveConfig_Cilck(object sender, RoutedEventArgs e)
         {
-           
-            var monitorSelectionWindow = new MonitorSelectionWindow();
-            if (monitorSelectionWindow.ShowDialog() == true)
-            {
-                int selectedMonitor = monitorSelectionWindow.SelectedMonitor;
-              
-                Log.inf($"Icons holen {selectedMonitor + 1} deaktiviert.");
-            }
-            else
-            {
-                Log.inf("Keine Monitor-Auswahl getroffen.");
-            }
+
+            var mmsStatus = new FunktionMultiMonitor();
+            mmsStatus.MMSKontrolle();                                                           // Überprüft den Multi-Monitor-Status
+            Log.inf("Bedienungsabfrage zum Coonfig Speicher von MultiMonitorTool erfolgreich ");
+
+            var monSaveConfig = new FunktionMultiMonitor();
+            monSaveConfig.MonitorSaveConfig();                                                  // Speichert die Monitor-Konfiguration
+            Log.inf("Das Speichern der Monitor Konfigurationen mit MultiMonitorTool erfolgreich ");
         }
 
-        private void btnTest2_Cilck(object sender, RoutedEventArgs e)
+        private void btnMMSaveData_Cilck(object sender, RoutedEventArgs e)
         {
-            FunktionMultiMonitor.MMTTest(1);
-            MessageBox.Show("Test2");
+            var mmrStatus = new FunktionMultiMonitor();
+            mmrStatus.MMRKontrolle();                                                           // Überprüft den Multi-Monitor-Status erneut
+            Log.inf("Bedingungsabfrage zum Monitordaten Laden mit MultiMonitorTool erfolgreich ");
+
+            var monSaveData = new FunktionDeskScen();
+            monSaveData.MonitorSaveData();                                                      // Speichert die Monitor-Daten
+            Log.inf("Monitordaten erfolgreich mit MultiMonitorTool geladen (noch nicht gelesen) ");
         }
 
-        private void btnTest3_Cilck(object sender, RoutedEventArgs e)
+        private void btnMMReadData_Cilck(object sender, RoutedEventArgs e)
         {
-            FunktionMultiMonitor.MMTTest(2);
-            MessageBox.Show("Test3");
+            var mmDataRead = new FunktionDeskScen();
+            mmDataRead.DataRead(Properties.Settings.Default.pfadDeskOK + "\\MonitorDaten.txt"); // Liest die Monitor-Daten aus einer Datei
+            Log.inf("Was die gespeicherte Liste von Monitordaten auslesen ");
         }
 
-        private void btnTest4_Cilck(object sender, RoutedEventArgs e)
+        private void btnMMBearbeiten_Cilck(object sender, RoutedEventArgs e)
         {
-            var loadConfig = new FunktionMultiMonitor();
-            loadConfig.MonitorLoadConfig();
-            loadConfig.MonitorLoadConfig();
-            MessageBox.Show("Test4");
+            var mmDataTrim = new FunktionVergleich();
+            mmDataTrim.MultiMonDataTrim();                                                      // Trimmt die Multi-Monitor-Daten
+            Log.inf("Gelesene Monitordaten verwendbar gemacht ");
+        }
+
+        private void btnMMSaveData_Click(object sender, RoutedEventArgs e)
+        {
+            var mmDataRead = new FunktionDeskScen();
+            mmDataRead.DataRead(Properties.Settings.Default.pfadDeskOK + "\\MonitorDaten.txt"); // Liest die Monitor-Daten aus einer Datei
+            Log.inf("Was die gespeicherte Liste von Monitordaten auslesen ");
+        }
+
+        private void btnMMReadData_Click(object sender, RoutedEventArgs e)
+        {
+            var mmDataRead = new FunktionDeskScen();
+            mmDataRead.DataRead(Properties.Settings.Default.pfadDeskOK + "\\MonitorDaten.txt"); // Liest die Monitor-Daten aus einer Datei
+            Log.inf("Was die gespeicherte Liste von Monitordaten auslesen ");
         }
     }
 }

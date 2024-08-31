@@ -1,16 +1,1 @@
 ﻿
-Sprache gradeziehen
-
-FileManager für backup und log file und update
-
-
-zu einer .exe packen
-
-
-
-
-
-
-
-
-

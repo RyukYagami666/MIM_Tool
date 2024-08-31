@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MIM_Tool", "MIM_Tool.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MIM_Tool.Core", "..\MIM_Tool.Core\MIM_Tool.Core.csproj", "{75230C7E-85D5-496C-8FC1-2C4BCE8AEA53}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "MIM_Tool_Setup", "..\MIM_Tool_Setup\MIM_Tool_Setup.vdproj", "{9A9756ED-726B-4064-A633-7B21DF8456EA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,8 @@ Global
 		{75230C7E-85D5-496C-8FC1-2C4BCE8AEA53}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75230C7E-85D5-496C-8FC1-2C4BCE8AEA53}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75230C7E-85D5-496C-8FC1-2C4BCE8AEA53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A9756ED-726B-4064-A633-7B21DF8456EA}.Debug|Any CPU.ActiveCfg = Debug
+		{9A9756ED-726B-4064-A633-7B21DF8456EA}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
