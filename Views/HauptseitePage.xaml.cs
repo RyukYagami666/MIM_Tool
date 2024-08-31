@@ -83,7 +83,7 @@ public partial class HauptseitePage : Page, INotifyPropertyChanged
     }
     private void OpenEmbeddedDocx()
     {
-        string filePath = Path.Combine(Directory.GetCurrentDirectory(), "1Vorlagen\\Herzlich Willkommen bei Monitor Icon Manager.docx");
+        string filePath = Path.Combine(Directory.GetCurrentDirectory(), "1Vorlagen\\Herzlich Willkommen bei Monitor Icon Manager.pdf");
         Log.inf($"{filePath} auslesen.");
         if (System.IO.File.Exists(filePath))
         {

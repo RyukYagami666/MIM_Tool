@@ -18,6 +18,7 @@
   <ItemGroup>
     <None Remove="1Vorlagen\Anleitung.txt" />
     <None Remove="1Vorlagen\Herzlich Willkommen bei Monitor Icon Manager.docx" />
+    <None Remove="1Vorlagen\Herzlich Willkommen bei Monitor Icon Manager.pdf" />
     <None Remove="README.md" />
     <None Remove="Styles\icon.ico" />
   </ItemGroup>
@@ -27,6 +28,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="1Vorlagen\Herzlich Willkommen bei Monitor Icon Manager.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="1Vorlagen\Herzlich Willkommen bei Monitor Icon Manager.pdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Settings.cs">
