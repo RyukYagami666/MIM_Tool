@@ -3,6 +3,8 @@ Der Monitor Icon Manager ist ein leistungsstarkes Tool zur Steuerung deiner Moni
 Mit diesem Programm kannst du Icons den einzelnen Monitoren zuordnen, was besonders nützlich ist, 
 wenn du beispielsweise identische Verzeichnisse auf mehreren Monitoren verwenden möchtest.
 
+Download Link: https://mega.nz/file/SItzGYLQ#t-mjWvH0SfXnGSM2DCaAQVrcKRTyIKpZ402s9uGeZAc
+
 Funktionen:
 •	Icons individuell mit Monitoren verknüpfen
 •	Erstellung von Hintergrundprozessen und Config-Dateien
